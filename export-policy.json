@@ -1,5 +1,5 @@
 {
-  "sourceBaseline": "current production core 1.8.2; staged 1.9.x excluded",
+  "sourceBaseline": "Production core 1.9.1 verified 2026-09-28; immutable 1.8.2 asset bundle reused with old core excluded and new core separately pinned.",
   "includedRoots": [
     "config",
     "configureddefaults",
@@ -16,7 +16,11 @@
   ],
   "excludedPaths": [
     "config/muxi-game-core.json",
-    "config/yes_steve_model/blacklist.txt"
+    "config/yes_steve_model/blacklist.txt",
+    "config/resourceful-config-web.json",
+    "config/touhou_little_maid/sites/llm.json",
+    "config/touhou_little_maid/sites/tts.json",
+    "config/touhou_little_maid/sites/stt.json"
   ],
   "excludedDirectoryNames": [
     "__pycache__",

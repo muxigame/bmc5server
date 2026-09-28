@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "baseline": "baseline-2026.09.28",
+  "baseline": "server-2026.09.28-core1.9.1",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
-  "coreVersion": "1.8.2",
+  "coreVersion": "1.9.1",
   "installer": {
     "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.250/neoforge-21.1.250-installer.jar",
     "sha256": "0e47a91ba2139a8db4bf7627af081f7b5789b508bb039ee8dea1272b79693d60"
@@ -6143,11 +6143,6 @@
       "path": "mods/muxi-champion-companions-1.0.3.jar",
       "size": 22352,
       "sha256": "5662bebf15395918395e5076994236a656e689c9b242cd9f52a4f524ab376bd6"
-    },
-    {
-      "path": "mods/muxi-game-core-1.8.2.jar",
-      "size": 235471,
-      "sha256": "64fc924b510fbb912557e4c3801d4f0d3ad648b5cee458a1280bcc0868fca57c"
     },
     {
       "path": "mods/MyNethersDelight-1.21.1-1.10.4.jar",
@@ -21241,6 +21236,20 @@
       "url": "https://cdn.modrinth.com/data/EmdnQtis/versions/kVVMxHOA/simplenicknames-1.21.1-neoforge-0.8.0.jar",
       "sha256": "1aa51914c3808505b971e46ab0a5821191543c96d8279eb2965954a96754da26",
       "size": 1412655
+    },
+    {
+      "path": "mods/muxi-game-core-1.9.1.jar",
+      "size": 259378,
+      "sha256": "54b6d4cfa1562d040599a2f8a59fa4e681cfd8eb8b5d6174adb1aa13e590b32d",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/server-2026.09.28-core1.9.1/muxi-game-core-1.9.1.jar"
     }
-  ]
+  ],
+  "retired": [
+    {
+      "path": "mods/muxi-game-core-1.8.2.jar",
+      "size": 235471,
+      "sha256": "64fc924b510fbb912557e4c3801d4f0d3ad648b5cee458a1280bcc0868fca57c"
+    }
+  ],
+  "coreSourceCommit": "7e3863ef078e7d09a657454d2a267599b131096f"
 }

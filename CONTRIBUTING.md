@@ -8,7 +8,7 @@
 
 ## 核心代码
 
-`modules/muxi-game-core` 是源项目提交 `4173faa` 的源码快照（1.8.2），不是 Git 子模块。
+`modules/muxi-game-core` 是源项目提交 `7e3863e` 的源码快照（1.9.1），不是 Git 子模块。
 它保留自己的 README、测试和许可证。构建器还需要相匹配的**客户端**编译依赖；仅安装本仓库服务端运行库不代表足以编译客户端 HUD。
 使用 `python modules/muxi-game-core/build.py --help` 查看 `--server`、`--client-game`、`--pack-mods`、`--java-home` 和 `--test` 参数。
 不要直接运行快照中的生产部署脚本；其中历史路径/部署流程仅作为源码历史参考。
@@ -18,7 +18,7 @@
 
 不能把新 JAR 直接提交 Git，也不要替换已发布基线的同名 ZIP。
 在独立目录准备完整资产集，维持 `runtime-lock.json` 的相对路径；每个文件计算 SHA-256/size。
-资源 ZIP 必须仅包含 lock.files 中的文件，不能有额外目录条目、重复路径或外部绝对路径。
+资源 ZIP 必须仅包含 lock.files 及显式 lock.retired 中的文件，不能有额外目录条目、重复路径或外部绝对路径；retired 文件只用于标识旧包内被替代的资产，不会安装。此基线的新 core JAR 通过 lock.external 单独锁定。
 Simple Nicknames 等原作者直链资源放在 lock.external，不打入 ZIP。
 创建**新的 Release tag**，上传资源 ZIP，更新 lock 的版本、URL、size 和 SHA-256，再从全新 checkout 跑 setup/verify/smoke。
 新的 core 源码快照、JAR 与客户端版本必须对应；PR 中写清迁移和回滚方法。

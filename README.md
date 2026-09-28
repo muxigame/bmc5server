@@ -1,8 +1,8 @@
 # muxigame BMC5 服务端协作基线
 
-当前正式服内容的**脱敏开发副本**：Minecraft **1.21.1** / NeoForge **21.1.250** / muxi-game-core **1.8.2**。
+当前正式服内容的**脱敏开发副本**：Minecraft **1.21.1** / NeoForge **21.1.250** / muxi-game-core **1.9.1**。
 不包含正式服世界、玩家数据、账号接口密钥、RCON 密码、隧道配置、日志或备份。
-未把待部署的 1.9.x 代码混入当前运行基线。
+已核对正式服目录中的 1.9.1 核心校验值与源码提交 `7e3863e`；早期 1.8.2 导出保留在 `baseline-2026.09.28` 标签。
 
 ## 拉取与启动
 
@@ -33,11 +33,13 @@ Java 不在 PATH 时，在 setup、start 或 smoke 命令后加 `--java "你的 
 | 内容 | 位置 |
 | --- | --- |
 | 可协作编辑的模组配置、任务、脚本、枪械数据 | `config/`、`defaultconfigs/`、`configureddefaults/`、`kubejs/`、`tacz/` 等 |
-| 当前 1.8.2 核心源码快照 | `modules/muxi-game-core/`，来源提交 `4173faa` |
+| 当前 1.9.1 核心源码快照 | `modules/muxi-game-core/`，来源提交 `7e3863e` |
 | 模组、模型、贴图、声音等二进制 | GitHub Release 的 `server-assets.zip`，不进入 Git 历史 |
 | 精确版本、下载地址、逐文件校验 | `runtime-lock.json` |
 | 本机私密设置的无密钥示例 | `config-examples/` |
 | 导出范围 | `export-policy.json`、`.gitignore` |
+
+1.9.1 复用原始大资源包，新核心 JAR 从新版 Release 单独下载并校验。安装器跳过资源包中的旧核心；升级已有副本时，仅在旧核心校验值匹配时将其移到 `.runtime/retired/`，不删除或覆盖自定义 JAR。先 `git pull`，再重跑 setup 后启动。不要在正在运行的实例上升级。
 
 ## 本机验证
 

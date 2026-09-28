@@ -40,6 +40,11 @@ class BootstrapTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             server.verify({'files': [{'path': 'missing.jar', 'size': 1, 'sha256': 'x'}], 'external': []})
 
+    def test_retired_asset_rejected(self):
+        (self.root / 'old.jar').write_bytes(b'old')
+        with self.assertRaisesRegex(RuntimeError, 'Retired asset'):
+            server.verify({'files': [], 'external': [], 'retired': [{'path': 'old.jar'}]})
+
     def test_public_offline_rejected(self):
         (self.root / 'server.properties').write_text('server-ip=0.0.0.0\nonline-mode=false\n')
         with self.assertRaisesRegex(RuntimeError, 'Public binding'):

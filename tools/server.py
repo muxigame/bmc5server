@@ -71,6 +71,9 @@ def arguments_file(lock):
 
 def verify(lock):
     failures = []
+    for record in lock.get('retired', []):
+        if safe_path(record['path']).exists():
+            failures.append('Retired asset still present: ' + record['path'] + ' (run setup)')
     for record in lock['files'] + lock['external']:
         path = safe_path(record['path'])
         if not path.is_file() or path.stat().st_size != record['size'] or digest(path) != record['sha256']:
@@ -89,11 +92,14 @@ def setup(args, lock):
     else:
         fetch(lock['bundle'], bundle)
     expected = {record['path']: record for record in lock['files']}
+    retired = {record['path']: record for record in lock.get('retired', [])}
     with zipfile.ZipFile(bundle) as archive:
         names = archive.namelist()
-        if len(names) != len(set(names)) or set(names) != set(expected):
+        if len(names) != len(set(names)) or set(names) != set(expected) | set(retired):
             raise RuntimeError('Bundle entries differ from runtime-lock.json.')
         for name in names:
+            if name in retired:
+                continue
             dest = safe_path(name)
             if dest.exists():
                 if digest(dest) != expected[name]['sha256']:
@@ -107,6 +113,16 @@ def setup(args, lock):
         if dest.exists() and digest(dest) != record['sha256']:
             raise RuntimeError('Refusing to overwrite modified asset: ' + record['path'])
         fetch(record, dest)
+    for name, record in retired.items():
+        dest = safe_path(name)
+        if dest.exists():
+            if digest(dest) != record['sha256']:
+                raise RuntimeError('Refusing to retire modified asset: ' + name)
+            backup = CACHE / 'retired' / name
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            if backup.exists():
+                raise RuntimeError('Retired backup already exists; inspect manually: ' + str(backup))
+            dest.rename(backup)
     verify(lock)
     installer = fetch(lock['installer'], CACHE / 'neoforge-installer.jar')
     if not arguments_file(lock).is_file():
