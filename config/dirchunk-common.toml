@@ -1,0 +1,199 @@
+#Directional Chunk Load
+#Derived from Lazy Chunk Load by hxwi1 (MIT).
+[general]
+	#Master switch. false = the mod does nothing at all.
+	#
+	#DEFAULT OFF, and the measurement says leave it off. Nothing this mod does
+	#reduces the number of times a player walks into a chunk that is not
+	#generated yet. Ordering ranged from no different to much worse; throttling
+	#made no difference at all.
+	#
+	#Method (the earlier numbers in this file were not trustworthy and have
+	#been dropped): each arm runs the same 8 origins with the same fixed world
+	#seed and the same seeded synthetic routes, and the region files are wiped
+	#between arms so both arms meet byte-identical virgin terrain. Terrain is
+	#worth an order of magnitude on this metric, which is why it is paired;
+	#the residual run-to-run spread, measured by running vanilla against itself,
+	#is about +-8%. Reported below as totals over 8 paired origins.
+	#
+	#4 fast players, 40 b/s, serpentine + 90/180 turns:
+	#  vanilla          228 / 174 / 210 stalls  (three separate runs)
+	#  lead 3.0 (old)   286 / 268   -> +36%, 95% CI excludes 0
+	#  lead 0.0         215         -> +5%, within noise
+	#  NOTE: every one of those stalls is in the first ~400 blocks, while the
+	#  loader is still spinning up. After that vanilla stalls ZERO times in
+	#  2000 blocks, at every one of the 8 origins. There is no steady-state
+	#  problem to fix at this load: the generator does 70-90 chunks/s and four
+	#  players' paths need about 10/s.
+	#
+	#8 fast players (the load where vanilla does stall, 35% of the time):
+	#  vanilla          4154 / 4196
+	#  lead 3.0 (old)   7640   -> +84%, 8/8 origins worse, p=0.008
+	#  lead 0.0         4407   -> +6%
+	#  lead 0 + safe_radius 1   4309   -> +3%, within noise
+	#  shape_filter on  4147   -> -1%, within noise
+	#
+	#Why throttling does not help either: at that load the loader is asked for
+	#roughly 5-7x what it can generate. Narrowing the request set removes work
+	#it was never reaching anyway -- those chunks were already last in the
+	#queue -- so the frontier advances no faster. Short of more generation
+	#throughput, or a smaller view distance, there is nothing here to win.
+	#
+	#Enable it to experiment. See /dirchunk sim at ... for the harness.
+	enabled = false
+
+#Order pending chunk work by how soon the player will need it, instead of how
+#close it is. This never changes WHICH chunks load, only the order, so it cannot
+#leave a hole. It is the part aimed at players outrunning the chunk loader.
+[eta_ordering]
+	enabled = true
+	#Reorder C2ME's no-tick view-distance loader (the spiral).
+	c2me_notickvd = true
+	#Reorder the vanilla chunk task priority queue.
+	vanilla_ticket_queue = true
+	#How far ahead, in seconds of travel, the ordering aims.
+	#0 = order strictly by the order he will reach them (earliest deadline
+	#first). Anything above 0 aims at a point that far ahead instead.
+	#
+	#DEFAULT 0, and measurement says do not raise it. The old default of 3.0
+	#came from 'generating a chunk is not instant, so start the one he will
+	#reach when it finishes'. That reasons about LATENCY, and latency shifts
+	#every chunk's deadline equally, so it cannot change their ORDER. Sorting
+	#by |distance - lead| does change the order: it starts the chunk due in
+	#3 seconds before the chunk due in 1 second. With capacity to spare both
+	#finish in time and it does not matter; with the generator behind -- the
+	#only case this mod is for -- it is close to the worst possible order.
+	#
+	#Measured, 8 paired origins on identical terrain, 40 b/s, 4 players:
+	#  lead 3.0  ->  +36% stalls vs vanilla  (95% CI +0.7..+17.6 per origin)
+	#  lead 0.0  ->   +5% stalls vs vanilla  (CI includes 0: no difference)
+	#Throughput was identical either way, so this is purely the ordering.
+	# Default: 0.0
+	# Range: 0.0 ~ 30.0
+	lead_seconds = 0.0
+
+#How the travel direction is predicted. Players do not move in straight lines;
+#a predictor that assumes they do aims at where they used to be going.
+[predictor]
+	#Base smoothing factor for the heading estimate.
+	# Default: 0.25
+	# Range: 0.01 ~ 1.0
+	heading_alpha = 0.25
+	#Let a step that deviates from the running heading pull the
+	#average across at once, so a sharp turn registers immediately instead of
+	#over a dozen ticks.
+	adaptive_heading = true
+	#Shrink the lead while the player is manoeuvring. A far-ahead
+	#bet is only as good as the heading behind it.
+	turn_aware_lead = true
+	#Turn rate (radians/tick) at which the lead is pulled
+	#all the way back to the player.
+	# Default: 0.08
+	# Range: 0.005 ~ 1.0
+	turn_rate_fully_unsure = 0.08
+	#Spread the ordering over a fan of candidate headings while
+	#turning, so one guess going wrong does not strand him.
+	branch_prediction = true
+	#Fan half-width = turn rate * this many ticks.
+	# Default: 20.0
+	# Range: 0.0 ~ 200.0
+	branch_spread_ticks = 20.0
+	#Hard cap on the fan half-width, radians.
+	# Default: 1.05
+	# Range: 0.0 ~ 3.15
+	max_branch_spread_rad = 1.05
+
+#Narrow a fast player's loading shape to a cone/corridor. This is the throttle:
+#it changes WHICH chunks are asked for, not just their order, so unlike the
+#ordering above it genuinely can leave a hole.
+#
+#OFF by default, and re-measured against the stall metric rather than against
+#coverage. Under the load where vanilla actually stalls (8 fast players, 35% of
+#chunk entries), turning it on scored 4147 stalls against vanilla's 4154/4196 --
+#a 1% difference, well inside the +-8% run-to-run spread.
+#
+#The reason, measured at a genuinely saturated point (16 players, 40 b/s, ~95%
+#stalls) with the counters in /dirchunk status:
+#  vanilla ticket path:  tested=804 wanted=166 suppressed=638   (79% cut)
+#  C2ME no-tick path:    wanted=1130            suppressed=0    (nothing cut)
+#The no-tick loader is the one that reaches virgin terrain and does the actual
+#generating, and the filter never rejects anything there. It cannot: that loader
+#keeps a fixed number of loads in flight (maxConcurrentChunkLoads, 3x C2ME's
+#thread parallelism, so 30 on this box) and only pulls a new candidate when one
+#finishes. At ~22 chunks/s it therefore only ever enumerates ~22 candidates a
+#second, and the ETA ordering hands it wanted ones first -- so it never walks far
+#enough down the iterator to reach a chunk the shape would refuse. The 79% it does
+#cut is all on the simulation-distance path, which is not where generation happens.
+#
+#So the throttle is not aimed at the constraint. A jstack CPU profile at that same
+#point puts the main thread at 0.18 of 16 cores, GC at 3% of wall with no full
+#collections, and the 10 c2me-worker threads at 7.9 cores -- worker CPU is the
+#only loaded resource, and cutting requests does not reduce it because the loader
+#was never request-limited in the first place.
+#
+#It also still costs what it always cost: the narrowed region has to be refilled
+#when the player stops, and at 40 b/s that recovery measured worse than vanilla.
+#Turn it on only for the CPU saving, knowing it buys no smoothness.
+[shape_filter]
+	enabled = true
+	c2me_notickvd = true
+	vanilla_player_tickets = true
+
+#Speed bands, in blocks per second.
+[speed]
+	#Below this, nothing is narrowed and no heading is recorded.
+	# Default: 4.0
+	# Range: 0.0 ~ 100.0
+	walk_speed = 4.0
+	#At and above this, the cone locks to fast_cone_degrees.
+	# Default: 20.0
+	# Range: 0.0 ~ 200.0
+	fast_speed = 20.0
+	#At and above this, the shape becomes a straight corridor.
+	# Default: 40.0
+	# Range: 0.0 ~ 500.0
+	corridor_speed = 40.0
+
+#Shape geometry. Cone values are FULL angles, not half-angles.
+[shape]
+	#Full cone angle the taper ends at, at fast_speed.
+	# Default: 120.0
+	# Range: 5.0 ~ 360.0
+	taper_end_cone_degrees = 120.0
+	#Full cone angle locked between fast_speed and corridor_speed.
+	# Default: 60.0
+	# Range: 5.0 ~ 360.0
+	fast_cone_degrees = 60.0
+	#Corridor half width in chunks (1.0 = 3 chunks wide).
+	# Default: 1.0
+	# Range: 0.0 ~ 16.0
+	corridor_half_width = 1.0
+
+#Safety valves. Raising these makes the mod more conservative.
+[safety]
+	#Chunks within this Chebyshev radius of a player are ALWAYS kept,
+	#whatever his speed. A player can never outrun his own loaded region.
+	# Default: 4
+	# Range: 0 ~ 32
+	safe_radius = 4
+	#Radius an unfiltered (standing) player protects from anyone
+	#else's narrowing. 32 matches vanilla's own ticket propagation limit,
+	#so a standing player never loses a chunk.
+	# Default: 32
+	# Range: 8 ~ 64
+	omni_radius = 32
+	#Ticks a player must stay above walk_speed before his shape is
+	#narrowed. Stops knockback spikes from cutting the world away.
+	# Default: 10
+	# Range: 0 ~ 200
+	sustain_ticks = 10
+	#Ticks of unfiltered loading after a teleport or
+	#dimension change.
+	# Default: 60
+	# Range: 0 ~ 600
+	teleport_grace_ticks = 60
+	#A per-tick move further than this is treated as a
+	#teleport, not as movement.
+	# Default: 16.0
+	# Range: 1.0 ~ 1000.0
+	teleport_delta_blocks = 16.0

@@ -1,0 +1,54 @@
+[going_to_sleep]
+	#Allows the player to wake up instantly after going to bed. Only works on multiplayer servers when all other players are already asleep.
+	#Default Value: false
+	instant_sleeping = false
+	#Allows the player to go to bed while it's raining. In vanilla sleeping is only possible at night or during thunderstorms.
+	#Default Value: true
+	allow_sleeping_during_rain = true
+
+	[going_to_sleep.bed_checks]
+		#When trying to go to bed, remove the check if the player is close enough to the bed.
+		#Default Value: true
+		remove_range_check = true
+		#When trying to go to bed, remove the check if monsters are nearby.
+		#Default Value: false
+		remove_monsters_nearby_check = false
+		#When trying to go to bed, remove the check if the bed has enough open space above it.
+		#Default Value: false
+		remove_obstruction_check = false
+
+	[going_to_sleep.nearby_monsters]
+		#Should sleeping be allowed when only neutral monsters like enderman that are not angry at the player are nearby.
+		#Default Value: true
+		ignore_monsters_when_not_angry = true
+		#Should sleeping be allowed when only monsters unable to reach the player are nearby.
+		#Default Value: true
+		ignore_monsters_outside_of_reach = true
+		#Should sleeping be allowed when only persistent or named monsters are nearby.
+		#Default Value: true
+		ignore_persistent_monsters = true
+		#Should monsters preventing the player from sleeping glow for a short time and play an ambient sound.
+		#Default Value: true
+		reveal_nearby_monsters = true
+
+[waking_up]
+	#The amount of health the player should regain when waking up from a bed after sleeping through the night.
+	#A value of zero will do nothing. Negative values instead cause damage to the player.
+	#Default Value: 20
+	# Default: 20
+	# Range: > -2147483648
+	health_restored = 20
+	#The time of day players wake up at after sleeping through the night. In vanilla this defaults to zero.
+	#Default Value: 0
+	# Default: 0
+	# Range: 0 ~ 24000
+	wake_up_time = 0
+	#Reset the weather cycle to clear weather even when the current weather is already neither rain nor thunder.
+	#Default Value: true
+	always_reset_weather_cycle = true
+	#The amount of food levels that should be taken from the player when waking up from a bed after sleeping through the night.
+	#A value of zero will do nothing. Negative values instead restore food levels damage to the player.
+	#Default Value: 1
+	# Default: 1
+	# Range: > -2147483648
+	hunger_consumed = 1

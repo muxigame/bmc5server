@@ -1,0 +1,19 @@
+[
+  {"version":2},
+  {"hide_mode":"SINGLE","ingredient":{"ingredient":{"id":"minecraft:enchanted_book","components":{"minecraft:stored_enchantments":{"levels":{"backpacked:funnelling":1}}}},"type":"item_stack"}},
+  {"hide_mode":"SINGLE","ingredient":{"ingredient":{"id":"minecraft:enchanted_book","components":{"minecraft:stored_enchantments":{"levels":{"backpacked:imbued_hide":1}}}},"type":"item_stack"}},
+  {"hide_mode":"SINGLE","ingredient":{"ingredient":{"id":"minecraft:enchanted_book","components":{"minecraft:stored_enchantments":{"levels":{"backpacked:looted":1}}}},"type":"item_stack"}},
+  {"hide_mode":"SINGLE","ingredient":{"ingredient":{"id":"minecraft:enchanted_book","components":{"minecraft:stored_enchantments":{"levels":{"backpacked:marksman":1}}}},"type":"item_stack"}},
+  {"hide_mode":"SINGLE","ingredient":{"ingredient":{"id":"minecraft:enchanted_book","components":{"minecraft:stored_enchantments":{"levels":{"backpacked:repairman":1}}}},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:oak_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:spruce_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:birch_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:jungle_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:dark_oak_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:acacia_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:crimson_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:warped_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:cherry_backpack_shelf"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"backpacked:backpack"},"type":"item_stack"}},
+  {"hide_mode":"WILDCARD","ingredient":{"ingredient":{"id":"twilightforest:uncrafting_table"},"type":"item_stack"}}
+]

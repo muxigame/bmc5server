@@ -1,0 +1,110 @@
+[loading]
+	#CPU usage threshold (0.0-1.0). Below this, chunk loading is UNLIMITED.
+	# Default: 0.85
+	# Range: 0.1 ~ 1.0
+	cpu_threshold = 0.85
+	#MSPT (ms-per-tick) threshold. Above this, throttle even if CPU is low. Set to 0 to disable.
+	# Default: 45.0
+	# Range: 0.0 ~ 50.0
+	mspt_threshold = 45.0
+	#Heap usage threshold (0.0-1.0). Above this, throttle to avoid Full GC. Set to 0 to disable.
+	# Default: 0.85
+	# Range: 0.0 ~ 1.0
+	memory_threshold = 0.85
+	#Chunk ticket updates per tick when CPU just crosses the threshold.
+	# Default: 50
+	# Range: 1 ~ 500
+	max_budget = 50
+	#Chunk ticket updates per tick when CPU is at 100%.
+	# Default: 2
+	# Range: 0 ~ 50
+	min_budget = 2
+	#Disable throttling for this many ticks after server start, allowing fast initial world load.
+	# Default: 200
+	# Range: 0 ~ 1200
+	warmup_ticks = 200
+
+[priority]
+	# Default: 0.5
+	# Range: 0.0 ~ 1.0
+	distance_weight = 0.5
+	# Default: 0.4
+	# Range: 0.0 ~ 1.0
+	direction_weight = 0.4
+	# Default: 0.1
+	# Range: 0.0 ~ 1.0
+	aging_weight = 0.1
+	# Default: 5.0
+	# Range: 1.0 ~ 20.0
+	direction_multiplier = 5.0
+	# Default: 0.1
+	# Range: 0.0 ~ 10.0
+	speed_threshold = 0.1
+	# Default: 10000
+	# Range: 1000 ~ 120000
+	aging_factor_ms = 10000
+	#Weight for movement path prediction. Higher = prioritizes chunks along player's predicted path.
+	# Default: 0.3
+	# Range: 0.0 ~ 1.0
+	prediction_weight = 0.3
+
+[hotspot]
+	#Enable hotspot chunk retention: frequently accessed chunks keep their load ticket longer.
+	enabled = true
+	#Access count threshold for a chunk to be considered a hotspot.
+	# Default: 3
+	# Range: 1 ~ 100
+	threshold = 3
+	#How long (ms) to retain hotspot chunks beyond normal unload time.
+	# Default: 30000
+	# Range: 5000 ~ 300000
+	retention_ms = 30000
+
+[preload]
+	enabled = true
+	# Default: 1
+	# Range: 0 ~ 30
+	preload_delay_seconds = 1
+	# Default: 64
+	# Range: 1 ~ 128
+	preload_radius = 64
+	# Default: 0.22
+	# Range: 0.0 ~ 10.0
+	preload_speed_threshold = 0.22
+
+[unload]
+	#Enable unload strategy: clear scheduler internal state under memory pressure.
+	#WARNING: enabling this may reduce preload effectiveness by resetting chunk aging scores.
+	#Only enable if you experience actual OOM-like pressure and accept the trade-off.
+	enabled = false
+	#If true, run unload check on every interval regardless of memory pressure.
+	always_on = false
+	#Minimum interval between unload checks, in ms.
+	# Default: 30000
+	# Range: 1000 ~ 600000
+	interval_ms = 30000
+	#Max entries to evict per unload tick (across all levels).
+	# Default: 50
+	# Range: 1 ~ 5000
+	batch_size = 50
+	#Minimum age (ms) of a chunkLastSeen entry before it can be evicted.
+	#Set high to avoid clearing entries that may still be useful.
+	# Default: 120000
+	# Range: 1000 ~ 600000
+	min_age_ms = 120000
+	#Chunks within this distance (in chunks) of any player are never evicted.
+	# Default: 16
+	# Range: 1 ~ 64
+	min_distance = 16
+
+[dimensions]
+	#Whitelist of dimension IDs for preload/throttle operations. Empty = allow all (subject to blacklist).
+	#Example: ["minecraft:overworld", "minecraft:the_nether"]
+	whitelist = []
+	#Blacklist of dimension IDs. Blacklist takes priority over whitelist.
+	#Example: ["minecraft:the_end"]
+	blacklist = []
+
+[debug]
+	log_loading = false
+	performance_tips = true

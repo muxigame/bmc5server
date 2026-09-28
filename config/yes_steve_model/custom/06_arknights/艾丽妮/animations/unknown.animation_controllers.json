@@ -1,0 +1,19 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.unknown.new": {
+			"states": {
+				"default": {
+					"animations": ["hold_mainhand:spear"],
+					"transitions": [
+						{"default2": ""}
+					],
+					"blend_transition": 0.3
+				},
+				"default2": {
+					"animations": ["riptide"]
+				}
+			}
+		}
+	}
+}

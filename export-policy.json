@@ -1,0 +1,69 @@
+{
+  "sourceBaseline": "current production core 1.8.2; staged 1.9.x excluded",
+  "includedRoots": [
+    "config",
+    "configureddefaults",
+    "datapacks",
+    "defaultconfigs",
+    "kubejs",
+    "mods",
+    "moonlight-global-datapacks",
+    "patchouli_books",
+    "schematics",
+    "tacz",
+    "tlm_custom_pack",
+    "villagerpacks"
+  ],
+  "excludedPaths": [
+    "config/muxi-game-core.json",
+    "config/yes_steve_model/blacklist.txt"
+  ],
+  "excludedDirectoryNames": [
+    "__pycache__",
+    "auth",
+    "backups",
+    "cache",
+    "crash-reports",
+    "crash_assistant",
+    "export",
+    "logs",
+    "mcef-cache",
+    "mcef-libraries",
+    "yes_steve_model_disabled"
+  ],
+  "excludedRuntimeRoots": [
+    "world",
+    "world-*",
+    "_backup*",
+    ".muxi-game-core-backups",
+    ".pending-mod-updates",
+    "tunnel",
+    "libraries",
+    "local",
+    "easy_npc",
+    "debug",
+    "mods-disabled",
+    "removed_client_mods"
+  ],
+  "excludedRootFiles": [
+    "server.properties",
+    "rcon.py",
+    "ops.json",
+    "banned-*.json",
+    "usercache.json",
+    "usernamecache.json",
+    "whitelist.json",
+    "eula.txt",
+    "start*.bat*",
+    "user_jvm_args.txt"
+  ],
+  "excludedFilePatterns": [
+    "*.bak*",
+    "*.old*",
+    "*.log",
+    "*.tmp"
+  ],
+  "externalDownloads": [
+    "mods/simplenicknames-1.21.1-neoforge-0.8.0.jar"
+  ]
+}

@@ -1,0 +1,1098 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "touhou_little_maid"
+	group: "5EC606153AA8CA77"
+	icon: {
+		id: "touhou_little_maid:hakurei_gohei"
+	}
+	id: "21B5FD461C6FB23C"
+	images: [ ]
+	order_index: 10
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "touhou_little_maid:power_point"
+			}
+			id: "00A3F0BB3E83ED7D"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "582543B2253C7538"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["00A3F0BB3E83ED7D"]
+			icon: {
+				id: "touhou_little_maid:hakurei_gohei"
+			}
+			id: "42A8294BEC0C3890"
+			rewards: [{
+				id: "0047142E400A9B25"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/craft_gohei"
+				criterion: ""
+				id: "2E2700F46632B03D"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["42A8294BEC0C3890"]
+			icon: {
+				id: "minecraft:red_wool"
+			}
+			id: "3DA3895414DCD6C5"
+			rewards: [{
+				id: "035972E55497AB6F"
+				type: "xp"
+				xp: 50
+			}]
+			size: 1.2d
+			tasks: [{
+				advancement: "touhou_little_maid:base/build_altar"
+				criterion: ""
+				id: "7FDF40FD7A6C3178"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3DA3895414DCD6C5"]
+			icon: {
+				id: "touhou_little_maid:fairy_spawn_egg"
+			}
+			id: "44223C78896877D7"
+			rewards: [{
+				id: "039B19F07C32C616"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/kill_maid_fairy"
+				criterion: ""
+				id: "686CF86803FD0B19"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["44223C78896877D7"]
+			icon: {
+				id: "touhou_little_maid:power_point"
+			}
+			id: "39AC91707AE15EFD"
+			rewards: [{
+				id: "31F75C84FF627E6E"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/pickup_power_point"
+				criterion: ""
+				id: "1821F5E51FD27502"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["39AC91707AE15EFD"]
+			icon: {
+				id: "touhou_little_maid:entity_placeholder"
+			}
+			id: "790F6FC19A7018CE"
+			rewards: [{
+				id: "5E9E865D7AE5DB72"
+				type: "xp"
+				xp: 50
+			}]
+			size: 1.2d
+			tasks: [{
+				advancement: "touhou_little_maid:base/spawn_maid"
+				criterion: ""
+				id: "33646F8DE0E5A585"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["790F6FC19A7018CE"]
+			icon: {
+				id: "minecraft:cake"
+			}
+			id: "75900BFE80E9A30C"
+			rewards: [{
+				id: "6BD2DB28855F942A"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.2d
+			tasks: [{
+				advancement: "touhou_little_maid:base/tamed_maid"
+				criterion: ""
+				id: "14DA09F48D80F687"
+				type: "advancement"
+			}]
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["75900BFE80E9A30C"]
+			icon: {
+				id: "touhou_little_maid:change_maid_model"
+			}
+			id: "763B58610980E36D"
+			rewards: [{
+				id: "2E53FC9FBDE9EC98"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/change_maid_model"
+				criterion: ""
+				id: "3343EB463EFB232B"
+				type: "advancement"
+			}]
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["75900BFE80E9A30C"]
+			icon: {
+				id: "minecraft:jukebox"
+			}
+			id: "4E70A0B284576BFA"
+			rewards: [{
+				id: "1D3F6D3A9051A29F"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/change_maid_sound"
+				criterion: ""
+				id: "6DBEE2D24D9C3080"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["75900BFE80E9A30C"]
+			icon: {
+				id: "minecraft:feather"
+			}
+			id: "4DD656796F6A366D"
+			rewards: [{
+				id: "72147BD4B3D182CB"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/switch_task"
+				criterion: ""
+				id: "2C16662A470CB1CE"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "minecraft:clock"
+			}
+			id: "01ABA026B9A2F872"
+			rewards: [{
+				id: "2BB97CCEFD1611BB"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/switch_schedule"
+				criterion: ""
+				id: "5F52F95759F36721"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["01ABA026B9A2F872"]
+			icon: {
+				id: "touhou_little_maid:maid_backpack_big"
+			}
+			id: "760DB9CAE3F0A358"
+			rewards: [{
+				id: "06601B9D3D41861B"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_backpack"
+				criterion: ""
+				id: "3A6484C486A36404"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["760DB9CAE3F0A358"]
+			icon: {
+				id: "minecraft:fishing_rod"
+			}
+			id: "1FA069E424D14B15"
+			rewards: [{
+				id: "789EE9A81B4A1D1D"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_fishing"
+				criterion: ""
+				id: "4B4D2288AFC88CCE"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["760DB9CAE3F0A358"]
+			icon: {
+				id: "minecraft:diamond_sword"
+			}
+			id: "213A7177468F7209"
+			optional: true
+			rewards: [{
+				id: "7C3CCC87ED81F87C"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_kill_mob"
+				criterion: ""
+				id: "3AF6E99EF54D1010"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["01ABA026B9A2F872"]
+			icon: {
+				id: "minecraft:iron_hoe"
+			}
+			id: "00D1093C83213919"
+			rewards: [{
+				id: "1F66B816D0E48A44"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_farm"
+				criterion: ""
+				id: "158C24235EDFF41F"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["00D1093C83213919"]
+			icon: {
+				id: "minecraft:wheat"
+			}
+			id: "62FDE715E8B1305E"
+			rewards: [{
+				id: "01B9A9F0690D5DDF"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_feed_animal"
+				criterion: ""
+				id: "045CA2DE8AF9AE80"
+				type: "advancement"
+			}]
+			x: 9.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["62FDE715E8B1305E"]
+			icon: {
+				id: "minecraft:cooked_beef"
+			}
+			id: "65C009A619DF0864"
+			rewards: [{
+				id: "07B8633A35D863FA"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/maid_feed_player"
+				criterion: ""
+				id: "5E5B3158C73FC618"
+				type: "advancement"
+			}]
+			x: 10.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "minecraft:saddle"
+			}
+			id: "0A0186771DDF3232"
+			rewards: [{
+				id: "47C9A0308FAB4D5A"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/pickup_maid"
+				criterion: ""
+				id: "5C79B689E07C3AA3"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0A0186771DDF3232"]
+			icon: {
+				id: "minecraft:milk_bucket"
+			}
+			id: "270405B1BA26B4E3"
+			rewards: [{
+				id: "2DF5782C0E190866"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/clear_maid_effects"
+				criterion: ""
+				id: "35314C9DEAFADB34"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0A0186771DDF3232"]
+			icon: {
+				id: "minecraft:experience_bottle"
+			}
+			id: "257B5345D0C5A624"
+			rewards: [{
+				id: "01BB4A0D5CB4E704"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/take_maid_xp"
+				criterion: ""
+				id: "590F88B54BBC4169"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "touhou_little_maid:camera"
+			}
+			id: "5700DE00AAF700E6"
+			rewards: [{
+				id: "45153F0947D50777"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/photo_maid"
+				criterion: ""
+				id: "22B74F2AAD603A08"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5700DE00AAF700E6"]
+			icon: {
+				id: "touhou_little_maid:chisel"
+			}
+			id: "65385F4FAA937C44"
+			rewards: [{
+				id: "5034BACA865986D8"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/chisel_statue"
+				criterion: ""
+				id: "75C3B1729E380352"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["65385F4FAA937C44"]
+			icon: {
+				id: "touhou_little_maid:garage_kit"
+			}
+			id: "01BEB88721F44F21"
+			rewards: [{
+				id: "4330C0F1F894E3DC"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/pickup_garage_kit"
+				criterion: ""
+				id: "59FCC61979E65BBE"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "touhou_little_maid:fire_protect_bauble"
+			}
+			id: "3C6AA7BCEE7FD837"
+			rewards: [{
+				id: "3A12F840BE139444"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_protect_bauble"
+				criterion: ""
+				id: "3BA3C60AF8C86E60"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3C6AA7BCEE7FD837"]
+			icon: {
+				id: "touhou_little_maid:item_magnet_bauble"
+			}
+			id: "196B5F5E0A1AAFA3"
+			rewards: [{
+				id: "519B72B0E2788C07"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_item_magnet_bauble"
+				criterion: ""
+				id: "253B223B777781DB"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["196B5F5E0A1AAFA3"]
+			icon: {
+				id: "touhou_little_maid:wireless_io"
+			}
+			id: "6BE9C288233F5099"
+			rewards: [{
+				id: "1DE4F8710734E198"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_wireless_io"
+				criterion: ""
+				id: "34CAEB09AA14A03B"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3C6AA7BCEE7FD837"]
+			icon: {
+				id: "touhou_little_maid:nimble_fabric"
+			}
+			id: "30EBB3465B46E06C"
+			rewards: [{
+				id: "549E27B230DABF23"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_nimble_fabric"
+				criterion: ""
+				id: "03AA10A8978EB692"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["30EBB3465B46E06C"]
+			icon: {
+				id: "touhou_little_maid:ultramarine_orb_elixir"
+			}
+			id: "089CB4D6D6D6A544"
+			optional: true
+			rewards: [{
+				id: "1AF16AF28A32997E"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_undead_bauble"
+				criterion: ""
+				id: "520FF43E8FAAA9A9"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "touhou_little_maid:servant_bell"
+			}
+			id: "0E097339476CAA9B"
+			rewards: [{
+				id: "3729F0C907FB12B2"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_servant_bell"
+				criterion: ""
+				id: "12BD56B960744937"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0E097339476CAA9B"]
+			icon: {
+				id: "touhou_little_maid:red_fox_scroll"
+			}
+			id: "065D6A8172643CEB"
+			rewards: [{
+				id: "224784EA7383D7C1"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_red_fox_scroll"
+				criterion: ""
+				id: "4EE125B8A46CA05B"
+				type: "advancement"
+			}]
+			x: 9.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["065D6A8172643CEB"]
+			icon: {
+				id: "touhou_little_maid:white_fox_scroll"
+			}
+			id: "2F9B16B32F6EF35A"
+			rewards: [{
+				id: "2CFDE7227A63C46A"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_white_fox_scroll"
+				criterion: ""
+				id: "325A5D1A56F9F9DD"
+				type: "advancement"
+			}]
+			x: 10.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0E097339476CAA9B"]
+			icon: {
+				id: "touhou_little_maid:trumpet"
+			}
+			id: "7837B2E03F06BF4A"
+			rewards: [{
+				id: "1ED3D81EE0C65CE7"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/use_trumpet"
+				criterion: ""
+				id: "38BE2F9BB8D52895"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4DD656796F6A366D"]
+			icon: {
+				id: "touhou_little_maid:entity_placeholder"
+			}
+			id: "78FAAA6A3115711C"
+			rewards: [{
+				id: "67CF3746323BE782"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/reborn_maid"
+				criterion: ""
+				id: "43068C416BDF154E"
+				type: "advancement"
+			}]
+			x: 13.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["78FAAA6A3115711C"]
+			icon: {
+				id: "touhou_little_maid:shrine"
+			}
+			id: "0B5FC8006D6F2BB8"
+			optional: true
+			rewards: [{
+				id: "2675C4E9306E04A3"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:maid_base/shrine_reborn_maid"
+				criterion: ""
+				id: "158169E9B5613B4E"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["75900BFE80E9A30C"]
+			icon: {
+				id: "touhou_little_maid:bookshelf"
+			}
+			id: "313B997BB0F6D3BD"
+			rewards: [{
+				id: "34CA4A88FECFF464"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/maid_sit_joy"
+				criterion: ""
+				id: "5F4E2B7F2370F045"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["313B997BB0F6D3BD"]
+			icon: {
+				id: "touhou_little_maid:favorability_tool_add"
+			}
+			id: "5E61013BACD0EABA"
+			rewards: [{
+				id: "5207CE1231E01C30"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/favorability_increased"
+				criterion: ""
+				id: "7772648F7A317B29"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["5E61013BACD0EABA"]
+			icon: {
+				id: "touhou_little_maid:favorability_tool_full"
+			}
+			id: "3A7062103745A08F"
+			optional: true
+			rewards: [{
+				id: "759C510793AB6F86"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/favorability_increased_max"
+				criterion: ""
+				id: "073F144AF88077C3"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["313B997BB0F6D3BD"]
+			icon: {
+				id: "touhou_little_maid:picnic_basket"
+			}
+			id: "53BB0DDBB2E29F9B"
+			rewards: [{
+				id: "43150CB404136C9F"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/maid_picnic_eat"
+				criterion: ""
+				id: "683D47DE27BBBDBD"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["53BB0DDBB2E29F9B"]
+			icon: {
+				id: "touhou_little_maid:maid_bed"
+			}
+			id: "17FCD9511C583850"
+			rewards: [{
+				id: "7258692863451AB3"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/maid_sleep"
+				criterion: ""
+				id: "0EF33F29F9465208"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["53BB0DDBB2E29F9B"]
+			icon: {
+				id: "touhou_little_maid:gomoku"
+			}
+			id: "63192900519041E5"
+			optional: true
+			rewards: [{
+				id: "0BBADDFCAB80090A"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/win_gomoku"
+				criterion: ""
+				id: "684D9CD8BD69516F"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["63192900519041E5"]
+			icon: {
+				id: "touhou_little_maid:cchess"
+			}
+			id: "588E05F78FAB864B"
+			optional: true
+			rewards: [{
+				id: "6E9DC7B557E32013"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/win_cchess"
+				criterion: ""
+				id: "6433945FE62FE9CD"
+				type: "advancement"
+			}]
+			x: 9.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["588E05F78FAB864B"]
+			icon: {
+				id: "touhou_little_maid:wchess"
+			}
+			id: "324F39C8A8A2BA14"
+			optional: true
+			rewards: [{
+				id: "18168895A18A7C37"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:favorability/win_wchess"
+				criterion: ""
+				id: "7BCCCB86A4E32CEB"
+				type: "advancement"
+			}]
+			x: 10.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["42A8294BEC0C3890"]
+			icon: {
+				id: "touhou_little_maid:chair"
+			}
+			id: "2BE11A01F982EA7B"
+			rewards: [{
+				id: "03C05F4CDC39F9A0"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/craft_chair"
+				criterion: ""
+				id: "6D474753D67147BB"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["2BE11A01F982EA7B"]
+			icon: {
+				id: "touhou_little_maid:change_chair_model"
+			}
+			id: "16696C8A4BCBC7C0"
+			rewards: [{
+				id: "0BEC678B46CA11B1"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:base/change_chair_model"
+				criterion: ""
+				id: "359144C8415049F6"
+				type: "advancement"
+			}]
+			x: 13.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["75900BFE80E9A30C"]
+			hide_dependency_lines: true
+			icon: {
+				id: "minecraft:iron_helmet"
+			}
+			id: "28B9E69AA4C52FDC"
+			rewards: [{
+				id: "176BB9E96B41E277"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/any_equipment"
+				criterion: ""
+				id: "30F0337644F8B01A"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["28B9E69AA4C52FDC"]
+			hide_dependency_lines: true
+			icon: {
+				id: "minecraft:enchanted_golden_apple"
+			}
+			id: "2818EB57E8189B64"
+			rewards: [{
+				id: "0B00B78332F5A426"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/eat_enchanted_golden_apple"
+				criterion: ""
+				id: "6766364F42B575A1"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["2818EB57E8189B64"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:entity_placeholder"
+			}
+			id: "0AAE5149054BE02A"
+			rewards: [{
+				id: "70D4F6C10EAA3911"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/lightning_bolt"
+				criterion: ""
+				id: "1A75C3E824853EF2"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["0AAE5149054BE02A"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:maid_100_healthy"
+			}
+			id: "46384FA797468B59"
+			optional: true
+			rewards: [{
+				id: "076DD6523F6BAD23"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/maid_100_healthy"
+				criterion: ""
+				id: "5237C12A8AA392CF"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["2818EB57E8189B64"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:all_netherite_equipment"
+			}
+			id: "2B79796E4F913A93"
+			optional: true
+			rewards: [{
+				id: "04C6AA2C58B91BC4"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/all_netherite_equipment"
+				criterion: ""
+				id: "6B3AC26C7EDCF716"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["28B9E69AA4C52FDC"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:kill_100"
+			}
+			id: "217478741B808732"
+			optional: true
+			rewards: [{
+				id: "3DBE4C414C9A9328"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/kill_100"
+				criterion: ""
+				id: "4FAB2C444DA123BC"
+				type: "advancement"
+			}]
+			x: 7.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["217478741B808732"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:kill_slime_300"
+			}
+			id: "6CD9A4FC82915E5D"
+			optional: true
+			rewards: [{
+				id: "1C9A0CB2252CCE9F"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/kill_slime_300"
+				criterion: ""
+				id: "7C5BE46523D9D45D"
+				type: "advancement"
+			}]
+			x: 9.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["217478741B808732"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:kill_wither"
+			}
+			id: "3CCC0D3E9A3D4791"
+			optional: true
+			rewards: [{
+				id: "79E002C20794BE8B"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/kill_wither"
+				criterion: ""
+				id: "5B5860DCB3B10638"
+				type: "advancement"
+			}]
+			x: 10.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3CCC0D3E9A3D4791"]
+			hide_dependency_lines: true
+			icon: {
+				id: "touhou_little_maid:kill_dragon"
+			}
+			id: "4EC803FDBC2643B8"
+			optional: true
+			rewards: [{
+				id: "4D92755B0A96ECC4"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "touhou_little_maid:challenge/kill_dragon"
+				criterion: ""
+				id: "31209668DF651CD7"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 10.0d
+		}
+	]
+}

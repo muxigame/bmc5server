@@ -1,0 +1,16 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"starcatcher:shiny_hook"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:starcatcher_rod"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher_delight:nigiri_legendary"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:slimey_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:aqua_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:steady_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:vanilla_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:clear_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:leaf_bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:bobber"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:hook"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:starcatcher_twine"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"starcatcher:starcatcher_guide"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

@@ -1,0 +1,7 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"inmis:plated_backpack"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"inmis:ender_pouch"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"inmis:blazing_backpack"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"inmis:frayed_backpack"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

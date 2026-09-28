@@ -1,0 +1,73 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.unknown.new": {
+			"initial_state": "empty",
+			"states": {
+				"empty": {
+					"animations": ["idle"],
+					"transitions": [
+						{"idle-jian": "ctrl.idle&&ctrl.hold('mainhand','#forge:swords')"}
+					]
+				},
+				"idle-jian": {
+					"animations": ["持剑站"],
+					"transitions": [
+						{"empty": "!ctrl.idle||!ctrl.hold('mainhand','#forge:swords')"}
+					]
+				}
+			}
+		},
+		"player.parallel_4": {
+			"states": {
+				"default": {
+					"animations": ["", "attack_empty"],
+					"on_exit": ["v.swing_sword=0;t.attack=v.attack;v.attack=math.mod(t.attack+1,3);"],
+					"transitions": [
+						{"jian1": "v.swing_sword&&v.attack==0"},
+						{"jian2": "v.swing_sword&&v.attack==1"},
+						{"jian3": "v.swing_sword&&v.attack==2"}
+					],
+					"blend_transition": 0.1
+				},
+				"jian1": {
+					"animations": [
+						{"jian1": "ctrl.idle"},
+						{"jian_1_1": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;t.attack=v.attack;v.attack=math.mod(t.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"jian2": "v.swing_sword&&v.attack==1"}
+					],
+					"blend_transition": 0.1
+				},
+				"jian2": {
+					"animations": [
+						{"jian2": "ctrl.idle"},
+						{"jian_2_2": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;t.attack=v.attack;v.attack=math.mod(t.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"jian3": "v.swing_sword&&v.attack==2"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"jian3": {
+					"animations": [
+						{"jian3": "ctrl.idle"},
+						{"jian_3_3": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;t.attack=v.attack;v.attack=math.mod(t.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"jian1": "v.swing_sword&&v.attack==0"}
+					],
+					"blend_transition": 0.1
+				}
+			}
+		}
+	}
+}

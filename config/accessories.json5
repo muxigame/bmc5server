@@ -1,0 +1,58 @@
+{
+	"useExperimentalCaching": false,
+	"clientOptions": {
+		"equipControl": "MUST_NOT_CROUCH",
+		"forceNullRenderReplacement": false,
+		"disableEmptySlotScreenError": false,
+		"showCosmeticAccessories": true,
+		"disabledDefaultRenders": []
+	},
+	"screenOptions": {
+		"selectedScreenType": "ORIGINAL",
+		"showUnusedSlots": false,
+		"allowSlotScrolling": true,
+		"inventoryButtonOffset": {
+			"x": 62,
+			"y": 8
+		},
+		"creativeInventoryButtonOffset": {
+			"x": 96,
+			"y": 6
+		},
+		"isDarkMode": false,
+		"showEquippedStackSlotType": true,
+		"entityLooksAtMouseCursor": false,
+		"allowSideBarCraftingGrid": true,
+		"showGroupTabs": true,
+		"hoveredOptions": {
+			"brightenHovered": true,
+			"cycleBrightness": true,
+			"line": false,
+			"clickbait": false
+		},
+		"unHoveredOptions": {
+			"renderUnHovered": true,
+			"darkenUnHovered": true,
+			"darkenedBrightness": 0.5,
+			"darkenedOpacity": 1.0
+		}
+	},
+	"modifiers": [
+		{
+			"slotType": "hand",
+			"amount": -1
+		},
+		{
+			"slotType": "charm",
+			"amount": -1
+		},
+		{
+			"slotType": "arrow",
+			"amount": -2
+		},
+		{
+			"slotType": "shulker",
+			"amount": -2
+		}
+	]
+}

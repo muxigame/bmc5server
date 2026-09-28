@@ -1,0 +1,5 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"waystones:warp_dust"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"waystones:warp_plate"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

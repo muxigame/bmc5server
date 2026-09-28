@@ -1,0 +1,7 @@
+[spawning]
+	#Chance (0-1) for an owned Touhou maid or modular golem to become a champion.
+	#Independent of Champions spawnChance. One attempt per saved entity; no rerolls.
+	#Natural tier distribution is unchanged; owned companions use 50/25/15/7/3.
+	# Default: 0.33
+	# Range: 0.0 ~ 1.0
+	ownedCompanionChance = 0.33

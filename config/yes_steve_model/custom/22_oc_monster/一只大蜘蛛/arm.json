@@ -1,0 +1,85 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.default",
+				"texture_width": 512,
+				"texture_height": 512,
+				"visible_bounds_width": 5,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "RightArm",
+					"pivot": [-4.4, 29.6, 0]
+				},
+				{
+					"name": "RightForeArm",
+					"parent": "RightArm",
+					"pivot": [-3.875, 24.4, 0.025],
+					"cubes": [
+						{
+							"origin": [-6.03287, 17.42293, -32.75372],
+							"size": [3.4, 4.3, 14.3],
+							"pivot": [-4.33287, 34.57293, -14.60372],
+							"rotation": [90, 0, 0],
+							"uv": {
+								"north": {"uv": [392, 144], "uv_size": [6, 8]},
+								"east": {"uv": [368, 346], "uv_size": [28, 8]},
+								"south": {"uv": [184, 392], "uv_size": [6, 8]},
+								"west": {"uv": [372, 274], "uv_size": [28, 8]},
+								"up": {"uv": [292, 304], "uv_size": [6, 28]},
+								"down": {"uv": [322, 120], "uv_size": [6, -28]}
+							}
+						},
+						{
+							"origin": [-5.83287, 17.62293, -32.55372],
+							"size": [3, 4, 14],
+							"pivot": [-4.33287, 34.62293, -14.55372],
+							"rotation": [90, 0, 0],
+							"uv": {
+								"north": {"uv": [28, 388], "uv_size": [6, 8]},
+								"east": {"uv": [306, 266], "uv_size": [28, 8]},
+								"south": {"uv": [88, 388], "uv_size": [6, 8]},
+								"west": {"uv": [368, 152], "uv_size": [28, 8]},
+								"up": {"uv": [178, 122], "uv_size": [6, 28]},
+								"down": {"uv": [256, 298], "uv_size": [6, -28]}
+							}
+						}
+					]
+				},
+				{
+					"name": "RightHand",
+					"parent": "RightForeArm",
+					"pivot": [-4.375, 18.925, 0.025]
+				},
+				{
+					"name": "RightHandLocator",
+					"parent": "RightHand",
+					"pivot": [-4.375, 17.925, 0.025]
+				},
+				{
+					"name": "LeftArm",
+					"pivot": [4.4, 29.6, 0]
+				},
+				{
+					"name": "LeftForeArm",
+					"parent": "LeftArm",
+					"pivot": [3.875, 24.4, 0.025]
+				},
+				{
+					"name": "LeftHand",
+					"parent": "LeftForeArm",
+					"pivot": [4.375, 18.925, 0.025]
+				},
+				{
+					"name": "LeftHandLocator",
+					"parent": "LeftHand",
+					"pivot": [4.375, 17.925, 0.025]
+				}
+			]
+		}
+	]
+}

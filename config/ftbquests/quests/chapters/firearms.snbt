@@ -1,0 +1,306 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "firearms"
+	group: "5EC606153AA8CA77"
+	icon: {
+		id: "tacz:gun_smith_table"
+	}
+	id: "59165A3DAA4028F5"
+	images: [ ]
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			id: "04E5F5AB6A45AB1D"
+			rewards: [{
+				id: "58A06982B1FF2B3B"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				id: "3C03AAA8783A61E4"
+				item: { count: 1, id: "tacz:gun_smith_table" }
+				type: "item"
+			}]
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["04E5F5AB6A45AB1D"]
+			id: "5EBC22CF7E047101"
+			rewards: [{
+				count: 16
+				id: "56F81D5983FA3F98"
+				item: {
+					count: 1
+					id: "minecraft:arrow"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "39213405F337FCAC"
+				item: { count: 1, id: "tacz:target" }
+				type: "item"
+			}]
+			x: -4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5EBC22CF7E047101"]
+			id: "061E487C72B395E4"
+			rewards: [{
+				id: "2B9636A15A501EF9"
+				type: "xp"
+				xp: 150
+			}]
+			tasks: [{
+				id: "4E1E0B39027592AA"
+				item: { count: 1, id: "tacz:target_minecart" }
+				type: "item"
+			}]
+			x: -4.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["04E5F5AB6A45AB1D"]
+			id: "6D19E1E934D8AB25"
+			rewards: [{
+				id: "42194A93DADBF6EF"
+				item: {
+					count: 1
+					id: "tacz:ammo_box"
+				}
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "2F786BF90DD5B631"
+				item: { components: { "minecraft:custom_data": { GunId: "tacz:glock_17" } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				type: "item"
+			}]
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6D19E1E934D8AB25"]
+			id: "18D1C758CA68326F"
+			rewards: [{
+				id: "30A0E65A52120935"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				count: 32L
+				id: "4C4178BDDC48B58A"
+				item: { components: { "minecraft:custom_data": { AmmoId: "tacz:9mm" }, "minecraft:max_stack_size": 60 }, count: 1, id: "tacz:ammo" }
+				type: "item"
+			}]
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6D19E1E934D8AB25"]
+			id: "463972C982D1CFD3"
+			rewards: [{
+				id: "24F02EB28FD75374"
+				type: "xp"
+				xp: 250
+			}]
+			tasks: [{
+				id: "7B4A6DAD9DCD8736"
+				item: { count: 1, id: "tacz:ammo_box" }
+				type: "item"
+			}]
+			x: -2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6D19E1E934D8AB25"]
+			id: "32A36E23DC93C4B8"
+			rewards: [{
+				id: "4DAB526BF060D6B1"
+				type: "xp"
+				xp: 300
+			}]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "374FBF99178CDC53"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:sight_t1" } }, count: 1, id: "tacz:attachment" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["32A36E23DC93C4B8"]
+			id: "7993603545066734"
+			rewards: [{
+				count: 2
+				id: "5D38F55BCAF7AE48"
+				item: {
+					count: 1
+					id: "minecraft:diamond"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				count: 3L
+				id: "4CA39B7D8061BA04"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:scope_acog_ta31" } }, count: 1, id: "tacz:attachment" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["32A36E23DC93C4B8"]
+			id: "70CDA86026F5D2EB"
+			rewards: [{
+				count: 16
+				id: "00FF8CEE6CBA5AB8"
+				item: {
+					count: 1
+					id: "minecraft:iron_ingot"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				count: 6L
+				id: "6525E4765CB004AD"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:extended_mag_1" } }, count: 1, id: "tacz:attachment" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["04E5F5AB6A45AB1D"]
+			id: "349E312692B11764"
+			rewards: [{
+				id: "581573FBEF27EDF4"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				count: 64L
+				id: "0514643E1B977A05"
+				item: { count: 1, id: "minecraft:iron_ingot" }
+				type: "item"
+			}]
+			x: -2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["349E312692B11764"]
+			id: "44AEADDDB0A3FF17"
+			rewards: [{
+				id: "583DF869E672DCBD"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				count: 32L
+				id: "64FCCA28E2ACA33B"
+				item: { count: 1, id: "minecraft:lapis_lazuli" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["44AEADDDB0A3FF17"]
+			id: "2920A55E6AFA2798"
+			rewards: [{
+				id: "08E619C2BF511F29"
+				type: "xp"
+				xp: 250
+			}]
+			tasks: [{
+				count: 64L
+				id: "229878AFF00854E0"
+				item: { count: 1, id: "minecraft:copper_ingot" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7993603545066734"]
+			id: "0AF861E6F6C1B4C3"
+			rewards: [{
+				id: "587E148415B034BA"
+				type: "xp"
+				xp: 400
+			}]
+			tasks: [{
+				entity: "minecraft:zombie"
+				icon: {
+					components: {
+						"minecraft:custom_data": {
+							GunId: "tacz:ak47"
+						}
+					}
+					id: "tacz:modern_kinetic_gun"
+				}
+				id: "555B107314FD13E3"
+				type: "kill"
+				value: 10L
+			}]
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["70CDA86026F5D2EB"]
+			id: "3DCD46D58351987E"
+			rewards: [{
+				id: "1BBE78D08760FB5C"
+				type: "xp"
+				xp: 400
+			}]
+			tasks: [{
+				entity: "minecraft:skeleton"
+				icon: {
+					components: {
+						"minecraft:custom_data": {
+							GunId: "tacz:ai_awp"
+						}
+					}
+					id: "tacz:modern_kinetic_gun"
+				}
+				id: "329614FD9A780F67"
+				type: "kill"
+				value: 10L
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"0AF861E6F6C1B4C3"
+				"3DCD46D58351987E"
+			]
+			id: "17418C9F2D8E9AE5"
+			rewards: [{
+				id: "558C3B9C448C5029"
+				type: "xp"
+				xp: 1500
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				entity: "minecraft:warden"
+				icon: {
+					id: "tacz:gun_smith_table"
+				}
+				id: "56A9E1AFAC7B55C3"
+				type: "kill"
+				value: 10L
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+}

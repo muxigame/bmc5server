@@ -1,0 +1,181 @@
+[System]
+	#染梦裂隙自然生成（如非特别需要勿关，会影响游戏正常流程） 默认：true
+	"dyedream crack generate" = true
+
+["Advancement Lock"]
+	#进度锁总开关（关闭后，模组内依赖进度的交互/传送/功能限制将全部放行） 默认：true
+	"enable advancement lock" = true
+	#创造模式玩家不受进度锁限制（开启后，创造模式玩家可直接使用所有受进度限制的功能） 默认：true
+	"creative bypass advancement lock" = true
+	#进度锁：achievement_start（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_start lock" = true
+	#进度锁：achievement_a_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_a_0 lock" = true
+	#进度锁：achievement_a_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_a_1 lock" = true
+	#进度锁：achievement_b_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_b_0 lock" = true
+	#进度锁：achievement_b_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_b_1 lock" = true
+	#进度锁：achievement_b_2（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_b_2 lock" = true
+	#进度锁：achievement_b_3（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_b_3 lock" = true
+	#进度锁：achievement_c_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_c_0 lock" = true
+	#进度锁：achievement_c_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_c_1 lock" = true
+	#进度锁：achievement_c_2（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_c_2 lock" = true
+	#进度锁：achievement_c_3（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_c_3 lock" = true
+	#进度锁：achievement_c_4（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_c_4 lock" = true
+	#进度锁：achievement_d_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_d_0 lock" = true
+	#进度锁：achievement_end_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_end_0 lock" = true
+	#进度锁：achievement_nether_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_nether_0 lock" = true
+	#进度锁：achievement_adventure_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_adventure_0 lock" = true
+	#进度锁：achievement_special_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_special_0 lock" = true
+	#进度锁：achievement_shadow_start（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_start lock" = true
+	#进度锁：achievement_shadow_a_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_a_0 lock" = true
+	#进度锁：achievement_shadow_a_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_a_1 lock" = true
+	#进度锁：achievement_shadow_b_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_b_0 lock" = true
+	#进度锁：achievement_shadow_c_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_c_0 lock" = true
+	#进度锁：achievement_shadow_d_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_d_0 lock" = true
+	#进度锁：achievement_shadow_e_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_e_0 lock" = true
+	#进度锁：achievement_talent_light（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_talent_light lock" = true
+	#进度锁：achievement_talent_shadow（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_talent_shadow lock" = true
+	#进度锁：achievement_shadow_npc_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_0 lock" = true
+	#进度锁：achievement_shadow_npc_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_1 lock" = true
+	#进度锁：achievement_shadow_npc_2（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_2 lock" = true
+	#进度锁：achievement_shadow_npc_3（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_3 lock" = true
+	#进度锁：achievement_shadow_npc_4（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_4 lock" = true
+	#进度锁：achievement_shadow_npc_5（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_shadow_npc_5 lock" = true
+	#进度锁：achievement_treasure_start（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_treasure_start lock" = true
+	#进度锁：achievement_treasure_dyedream（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_treasure_dyedream lock" = true
+	#进度锁：achievement_treasure_wind_journey（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_treasure_wind_journey lock" = true
+	#进度锁：achievement_hide_0（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_0 lock" = true
+	#进度锁：achievement_hide_1（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_1 lock" = true
+	#进度锁：achievement_hide_2（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_2 lock" = true
+	#进度锁：achievement_hide_3（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_3 lock" = true
+	#进度锁：achievement_hide_4（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_4 lock" = true
+	#进度锁：achievement_hide_5（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_5 lock" = true
+	#进度锁：achievement_hide_6（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_6 lock" = true
+	#进度锁：achievement_hide_7（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_7 lock" = true
+	#进度锁：achievement_hide_8（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_8 lock" = true
+	#进度锁：achievement_hide_9（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_9 lock" = true
+	#进度锁：achievement_hide_10（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_10 lock" = true
+	#进度锁：achievement_hide_11（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_11 lock" = true
+	#进度锁：achievement_hide_12（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_12 lock" = true
+	#进度锁：achievement_hide_13（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_13 lock" = true
+	#进度锁：achievement_hide_14（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_14 lock" = true
+	#进度锁：achievement_hide_15（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_15 lock" = true
+	#进度锁：achievement_hide_16（关闭后该进度不再限制相关功能） 默认：true
+	"achievement_hide_16 lock" = true
+
+[Basic]
+	#进入主题梦境《灯影之下》时是否给予苍白骨针 默认：false
+	"in lamp shadow give pale boneneedle" = false
+	#初始生成世界时在0,0原点生成染梦裂隙 默认：false
+	"the origin of the world initially generated dyedream crack " = false
+	#启用模组进入游戏时的聊天栏公告 默认：true
+	"mod accouocement" = true
+	#禁止在使用染梦世界的染梦裂隙向主世界的返程传送 默认：false
+	"no return dyedream crack" = false
+	#在染梦世界生成初始出生点岛屿 默认：true
+	"dyedream origin spawnpoint" = true
+	#在与无名第三次对话后会被强制传送回主世界 默认：true
+	"shadow npc third dialogue after tp player back to overworld" = true
+
+["Custom Spawn"]
+	#自定义出生维度/群系总开关（开启后，新玩家首次进入世界时会在指定维度与群系出生；关闭后按原版逻辑在主世界出生） 默认：false
+	"custom spawn enabled" = false
+	#自定义出生维度 ID（格式：命名空间:路径，如 minecraft:overworld / pasterdream:dyedream_world） 默认：minecraft:overworld
+	"custom spawn dimension" = "minecraft:overworld"
+	#自定义出生群系 ID（格式：命名空间:路径，如 minecraft:plains / pasterdream:dyedream） 默认：minecraft:plains
+	"custom spawn biome" = "minecraft:plains"
+	#出生群系搜索半径，单位：格（以目标维度出生点为中心向外搜索配置的群系；搜索不到时回退到维度出生点） 默认：10000 范围：100~100000
+	# Default: 10000
+	# Range: 100 ~ 100000
+	"custom spawn search radius" = 10000
+
+[property]
+	#pasterdream玩家刻功能程序更新频率，算法：每-[此配置单位时间]-进行一次更新 单位/tick，过快的更新频率可能会影响性能，过慢的频率会让部分功能显得非常迟钝，推荐频率范围[2~20]整数  默认：5
+	# Default: 5
+	# Range: 2 ~ 20
+	"player total tick update" = 5
+
+[Sky]
+	#星空枕(memento_item_08)在天空上可创建的连线星体数量上限 默认：8 范围：1~64
+	# Default: 8
+	# Range: 1 ~ 64
+	"skylink max stars" = 8
+
+["Meltdream Chest"]
+	#融梦水晶箱自定义战利品总开关（开启后按下方三个品质的物品池生成掉落；关闭使用内置默认池） 默认：false
+	"meltdream chest custom loot enabled" = false
+	#融梦水晶箱普通品质物品池（每行一个条目，格式：物品ID 数量 权重，如 "pasterdream:fried_egg 2 30") 默认：内置普通物品池
+	"meltdream chest common loot" = ["pasterdream:fried_egg 2 30", "pasterdream:candy_cane 2 25", "pasterdream:bubble_gum 3 25", "pasterdream:chocolate 2 25", "pasterdream:berry_buncake 2 22", "pasterdream:cream_buncake 2 22", "pasterdream:dyedream_popsicle 2 22", "pasterdream:gingerbread_man 2 20", "pasterdream:potato_buncake 2 20", "pasterdream:pumpkin_buncake 2 20", "pasterdream:jellyfish_jello 2 18", "pasterdream:ricecake 1 16", "pasterdream:swiss_roll 1 16", "pasterdream:bread_slice 3 15", "pasterdream:fig 2 14", "pasterdream:strawberry_heart 1 12", "pasterdream:wafer_biscuit 2 10"]
+	#融梦水晶箱稀有品质物品池（格式同上） 默认：内置稀有物品池
+	"meltdream chest rare loot" = ["pasterdream:dyedream_ingot 2 25", "pasterdream:titanium_ingot 2 22", "pasterdream:blackmetal_ingot 2 20", "pasterdream:white_crystal 2 18", "pasterdream:dreamwish 1 18", "pasterdream:soul_essence 2 16", "pasterdream:charged_amethyst 2 15", "pasterdream:wind_iron_ingot 2 15", "pasterdream:moltengold_ingot 2 15", "pasterdream:dream_aurorian_steel 1 12", "pasterdream:dyedream_sword 1 12", "pasterdream:titanium_sword 1 12", "pasterdream:pinkegg 2 10", "pasterdream:nightmare_fuel 2 10", "pasterdream:memento_item_03 1 6", "pasterdream:memento_item_08 1 6"]
+	#融梦水晶箱传说品质物品池（格式同上） 默认：内置传说物品池
+	"meltdream chest legendary loot" = ["pasterdream:meltdream_crystal_0 1 20", "pasterdream:shadow_erosion_sword 1 18", "pasterdream:allkinds_ring 1 15", "pasterdream:boboji_plume 1 15", "pasterdream:dyedream_upgrade 1 12", "pasterdream:titanium_upgrade 1 12", "pasterdream:sculk_upgrade 1 10", "pasterdream:dyedream_teleport_crystal 2 10", "pasterdream:sweetdream_disc 1 8", "pasterdream:dyedream_world_disc 1 8", "pasterdream:memento_item_03 1 8", "pasterdream:memento_item_08 1 8"]
+
+[Ban]
+	#关闭并禁止所有翅膀的功能  默认：false
+	"ban all the wings" = false
+	#关闭并禁止大地之刃的功能  默认：false
+	"ban terra sword" = false
+	#关闭并禁止业火项链的功能  默认：false
+	"ban fire necklace" = false
+	#关闭并禁止时之沙的功能  默认：false
+	"ban time hourglass" = false
+
+[Debug]
+	#调试日志总开关 默认：false（关闭后不输出任何调试/诊断日志）
+	"enable debug log" = false
+	#启用 PasterDreamAPI 模块的调试日志 默认：false
+	"enable api debug log" = false
+	#启用 PasterDream 主模块的调试日志 默认：false
+	"enable main debug log" = false
+	#启用 Smoketest / 移植验证的调试日志 默认：false
+	"enable smoketest debug log" = false

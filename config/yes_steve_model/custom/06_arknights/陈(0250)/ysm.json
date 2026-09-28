@@ -1,0 +1,57 @@
+{
+	"spec": 2,
+	"metadata": {
+		"name": "陈",
+		"tips": "普通人的普通作品",
+		"license": {
+			"type": "CC BY-SA 4.0"
+		},
+		"authors": [
+			{
+				"name": "一个普通的创作者"
+			}
+		]
+	},
+	"properties": {
+		"height_scale": 0.7,
+		"width_scale": 0.7,
+		"extra_animation": {
+			"extra0": "",
+			"extra1": "",
+			"extra2": "变",
+			"extra3": "",
+			"extra4": "",
+			"extra5": "",
+			"extra6": "",
+			"extra7": ""
+		},
+		"preview_animation": "gui",
+		"default_texture": "default",
+		"render_layers_first": false,
+		"free": true,
+		"disable_preview_rotation": true
+	},
+	"files": {
+		"player": {
+			"model": {
+				"main": "models/main.json",
+				"arm": "models/arm.json"
+			},
+			"animation": {
+				"main": "animations/main.animation.json",
+				"arm": "animations/arm.animation.json",
+				"extra": "animations/extra.animation.json",
+				"tac": "animations/tac.animation.json",
+				"carryon": "animations/carryon.animation.json",
+				"parcool": "animations/parcool.animation.json",
+				"swem": "animations/swem.animation.json"
+			},
+			"animation_controllers": ["controller/main.animation_controllers.json"],
+			"texture": [
+				{
+					"uv": "textures/texture.png"
+				}
+			]
+		}
+	}
+}

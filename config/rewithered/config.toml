@@ -1,0 +1,23 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+
+[decayPotion]
+enabled = true
+duration = 40
+strength = 1
+longDuration = 60
+longStrength = 1
+strongDuration = 20
+strongStrength = 2
+
+[witherSkeletonTweaks]
+replaceSkeletonsInSoulSandValley = true
+replaceSkeletonsInFortress = true
+useBowsInSoulSandValley = true
+useBowsInFortress = true
+soulSandValleyBowChance = 100.0
+fortressBowChance = 25.0
+shootWitherArrows = true
+dropWitherArrows = true
+spawnWithArmor = true
+spawnWithEnchantedEquipment = true

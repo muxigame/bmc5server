@@ -1,0 +1,35 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+slotMode = "DEFAULT_SLOT"
+hideDebugInfoInSurvival = false
+cancelElytraFlyingInLiquid = true
+preventElytraRightClickEquip = false
+
+[accessorySettings]
+clockAccessory = true
+compassAccessory = false
+recoveryCompassAccessory = false
+calendarAccessory = true
+elytraAccessory = true
+spyglassAccessory = true
+lanternAccessory = false
+totemOfUndyingAccessory = true
+enderChestAccessory = true
+shulkerBoxAccessory = true
+arrowAccessory = false
+
+[infoOverlaySettings]
+showYCoordinate = true
+obfuscateCompassIfNotOverworld = false
+obfuscateClockIfNotOverworld = true
+useObfuscationEffect = false
+
+[infoOverlaySettings.overlayFields]
+coordinates = false
+direction = false
+biome = false
+dayAndTime = true
+weather = true
+moonPhase = true
+season = true
+lastDeathLocation = false

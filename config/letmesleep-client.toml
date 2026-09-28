@@ -1,0 +1,3 @@
+#Fall into your bed slowly and smoothly when beginning to sleep.
+#Default Value: true
+falling_asleep_animation = true

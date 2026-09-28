@@ -1,0 +1,42 @@
+# Simple Nicknames Config
+# If true, players will be allowed to set their nickname to a players username. This may cause confusion in-game.
+# If false, nicked players will automatically be unnicked if a player with the username joins.
+allowNickToPlayerName = true
+# If true, multiple players will be allowed to have the same nickname.
+allowDuplicateNicknames = true
+# The maximum length a nickname can be. Values above 16 may cause visual issues in-game.
+nicknameMaxLength = 128
+# The minimum length a nickname must be.
+nicknameMinLength = 1
+# How names should be formatted in the different spots they may appear.
+# $NICKNAME and $USERNAME are replaced by the players nickname and username respectively.
+# Using both may cause visual issues in-game.
+nameFormatChat = "$NICKNAME"
+nameFormatTabList = "$NICKNAME"
+nameFormatScoreboard = "$NICKNAME"
+nameFormatNametag = "$NICKNAME"
+# If true, the name formats above will also be applied to users without a nickname.
+formatUnnickedUsers = false
+# If true, the randomly generated nicknames will be unused player names fetched from the laby.net API instead of NATO alphabet names.
+# This is experimental and may cause issues if the API is down or unreachable.
+# As these are former real player names, some generated names may be inappropriate.
+# Please use this only if necessary to avoid excessive API usage.
+fetchUnusedPlayerNames = false
+# If true, forces clients to have Simple Nicknames installed. Without the mod, clients will only see nicknames in chat.
+forceClientMod = true
+# If forceClientMod is set to false, players will receive this message when they join without Simple Nicknames.
+# Leave empty to disable.
+modMissingMessage = "This server uses the \"§lSimple Nicknames§r\" mod, but you don't have it installed. Consider installing it to see nicknames in all places!"
+# The MiniMessage formatting preset, see: https://docs.papermc.io/adventure/minimessage/api/#presets
+# Allowed options are: "FORMATTED_TEXT" (1.21.1+), "NON_INTERACTABLE" (1.21.1+), "DEFAULT" or "NONE" to disable MiniMessage formatting.
+# Using "DEFAULT" is not recommended as players could attach malicious links to their name.
+# Enabling MiniMessage formatting could allow players to impersonate others.
+# "FORMATTED_TEXT" and "NON_INTERACTABLE" are not available for 1.20.X.
+miniMessageFormattingPreset = "NONE"
+# A regex that nicknames must match to be valid. Leave empty to disable.
+# For example, to only allow letters, numbers and underscores use "[a-zA-Z0-9_]*".
+nicknameRegex = ""
+
+# Konfig internal metadata. Safe to ignore.
+[__konfig]
+	version = 0

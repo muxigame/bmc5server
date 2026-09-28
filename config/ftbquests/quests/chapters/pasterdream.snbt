@@ -1,0 +1,866 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "pasterdream"
+	group: "5BBB507BE497896B"
+	icon: {
+		id: "pasterdream:meltdream_crystal_0"
+	}
+	id: "74F362CC26DF3C90"
+	images: [ ]
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "pasterdream:meltdream_crystal_0"
+			}
+			id: "36C23AC28DF272B3"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "0C1BA11CD018F771"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:dyedream_crack"
+			}
+			id: "751293BDCE3502F1"
+			rewards: [{
+				id: "54FC51AFBC54EF60"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_a_0"
+				criterion: ""
+				id: "457A2A2927F7F560"
+				type: "advancement"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["751293BDCE3502F1"]
+			icon: {
+				id: "pasterdream:pliers"
+			}
+			id: "7FB562E9AA2AD7B2"
+			rewards: [{
+				id: "374E9223B8C7522C"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_b_1"
+				criterion: ""
+				id: "231B18BEF3D34460"
+				type: "advancement"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["751293BDCE3502F1"]
+			icon: {
+				id: "pasterdream:research_table"
+			}
+			id: "19DD835F1077175A"
+			rewards: [{
+				id: "47E6F12CEBAB1116"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_b_3"
+				criterion: ""
+				id: "3D4EB6100602FFBD"
+				type: "advancement"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:crop_1a"
+			}
+			id: "1FD95D17B9A06839"
+			rewards: [{
+				id: "4189C364D5D8F0B7"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_a_1"
+				criterion: ""
+				id: "2CEC66BDF69FC770"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1FD95D17B9A06839"]
+			icon: {
+				id: "pasterdream:pale_boneneedle"
+			}
+			id: "3A119AF0A0DF6098"
+			rewards: [{
+				id: "302988BEC8F414BA"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_b_2"
+				criterion: ""
+				id: "411000970CEB5817"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["751293BDCE3502F1"]
+			icon: {
+				id: "pasterdream:dyedream_grass"
+			}
+			id: "3C8C715F2F1EC113"
+			rewards: [{
+				id: "72FC8C13D4F7F150"
+				type: "xp"
+				xp: 50
+			}]
+			size: 1.2d
+			tasks: [{
+				advancement: "pasterdream:achievement_b_0"
+				criterion: ""
+				id: "502EA4936E0DC929"
+				type: "advancement"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:dyedream_dust"
+			}
+			id: "3783EC73D3AC1426"
+			rewards: [{
+				id: "7B911E451F2C4883"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_c_0"
+				criterion: ""
+				id: "642368DF65B02E71"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3783EC73D3AC1426"]
+			icon: {
+				id: "pasterdream:meltdream_crystal_0"
+			}
+			id: "4CCF56BF56D2C66C"
+			rewards: [{
+				id: "7D8C06F957ECFF11"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "pasterdream:achievement_d_0"
+				criterion: ""
+				id: "70BABE77DEFEABF6"
+				type: "advancement"
+			}]
+			x: 8.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:dreamjuice"
+			}
+			id: "3241DD7C0BDA8243"
+			rewards: [{
+				id: "5F13B0D85D094A94"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_c_1"
+				criterion: ""
+				id: "6387C06F98E3AF6F"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:dream_fertilizer"
+			}
+			id: "179394530C02E187"
+			rewards: [{
+				id: "768992610439B2B8"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_c_2"
+				criterion: ""
+				id: "024C5E937BFC5676"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:dream_accumulator"
+			}
+			id: "361844F121572A37"
+			rewards: [{
+				id: "30018987FEE6524E"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_c_3"
+				criterion: ""
+				id: "18DC2784C501A5CA"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:meltdream_liquid_bucket"
+			}
+			id: "0D05A3CB4902B3D4"
+			rewards: [{
+				id: "188CA48AD7DF6A84"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_c_4"
+				criterion: ""
+				id: "4FBBD2B92ED2F934"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:dyedream_dust"
+			}
+			id: "110D6AEBB80C1378"
+			rewards: [{
+				id: "022FE4296D4780FD"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_dyedream"
+				criterion: ""
+				id: "537B241786CDB77A"
+				type: "advancement"
+			}]
+			x: 4.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["110D6AEBB80C1378"]
+			icon: {
+				id: "pasterdream:broken_hero_sword"
+			}
+			id: "6FCB16F6B07D16A0"
+			rewards: [{
+				id: "6E9E49B77308117C"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_0"
+				criterion: ""
+				id: "727EDC8ECE37F28B"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["6FCB16F6B07D16A0"]
+			icon: {
+				id: "pasterdream:terra_sword"
+			}
+			id: "768CF2E49E99720A"
+			rewards: [{
+				id: "119EBED8599227EA"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_1"
+				criterion: ""
+				id: "681D962E5A48E384"
+				type: "advancement"
+			}]
+			x: 8.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["768CF2E49E99720A"]
+			icon: {
+				id: "pasterdream:terra_charm"
+			}
+			id: "7B5FEC3108472B09"
+			rewards: [{
+				id: "12A8DCF4A7CC2B88"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_2"
+				criterion: ""
+				id: "62E23AC9565E34EA"
+				type: "advancement"
+			}]
+			x: 10.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["7B5FEC3108472B09"]
+			icon: {
+				id: "pasterdream:allkinds_ring"
+			}
+			id: "57F6504228D28D4B"
+			rewards: [{
+				id: "2A44B582B5C55BE1"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_3"
+				criterion: ""
+				id: "4C18FFFF20D97612"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["57F6504228D28D4B"]
+			icon: {
+				id: "pasterdream:ceciliacare_charm"
+			}
+			id: "5E3233D3371461B1"
+			rewards: [{
+				id: "5C92AC7A587B13BA"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_4"
+				criterion: ""
+				id: "7AC497FD4863757F"
+				type: "advancement"
+			}]
+			x: 14.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["5E3233D3371461B1"]
+			icon: {
+				id: "pasterdream:hiyori_head"
+			}
+			id: "7674D4AB5EA0571B"
+			rewards: [{
+				id: "569596E9DAA30858"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_5"
+				criterion: ""
+				id: "15800AEE9EBE1A58"
+				type: "advancement"
+			}]
+			x: 16.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["7674D4AB5EA0571B"]
+			icon: {
+				id: "pasterdream:qin_doll_0"
+			}
+			id: "55CA1F27591C66DA"
+			rewards: [{
+				id: "292FDCEBA92BD216"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_6"
+				criterion: ""
+				id: "712FD56E5BBD0025"
+				type: "advancement"
+			}]
+			x: 18.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["55CA1F27591C66DA"]
+			icon: {
+				id: "pasterdream:strawberry_heart"
+			}
+			id: "78A3471AEC47E771"
+			rewards: [{
+				id: "5418BE05A915DD12"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_7"
+				criterion: ""
+				id: "70CF322DBCA8FF64"
+				type: "advancement"
+			}]
+			x: 20.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["78A3471AEC47E771"]
+			icon: {
+				id: "pasterdream:star_wish_rod"
+			}
+			id: "6A8372F857A195F1"
+			rewards: [{
+				id: "5587C4A5C6D0F076"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_a_8"
+				criterion: ""
+				id: "0C78034C2B8C5F88"
+				type: "advancement"
+			}]
+			x: 22.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			icon: {
+				id: "pasterdream:twilight_lantern"
+			}
+			id: "4E41391710F76A1F"
+			rewards: [{
+				id: "4697E8425DFE27BB"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			size: 1.2d
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_start"
+				criterion: ""
+				id: "39DBB19F083C1709"
+				type: "advancement"
+			}]
+			x: 4.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4E41391710F76A1F"]
+			icon: {
+				id: "pasterdream:brokennotes_0"
+			}
+			id: "6E62BA6B375895B9"
+			rewards: [{
+				id: "2EB08555B0248E57"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_a_0"
+				criterion: ""
+				id: "7D56F2718D556F8D"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4E41391710F76A1F"]
+			icon: {
+				id: "pasterdream:shadow_bed"
+			}
+			id: "2F96049ED68213C1"
+			rewards: [{
+				id: "4936249D2BD24CC4"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_a_1"
+				criterion: ""
+				id: "3FEE9245745404DE"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6E62BA6B375895B9"]
+			icon: {
+				id: "pasterdream:blackmetal_ingot"
+			}
+			id: "75DF858670BDBEE2"
+			rewards: [{
+				id: "02FC6EED29786708"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_b_0"
+				criterion: ""
+				id: "41C2E8499C45704F"
+				type: "advancement"
+			}]
+			x: 8.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["75DF858670BDBEE2"]
+			icon: {
+				id: "pasterdream:shadow_chest"
+			}
+			id: "55F314CF7F2B5EB9"
+			rewards: [{
+				id: "00ADC688982A6278"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_c_0"
+				criterion: ""
+				id: "2D1D00D2C3D244F1"
+				type: "advancement"
+			}]
+			x: 10.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["55F314CF7F2B5EB9"]
+			icon: {
+				id: "pasterdream:shadow_chest"
+			}
+			id: "0745A24CCED63292"
+			rewards: [{
+				id: "608C7F43496E211C"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_d_0"
+				criterion: ""
+				id: "4D7BBDDDFAF308BD"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0745A24CCED63292"]
+			icon: {
+				id: "pasterdream:talent_light"
+			}
+			id: "333E8B058C948772"
+			optional: true
+			rewards: [{
+				id: "62884A5EC4163461"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_talent_light"
+				criterion: ""
+				id: "7F20DACA35E67705"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0745A24CCED63292"]
+			icon: {
+				id: "pasterdream:talent_shadow"
+			}
+			id: "1D17A1B63194F0ED"
+			optional: true
+			rewards: [{
+				id: "2F35D9AC6E2EBD01"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_talent_shadow"
+				criterion: ""
+				id: "33529356AE000AB6"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["0745A24CCED63292"]
+			icon: {
+				id: "pasterdream:aaroncos_arena_create"
+			}
+			id: "1F0C19C80EA8D5D8"
+			rewards: [{
+				id: "079015B6EEB661E1"
+				type: "xp"
+				xp: 500
+			}]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				advancement: "pasterdream:achievement_shadow_e_0"
+				criterion: ""
+				id: "03F1B9F243306090"
+				type: "advancement"
+			}]
+			x: 14.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3C8C715F2F1EC113"]
+			hide_dependency_lines: true
+			icon: {
+				id: "pasterdream:windrunner_crystal"
+			}
+			id: "6ADD69F4A14A65E0"
+			rewards: [{
+				id: "0AE61E8F2C275C85"
+				type: "xp"
+				xp: 50
+			}]
+			size: 1.2d
+			tasks: [{
+				dimension: "pasterdream:wind_journey_world"
+				id: "0AF5E08A2187DCB8"
+				type: "dimension"
+			}]
+			x: 4.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["6ADD69F4A14A65E0"]
+			icon: {
+				id: "pasterdream:congeal_wind"
+			}
+			id: "1F88E56A58423407"
+			rewards: [{
+				id: "68A5C428898DF923"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_wind_journey"
+				criterion: ""
+				id: "7641F9DFB40EA54B"
+				type: "advancement"
+			}]
+			x: 6.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["1F88E56A58423407"]
+			icon: {
+				id: "pasterdream:boboji_plume"
+			}
+			id: "2747B030B1C031B0"
+			rewards: [{
+				id: "578AACD84A814EF8"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_treasure_b_0"
+				criterion: ""
+				id: "605E84658AE431F2"
+				type: "advancement"
+			}]
+			x: 8.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:weapon_workshop"
+			}
+			id: "4B8F9FAC6035177C"
+			optional: true
+			rewards: [{
+				id: "6E983A1A8749931D"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_adventure_0"
+				criterion: ""
+				id: "63B2A9483D773920"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:moltengold_ingot"
+			}
+			id: "79343559FA815623"
+			optional: true
+			rewards: [{
+				id: "040FD0C5EC641037"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_nether_0"
+				criterion: ""
+				id: "1D9B88C7806920B5"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:forced_tower"
+			}
+			id: "4F3D6326951FA558"
+			optional: true
+			rewards: [{
+				id: "23B92B0B44522E82"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_end_0"
+				criterion: ""
+				id: "5EC433BB0541D9AB"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "minecraft:spyglass"
+			}
+			id: "5BF054960D7E3AD1"
+			optional: true
+			rewards: [{
+				id: "4B9DF57D57B3AEB1"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_stargaze"
+				criterion: ""
+				id: "1DFF5E5255759D9C"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:memento_item_03"
+			}
+			id: "6DD40DAFDDC8424D"
+			optional: true
+			rewards: [{
+				id: "212EDE8C67560E34"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_divination"
+				criterion: ""
+				id: "740C341055F0E6B9"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:memento_item_08"
+			}
+			id: "2CC7006CFF60D43C"
+			optional: true
+			rewards: [{
+				id: "63AB910A2991D80E"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				advancement: "pasterdream:achievement_skylink"
+				criterion: ""
+				id: "382017EEB7319105"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["36C23AC28DF272B3"]
+			icon: {
+				id: "pasterdream:calle_card_5"
+			}
+			id: "343FBEFEF1B9AA60"
+			optional: true
+			rewards: [{
+				id: "7E10AA5535851812"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "pasterdream:achievement_special_0"
+				criterion: ""
+				id: "58DE7854371E037A"
+				type: "advancement"
+			}]
+			x: -3.0d
+			y: 6.0d
+		}
+	]
+}

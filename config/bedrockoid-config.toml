@@ -1,0 +1,29 @@
+	[lists.bedrockoid]
+		disableSnowUnderTreesIn = []
+
+	[flags.bedrockoid]
+		canPlantsBeBonemeal = true
+		cauldronNaturalFilling = true
+		wetSpongesDryOut = true
+		snowCoversVines = true
+		shulkersCanBeDyed = true
+		canSugarcaneBeBonemeal = true
+		composterCollisionFix = true
+		redstoneConnectsToPiston = true
+		entitySharesFire = true
+		fallenTrees = true
+		armorStandArms = true
+		frostwalkerBoost = true
+		reachAroundPlacement = true
+		snowSpawnsUnderTrees = false
+		chargedCreeperDropsEveryHead = false
+		shieldActivatesWhenSneaking = false
+		blocksWaterloggability = true
+		stopElytraByPressingSpace = true
+		snowlogging = true
+		maximumHeadsAmountCreeperDrop = 1
+		fireAspectImprovements = true
+		cauldronWaterloggability = true
+		snowCoversLeaves = false
+		sodiumTurnOffSnowloggability = false
+		sheepFurColorFix = true

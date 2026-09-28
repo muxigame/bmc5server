@@ -1,0 +1,13 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"supplementaries:safe"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"cataclysm:cursium_ingot"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"cataclysm:cursium_chestplate"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"cataclysm:cursium_helmet"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"dragonloot:dragon_chestplate"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"advancednetherite:netherite_diamond_chestplate"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"dragonloot:dragon_pickaxe"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"advancednetherite:netherite_gold_pickaxe"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"dragonloot:upgraded_dragon_chestplate"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"alexsmobs:rocky_chestplate"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]
