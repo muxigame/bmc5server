@@ -1,4 +1,4 @@
-"""Compile the local-only stock audit mods against an existing reconstructed build."""
+"""Compile local-only stock or follower audit mods against an existing reconstructed build."""
 import argparse
 import json
 import os
@@ -14,6 +14,7 @@ def main():
     p.add_argument('--workspace', type=Path, default=Path(r'D:\CPN\customnpcs-source'))
     p.add_argument('--java-home', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--suite', choices=['stock', 'follower'], default='stock')
     args = p.parse_args()
     build = Path(json.loads((args.workspace / 'reports/rebuild-latest.json').read_text(encoding='utf-8'))['build_directory'])
     deps = json.loads((args.workspace / 'provenance/dependencies.json').read_text(encoding='utf-8'))
@@ -23,11 +24,12 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     classes = out / 'classes'
     classes.mkdir(exist_ok=True)
-    sources = [Path(__file__).parent / 'npc-rebuild' / (name + '.java') for name in ['TraderStockAudit', 'TraderStockVisual']]
+    mods = [('TraderStockAudit','trader_stock_audit'),('TraderStockVisual','trader_stock_visual')] if args.suite == 'stock' else [('FollowerAudit','follower_audit')]
+    sources = [Path(__file__).parent / 'npc-rebuild' / (name + '.java') for name, _ in mods]
     javac_args = out / 'compile.args'
     npc_source.jvm_args(javac_args, ['--release', '21', '-encoding', 'UTF-8', '-proc:none', '-cp', os.pathsep.join(map(str,cp)), '-d', classes, *sources])
     subprocess.run([args.java_home / 'bin/javac.exe', '@' + str(javac_args)], check=True)
-    for name, mod_id in [('TraderStockAudit','trader_stock_audit'),('TraderStockVisual','trader_stock_visual')]:
+    for name, mod_id in mods:
         jar = out / (mod_id + '-local-only.jar')
         with zipfile.ZipFile(jar,'w',zipfile.ZIP_DEFLATED) as z:
             for f in (classes/'audit').glob(name+'*.class'):
@@ -38,7 +40,7 @@ license="All Rights Reserved"
 [[mods]]
 modId="{mod_id}"
 version="1.0"
-displayName="Local trader stock audit (DO NOT DEPLOY)"
+displayName="Local NPC audit (DO NOT DEPLOY)"
 [[dependencies.{mod_id}]]
 modId="customnpcs"
 type="required"
