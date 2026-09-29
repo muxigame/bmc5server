@@ -38,3 +38,10 @@ python -m unittest discover -s tools -p test_npc_source.py -v
 可用 `--server`、`--client`、`--workspace` 指定路径。工具只接受锁定散列的原包，不会悄悄对新版本继续运行。prepare 不删除已有工作；不完整输出也会停止并提示检查。
 
 完整指南：[工作区说明](../tools/npc-source-docs/README.md)、[模块导航](../tools/npc-source-docs/docs/MODULE-MAP.md)、[迁移路线](../tools/npc-source-docs/docs/MIGRATION.md)。
+
+
+## 历史源码补充核查（2026-09-29）
+
+扩大检索后，已下载 10 个相关仓库及一份 1.16.5 历史源码存档，覆盖 1.6.4、1.7.10、1.12.2、1.16.5、1.20.1 的完整模组源码路线，以及 API、覆盖修改和独立补丁工程。BetaZavr 的 1.20.1 分支确有完整模组工程，README 的旧说明已经过时。Goodbird 的 1.16.5 仓库则是少量覆盖修改类加预编译依赖，不能混称为完整工程。
+
+详见服务端 `docs/customnpcs-historical-sources.md` 与固定提交清单 `docs/customnpcs-historical-sources.lock.json`。本地历史源码目录为 `D:\CPN\customnpcs-historical-sources`。后续以历史工程提供类型、构建和设计参考，以当前 JAR 及反编译基线核对行为；未找到精确版本源码不等于历史源码不可用。各来源的许可与可信度单独记录。当前未构建旧工程或更换运行模组。

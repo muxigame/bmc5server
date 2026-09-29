@@ -1,0 +1,357 @@
+{
+  "checked_date": "2026-09-29",
+  "clone_mode": "--filter=blob:none, not shallow; all fetched remote branch refs and tags recorded; old blobs may require network",
+  "repositories": [
+    {
+      "name": "BetaZavr--CustomNPCs-Unofficial",
+      "remote": "https://github.com/BetaZavr/CustomNPCs-Unofficial.git",
+      "commit": "c24f9d736591bfb6a4fcdea3aecfed01609b0935",
+      "branch": "1.20.1",
+      "minecraft": "1.20.1 / 1.12.2",
+      "kind": "完整模组工程",
+      "note": "1.20.1 gradle.properties 标记 All Rights Reserved；master README 的 CC BY-NC 标识与新版元数据需区分。README 未公开声明已落后于实际分支。",
+      "java_files": 1576,
+      "shared_main_java_paths": 836,
+      "refs": [
+        "refs/remotes/origin/1.20.1 c24f9d736591bfb6a4fcdea3aecfed01609b0935",
+        "refs/remotes/origin/HEAD 1e7ee0652d4c0a52ba0b5bcec6aa47fe8228914a",
+        "refs/remotes/origin/master 1e7ee0652d4c0a52ba0b5bcec6aa47fe8228914a",
+        "refs/tags/first 60241a2c3281b6b9ef87804f42a9e5238ce0f671"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle"
+      ],
+      "license_files": []
+    },
+    {
+      "name": "CannibalVox--CustomNPCs",
+      "remote": "https://github.com/CannibalVox/CustomNPCs.git",
+      "commit": "448afa40e7a91da69eadcc3c7f20c7c913fe7964",
+      "branch": "master",
+      "minecraft": "1.7.10",
+      "kind": "历史模组工程",
+      "note": "README 自述依照 CC BY-NC 托管；非原作者仓库，授权来源待核实。",
+      "java_files": 708,
+      "shared_main_java_paths": 294,
+      "refs": [
+        "refs/remotes/origin/HEAD 448afa40e7a91da69eadcc3c7f20c7c913fe7964",
+        "refs/remotes/origin/master 448afa40e7a91da69eadcc3c7f20c7c913fe7964",
+        "refs/tags/1.7.10-herohack 3f084e5af3872cf0ce8b396d71a60c96e7b4277c",
+        "refs/tags/1.7.10-herohack2 448afa40e7a91da69eadcc3c7f20c7c913fe7964",
+        "refs/tags/1.7.10-herohack3 448afa40e7a91da69eadcc3c7f20c7c913fe7964",
+        "refs/tags/1.7.10-itemclickfix 9579598fd280269c5ad8a9bea9736af1dd9ef2bb"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle"
+      ],
+      "license_files": []
+    },
+    {
+      "name": "gaetsiffert--customnpcs-extended-compat-1.21.1",
+      "remote": "https://github.com/gaetsiffert/customnpcs-extended-compat-1.21.1.git",
+      "commit": "520107cea9b0e9c8e5196a9a6b7aef5bab1f6018",
+      "branch": "neoforge-1-21-1",
+      "minecraft": "1.21.1 NeoForge",
+      "kind": "独立兼容补丁",
+      "note": "MIT 标记；依赖 CurseForge 7411561，与本服目标发布包一致。仍需独立评估与 muxi-game-core 的补丁冲突。",
+      "java_files": 80,
+      "shared_main_java_paths": 0,
+      "refs": [
+        "refs/remotes/origin/HEAD 520107cea9b0e9c8e5196a9a6b7aef5bab1f6018",
+        "refs/remotes/origin/neoforge-1-21-1 520107cea9b0e9c8e5196a9a6b7aef5bab1f6018"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "Goodbird-git--CustomNPCPlus1.16.5",
+      "remote": "https://github.com/Goodbird-git/CustomNPCPlus1.16.5.git",
+      "commit": "fb4d4a9732386ab57de4bc18bf64579f2f15df99",
+      "branch": "master",
+      "minecraft": "1.16.5",
+      "kind": "覆盖修改工程 + sources JAR",
+      "note": "master 只有 21 个覆盖修改类，其他分支 22–73 个；构建依赖并拷贝预编译 JAR，不是完整独立源码工程。lib 内另带 1602 个 Java 文件的 deobf-sources.jar，生成来源未证实，不能视作作者原始源码。LICENSE 仅为模板文字。",
+      "java_files": 21,
+      "shared_main_java_paths": 20,
+      "refs": [
+        "refs/remotes/origin/HEAD fb4d4a9732386ab57de4bc18bf64579f2f15df99",
+        "refs/remotes/origin/dev a2492e195eadaeed7689630b73a859dc22836e48",
+        "refs/remotes/origin/geckolib-integration d77613d058782f58da8da1a3c25a4ce7ecfe8eb3",
+        "refs/remotes/origin/lady-paladra-special 2f8707d1dfc36485d16bc4c1861b2c25b9fec4db",
+        "refs/remotes/origin/master fb4d4a9732386ab57de4bc18bf64579f2f15df99",
+        "refs/remotes/origin/new-dialog-guis 7b91c40e515fc95765bbe781f8697263db25fb23",
+        "refs/remotes/origin/npc-mount-control 4eaa267e5ceb20fba8c704145c3002ce32c1794c",
+        "refs/remotes/origin/overlay-system f6f3e516fd0c6277dabb6b35e9b234c6a4d2d041",
+        "refs/remotes/origin/sad3 5dbfe43a928437ef37b56fd0a2cbc8f58b88c9f7",
+        "refs/remotes/origin/scripted-gui-upgrade 01958f634b4136bc0ec32f4f5ff3df74ccacf18d",
+        "refs/remotes/origin/skin-system-rewrite a761257c3796c1f6eb8d5964f94155d0aa8a0779",
+        "refs/remotes/origin/total+skins 30a93764b6368165e83cadd8cb142b146f8ae813",
+        "refs/remotes/origin/total-10-06-2024 e4c08c5777a904de7c1fb16e4b2c1d4939fcd6e0",
+        "refs/tags/release fb4d4a9732386ab57de4bc18bf64579f2f15df99"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "KAMKEEL--CustomNPC-Plus",
+      "remote": "https://github.com/KAMKEEL/CustomNPC-Plus.git",
+      "commit": "3448957d046dae5c5b12b0b5f4287bf592e29de7",
+      "branch": "master",
+      "minecraft": "1.7.10",
+      "kind": "完整模组工程",
+      "note": "自定义限制许可，限制完整再分发；标签 1.21 等是模组版本，不是 Minecraft 版本。",
+      "java_files": 1821,
+      "shared_main_java_paths": 359,
+      "refs": [
+        "refs/remotes/origin/HEAD 3448957d046dae5c5b12b0b5f4287bf592e29de7",
+        "refs/remotes/origin/core 2e2b52252da7e21cb3d03d56bdae3c17be9f770d",
+        "refs/remotes/origin/dev cf1e34b4a72ae5f93a54ad7aff12cd54ad1e0912",
+        "refs/remotes/origin/dialog-editor 7a1b4c20cfe164b4970f8e5f7cfa0cd0e0da673d",
+        "refs/remotes/origin/easing ff33ebfe8dcc583d72907ef76e1018780e691fda",
+        "refs/remotes/origin/edit-gui 0fe357d360d69ccd3eebf502f01a12e67bd6b11a",
+        "refs/remotes/origin/fix/packet-validation 3f67c3328a84d3429b1ab189e0ecd313caf0de60",
+        "refs/remotes/origin/gh-pages 8dc885fd0f756162e77cc3310eafcbdab681da49",
+        "refs/remotes/origin/graal-js d752db8a493734564929842e24fd5c2c21f48299",
+        "refs/remotes/origin/guide-books be173f13ca1a32d3951d7aadc085c451f6f2aac9",
+        "refs/remotes/origin/java21-scripting ba2721d3df27a14fe8aff63334d507bf98123363",
+        "refs/remotes/origin/master 3448957d046dae5c5b12b0b5f4287bf592e29de7",
+        "refs/remotes/origin/nbt-book a0f78f0efadbc6c77f8215135728e180335819d3",
+        "refs/remotes/origin/new-abilities 1ab1dd1e16a77e8cab48a2a35c0c7e44a51016ba",
+        "refs/remotes/origin/nodex-port a7a3dc6f16543b305398cdc258e98943e2e7527c",
+        "refs/remotes/origin/open-jdk-nashorn b4aab454fea623cb9afe55299f347288d7ae66ff",
+        "refs/remotes/origin/original 1b36c23d66973301b2794e687f4187971445d5c3",
+        "refs/remotes/origin/scribe f0a7a2e6980bbc0c866206ab7867bd3a1a916a62",
+        "refs/remotes/origin/syntax-highlighter-tree bcef6ffd256312d658d78047b79e9f101d07a9b6",
+        "refs/remotes/origin/syntax-highlighter-unified a981947b7674baeeeb9b7ed525d1e6eb0e88128c",
+        "refs/tags/1.0 2f9b7b89720cb670c0c36cc88b3ecde47f485624",
+        "refs/tags/1.01 8d455c329b33ad92ea6adad59381ae382ed34cee",
+        "refs/tags/1.1 0088f750eeb99f9bd1456915bcddb80ba421e822",
+        "refs/tags/1.10 23357b6a796da1e5f2df2972b73e8347a0a9276d",
+        "refs/tags/1.10.1 7a4ced1065daaa715afc58dde7d9567506b69e7e",
+        "refs/tags/1.10.2 b457e26960c83d5ec115384b00675bada1f640c9",
+        "refs/tags/1.2 acd666e073898f4e53e4d30c31cb8b8da9d4ecbc",
+        "refs/tags/1.21 a2e869ddb3ae62c4382a006fd3f6a03d3e01d159",
+        "refs/tags/1.22 69877e8edf0c6dceccb4002b4585bc55ad6070d5",
+        "refs/tags/1.23 a2e869ddb3ae62c4382a006fd3f6a03d3e01d159",
+        "refs/tags/1.3 d79ec52994dd1ec62acd14131f6551174114c800",
+        "refs/tags/1.3.1 3dd8a607028f796de0ae6ded353f891ad5db88fd",
+        "refs/tags/1.3.2 3dd8a607028f796de0ae6ded353f891ad5db88fd",
+        "refs/tags/1.4 aba9dd250a4f0d0a15b955fe11a9647a6971e3a6",
+        "refs/tags/1.4-beta 5409e4e92482f8e371a4d7e1000c77c2401c5ca1",
+        "refs/tags/1.4.1 2155566113763740fb8199eb3ee41ffdb9ee6594",
+        "refs/tags/1.4.2 f9ab885dddde05eb380f7e140079241ac5e55476",
+        "refs/tags/1.5-beta e3e55e42568d9aa06ab953503988649c7cb489f9",
+        "refs/tags/1.5.1-beta 6d6daeb345f478715162970098f1fa2638237206",
+        "refs/tags/1.5.2 3454ecb78a610a5ac3cc7238fc68efe58e715a47",
+        "refs/tags/1.5.3 0732d98ff80146c50026be6f92970a1f4f4a437d",
+        "refs/tags/1.5.4 36992c5abd8659a9daad9a7eb353e43f5e3c110a",
+        "refs/tags/1.6 4142322092614f1633ac371c9c263d7c80f3763a",
+        "refs/tags/1.6-beta 5c8dcd47e7fc39d055aab47b5611ba87201ebe02",
+        "refs/tags/1.6-beta2 98f822dec7755bcf140b0dda16773fec6fe9dd9d",
+        "refs/tags/1.6.1 e268314ceceb1e2a3a7097a3999868282c7afa70",
+        "refs/tags/1.6.2 89cc15dc0a807f343fd27026dbbd89c18c59e759",
+        "refs/tags/1.6.3 54d442ed9093bfe6faba0a3392cad7782cea9238",
+        "refs/tags/1.6.4 2c82714f9a4bced4c55ea8b85d2ae2cda4f1dabc",
+        "refs/tags/1.6.4-pre1 1400967c10cbf75ea751bdce9771640891a1a266",
+        "refs/tags/1.7 976c61f89af50bbb94cfbf30f899539c22bdccc4",
+        "refs/tags/1.8 960c60f5c7e78336f53b27248c60764a90254580",
+        "refs/tags/1.8.1 6ea7244a25be411c2ac22f10f7604d5cbe3e041a",
+        "refs/tags/1.8.2 b82177d8d94826ccb792b6680ca7b9d49745c761",
+        "refs/tags/1.8.3 13b153d922564470e82694005ed250210dae85c1",
+        "refs/tags/1.8.4 37e9d5f8991d1cb4169d9ab5f236b48b721c2ba5",
+        "refs/tags/1.8.5 37e9d5f8991d1cb4169d9ab5f236b48b721c2ba5",
+        "refs/tags/1.8.6 1a7ac52297456017a00ae831556c00ab2aaaf2aa",
+        "refs/tags/1.9-sync-experimental 1d210dbd39def713f324fc92ebdda4e2dcb5e1d1",
+        "refs/tags/1.9.3 f19797b0ac00ddee09653fcac19b91d94d22b3f8"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "mchhui--CustomNPCsFix",
+      "remote": "https://github.com/mchhui/CustomNPCsFix.git",
+      "commit": "df1f294e4039e58dbb13b5047315046912854397",
+      "branch": "1.12.2",
+      "minecraft": "1.12.2 / 1.7.10",
+      "kind": "独立修复补丁",
+      "note": "coremod/ASM 修复工程，不是完整模组。",
+      "java_files": 76,
+      "shared_main_java_paths": 0,
+      "refs": [
+        "refs/remotes/origin/1.12.2 df1f294e4039e58dbb13b5047315046912854397",
+        "refs/remotes/origin/1.7.10 2d8e277de5d583949dd91e05b76f4c749fb5c361",
+        "refs/remotes/origin/HEAD df1f294e4039e58dbb13b5047315046912854397",
+        "refs/remotes/origin/master 85005a5d9e86a59573d57df891e8ad1700209125"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ]
+    },
+    {
+      "name": "Noppes--cnpcs-scripting-examples",
+      "remote": "https://github.com/Noppes/cnpcs-scripting-examples.git",
+      "commit": "2e7d042a7bed4cbed8bf64f79607803b09d22862",
+      "branch": "main",
+      "minecraft": "1.12.2 / 1.16.5",
+      "kind": "原作者脚本示例",
+      "note": "仅脚本和编辑器提示，不是完整模组。",
+      "java_files": 0,
+      "shared_main_java_paths": 0,
+      "refs": [
+        "refs/remotes/origin/1.12.2 105901e550b29050b311435aa766ab57388c9c3b",
+        "refs/remotes/origin/HEAD 2e7d042a7bed4cbed8bf64f79607803b09d22862",
+        "refs/remotes/origin/main 2e7d042a7bed4cbed8bf64f79607803b09d22862"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [],
+      "license_files": []
+    },
+    {
+      "name": "Noppes--CustomNPCsAPI",
+      "remote": "https://github.com/Noppes/CustomNPCsAPI.git",
+      "commit": "e6496d6856ba59f5afb55d1ad128c9b3d1896edf",
+      "branch": "master",
+      "minecraft": "1.8–1.18 多分支",
+      "kind": "原作者 API",
+      "note": "仅接口，不是完整模组；各分支含版本差异。",
+      "java_files": 128,
+      "shared_main_java_paths": 0,
+      "refs": [
+        "refs/remotes/origin/1.10.2 7994fd4901c3050190839847aebb9883b35cb18e",
+        "refs/remotes/origin/1.11.2 7ccd52f3069956bbb3572657033693fe425a9157",
+        "refs/remotes/origin/1.12 f55cec3c035b43c9a8c92793e67048e827a736e0",
+        "refs/remotes/origin/1.13.2 dbc0a8a8fefdf6ccde944dad26f7ec92d8893f31",
+        "refs/remotes/origin/1.16 015cf2af353f6cfe2aa6fcb9788ad54ff627e487",
+        "refs/remotes/origin/1.18 2cc1024eb7363d86e4558a7ea5783febc50c0952",
+        "refs/remotes/origin/1.8.0 74a099a7f2ee6684011aaa08c94eb46b7f22b07f",
+        "refs/remotes/origin/1.8.9 670b81134fa61313759cce51f3379d8feea46aea",
+        "refs/remotes/origin/1.9.4 1969eac47d8e1ad51bbcd5c7a492d259b487086f",
+        "refs/remotes/origin/HEAD e6496d6856ba59f5afb55d1ad128c9b3d1896edf",
+        "refs/remotes/origin/master e6496d6856ba59f5afb55d1ad128c9b3d1896edf"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [],
+      "license_files": []
+    },
+    {
+      "name": "postyizhan--CustomNPCs-164",
+      "remote": "https://github.com/postyizhan/CustomNPCs-164.git",
+      "commit": "f7f45ad3c00405de2bc339db5d9d5f6c56f396a6",
+      "branch": "main",
+      "minecraft": "1.6.4",
+      "kind": "完整模组工程",
+      "note": "PolyForm Noncommercial 1.0.0；README 声称获得 Noppes 授权，尚未独立核实该授权。",
+      "java_files": 598,
+      "shared_main_java_paths": 214,
+      "refs": [
+        "refs/remotes/origin/HEAD f7f45ad3c00405de2bc339db5d9d5f6c56f396a6",
+        "refs/remotes/origin/feat/visual-assets-inventory 6a3845f7aff8947ab516d6e9ba9f5b26a1f7f2ba",
+        "refs/remotes/origin/main f7f45ad3c00405de2bc339db5d9d5f6c56f396a6"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "XiaoBiniaoX--CNPC-plus-Fix",
+      "remote": "https://github.com/XiaoBiniaoX/CNPC-plus-Fix.git",
+      "commit": "8a8eca0ca9215bdb040e561b1919a540c21984c3",
+      "branch": "1.20.1Forge",
+      "minecraft": "1.20.1",
+      "kind": "独立扩展补丁",
+      "note": "MIT 标记仅涉及本工程；依赖 libs 中 CustomNPCs 原包，不能替代完整源码。",
+      "java_files": 235,
+      "shared_main_java_paths": 0,
+      "refs": [
+        "refs/remotes/origin/1.12.2Forge 86fa0ce4ee93f8370404d66a5f289c63ad7fad4e",
+        "refs/remotes/origin/1.20.1Forge 8a8eca0ca9215bdb040e561b1919a540c21984c3",
+        "refs/remotes/origin/1.21.1NeoForge b9430d0c1523f9312015dd3dd4ce7415302d97ed",
+        "refs/remotes/origin/HEAD 8a8eca0ca9215bdb040e561b1919a540c21984c3"
+      ],
+      "clean": true,
+      "shallow": "false",
+      "build_files": [
+        "build.gradle",
+        "gradle.properties",
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    }
+  ],
+  "snapshots": [
+    {
+      "path": "snapshots\\BetaZavr-1.12.2-1e7ee0652d4c",
+      "commit": "1e7ee0652d4c0a52ba0b5bcec6aa47fe8228914a",
+      "java_files": 1625
+    }
+  ],
+  "archive": {
+    "url": "https://dl.dropboxusercontent.com/s/o3cdfh3zg3egrsm/customnpcs_1.16.zip?dl=0",
+    "source_post": "https://pixelmonmod.com/tracker.php?p=2&t=18820",
+    "sha256": "352ae76d49b88340965a8ed0548a25bdd3dc11f7b3acf0bd91b388bf0e4fd83d",
+    "java_files": 923,
+    "provenance": "2022 reporter attributes archive to Noppes; not independently authenticated",
+    "minecraft": "1.16.5",
+    "build_verified": false
+  }
+}
