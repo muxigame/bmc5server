@@ -2,7 +2,7 @@
 
 目标：为后续修复与迁移保存一份可读、可追溯、可重复生成的代码基线。
 
-**这是从已安装 JAR 恢复的代码，不是作者原始源码工程。目前不能作为可直接替换游戏模组的发行版。** 完整编译状态以 `reports/compile-check.json` 为准；原作者注释、Git 历史和构建脚本无法从 JAR 原样恢复。
+**这是从已安装 JAR 恢复的代码，不是作者原始源码工程。目前不能作为可直接替换游戏模组的发行版。** 原始直接 javac 诊断保存在 `reports/compile-check.json`；恢复后的完整构建结果以 `reports/rebuild-latest.json` 为准，原作者注释、Git 历史和构建脚本无法从 JAR 原样恢复。
 
 当前版本：`CustomNPCs-Unofficial-NeoForge-1.21.1.20251230.jar`，Minecraft 1.21.1 / NeoForge 21.1.250 / Java 21。SHA256：`6c28d87b215fc1191488194188ec8a39dd908ae7d2d887b7c9d7d463be0a162c`。
 
@@ -55,3 +55,8 @@ compare 首次生成 CFR 对照；已有对照时拒绝覆盖。局部维护可�
 - 文件编码 UTF-8、4 空格缩进，保留反编译器的不确定性标记。
 - 修复动态访问权限、Mixin 或泛型问题前，先对照原始字节码；不要为了“编译通过”删除方法或返回空值。
 - 当前只是准备迁移，不替换正式服或客户端里的 JAR。
+
+
+## 完整重打包进展
+
+已用 `tools/npc_rebuild.py` 完成全量编译、固定打包和短时服务端 A/B 验证。见本机 `docs/REBUILD-VALIDATION.md` 或服务端仓库 `docs/customnpcs-rebuild-validation.md`。尚未证明全部方法的严格等价，候选包仅用于隔离验证。
