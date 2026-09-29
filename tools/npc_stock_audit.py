@@ -1,4 +1,4 @@
-"""Compile local-only stock or follower audit mods against an existing reconstructed build."""
+"""Compile local-only NPC audit mods against an existing reconstructed build."""
 import argparse
 import json
 import os
@@ -14,7 +14,7 @@ def main():
     p.add_argument('--workspace', type=Path, default=Path(r'D:\CPN\customnpcs-source'))
     p.add_argument('--java-home', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--suite', choices=['stock', 'follower'], default='stock')
+    p.add_argument('--suite', choices=['stock', 'follower', 'orc'], default='stock')
     args = p.parse_args()
     build = Path(json.loads((args.workspace / 'reports/rebuild-latest.json').read_text(encoding='utf-8'))['build_directory'])
     deps = json.loads((args.workspace / 'provenance/dependencies.json').read_text(encoding='utf-8'))
@@ -24,7 +24,11 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     classes = out / 'classes'
     classes.mkdir(exist_ok=True)
-    mods = [('TraderStockAudit','trader_stock_audit'),('TraderStockVisual','trader_stock_visual')] if args.suite == 'stock' else [('FollowerAudit','follower_audit')]
+    mods = {
+        'stock': [('TraderStockAudit','trader_stock_audit'),('TraderStockVisual','trader_stock_visual')],
+        'follower': [('FollowerAudit','follower_audit')],
+        'orc': [('OrcWarriorAudit','orc_warrior_audit')],
+    }[args.suite]
     sources = [Path(__file__).parent / 'npc-rebuild' / (name + '.java') for name, _ in mods]
     javac_args = out / 'compile.args'
     npc_source.jvm_args(javac_args, ['--release', '21', '-encoding', 'UTF-8', '-proc:none', '-cp', os.pathsep.join(map(str,cp)), '-d', classes, *sources])

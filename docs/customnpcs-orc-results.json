@@ -1,0 +1,103 @@
+[
+  {
+    "detail": "兽人战士_灰牙氏族_v1",
+    "status": "PASS",
+    "check": "client_library_listing"
+  },
+  {
+    "detail": "original ClientCloneController / NBTJsonUtil",
+    "status": "PASS",
+    "check": "client_library_parse"
+  },
+  {
+    "detail": "no saved identity or location",
+    "status": "PASS",
+    "check": "portable_identity"
+  },
+  {
+    "detail": "all NBT types and Chinese text",
+    "status": "PASS",
+    "check": "typed_nbt_roundtrip"
+  },
+  {
+    "detail": "two independent UUIDs",
+    "status": "PASS",
+    "check": "cloner_spawn_twice"
+  },
+  {
+    "detail": "customnpcs:textures/entity/orcmale/leatherarmoredorc.png",
+    "status": "PASS",
+    "check": "appearance_and_equipment"
+  },
+  {
+    "detail": "24 health / 5 damage / 30 ticks / AI enabled",
+    "status": "PASS",
+    "check": "combat_settings"
+  },
+  {
+    "detail": "24 original Chinese lines in 6 native groups",
+    "status": "PASS",
+    "check": "all_dialogue_loaded"
+  },
+  {
+    "detail": "fresh world faction 2",
+    "status": "PASS",
+    "check": "survival_player_hostility"
+  },
+  {
+    "detail": "native creative-mode behavior",
+    "status": "PASS",
+    "check": "creative_player_exemption"
+  },
+  {
+    "detail": "visible survival player within aggro range",
+    "status": "PASS",
+    "check": "native_player_target_selector"
+  },
+  {
+    "detail": {
+      "maximumStep": 0.4825864426237574,
+      "distanceTravelled": 7.551877132439554
+    },
+    "status": "PASS",
+    "check": "walks_to_target"
+  },
+  {
+    "detail": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "status": "PASS",
+    "check": "actual_melee_damage"
+  },
+  {
+    "detail": [
+      173,
+      203,
+      233,
+      263,
+      293,
+      323,
+      353,
+      383
+    ],
+    "status": "PASS",
+    "check": "melee_cooldown"
+  },
+  {
+    "detail": "dead clone removed; SpawnCycle=3",
+    "status": "PASS",
+    "check": "death_removes_without_respawn"
+  },
+  {
+    "detail": "5 XP; leather 35%; stone axe 8%",
+    "status": "PASS",
+    "check": "drops_and_xp"
+  }
+]
