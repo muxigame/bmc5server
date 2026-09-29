@@ -1,0 +1,10 @@
+/original/
+/reference/
+/dependencies/
+/tools-cache/
+/build/
+*.class
+*.jar
+/reports/*.log
+/reports/*.args
+/.idea/
