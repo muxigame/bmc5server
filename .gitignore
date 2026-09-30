@@ -53,6 +53,22 @@
 # Binary assets live in the immutable release, not Git history
 *.jar
 *.zip
+
+# Existing local instance diagnostics, backups and production launch helpers
+/.cache/
+/.grave-ops-backups/
+/_balance_backup/
+/config/crash_assistant/
+/config/yes_steve_model_disabled/
+*.backup*
+/client_only_removed.json
+/removed_by_bootloop.txt
+/mcping.py
+/rcon.py
+/start*.bat*
+/start-muxi.ps1
+/tools/mcproc.ps1
+/tools/rcon.ps1
 *.7z
 *.png
 *.jpg
