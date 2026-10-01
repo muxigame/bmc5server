@@ -1,0 +1,18 @@
+{
+  "files.encoding": "utf8",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "java.project.sourcePaths": ["src/main/java"],
+  "java.project.outputPath": "build/ide",
+  "java.project.referencedLibraries": ["dependencies/jars/*.jar"],
+  "files.watcherExclude": {
+    "**/dependencies/**": true,
+    "**/original/**": true,
+    "**/reference/**": true
+  },
+  "search.exclude": {
+    "reference": true,
+    "dependencies": true,
+    "build": true
+  }
+}
