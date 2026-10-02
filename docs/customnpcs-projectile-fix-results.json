@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-02",
+  "version": "1.21.1.20251230-bmc-stock.2",
+  "protocol": "bmc-stock-1",
+  "sha256": "dc798773d40363a7c8b87f2e9c4b8db37fa3461a9976268e123653964aa0583a",
+  "stockChecksPassed": 35,
+  "projectileEntitiesObserved": 41,
+  "projectileSamples": 201,
+  "itemTypes": [
+    "minecraft:arrow",
+    "minecraft:oak_log",
+    "minecraft:snowball"
+  ],
+  "allSampledHeightsAbove90": true,
+  "rendererFailureFlagsClear": true,
+  "zeroDeltaPacketRegressionPassed": true,
+  "rotationRegressionPassed": true,
+  "visuallyVerified": "oak log models in screenshots/confirmed-flight-2.png",
+  "changedArchiveEntries": [
+    "META-INF/MANIFEST.MF",
+    "noppes/npcs/mixin/ClientPlayNetHandlerMixin.class"
+  ],
+  "installed": [
+    "D:\\CPN\\bmc5client\\game\\mods\\CustomNPCs-1.21.1.20251230-bmc-stock.2.jar",
+    "D:\\CPN\\bmc5server\\mods\\CustomNPCs-1.21.1.20251230-bmc-stock.2.jar"
+  ],
+  "primaryInstancesLeftStopped": true,
+  "limitations": [
+    "No long-term stress test",
+    "Existing stock OP editor visual acceptance remains incomplete",
+    "Visual screenshot verifies oak logs; snowballs/arrows verified by live state and renderer flags"
+  ],
+  "testSetupNotes": [
+    "Initial harness preparation needed explicit UTF-8; early client launch had no args file",
+    "Renamed projectile harness package to avoid split-package conflict with stock harness",
+    "Already-stopped first test JVM had stuck mod threads; terminated only after shutdown/save completed",
+    "First visual probe used empty test NPC inventory; corrected to explicit oak-log ItemStack, then verified screenshot"
+  ]
+}
