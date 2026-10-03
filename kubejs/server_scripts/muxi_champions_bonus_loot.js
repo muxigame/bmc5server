@@ -9,9 +9,7 @@ LootJS.lootTables(event => {
     return
   }
 
-  const ConstantValue = Java.loadClass('net.minecraft.world.level.storage.loot.providers.number.ConstantValue')
-  const half = ConstantValue.exactly(0.5)
   const pools = event.getLootTable(tableId).getPools()
-  pools.forEach(pool => pool.when(conditions => conditions.randomChance(half)))
+  pools.forEach(pool => pool.when(conditions => conditions.randomChance(0.5)))
   console.info('[muxi-champions-balance] Champions bonus-table pools now have an additional 50% chance. Other tables unchanged.')
 })

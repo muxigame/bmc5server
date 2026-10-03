@@ -1,0 +1,16 @@
+{
+  "production008Changed": false,
+  "nativeLibrariesChanged": false,
+  "installations": [
+    {
+      "project": "bmc5server",
+      "path": "bmc5server/mods/[嵌入式框架]mcef-neoforge-2.1.6-1.21.1.jar",
+      "sha256": "fee3f495aa5c6566a252cdb2a6b0f153105624c125144d1cd257dbad044bdd1d",
+      "version": "2.1.6-1.21.1-muxi.1",
+      "sourceCommit": "eb8f20f4d83dcb59a1c8a5f824bdd758d4058025",
+      "originalBackup": "bmc5server/.runtime/rebuilt-originals/mods/[嵌入式框架]mcef-neoforge-2.1.6-1.21.1.jar",
+      "originalBackupSha256": "0c7696216fa5cfee659d687475873c847a9a17cc8ce3a56119a69c946eeb8772",
+      "fullPackReinstalled": false
+    }
+  ]
+}

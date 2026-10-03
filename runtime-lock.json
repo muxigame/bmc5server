@@ -21251,5 +21251,18 @@
       "sha256": "64fc924b510fbb912557e4c3801d4f0d3ad648b5cee458a1280bcc0868fca57c"
     }
   ],
-  "coreSourceCommit": "7e3863ef078e7d09a657454d2a267599b131096f"
+  "coreSourceCommit": "7e3863ef078e7d09a657454d2a267599b131096f",
+  "localBuilds": [
+    {
+      "path": "mods/[嵌入式框架]mcef-neoforge-2.1.6-1.21.1.jar",
+      "modId": "mcef",
+      "version": "2.1.6-1.21.1-muxi.1",
+      "size": 215390,
+      "sha256": "fee3f495aa5c6566a252cdb2a6b0f153105624c125144d1cd257dbad044bdd1d",
+      "sourceProject": "mcef",
+      "sourceRepository": "https://github.com/muxigame/mcef",
+      "sourceCommit": "eb8f20f4d83dcb59a1c8a5f824bdd758d4058025",
+      "artifact": "neoforge/build/libs/mcef-neoforge-2.1.6-1.21.1-muxi.1.jar"
+    }
+  ]
 }

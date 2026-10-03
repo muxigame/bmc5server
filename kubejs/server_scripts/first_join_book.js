@@ -1,4 +1,4 @@
-// 首次进服只给一本任务书。
+// 首次进服给任务书和一套基础新手物资。
 //
 // 实测一个新玩家的背包里就这 4 样，别的什么都没有：
 //   touhou_little_maid:smart_slab_init                     智能女仆板
@@ -34,7 +34,20 @@
 
 const PERSISTED_KEY = 'PlayerPersisted' // 只有这个子标签能活过死亡
 const FIRST_JOIN_FLAG = 'muxiFirstJoinBook'
+const INITIAL_SURVIVAL_PENDING = 'muxiInitialSurvivalPending'
+const INITIAL_SURVIVAL_DONE = 'muxiInitialSurvivalDone'
 const QUEST_BOOK = 'ftbquests:book'
+
+// 新手物资只跟随 FIRST_JOIN_FLAG 发一次。锁子甲统一保护 I；
+// 直接使用 1.21.1 的物品组件语法，不依赖额外战利品表或临时命令权限。
+const STARTER_ITEMS = [
+  'minecraft:chainmail_helmet[minecraft:enchantments={levels:{"minecraft:protection":1}}]',
+  'minecraft:chainmail_chestplate[minecraft:enchantments={levels:{"minecraft:protection":1}}]',
+  'minecraft:chainmail_leggings[minecraft:enchantments={levels:{"minecraft:protection":1}}]',
+  'minecraft:chainmail_boots[minecraft:enchantments={levels:{"minecraft:protection":1}}]',
+  'minecraft:iron_sword',
+  'minecraft:bread 10',
+]
 
 // 每条都限 1 件；导览书按 patchouli:book 组件精确到具体那一本
 const REMOVE_ON_FIRST_JOIN = [
@@ -79,6 +92,14 @@ PlayerEvents.loggedIn((event) => {
       if (flagTag.getBoolean(FIRST_JOIN_FLAG)) return
 
       server.runCommandSilent(`execute as ${target} run give @s ${QUEST_BOOK}`)
+
+      STARTER_ITEMS.forEach((item) => {
+        server.runCommandSilent(`execute as ${target} run give @s ${item}`)
+      })
+
+      // 多维度 core 在真正加入世界、下发区块之前读取这个标记。
+      // 维护窗口期间先记账；升级后该玩家下次登录会直接从生存世界的随机安全陆地点开始。
+      if (!flagTag.getBoolean(INITIAL_SURVIVAL_DONE)) flagTag.putBoolean(INITIAL_SURVIVAL_PENDING, true)
       flagTag.putBoolean(FIRST_JOIN_FLAG, true)
 
       REMOVE_ON_FIRST_JOIN.forEach((predicate) => {
@@ -89,7 +110,7 @@ PlayerEvents.loggedIn((event) => {
         }
       })
 
-      console.info(`[muxi] 首次进服：已发任务书并清掉模组入门书 -> ${name}`)
+      console.info(`[muxi] 首次进服：已发任务书、新手物资并登记生存世界随机出生 -> ${name}`)
     } catch (err) {
       // 宁可这次不做，也不要在玩家登录流程里抛异常
       console.error(`[muxi] 首次进服整理失败（${name}）：${err}`)
