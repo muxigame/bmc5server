@@ -21263,6 +21263,34 @@
       "sourceRepository": "https://github.com/muxigame/mcef",
       "sourceCommit": "eb8f20f4d83dcb59a1c8a5f824bdd758d4058025",
       "artifact": "neoforge/build/libs/mcef-neoforge-2.1.6-1.21.1-muxi.1.jar"
+    },
+    {
+      "path": "mods/CustomNPCs-Unofficial-NeoForge-1.21.1.20251230.jar",
+      "installedPath": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar",
+      "modId": "customnpcs",
+      "version": "1.21.1.20251230-bmc-stock.4",
+      "size": 10648355,
+      "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5",
+      "sourceProject": "customnpcs-source",
+      "sourceCommit": "3ec2f94",
+      "artifact": "dist/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar",
+      "superseded": [
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.2.jar",
+          "size": 10535926,
+          "sha256": "dc798773d40363a7c8b87f2e9c4b8db37fa3461a9976268e123653964aa0583a"
+        },
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.3.jar",
+          "size": 10545826,
+          "sha256": "4c142d6348b275bd6a13e00b1c3902fac0274834c4f2c5e07119c03bedab4040"
+        },
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-zh.1.jar",
+          "size": 10572591,
+          "sha256": "7ec87281f985a60d09fbe0724cce3da63c706a88ee3560a883c34c886be17b30"
+        }
+      ]
     }
   ]
 }
