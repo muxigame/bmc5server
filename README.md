@@ -73,3 +73,8 @@ Windows/Linux 使用 NeoForge 对应平台参数文件；平台实测范围以�
 第三方模组/模型版权属于各作者，见 [THIRD_PARTY.md](THIRD_PARTY.md)。
 Minecraft/NeoForge 运行库通过安装器获取，不上传世界与 Minecraft 游戏二进制。
 Simple Nicknames 保留原作者下载链路，不在资源 ZIP 中二次分发。
+
+
+## MCEF source rebuild
+
+Before setup, build the pinned MCEF source or provide `--mcef-jar`. See [build, install and rollback](docs/mcef-rebuild.md).

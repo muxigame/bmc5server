@@ -12,6 +12,7 @@ import sys
 import tempfile
 import urllib.request
 import zipfile
+from local_rebuild import install as install_rebuilds, locked_records, overrides as rebuild_overrides, validated_sources
 
 if sys.version_info < (3, 10):
     sys.exit('Python 3.10+ required. On Windows try: py -3.12 tools/server.py ...')
@@ -74,7 +75,7 @@ def verify(lock):
     for record in lock.get('retired', []):
         if safe_path(record['path']).exists():
             failures.append('Retired asset still present: ' + record['path'] + ' (run setup)')
-    for record in lock['files'] + lock['external']:
+    for record in locked_records(lock):
         path = safe_path(record['path'])
         if not path.is_file() or path.stat().st_size != record['size'] or digest(path) != record['sha256']:
             failures.append(record['path'])
@@ -84,6 +85,7 @@ def verify(lock):
 
 
 def setup(args, lock):
+    validated_sources(ROOT, lock, getattr(args, 'mcef_jar', None))
     java = java_binary(args.java)
     bundle = Path(args.bundle).resolve() if args.bundle else CACHE / 'server-assets.zip'
     if args.bundle:
@@ -93,12 +95,13 @@ def setup(args, lock):
         fetch(lock['bundle'], bundle)
     expected = {record['path']: record for record in lock['files']}
     retired = {record['path']: record for record in lock.get('retired', [])}
+    rebuilt = rebuild_overrides(lock)
     with zipfile.ZipFile(bundle) as archive:
         names = archive.namelist()
         if len(names) != len(set(names)) or set(names) != set(expected) | set(retired):
             raise RuntimeError('Bundle entries differ from runtime-lock.json.')
         for name in names:
-            if name in retired:
+            if name in retired or name in rebuilt:
                 continue
             dest = safe_path(name)
             if dest.exists():
@@ -113,6 +116,7 @@ def setup(args, lock):
         if dest.exists() and digest(dest) != record['sha256']:
             raise RuntimeError('Refusing to overwrite modified asset: ' + record['path'])
         fetch(record, dest)
+    install_rebuilds(ROOT, ROOT, lock, getattr(args, 'mcef_jar', None))
     for name, record in retired.items():
         dest = safe_path(name)
         if dest.exists():
@@ -242,6 +246,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['setup', 'verify', 'start', 'smoke'])
     parser.add_argument('--java', help='Path to Java 21+ executable')
+    parser.add_argument('--mcef-jar', help='Checksum-matching source-rebuilt MCEF JAR (setup only)')
     parser.add_argument('--bundle', help='Use a local checksum-matching release ZIP (setup only)')
     parser.add_argument('--accept-eula', action='store_true', help='Explicitly accept Minecraft EULA')
     parser.add_argument('--memory', default='6G', help='Maximum heap, e.g. 4G or 8G')
