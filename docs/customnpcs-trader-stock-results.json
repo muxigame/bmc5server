@@ -1,0 +1,142 @@
+[
+  {
+    "status": "PASS",
+    "test": "legacy_unlimited"
+  },
+  {
+    "status": "PASS",
+    "test": "initial_stock"
+  },
+  {
+    "status": "PASS",
+    "test": "item_count_not_click_count"
+  },
+  {
+    "status": "PASS",
+    "test": "reject_overdraw_and_nonpositive"
+  },
+  {
+    "status": "PASS",
+    "test": "independent_offers"
+  },
+  {
+    "status": "PASS",
+    "test": "before_deadline"
+  },
+  {
+    "status": "PASS",
+    "test": "deadline_refill_no_accumulation"
+  },
+  {
+    "status": "PASS",
+    "test": "offline_skip_cycles"
+  },
+  {
+    "status": "PASS",
+    "test": "disk_nbt_preserves_stock_and_deadline"
+  },
+  {
+    "status": "PASS",
+    "test": "reopen_same_settings_no_refill"
+  },
+  {
+    "status": "PASS",
+    "test": "increase_capacity_preserves_remaining"
+  },
+  {
+    "status": "PASS",
+    "test": "lower_capacity_clamps"
+  },
+  {
+    "status": "PASS",
+    "test": "interval_edit_reschedules"
+  },
+  {
+    "status": "PASS",
+    "test": "limits_clamped"
+  },
+  {
+    "status": "PASS",
+    "test": "negative_inputs_clamped"
+  },
+  {
+    "status": "PASS",
+    "test": "clock_rollback_bounded"
+  },
+  {
+    "status": "PASS",
+    "test": "legacy_save_compatible"
+  },
+  {
+    "status": "PASS",
+    "test": "two_buyers_shared_stock_no_oversell"
+  },
+  {
+    "status": "PASS",
+    "test": "shift_purchase_stops_at_stock"
+  },
+  {
+    "status": "PASS",
+    "test": "sold_out_no_charge"
+  },
+  {
+    "status": "PASS",
+    "test": "full_cursor_no_charge_or_stock_loss"
+  },
+  {
+    "status": "PASS",
+    "test": "insufficient_currency_safe"
+  },
+  {
+    "status": "PASS",
+    "test": "cancelled_script_no_charge"
+  },
+  {
+    "status": "PASS",
+    "test": "script_reward_stock_revalidated"
+  },
+  {
+    "status": "PASS",
+    "test": "nested_purchase_cannot_overdraw"
+  },
+  {
+    "status": "PASS",
+    "test": "stale_editor_cannot_restore_stock"
+  },
+  {
+    "status": "PASS",
+    "test": "non_op_cannot_edit_stock_or_market"
+  },
+  {
+    "status": "PASS",
+    "test": "market_template_no_runtime_stock"
+  },
+  {
+    "status": "PASS",
+    "test": "role_save_reload"
+  },
+  {
+    "status": "PASS",
+    "test": "full_npc_save_reload"
+  },
+  {
+    "status": "PASS",
+    "test": "non_op_wand_packet_rejected"
+  },
+  {
+    "status": "PASS",
+    "test": "last_page_offer_purchasable"
+  },
+  {
+    "status": "PASS",
+    "test": "wire_ints_above_65535"
+  },
+  {
+    "status": "PASS",
+    "test": "wire_unlimited_negative_sentinel"
+  },
+  {
+    "status": "PASS",
+    "test": "live_tick_refill"
+  }
+]
