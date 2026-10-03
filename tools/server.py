@@ -12,7 +12,7 @@ import sys
 import tempfile
 import urllib.request
 import zipfile
-from local_rebuild import install as install_rebuilds, locked_records, overrides as rebuild_overrides, validated_sources
+from local_rebuild import install as install_rebuilds, locked_records, overrides as rebuild_overrides, validated_sources, verify_rebuilds
 
 if sys.version_info < (3, 10):
     sys.exit('Python 3.10+ required. On Windows try: py -3.12 tools/server.py ...')
@@ -71,7 +71,7 @@ def arguments_file(lock):
 
 
 def verify(lock):
-    failures = []
+    failures = verify_rebuilds(ROOT, lock)
     for record in lock.get('retired', []):
         if safe_path(record['path']).exists():
             failures.append('Retired asset still present: ' + record['path'] + ' (run setup)')
@@ -85,7 +85,7 @@ def verify(lock):
 
 
 def setup(args, lock):
-    validated_sources(ROOT, lock, getattr(args, 'mcef_jar', None))
+    validated_sources(ROOT, lock, getattr(args, 'mcef_jar', None), getattr(args, 'npc_jar', None))
     java = java_binary(args.java)
     bundle = Path(args.bundle).resolve() if args.bundle else CACHE / 'server-assets.zip'
     if args.bundle:
@@ -116,7 +116,7 @@ def setup(args, lock):
         if dest.exists() and digest(dest) != record['sha256']:
             raise RuntimeError('Refusing to overwrite modified asset: ' + record['path'])
         fetch(record, dest)
-    install_rebuilds(ROOT, ROOT, lock, getattr(args, 'mcef_jar', None))
+    install_rebuilds(ROOT, ROOT, lock, getattr(args, 'mcef_jar', None), getattr(args, 'npc_jar', None))
     for name, record in retired.items():
         dest = safe_path(name)
         if dest.exists():
@@ -247,6 +247,7 @@ def main():
     parser.add_argument('action', choices=['setup', 'verify', 'start', 'smoke'])
     parser.add_argument('--java', help='Path to Java 21+ executable')
     parser.add_argument('--mcef-jar', help='Checksum-matching source-rebuilt MCEF JAR (setup only)')
+    parser.add_argument('--npc-jar', help='Checksum-matching CustomNPCs stock.4 JAR (setup only)')
     parser.add_argument('--bundle', help='Use a local checksum-matching release ZIP (setup only)')
     parser.add_argument('--accept-eula', action='store_true', help='Explicitly accept Minecraft EULA')
     parser.add_argument('--memory', default='6G', help='Maximum heap, e.g. 4G or 8G')
