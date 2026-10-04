@@ -6,16 +6,16 @@
 
 ## 安装与远端基线
 
-本次以最新 `origin/dev` 为基线，保留远端新增的 MCEF 重建锁定、脚本和配置。原资源包 URL、文件清单、逐文件 SHA-256、既有 MCEF `localBuilds` 条目均不变。增加独立的 CustomNPCs 本地构建条目，不把自制 JAR 冒充旧资源包。
+本次以最新 `origin/dev` 为基线，保留远端新增的 MCEF 重建锁定、脚本和配置。原资源包 URL、文件清单、逐文件 SHA-256、既有 MCEF `localBuilds` 的版本、大小和散列均不变（补充公开下载 URL）。增加独立的 CustomNPCs 本地构建条目，不把自制 JAR 冒充旧资源包。
 
-NPC 成品已经发布到 [GitHub Release](https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004)，setup 会在本地没有匹配成品时自动下载并校验。MCEF 目前仍需远端锁定构建：
+NPC 成品已经发布到 [GitHub Release](https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004)，setup 会在本地没有匹配成品时自动下载并校验。MCEF 同样已发布完全匹配锁定值的构建，两个 JAR 均支持自动下载：
 
 ```powershell
-python tools/server.py setup --mcef-jar <MCEF构建.jar>
+python tools/server.py setup
 python tools/server.py verify
 ```
 
-NPC 不显式传参时从同级 `customnpcs-source/dist/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar` 读取。本地默认产物不匹配时改用公开 Release；显式 --npc-jar 指定的产物不匹配则中止，不能随意改 lock 跳过校验。MCEF 获取和构建遵循 [原远端说明](mcef-rebuild.md)。两个构建参数互相独立。
+NPC 不显式传参时从同级 `customnpcs-source/dist/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar` 读取。本地默认产物不匹配时改用公开 Release；显式 --npc-jar 指定的产物不匹配则中止，不能随意改 lock 跳过校验。MCEF 支持自动下载，也可显式指定 --mcef-jar；源码构建遵循 [原远端说明](mcef-rebuild.md)。两个构建参数互相独立。
 
 NPC SHA-256：`fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5`。
 
@@ -33,10 +33,14 @@ NPC SHA-256：`fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5`
 
 NPC 成品与此前通过真实隔离服务端 59 项、客户端 27 项、商人库存 35 项及按住/松手音频检查的成品逐字节一致；帮助页与 zh.1 相同。这些是既有运行证据，本次没有重新宣称做过同版 MCEF 加 NPC 的整包联机验收。
 
-本机完整 verify 尚未通过：两端 MCEF 仍为旧二进制；客户端另有原清单锁定的 `mods/mcef-cache/LOG` 与运行后内容不一致。保留这些远端要求，没有降低校验。本机缺失的远端武器平衡 startup 脚本已补齐。完整 smoke/联机验收须先取得匹配 MCEF 构建，不能将当前环境当作已通过的发布验收。
+本机完整 verify 尚未通过：两端 MCEF 仍为旧二进制；客户端另有原清单锁定的 `mods/mcef-cache/LOG` 与运行后内容不一致。保留这些远端要求，没有降低校验。本机缺失的远端武器平衡 startup 脚本已补齐。匹配的 MCEF 构建现已发布；本轮没有安装运行或完成整包 smoke/联机验收，不能将当前环境当作已通过的发布验收。
 
 本次提交不含服务器本机配置差异、世界、玩家信息、账号、日志和运行库，不部署或重启正式服。
 
 ## 附件下载补齐（2026-10-04）
 
 公开下载四个附件后均匹配原大小与 SHA-256。安装器先验证本地成品，必要时下载到 .runtime/rebuild-downloads，下载中断或散列错误不会缓存为成功产物；显式传错 JAR 不会静默回退。客户端会下载配套光影到 shaderpacks，但不改变当前光影选择。两端均安装独立音效署名到 licenses/CustomNPCs-Dragon-Power.txt。
+
+## MCEF 附件补齐
+
+同一 Release 另附 MCEF muxi.1 JAR、许可证、构建源码及独立校验表。由源码提交 eb8f20f4d83dcb59a1c8a5f824bdd758d4058025 和固定 JCEF 子模块构建；使用 Windows CRLF 资源换行后，215390 字节和 SHA-256 fee3f495aa5c6566a252cdb2a6b0f153105624c125144d1cd257dbad044bdd1d 与远端锁定完全一致。严格依赖校验复编成功，四个 MCEF 附件已公开下载逐字节验证。仅新增下载入口，不改变原构建锁定值。

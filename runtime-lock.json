@@ -21268,7 +21268,8 @@
       "sourceProject": "mcef",
       "sourceRepository": "https://github.com/muxigame/mcef",
       "sourceCommit": "eb8f20f4d83dcb59a1c8a5f824bdd758d4058025",
-      "artifact": "neoforge/build/libs/mcef-neoforge-2.1.6-1.21.1-muxi.1.jar"
+      "artifact": "neoforge/build/libs/mcef-neoforge-2.1.6-1.21.1-muxi.1.jar",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-stock4-20261004/mcef-neoforge-2.1.6-1.21.1-muxi.1.jar"
     },
     {
       "path": "mods/CustomNPCs-Unofficial-NeoForge-1.21.1.20251230.jar",

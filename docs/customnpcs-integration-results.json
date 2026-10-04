@@ -4,7 +4,7 @@
   "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5",
   "pythonTestsPassed": 39,
   "immutableRemoteBundleAndFilesPreserved": true,
-  "remoteMcefRecordPreserved": true,
+  "remoteMcefRecordPreserved": false,
   "npcServerChecksPreviouslyPassed": 59,
   "npcClientChecksPreviouslyPassed": 27,
   "traderChecksPreviouslyPassed": 35,
@@ -32,7 +32,11 @@
   ],
   "fullMergedRuntimeSmokeRun": false,
   "thirdPartySourceOrBinaryPublished": true,
-  "thirdPartySourcePublished": false,
+  "thirdPartySourcePublished": true,
   "npcReleaseUrl": "https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004",
-  "publicReleaseDownloadsVerified": true
+  "publicReleaseDownloadsVerified": true,
+  "remoteMcefVersionSizeAndHashPreserved": true,
+  "mcefPublishedAndPublicDownloadVerified": true,
+  "mcefStrictRebuildMatchesPinnedHash": true,
+  "npcRecoveredSourcePublished": false
 }
