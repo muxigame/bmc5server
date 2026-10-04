@@ -4,7 +4,7 @@
 
 SHA-256：`fee3f495aa5c6566a252cdb2a6b0f153105624c125144d1cd257dbad044bdd1d`（215390 字节）。原版本 SHA-256：`0c7696216fa5cfee659d687475873c847a9a17cc8ce3a56119a69c946eeb8772`。
 
-先取得同级 mcef 源码并初始化锁定的 java-cef 子模块，使用 JDK 21：
+setup 现在优先采用匹配的本地产物，缺少时自动下载并校验 [已发布成品](https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004)。也可自行取得同级 mcef 源码并初始化锁定的 java-cef 子模块，使用 JDK 21：
 
 ```powershell
 cd ..\mcef
@@ -14,7 +14,7 @@ cd ..\bmc5server
 python tools/server.py setup --mcef-jar ..\mcef\neoforge\build\libs\mcef-neoforge-2.1.6-1.21.1-muxi.1.jar
 ```
 
-不传 `--mcef-jar` 时也会从这个同级构建目录取得。安装前先核对精确 size/SHA，未构建或版本不同会明确报错。普通编译不要求发布凭据。NeoGradle 游戏缓存阶段需要网络，不能保证全链离线构建。
+不传 `--mcef-jar` 时先检查同级构建目录，缺失或不匹配则使用公开 Release。安装前先核对精确 size/SHA；显式传入错误版本仍会报错。普通编译不要求发布凭据。NeoGradle 游戏缓存阶段需要网络，不能保证全链离线构建。
 
 `runtime-lock.json.files` 和原 ZIP 的 hash 不变；`localBuilds` 仅覆盖安装后的 MCEF 校验，安装工具跳过 ZIP 中的旧 JAR，保留原安装文件名，通过 mod/manifest 版本识别新产物。没有把自产物伪装成旧发布文件下载 URL，也没有改写历史 Release。
 

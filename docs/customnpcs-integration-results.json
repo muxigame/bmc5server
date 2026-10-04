@@ -1,0 +1,42 @@
+{
+  "base": "d866f2693f11e10eeb6931c5931b2e3170b5eaee",
+  "version": "1.21.1.20251230-bmc-stock.4",
+  "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5",
+  "pythonTestsPassed": 39,
+  "immutableRemoteBundleAndFilesPreserved": true,
+  "remoteMcefRecordPreserved": false,
+  "npcServerChecksPreviouslyPassed": 59,
+  "npcClientChecksPreviouslyPassed": 27,
+  "traderChecksPreviouslyPassed": 35,
+  "holdRelease": {
+    "passed": true,
+    "foodAfterRelease": 20,
+    "usingAfterRelease": false,
+    "usingTicks": 55,
+    "shotsAtRelease": 3,
+    "shotsLater": 0
+  },
+  "audio": {
+    "passed": true,
+    "phases": {
+      "dragon_breath": 1,
+      "dragon_breath_start": 1,
+      "dragon_breath_end": 1
+    },
+    "receivedBursts": 3,
+    "burstsAfterRelease": 3
+  },
+  "fullRuntimeVerifyPassed": false,
+  "runtimeBlockers": [
+    "Pinned source-rebuilt MCEF is not installed"
+  ],
+  "fullMergedRuntimeSmokeRun": false,
+  "thirdPartySourceOrBinaryPublished": true,
+  "thirdPartySourcePublished": true,
+  "npcReleaseUrl": "https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004",
+  "publicReleaseDownloadsVerified": true,
+  "remoteMcefVersionSizeAndHashPreserved": true,
+  "mcefPublishedAndPublicDownloadVerified": true,
+  "mcefStrictRebuildMatchesPinnedHash": true,
+  "npcRecoveredSourcePublished": false
+}

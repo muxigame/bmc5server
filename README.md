@@ -77,4 +77,8 @@ Simple Nicknames 保留原作者下载链路，不在资源 ZIP 中二次分发�
 
 ## MCEF source rebuild
 
-Before setup, build the pinned MCEF source or provide `--mcef-jar`. See [build, install and rollback](docs/mcef-rebuild.md).
+Setup downloads and verifies the published, pinned MCEF build when a matching local build is unavailable; `--mcef-jar` remains supported. See [build, install and rollback](docs/mcef-rebuild.md).
+
+## CustomNPCs 合并构建
+
+龙息、中文界面、魔杖帮助及既有 NPC 修复通过独立 localBuilds 条目锁定。NPC 合并包已发布并由 setup 自动下载校验，仍支持 `--npc-jar` 离线指定；MCEF 锁定成品也已发布并支持自动下载，详见 [安装、回滚与验证边界](docs/customnpcs-integration.md)。
