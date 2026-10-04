@@ -2,7 +2,7 @@
   "base": "d866f2693f11e10eeb6931c5931b2e3170b5eaee",
   "version": "1.21.1.20251230-bmc-stock.4",
   "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5",
-  "pythonTestsPassed": 33,
+  "pythonTestsPassed": 39,
   "immutableRemoteBundleAndFilesPreserved": true,
   "remoteMcefRecordPreserved": true,
   "npcServerChecksPreviouslyPassed": 59,
@@ -31,5 +31,8 @@
     "Pinned source-rebuilt MCEF is not installed"
   ],
   "fullMergedRuntimeSmokeRun": false,
-  "thirdPartySourceOrBinaryPublished": false
+  "thirdPartySourceOrBinaryPublished": true,
+  "thirdPartySourcePublished": false,
+  "npcReleaseUrl": "https://github.com/muxigame/bmc5server/releases/tag/customnpcs-stock4-20261004",
+  "publicReleaseDownloadsVerified": true
 }

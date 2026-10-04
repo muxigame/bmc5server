@@ -21242,6 +21242,12 @@
       "size": 259378,
       "sha256": "54b6d4cfa1562d040599a2f8a59fa4e681cfd8eb8b5d6174adb1aa13e590b32d",
       "url": "https://github.com/muxigame/bmc5server/releases/download/server-2026.09.28-core1.9.1/muxi-game-core-1.9.1.jar"
+    },
+    {
+      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-stock4-20261004/ACKNOWLEDGEMENTS.txt",
+      "size": 1023,
+      "sha256": "be8a8a6b874ffd23e9d987cbc7d3914e19657f274e4424be93f25f0a2ce98d3b",
+      "path": "licenses/CustomNPCs-Dragon-Power.txt"
     }
   ],
   "retired": [
@@ -21290,7 +21296,8 @@
           "size": 10572591,
           "sha256": "7ec87281f985a60d09fbe0724cce3da63c706a88ee3560a883c34c886be17b30"
         }
-      ]
+      ],
+      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-stock4-20261004/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar"
     }
   ]
 }

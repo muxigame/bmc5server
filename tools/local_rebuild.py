@@ -1,6 +1,36 @@
 """Install explicitly pinned local source rebuilds, preserving known original binaries."""
 from pathlib import Path, PurePosixPath
-import hashlib, shutil, tempfile
+import hashlib, shutil, tempfile, urllib.request, urllib.parse
+
+
+def matches(path, record):
+    return path.is_file() and path.stat().st_size == record['size'] and digest(path) == record['sha256']
+
+
+def download_rebuild(root, record):
+    url = record['url']
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password:
+        raise ValueError('Rebuild download requires an HTTPS URL without credentials')
+    cache = safe(root / '.runtime/rebuild-downloads', record['sha256'] + '.jar')
+    if matches(cache, record): return cache
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(dir=cache.parent, suffix='.partial', delete=False) as out:
+        staged = Path(out.name)
+        try:
+            request = urllib.request.Request(url, headers={'User-Agent': 'muxigame-bmc5-bootstrap/1'})
+            with urllib.request.urlopen(request, timeout=120) as response:
+                shutil.copyfileobj(response, out)
+        except BaseException:
+            out.close()
+            staged.unlink(missing_ok=True)
+            raise
+    try:
+        if not matches(staged, record): raise RuntimeError('Downloaded rebuild size/SHA-256 mismatch: ' + record['modId'])
+        staged.replace(cache)
+        return cache
+    finally:
+        staged.unlink(missing_ok=True)
 
 def digest(path):
     with path.open("rb") as f:
@@ -42,7 +72,9 @@ def validated_sources(root, lock, explicit=None, npc_explicit=None):
         if len(PurePosixPath(project).parts) != 1 or project in (".", "..") or ":" in project or "\\" in project: raise ValueError("Invalid rebuild project")
         selected = npc_explicit if record['modId'] == 'customnpcs' else explicit
         source = Path(selected).resolve() if selected else safe(root.parent / project, record["artifact"])
-        if not source.is_file() or source.stat().st_size != record["size"] or digest(source) != record["sha256"]:
+        if not selected and not matches(source, record) and record.get('url'):
+            source = download_rebuild(root, record)
+        if not matches(source, record):
             option = '--npc-jar' if record['modId'] == 'customnpcs' else '--mcef-jar'
             raise RuntimeError("Provide the pinned " + record['modId'] + " build via " + option + ": " + str(source))
         sources[name] = source

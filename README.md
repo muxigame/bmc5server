@@ -81,4 +81,4 @@ Before setup, build the pinned MCEF source or provide `--mcef-jar`. See [build, 
 
 ## CustomNPCs 合并构建
 
-龙息、中文界面、魔杖帮助及既有 NPC 修复通过独立 localBuilds 条目锁定。setup 同时需要对应 MCEF 与 NPC 构建，支持 `--npc-jar`，详见 [安装、回滚与验证边界](docs/customnpcs-integration.md)。
+龙息、中文界面、魔杖帮助及既有 NPC 修复通过独立 localBuilds 条目锁定。NPC 合并包已发布并由 setup 自动下载校验，仍支持 `--npc-jar` 离线指定；MCEF 沿用其独立构建要求，详见 [安装、回滚与验证边界](docs/customnpcs-integration.md)。
