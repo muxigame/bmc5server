@@ -76,6 +76,15 @@ try {
     Assert-Trust ([IO.File]::ReadAllText((Join-Path $lab 'start-muxi.ps1')).Contains('Import-MuxiServerTrust -ServerRoot $PSScriptRoot'))
     & (Join-Path $PSScriptRoot 'install_server_trust.ps1') -ServerRoot $lab | Out-Null
     Assert-Trust ([IO.File]::ReadAllText($file) -ceq $after)
+    Write-Trust ($valid.Replace($key, 'synthetic-stale-social-authority-0123456789') + 'MUXI_TERMINAL_SSO_SERVER_KEY=synthetic-stale-terminal-authority-0123456789')
+    $beforeLock = [IO.File]::ReadAllText($file)
+    $locked = [IO.File]::Open((Join-Path $lab 'start.bat'), [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+    try {
+        $failed = $false
+        try { & (Join-Path $PSScriptRoot 'install_server_trust.ps1') -ServerRoot $lab | Out-Null } catch { $failed = $true }
+        Assert-Trust $failed
+        Assert-Trust ([IO.File]::ReadAllText($file) -ceq $beforeLock)
+    } finally { $locked.Dispose() }
     Write-Output ('PASS: ' + $script:checks + ' trust bootstrap/install checks; synthetic files only, no Minecraft started.')
 } finally {
     foreach ($n in $names) { [Environment]::SetEnvironmentVariable($n, $saved[$n], 'Process') }

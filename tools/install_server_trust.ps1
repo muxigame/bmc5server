@@ -9,6 +9,16 @@ $batFile = Join-Path $root 'start.bat'
 $psFile = Join-Path $root 'start-muxi.ps1'
 $utf8 = New-Object Text.UTF8Encoding($false)
 # Validate every precondition before writing any production file.
+$handles = @()
+try {
+    foreach ($file in @($envFile, $batFile, $psFile)) {
+        $handles += [IO.File]::Open($file, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::Read)
+    }
+} catch {
+    throw 'Server launch files are locked or not writable; gracefully stop the existing server/controller before installation. No files changed.'
+} finally {
+    foreach ($handle in $handles) { $handle.Dispose() }
+}
 foreach ($helper in @('server_trust.ps1', 'start_trusted_mc.ps1')) {
     if (-not (Test-Path -LiteralPath (Join-Path $root ('tools\' + $helper)))) { throw 'Install the checked launch helpers first.' }
 }
@@ -55,10 +65,12 @@ try {
     . (Join-Path $root 'tools\server_trust.ps1')
     Import-MuxiServerTrust -ServerRoot $root
 } catch {
+    $restored = $true
     foreach ($file in @($envFile, $batFile, $psFile)) {
         $original = Join-Path $backup ([IO.Path]::GetFileName($file))
-        [IO.File]::WriteAllBytes($file, [IO.File]::ReadAllBytes($original))
+        try { [IO.File]::WriteAllBytes($file, [IO.File]::ReadAllBytes($original)) } catch { $restored = $false }
     }
+    if (-not $restored) { throw 'Server trust installation failed; recovery backup retained in the private server directory. Check launch file locks (values redacted).' }
     throw 'Server trust installation failed; original files restored (values redacted).'
 }
 Write-Output 'Installed: one existing server SSO/social authority, persistent process-only launch environment. No runtime restart performed.'
