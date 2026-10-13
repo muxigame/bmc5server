@@ -84,6 +84,8 @@ try {
         try { & (Join-Path $PSScriptRoot 'install_server_trust.ps1') -ServerRoot $lab | Out-Null } catch { $failed = $true }
         Assert-Trust $failed
         Assert-Trust ([IO.File]::ReadAllText($file) -ceq $beforeLock)
+        & (Join-Path $PSScriptRoot 'install_server_trust.ps1') -ServerRoot $lab -ConfigurationOnly | Out-Null
+        Assert-Trust ($env:MUXI_GAME_SOCIAL_KEY -ceq $key)
     } finally { $locked.Dispose() }
     Write-Output ('PASS: ' + $script:checks + ' trust bootstrap/install checks; synthetic files only, no Minecraft started.')
 } finally {

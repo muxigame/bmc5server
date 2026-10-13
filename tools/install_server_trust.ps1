@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([Parameter(Mandatory=$true)][string]$ServerRoot)
+param([Parameter(Mandatory=$true)][string]$ServerRoot, [switch]$ConfigurationOnly)
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath($ServerRoot)
 $private = Join-Path $root '.private'
@@ -8,10 +8,11 @@ $envFile = Join-Path $private 'dedicated-trust.env'
 $batFile = Join-Path $root 'start.bat'
 $psFile = Join-Path $root 'start-muxi.ps1'
 $utf8 = New-Object Text.UTF8Encoding($false)
+$targetFiles = if ($ConfigurationOnly) { @($envFile) } else { @($envFile, $batFile, $psFile) }
 # Validate every precondition before writing any production file.
 $handles = @()
 try {
-    foreach ($file in @($envFile, $batFile, $psFile)) {
+    foreach ($file in $targetFiles) {
         $handles += [IO.File]::Open($file, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::Read)
     }
 } catch {
@@ -56,21 +57,24 @@ foreach ($name in $replacement.Keys) {
 }
 $backup = Join-Path $private ('trust-backup-' + [DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss') + '-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $backup | Out-Null
-foreach ($file in @($envFile, $batFile, $psFile)) { Copy-Item -LiteralPath $file -Destination $backup }
+foreach ($file in $targetFiles) { Copy-Item -LiteralPath $file -Destination $backup }
 # Existing files retain their ACL; backup stays inside the private server directory.
 try {
     [IO.File]::WriteAllText($envFile, $envText, $utf8)
-    [IO.File]::WriteAllText($batFile, $batText, $utf8)
-    [IO.File]::WriteAllText($psFile, $psText, $utf8)
+    if (-not $ConfigurationOnly) {
+        [IO.File]::WriteAllText($batFile, $batText, $utf8)
+        [IO.File]::WriteAllText($psFile, $psText, $utf8)
+    }
     . (Join-Path $root 'tools\server_trust.ps1')
     Import-MuxiServerTrust -ServerRoot $root
 } catch {
     $restored = $true
-    foreach ($file in @($envFile, $batFile, $psFile)) {
+    foreach ($file in $targetFiles) {
         $original = Join-Path $backup ([IO.Path]::GetFileName($file))
         try { [IO.File]::WriteAllBytes($file, [IO.File]::ReadAllBytes($original)) } catch { $restored = $false }
     }
     if (-not $restored) { throw 'Server trust installation failed; recovery backup retained in the private server directory. Check launch file locks (values redacted).' }
     throw 'Server trust installation failed; original files restored (values redacted).'
 }
-Write-Output 'Installed: one existing server SSO/social authority, persistent process-only launch environment. No runtime restart performed.'
+if ($ConfigurationOnly) { Write-Output 'Installed unified server authority; existing launch patches deferred due to controller lock. No runtime restart performed.' }
+else { Write-Output 'Installed: one existing server SSO/social authority, persistent process-only launch environment. No runtime restart performed.' }
