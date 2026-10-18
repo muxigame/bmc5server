@@ -1,0 +1,33 @@
+{
+  "serverSmoke": {
+    "ready": true,
+    "exitCode": 0,
+    "port": 25585,
+    "baseline": "server-2026.09.28-core1.9.1"
+  },
+  "serverLockedAssets": 4246,
+  "clientLockedBinaryAssets": 1825,
+  "clientTextFiles": 7108,
+  "kitFiles": 33,
+  "publicJarAndKitHashesVerified": true,
+  "serverInstallerTests": 49,
+  "clientInstallerTests": 40,
+  "fullGameplayCertified": false,
+  "existingNpcUpgradeExample": {
+    "baseBefore": 3,
+    "attackWhiteAfter": [
+      4,
+      5,
+      5,
+      5,
+      4,
+      5,
+      4,
+      4
+    ],
+    "meanBefore": 3,
+    "meanAfter": 4.5,
+    "repeatChangedCount": 0
+  },
+  "factoryTemplateMean": 7.5
+}

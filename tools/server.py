@@ -249,7 +249,7 @@ def main():
     parser.add_argument('action', choices=['setup', 'verify', 'start', 'smoke'])
     parser.add_argument('--java', help='Path to Java 21+ executable')
     parser.add_argument('--mcef-jar', help='Checksum-matching source-rebuilt MCEF JAR (setup only)')
-    parser.add_argument('--npc-jar', help='Checksum-matching CustomNPCs stock.4 JAR (setup only)')
+    parser.add_argument('--npc-jar', help='Checksum-matching pinned CustomNPCs JAR (setup only)')
     parser.add_argument('--bundle', help='Use a local checksum-matching release ZIP (setup only)')
     parser.add_argument('--accept-eula', action='store_true', help='Explicitly accept Minecraft EULA')
     parser.add_argument('--memory', default='6G', help='Maximum heap, e.g. 4G or 8G')
