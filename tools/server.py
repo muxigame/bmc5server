@@ -12,6 +12,7 @@ import sys
 import tempfile
 import urllib.request
 import zipfile
+from npc_design_kit import install as install_npc_kit, verify as verify_npc_kit
 from local_rebuild import install as install_rebuilds, locked_records, overrides as rebuild_overrides, validated_sources, verify_rebuilds
 
 if sys.version_info < (3, 10):
@@ -71,7 +72,7 @@ def arguments_file(lock):
 
 
 def verify(lock):
-    failures = verify_rebuilds(ROOT, lock)
+    failures = verify_rebuilds(ROOT, lock) + verify_npc_kit(ROOT, ROOT, lock)
     for record in lock.get('retired', []):
         if safe_path(record['path']).exists():
             failures.append('Retired asset still present: ' + record['path'] + ' (run setup)')
@@ -117,6 +118,7 @@ def setup(args, lock):
             raise RuntimeError('Refusing to overwrite modified asset: ' + record['path'])
         fetch(record, dest)
     install_rebuilds(ROOT, ROOT, lock, getattr(args, 'mcef_jar', None), getattr(args, 'npc_jar', None))
+    install_npc_kit(ROOT, ROOT, lock)
     for name, record in retired.items():
         dest = safe_path(name)
         if dest.exists():

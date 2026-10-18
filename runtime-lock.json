@@ -21273,14 +21273,14 @@
     },
     {
       "path": "mods/CustomNPCs-Unofficial-NeoForge-1.21.1.20251230.jar",
-      "installedPath": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar",
+      "installedPath": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar",
       "modId": "customnpcs",
-      "version": "1.21.1.20251230-bmc-stock.4",
-      "size": 10648355,
-      "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5",
+      "version": "1.21.1.20251230-bmc-motion.118",
+      "size": 11460968,
+      "sha256": "f98ff432ee517efd936d6002c2689813ab2efd6be7579f6df66793a1df4a43d1",
       "sourceProject": "customnpcs-source",
-      "sourceCommit": "3ec2f94",
-      "artifact": "dist/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar",
+      "sourceCommit": "f5589d88fc2ed27d2046afb2fc87e6e7e2b470a2",
+      "artifact": "dist/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar",
       "superseded": [
         {
           "path": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.2.jar",
@@ -21296,9 +21296,192 @@
           "path": "mods/CustomNPCs-1.21.1.20251230-bmc-zh.1.jar",
           "size": 10572591,
           "sha256": "7ec87281f985a60d09fbe0724cce3da63c706a88ee3560a883c34c886be17b30"
+        },
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar",
+          "size": 10648355,
+          "sha256": "fe9f1ff4bb4c072f5df88e381904a63f0637c874b29e9e8a4c35a958f104b1f5"
+        },
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.117.jar",
+          "size": 11459526,
+          "sha256": "949f41ad4f360ec39937e2910d86f72f6fb0c93512ba3acef72d92ee05c01b12"
         }
       ],
-      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-stock4-20261004/CustomNPCs-1.21.1.20251230-bmc-stock.4.jar"
+      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-motion118-20261018/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar"
     }
-  ]
+  ],
+  "npcDesignKit": {
+    "version": "motion.118",
+    "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-motion118-20261018/NPC-Design-Kit-motion118.zip",
+    "size": 1082346,
+    "sha256": "f82dcc9fb9ee055ba649230f03d18da45408385fc1dd61c17de533429bb9c9c2",
+    "files": [
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/animations/main.animation.json",
+        "size": 10469068,
+        "sha256": "f6b9ce8cb86a8396299b6470b9df564ad6c8bc1e5880f9478ae0d9c3ba654454"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/animations/tac.animation.json",
+        "size": 164673,
+        "sha256": "6a3c6f14026dbd6744ac94ee4c03f5487646450f6baf010fb26fa33527394127"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/avatar/dm.png",
+        "size": 5471,
+        "sha256": "5d28f00fd947e31f361da9cab6c16693d80f25988515822e078cea1f5ef08a60"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/avatar/gsl.png",
+        "size": 4738,
+        "sha256": "0bf76a1ba896f709839f9c35bb62852350b4b0f110bc9a1c4c4c5acc99f25188"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/avatar/tzz.png",
+        "size": 3433,
+        "sha256": "5067ef9a1ccad6acc4807d464f46358afd5f092ff78cf17a66ea82c613469e1e"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/controller/cpn-defense.json",
+        "size": 14457,
+        "sha256": "bded9f371bc5bbb30bdf423add97924252697fc546a343ed3ab963bf14cd154f"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/controller/cpn-scale.json",
+        "size": 283,
+        "sha256": "61b1b9b6b1768b13eaa263eedffc4163a32e1c5b0d15f0c9761765ea10b9b617"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/lang/en_us.json",
+        "size": 930,
+        "sha256": "4b1b808815a4c3672e447d87c9c051fc30bd0a5ddbbe803f6f6a102e9e40eed0"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/lang/zh_cn.json",
+        "size": 950,
+        "sha256": "ab4c8ca792baf2a4ed3df917708ad214bcc27658ac3b4a75627829660d76c3df"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/models/arm.json",
+        "size": 26658,
+        "sha256": "8c42b52405c8e879d317c3fec4d7834be8b058cfdafe8cb3c09c993a42eea781"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/models/main.json",
+        "size": 68614,
+        "sha256": "1befd11115b1e0a30fc9e9477724144f63d39e421b3399db3c3f8c77bba9e721"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/textures/alex.png",
+        "size": 958,
+        "sha256": "99391ed9dff9581ec88daf23b9b028adc9ac91f52889edcff1c982d0923c0cff"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/textures/steve.png",
+        "size": 920,
+        "sha256": "d876e0c88f4b3de71040966ed94a614f315b888592b520b993399fd2738418d0"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/textures/tartaric_acid.png",
+        "size": 4384,
+        "sha256": "bd1f4877e31c18412f5ea5d2ed54953c472c23480d541856f977da3cf9b8e7fb"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_alex/ysm.json",
+        "size": 1561,
+        "sha256": "3b5974eeedba997107bc71b337bf192c6265fdc9caa51a3391240a4879ac6bdf"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/animations/main.animation.json",
+        "size": 10469068,
+        "sha256": "f6b9ce8cb86a8396299b6470b9df564ad6c8bc1e5880f9478ae0d9c3ba654454"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/animations/tac.animation.json",
+        "size": 164673,
+        "sha256": "6a3c6f14026dbd6744ac94ee4c03f5487646450f6baf010fb26fa33527394127"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/avatar/dm.png",
+        "size": 5471,
+        "sha256": "5d28f00fd947e31f361da9cab6c16693d80f25988515822e078cea1f5ef08a60"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/avatar/gsl.png",
+        "size": 4738,
+        "sha256": "0bf76a1ba896f709839f9c35bb62852350b4b0f110bc9a1c4c4c5acc99f25188"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/avatar/tzz.png",
+        "size": 3433,
+        "sha256": "5067ef9a1ccad6acc4807d464f46358afd5f092ff78cf17a66ea82c613469e1e"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/controller/cpn-defense.json",
+        "size": 14457,
+        "sha256": "bded9f371bc5bbb30bdf423add97924252697fc546a343ed3ab963bf14cd154f"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/controller/cpn-scale.json",
+        "size": 283,
+        "sha256": "61b1b9b6b1768b13eaa263eedffc4163a32e1c5b0d15f0c9761765ea10b9b617"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/lang/en_us.json",
+        "size": 952,
+        "sha256": "b1cb6ce938a9201b6f95c02537e46f294abb99130f0ebea4c1e6af854adf7dc4"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/lang/zh_cn.json",
+        "size": 959,
+        "sha256": "ec4e3210b83969a268cb35559c027b644d607607509894c78570c70cc75dae25"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/models/arm.json",
+        "size": 24866,
+        "sha256": "a2664b30fa922899c414e0ef38f1da1e3866e8c0b2154fab4a2014d046a90dea"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/models/main.json",
+        "size": 66821,
+        "sha256": "6ab542bd6f8ce231f14a22d1c68fe87bbe58ca15ea54ae793706bbe0ac6f05ef"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/textures/steve.png",
+        "size": 920,
+        "sha256": "d876e0c88f4b3de71040966ed94a614f315b888592b520b993399fd2738418d0"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/textures/tartaric_acid.png",
+        "size": 4384,
+        "sha256": "bd1f4877e31c18412f5ea5d2ed54953c472c23480d541856f977da3cf9b8e7fb"
+      },
+      {
+        "path": "config/yes_steve_model/custom/cpn_steve/ysm.json",
+        "size": 1560,
+        "sha256": "061ef651635446e726ba0a4ab3659efcb793495807167855d66ff3f568cd55e1"
+      },
+      {
+        "path": "customnpcs/designs/default-npc-motion118.design.json",
+        "size": 297509,
+        "sha256": "e2b2120086059bf9bde846b0428a9834a5ae4034b4259546e273e3678e149804"
+      },
+      {
+        "path": "customnpcs/designs/default-player-motion118.design.json",
+        "size": 13420,
+        "sha256": "08866fbd18c31987015172368fdf7bdba2dec4b6172702f659efb7addda5a65d"
+      },
+      {
+        "path": "docs/NPC-DESIGN-TEMPLATE.md",
+        "size": 9951,
+        "sha256": "9c47d292c40ea129afe3a180b76b8cb8b41e78f30ad61227402f64f6c23d061b"
+      },
+      {
+        "path": "licenses/CustomNPCs-Motion118.txt",
+        "size": 1818,
+        "sha256": "c9b5c9ba7db5e3fde5f317d28a43997ba21fa3ed841a98e6636cf15b1cef1cdf"
+      }
+    ]
+  }
 }
