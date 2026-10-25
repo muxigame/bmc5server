@@ -21232,6 +21232,12 @@
   ],
   "external": [
     {
+      "path": "mods/building_archive-0.5.2.jar",
+      "size": 116906,
+      "sha256": "a9f78ce088b5d167258be9ca52c77103833a702294f794cd3b8db55ecb74af89",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.5.2-20261025/building_archive-0.5.2.jar"
+    },
+    {
       "path": "mods/simplenicknames-1.21.1-neoforge-0.8.0.jar",
       "url": "https://cdn.modrinth.com/data/EmdnQtis/versions/kVVMxHOA/simplenicknames-1.21.1-neoforge-0.8.0.jar",
       "sha256": "1aa51914c3808505b971e46ab0a5821191543c96d8279eb2965954a96754da26",
