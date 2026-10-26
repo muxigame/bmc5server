@@ -1,0 +1,30 @@
+{
+  "version": "0.5.2",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "assets": [
+    {
+      "name": "building_archive-0.5.2.jar",
+      "size": 116906,
+      "sha256": "a9f78ce088b5d167258be9ca52c77103833a702294f794cd3b8db55ecb74af89",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.5.2-20261025/building_archive-0.5.2.jar"
+    },
+    {
+      "name": "building_archive-0.5.2-sources.jar",
+      "size": 48982,
+      "sha256": "0a2412e7ac37b04cd4603b044d0c52a3843f9f489758a12cd0190180472a0ee2",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.5.2-20261025/building_archive-0.5.2-sources.jar"
+    },
+    {
+      "name": "building_archive-0.5.2-handoff-20261025.zip",
+      "size": 262862,
+      "sha256": "26922f3b58ef510dddd9f50e97df5ea2a77f15d4c840f4cb11234e9939c28491",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.5.2-20261025/building_archive-0.5.2-handoff-20261025.zip"
+    }
+  ],
+  "validation": {
+    "build": "Passed 2026-10-25 using existing Gradle cache; test NO-SOURCE",
+    "historicalGameTests": "34 passed in mirror-052-validation.txt on 2026-10-21; not rerun",
+    "fullPackSmoke": "Not run for this packaging-only change; shared game environment not touched"
+  }
+}
