@@ -1,13 +1,26 @@
-# Building Archive 0.5.2
+# Building Archive 0.6.0
 
-Adds the locally developed building collaboration mod to the existing checksum-locked external downloads. Both client and server use the same JAR (Minecraft 1.21.1, NeoForge 21.1.250, Java 21). Existing baseline archives and CustomNPCs entries are unchanged.
+建筑导入导出器让管理员在游戏内选择本地 NBT/ZIP 上传到当前世界的建筑档案目录，也能把服务器上的建筑下载到客户端的 `建筑导出/` 文件夹。通过 `/ba files` 打开界面，或使用 `/ba give` 获取道具。保留已有蓝图、旋转、左右镜像和地形工具功能。
 
-Release: https://github.com/muxigame/bmc5server/releases/tag/building-archive-0.5.2-20261025
+Release: https://github.com/muxigame/bmc5server/releases/tag/building-archive-0.6.0-20261027
 
-The release includes the runtime JAR, sources JAR, and a small handoff ZIP containing existing source/build scripts, corrected collection/ZIP scripts, and per-file hashes. It excludes Minecraft runtimes, dependencies, worlds, logs and caches. The source is our existing local snapshot, without an invented source commit. Older README sections inside the snapshot predate 0.5.2.
+这是供管理员审核的预发布资源，不代表已经更新线上服务器。Minecraft 1.21.1 / NeoForge 21.1.250 / Java 21；客户端和服务端必须同时使用 0.6.0（网络协议 4）。其余模组和基线包不变。
 
-Use the normal setup command to download and verify the new external JAR. Back up unique building/world data first. Remove any manually installed older Building Archive JAR before installation; do not load two versions. Stop and inspect unknown existing files rather than overwrite them.
+## 管理员决定更新时
 
-Rollback: revert this change and remove only building_archive-0.5.2.jar from the runtime mods folder; preserve building archives/world data. Deployment/restarts require separate coordination.
+1. 先合并审核通过的 PR；备份世界及其中的 `building_archive/`，安排停服。
+2. 将运行目录中旧的 `mods/building_archive-0.5.2.jar` 移到 mods 外的回退目录；不要同时加载两个版本。已有手动安装的其他旧版也应移出。安装器不会自动删除旧的 external JAR。
+3. 按仓库 README 运行 setup，再运行 verify。新 JAR 的地址、大小和 SHA-256 已锁定；不要重打包或替换旧版基线 ZIP。
+4. 更新所有客户端到同一 JAR，启动后以管理员账号测试 `/ba files` 的上传、下载和重导入，再交给玩家。
 
-Validation: existing project build passed on 2026-10-25 (cached tasks, test NO-SOURCE). Historical 0.5.2 report records 34 passing GameTests on 2026-10-21. Full-pack setup/verify/smoke was not rerun for this packaging-only change; no running game or shared test environment was modified. See building-archive-0.5.2.json for exact sizes/hashes.
+上传需要管理员权限（权限等级 2）；多人游戏中仅创造模式不足以授权。单机房主可在创造模式下使用。文件上传不会直接放置建筑，仍需在建筑档案中载入、确认投影再放置。
+
+服务器保存到当前世界 `building_archive/`；下载保存在客户端游戏目录 `建筑导出/`，含 NBT 和重新生成的方块统计 JSON。上传不会覆盖同名档案，下载遇到重名会自动增加后缀。ZIP 仅处理顶层 NBT，用户编辑的风格标签 JSON 不随导入保留。单个 NBT 最大 8 MiB，ZIP 最多 64 个 NBT、总量 32 MiB，并验证方块、版本和尺寸。
+
+## 验证和回退
+
+交付 JAR 已构建，41 项 GameTest 通过。2026-10-27 在既有联合测试服以真实客户端完成本地上传、服务器下载、将下载文件改名重新上传、在档案列表载入的流程，四份 NBT 哈希一致。界面使用 `/ba files` 打开，未单独复测道具右键入口；没有为此次打包重跑完整线上整合包 setup/verify/smoke。正式更新前由管理员完成整包检查。
+
+回退时停服，恢复旧版本 lock 和客户端 JAR，移出新 JAR，再按旧 lock 安装验证。保留世界和建筑档案数据。此 PR 不执行停服、重启或部署。
+
+Release 包含运行 JAR、源码 JAR、源码与构建脚本 handoff ZIP。没有复制游戏运行时、依赖、存档、账号或日志。源码是现有本地项目快照，无虚构的源码提交号；详见 `building-archive-0.6.0.json` 和 ZIP 内逐文件校验表。历史 0.5.2 元数据保留供回退查询。
