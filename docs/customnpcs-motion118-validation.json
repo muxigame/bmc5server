@@ -1,0 +1,120 @@
+{
+  "version": "motion.118",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "releaseDamage": {
+    "passed": true,
+    "checks": 41,
+    "attacks": [
+      {
+        "after": 7.0,
+        "before": 5,
+        "actualDealt": 7.0,
+        "id": "a1",
+        "name": "第一刀"
+      },
+      {
+        "after": 8.0,
+        "before": 5,
+        "actualDealt": 8.0,
+        "id": "a2",
+        "name": "第二刀"
+      },
+      {
+        "after": 8.0,
+        "before": 5,
+        "actualDealt": 8.0,
+        "id": "a3",
+        "name": "格挡反击"
+      },
+      {
+        "after": 8.0,
+        "before": 5,
+        "actualDealt": 8.0,
+        "id": "a4",
+        "name": "冲刺下劈"
+      },
+      {
+        "after": 7.0,
+        "before": 5,
+        "actualDealt": 7.0,
+        "id": "a5",
+        "name": "后撤反击"
+      },
+      {
+        "after": 8.0,
+        "before": 5,
+        "actualDealt": 8.0,
+        "id": "a6",
+        "name": "踏前戳刺"
+      },
+      {
+        "after": 7.0,
+        "before": 5,
+        "actualDealt": 7.0,
+        "id": "a7",
+        "name": "左侧格挡快反"
+      },
+      {
+        "after": 7.0,
+        "before": 5,
+        "actualDealt": 7.0,
+        "id": "a8",
+        "name": "右侧格挡快反"
+      }
+    ],
+    "averageAfter": 7.5,
+    "averageBefore": 5,
+    "exactIncreasePercent": 50,
+    "throwBefore": 2,
+    "throwAfter": 3,
+    "rollbackAndIdempotentUpgrade": true
+  },
+  "regression": {
+    "npc": {
+      "passed": true
+    },
+    "orbit": {
+      "passed": true
+    },
+    "pool": {
+      "passed": true,
+      "checks": 3132
+    },
+    "rear": {
+      "passed": true,
+      "checks": 297
+    },
+    "tactical": {
+      "passed": true,
+      "checks": 871
+    },
+    "native-orbit": {
+      "passed": true
+    },
+    "camera": {
+      "passed": true
+    }
+  },
+  "playerAnimationRegression": {
+    "passed": true,
+    "cases": [
+      {
+        "model": 0,
+        "samples": 490,
+        "alignmentError": 0.0
+      },
+      {
+        "model": 1,
+        "samples": 490,
+        "alignmentError": 0.0
+      },
+      {
+        "model": 2,
+        "samples": 490,
+        "alignmentError": 0.0
+      }
+    ]
+  },
+  "runtimeScope": "Isolated CustomNPCs + forging + YSM, not full BMC pack smoke test."
+}

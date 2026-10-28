@@ -82,3 +82,8 @@ Setup downloads and verifies the published, pinned MCEF build when a matching lo
 ## CustomNPCs 合并构建
 
 龙息、中文界面、魔杖帮助及既有 NPC 修复通过独立 localBuilds 条目锁定。NPC 合并包已发布并由 setup 自动下载校验，仍支持 `--npc-jar` 离线指定；MCEF 锁定成品也已发布并支持自动下载，详见 [安装、回滚与验证边界](docs/customnpcs-integration.md)。
+
+
+## CustomNPCs motion.118
+
+NPC战斗与动作设计阶段定版、默认伤害平均提高50%、YSM默认模型/护甲与可恢复设计模板，见[安装与回退](docs/customnpcs-motion118.md)。后续定向制作填写[NPC设计表](docs/NPC-DESIGN-TEMPLATE.md)。两端必须安装匹配版本，setup会校验下载；保留现有手改资源。
