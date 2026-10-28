@@ -1,0 +1,33 @@
+{
+  "version": "0.6.0",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "protocol": 4,
+  "assets": [
+    {
+      "name": "building_archive-0.6.0-handoff-20261027.zip",
+      "size": 117265,
+      "sha256": "c0d534c5b5df521d46edd6e713556d9df905a6416058398fedfc23b8941221db",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.6.0-20261027/building_archive-0.6.0-handoff-20261027.zip"
+    },
+    {
+      "name": "building_archive-0.6.0-sources.jar",
+      "size": 61716,
+      "sha256": "65c3174c78efc6dd17d08db92e8425910e4e35f74d8c01f3e290ff0f495bf609",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.6.0-20261027/building_archive-0.6.0-sources.jar"
+    },
+    {
+      "name": "building_archive-0.6.0.jar",
+      "size": 150955,
+      "sha256": "1d1123fcea9aae5fb8b734f17eb7cb001f7de4aec982b4113cdeb4b0f6d7ae2a",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/building-archive-0.6.0-20261027/building_archive-0.6.0.jar"
+    }
+  ],
+  "validation": {
+    "build": "Passed for delivered 0.6.0 JAR",
+    "gameTests": "41 passed",
+    "liveClient": "Upload -> download -> renamed reimport -> archive list load passed on 2026-10-27; all four NBT SHA-256 values equal",
+    "liveEntry": "/ba files; item right-click not separately exercised",
+    "fullOnlinePackSmoke": "Not rerun; joint local instance used. Online server was not modified."
+  }
+}
