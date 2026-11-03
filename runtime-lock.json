@@ -21279,14 +21279,14 @@
     },
     {
       "path": "mods/CustomNPCs-Unofficial-NeoForge-1.21.1.20251230.jar",
-      "installedPath": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar",
+      "installedPath": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.118-markfix1.jar",
       "modId": "customnpcs",
-      "version": "1.21.1.20251230-bmc-motion.118",
-      "size": 11460968,
-      "sha256": "f98ff432ee517efd936d6002c2689813ab2efd6be7579f6df66793a1df4a43d1",
+      "version": "1.21.1.20251230-bmc-motion.118-markfix1",
+      "size": 11461766,
+      "sha256": "d33550b32d5aa297bf7ef171a6e513da5ca47b36dcff7dcf9b5e711fd0d7d6f4",
       "sourceProject": "customnpcs-source",
-      "sourceCommit": "f5589d88fc2ed27d2046afb2fc87e6e7e2b470a2",
-      "artifact": "dist/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar",
+      "sourceCommit": "c2d5079a283caffc9f2181c267f5af3f2ba8e213",
+      "artifact": "dist/CustomNPCs-1.21.1.20251230-bmc-motion.118-markfix1.jar",
       "superseded": [
         {
           "path": "mods/CustomNPCs-1.21.1.20251230-bmc-stock.2.jar",
@@ -21312,9 +21312,14 @@
           "path": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.117.jar",
           "size": 11459526,
           "sha256": "949f41ad4f360ec39937e2910d86f72f6fb0c93512ba3acef72d92ee05c01b12"
+        },
+        {
+          "path": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar",
+          "size": 11460968,
+          "sha256": "f98ff432ee517efd936d6002c2689813ab2efd6be7579f6df66793a1df4a43d1"
         }
       ],
-      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-motion118-20261018/CustomNPCs-1.21.1.20251230-bmc-motion.118.jar"
+      "url": "https://github.com/muxigame/bmc5server/releases/download/customnpcs-motion118-markfix1-20261103/CustomNPCs-1.21.1.20251230-bmc-motion.118-markfix1.jar"
     }
   ],
   "npcDesignKit": {

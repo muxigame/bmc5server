@@ -1,0 +1,47 @@
+{
+  "unspawnedCandidates": 10000,
+  "aliveAfterGC": 0,
+  "compatMapClass": "java.util.concurrent.ConcurrentHashMap",
+  "compatMapSize": 0,
+  "passed": true,
+  "checks": [
+    "all unspawned saved/read candidates collectible",
+    "legacy static compatibility map remains empty",
+    "same object reuses same mark cache",
+    "mark type color NBT round trip",
+    "mark type preserved",
+    "parallel get shares entity cache",
+    "same numeric ID different object has isolated marks",
+    "discard retains entity-owned data for existing callers",
+    "NPC mark API remains functional"
+  ],
+  "parallelChecks": 128,
+  "baseline": {
+    "unspawnedCandidates": 10000,
+    "aliveAfterGC": 10000,
+    "compatMapClass": "java.util.concurrent.ConcurrentHashMap",
+    "compatMapSize": 10000,
+    "passed": false,
+    "error": "java.lang.AssertionError: all unspawned saved/read candidates collectible",
+    "checks": []
+  },
+  "baseCommit": "7878922",
+  "baseSha256": "f98ff432ee517efd936d6002c2689813ab2efd6be7579f6df66793a1df4a43d1",
+  "artifact": {
+    "file": "CustomNPCs-1.21.1.20251230-bmc-motion.118-markfix1.jar",
+    "size": 11461766,
+    "sha256": "d33550b32d5aa297bf7ef171a6e513da5ca47b36dcff7dcf9b5e711fd0d7d6f4"
+  },
+  "fullModpackGameplayTested": false,
+  "changedEntries": [
+    "META-INF/MANIFEST.MF",
+    "customnpcs.mixins.json",
+    "noppes/npcs/controllers/data/MarkData$Mark.class",
+    "noppes/npcs/controllers/data/MarkData.class"
+  ],
+  "addedEntries": [
+    "noppes/npcs/entity/data/IEntityMarkData.class",
+    "noppes/npcs/mixin/EntityMarkDataMixin.class"
+  ],
+  "sourceCommit": "c2d5079a283caffc9f2181c267f5af3f2ba8e213"
+}

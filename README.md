@@ -87,3 +87,5 @@ Setup downloads and verifies the published, pinned MCEF build when a matching lo
 ## CustomNPCs motion.118
 
 NPC战斗与动作设计阶段定版、默认伤害平均提高50%、YSM默认模型/护甲与可恢复设计模板，见[安装与回退](docs/customnpcs-motion118.md)。后续定向制作填写[NPC设计表](docs/NPC-DESIGN-TEMPLATE.md)。两端必须安装匹配版本，setup会校验下载；保留现有手改资源。
+
+2026-11-03：motion.118-markfix1 修复 MarkData 全局实体强引用泄漏；安装/GC对照与重启说明见 [修复说明](docs/customnpcs-markdata.md)。其余整合包依赖沿用最新dev锁定版本。
