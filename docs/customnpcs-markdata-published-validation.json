@@ -1,0 +1,9 @@
+{
+  "publicDownloadSha256": "d33550b32d5aa297bf7ef171a6e513da5ca47b36dcff7dcf9b5e711fd0d7d6f4",
+  "size": 11461766,
+  "actualOld118Upgrade": true,
+  "backupOld118": true,
+  "idempotentReinstall": true,
+  "verifyPassed": true,
+  "scope": "NPC installation only; no production world accessed"
+}

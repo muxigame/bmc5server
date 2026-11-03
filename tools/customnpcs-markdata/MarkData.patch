@@ -1,0 +1,45 @@
+--- a/src/main/java/noppes/npcs/controllers/data/MarkData.java
++++ b/src/main/java/noppes/npcs/controllers/data/MarkData.java
+@@ -10,6 +10,7 @@
+ import noppes.npcs.api.entity.data.IMark;
+ import noppes.npcs.api.handler.data.IAvailability;
+ import noppes.npcs.entity.data.IEntityPersistentData;
++import noppes.npcs.entity.data.IEntityMarkData;
+ import noppes.npcs.packets.Packets;
+ import noppes.npcs.packets.client.PacketMarkData;
+ 
+@@ -17,6 +18,9 @@
+     private static final String NBTKEY = "cnpcmarkdata";
+     private LivingEntity entity;
+     public List<MarkData.Mark> marks = new ArrayList<>();
++    // ABI bridge for muxi-game-core 1.9.1's <clinit> mixin. Never store entities here.
++    // A weak-key map would still leak because its MarkData values refer back to the keys.
++    @Deprecated
+     private static Map<Integer, MarkData> dataMap = new HashMap<>();
+ 
+     public void setNBT(CompoundTag compound) {
+@@ -79,13 +83,18 @@
+     }
+ 
+     public static MarkData get(LivingEntity entity) {
+-        MarkData data = dataMap.computeIfAbsent(entity.getId(), i -> new MarkData());
+-        if (data.entity == null) {
+-            data.entity = entity;
+-            data.setNBT(((IEntityPersistentData)entity).getPersistentData().getCompound("cnpcmarkdata"));
++        // Cache by object identity and lifetime, not the reusable network entity ID.
++        synchronized (entity) {
++            IEntityMarkData holder = (IEntityMarkData)entity;
++            MarkData data = holder.cnpc$getMarkData();
++            if (data == null) {
++                data = new MarkData();
++                data.entity = entity;
++                data.setNBT(((IEntityPersistentData)entity).getPersistentData().getCompound(NBTKEY));
++                holder.cnpc$setMarkData(data);
++            }
++            return data;
+         }
+-
+-        return data;
+     }
+ 
+     public void syncClients() {
