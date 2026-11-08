@@ -1,0 +1,2 @@
+/resources/** -text
+/resources/META-INF/MANIFEST.MF -diff

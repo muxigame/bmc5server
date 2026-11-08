@@ -1,0 +1,25 @@
+{
+  "candidateVersion": "0.0.2",
+  "upstreamOriginalJarUnchanged": true,
+  "observedBefore": {
+    "serverItemBytes": 36,
+    "clientItemBytes": 2,
+    "realPayloadBytes": 1324,
+    "actualClientDecoded": false
+  },
+  "observedAfter": {
+    "serverItemBytes": 2,
+    "clientItemBytes": 2,
+    "realPayloadBytes": 1072,
+    "actualClientDecoded": true,
+    "remaining": 0,
+    "filters": 8,
+    "magnifiers": 3,
+    "serverSameProcessAllSourceMapFieldsEqual": true
+  },
+  "bothNormalExitCode": 0,
+  "realLoginPassed": false,
+  "normalCityLoopPassed": false,
+  "YSMRenderPassed": false,
+  "userAccepted": false
+}

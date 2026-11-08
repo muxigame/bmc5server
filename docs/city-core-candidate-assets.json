@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "CANDIDATE_NETWORK_ACCEPTANCE_BLOCKED",
+  "status": "CANDIDATE_L2_WIRE_FIXED_LOGIN_ASSETS_PENDING",
   "releaseTag": "city-core-20261108",
   "binaryReleasePublished": false,
   "packVersion": "1.4.95",
@@ -114,6 +114,18 @@
       "sourceProject": "camera-lock-movement",
       "bothSides": true,
       "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/camera_lock-0.1.6.jar"
+    },
+    {
+      "modId": "city_core_l2_compat",
+      "path": "mods/city-core-l2-compat-0.0.2.jar",
+      "size": 3381,
+      "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
+      "version": "0.0.2",
+      "license": "MIT",
+      "sourceProject": "city-core-l2-compat",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city-core-l2-compat-0.0.2.jar",
+      "acceptanceScope": "Actual dedicated encode/source-map roundtrip + title-client exact1072B payload decode passed; real login and full city loop pending"
     }
   ],
   "assets": [
@@ -198,21 +210,32 @@
       "size": 10629
     },
     {
-      "file": "City-Core-Module-Sources-20261109-030.zip",
-      "sha256": "cec80cb7eef100d0d7e18d10669d1902b6f867ddf58e69fe01008d16cb3dcd33",
-      "size": 1830107
+      "file": "city-core-l2-compat-0.0.2.jar",
+      "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
+      "size": 3381
+    },
+    {
+      "file": "City-Core-Module-Sources-20261109-030-l2a.zip",
+      "sha256": "ff31ae68c6753fbb12bb951e9614bc4c02177d0e7c9d312234065ef6ad706010",
+      "size": 1833182
     }
   ],
   "validation": {
     "installerClientTests": 60,
     "installerServerTests": 71,
     "latestNativeNPCSaveLoadCloneMarks10000UnspawnedProbePassed": true,
-    "city030New3PermissionTestsCompiledNotRun": true,
     "old304TestsBelongTo029Only": true,
     "actualClient6GLoaded": true,
     "actualClientJoinFailed": true,
     "normalCoreLoopPassed": false,
-    "userWorldModified": false
+    "userWorldModified": false,
+    "city030ActualRequiredGameTestsPassed": 307,
+    "city030ActualRequiredGameTestsExitCode": 0,
+    "L2BeforeFailureAndAfterNativeWireReplayPassed": true,
+    "L2ActualServerItemBytes": 2,
+    "L2ActualClientItemBytes": 2,
+    "L2ActualClientRealPayloadUnreadBytes": 0,
+    "realLoginPassed": false
   },
   "normalCoreLoopPassed": false,
   "userAccepted": false

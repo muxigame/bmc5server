@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "citycore.l2compat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "L2HandlersMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

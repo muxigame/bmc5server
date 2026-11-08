@@ -35,3 +35,8 @@ CustomNPCs使用YSM3兼容版本，两端完全一致；不同时安装YSM2。NP
 本仓库只分发源码、校验清单及许可允许的候选资源；不包含玩家世界、账号、截图、日志、临时探针或验收专用控制脚本。第三方原始资源继续从官方锁定来源获取，完整反编译源码不进入资源包。NPC源码补丁包保留基础JAR与多步构建的来源；单一补丁提交不等于完整motion134源码。
 
 发布前必须取得配套server-data、修复正常入服、完成正常核心循环和YSM3分段画面/运动验证，再从清洁checkout做setup/verify/smoke。未完成时不更新稳定标签，也不替换正式服。
+
+
+The candidate now includes `city_core_l2_compat`0.0.2 on both sides, pinned to L2Library3.0.8. Actual unmodified library startup cached different Item stream formats (server36 bytes, client2 bytes); exact server configuration bytes reproduced the client StatFilterType decode failure. The compatibility addon defers that choice until packet use. Actual dedicated encode/source-map roundtrip and exact1072-byte title-client replay passed with2-byte Item encoding and zero unread bytes. Canonical packaging preserves every tested class/resource byte; only ZIP metadata was normalized. Upstream jars are unchanged.
+
+This wire replay is not real-login, registry synchronization, complete cross-process map semantics, YSM rendering or normal city-loop acceptance. Matching `server-data/data/muxi-zombie-authoring/map-assets` is still missing. Do not publish a stable binary release or describe the full framework as accepted. Portable authored sources include `modules/city-core-l2-compat`; diagnostics, worlds, logs and account material are excluded. The 0.10.30 permission regression is now actually307/307 passing, exit0.

@@ -18238,6 +18238,12 @@
         "sha256": "52f90886599dd3506b8442d3a09c19e9b6aeeafc356bbcb14c8bb6950dcc3c2a",
         "size": 1568735690
       }
+    },
+    {
+      "path": "mods/city-core-l2-compat-0.0.2.jar",
+      "size": 3381,
+      "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city-core-l2-compat-0.0.2.jar"
     }
   ],
   "retired": [],
@@ -18641,6 +18647,18 @@
         "sourceProject": "camera-lock-movement",
         "bothSides": true,
         "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/camera_lock-0.1.6.jar"
+      },
+      {
+        "modId": "city_core_l2_compat",
+        "path": "mods/city-core-l2-compat-0.0.2.jar",
+        "size": 3381,
+        "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
+        "version": "0.0.2",
+        "license": "MIT",
+        "sourceProject": "city-core-l2-compat",
+        "bothSides": true,
+        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city-core-l2-compat-0.0.2.jar",
+        "acceptanceScope": "Actual dedicated encode/source-map roundtrip + title-client exact1072B payload decode passed; real login and full city loop pending"
       }
     ],
     "creativeModeFirst": true,
