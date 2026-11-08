@@ -34,7 +34,11 @@ def resource(root, base, rec, local):
     cache.parent.mkdir(parents=True,exist_ok=True)
     partial=cache.with_suffix('.partial')
     if partial.exists():raise RuntimeError('Unfinished prior download; inspect before retry: '+str(partial))
-    url=base['filesBaseURL']+urllib.parse.quote(rec['sourcePath'],safe='/')
+    url=rec.get('url') or base['filesBaseURL']+urllib.parse.quote(rec['sourcePath'],safe='/')
+    if rec.get('url'):
+        approved=urllib.parse.urlsplit(base['filesBaseURL']);chosen=urllib.parse.urlsplit(url)
+        if chosen.scheme!='https' or (chosen.scheme,chosen.netloc)!=(approved.scheme,approved.netloc) or chosen.username or chosen.password:
+            raise ValueError('Pinned file URL must use the approved HTTPS origin')
     request=urllib.request.Request(url,headers={'User-Agent':'BMC-city-core-integrator/1'})
     with urllib.request.urlopen(request,timeout=120) as response,partial.open('xb') as out:
         shutil.copyfileobj(response,out,2**20)

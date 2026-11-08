@@ -1,4 +1,5 @@
-import hashlib,json,tempfile,unittest
+import hashlib,io,json,tempfile,unittest
+from unittest.mock import patch
 from pathlib import Path
 from launcher_base import setup,verify
 
@@ -57,5 +58,20 @@ class LauncherBaseTests(unittest.TestCase):
         self.assertEqual(old.read_bytes(),b'old')
         old.write_bytes(b'changed')
         with self.assertRaisesRegex(RuntimeError,'Modified superseded local rebuild'):setup(self.root,self.game,lock)
+
+    def test_pinned_version_url_downloads_before_install(self):
+        url='https://example.invalid/releases/1.4.34/files/config/sample.txt'
+        self.rec['url']=url;lock=self.lock()
+        with patch('launcher_base.urllib.request.urlopen',return_value=io.BytesIO(b'new')) as get:
+            _,stats=setup(self.root,self.game,lock)
+        self.assertEqual(get.call_args.args[0].full_url,url)
+        self.assertEqual((self.game/self.rec['path']).read_bytes(),b'new')
+        self.assertEqual(stats['changed'],1)
+
+    def test_cross_origin_pinned_url_refused_without_install(self):
+        self.rec['url']='https://other.invalid/config/sample.txt';lock=self.lock()
+        with patch('launcher_base.urllib.request.urlopen') as get:
+            with self.assertRaisesRegex(ValueError,'approved HTTPS origin'):setup(self.root,self.game,lock)
+        get.assert_not_called();self.assertFalse((self.game/self.rec['path']).exists())
 
 if __name__=='__main__':unittest.main()

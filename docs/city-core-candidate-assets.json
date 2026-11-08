@@ -3,8 +3,8 @@
   "status": "CANDIDATE_L2_WIRE_FIXED_LOGIN_ASSETS_PENDING",
   "releaseTag": "city-core-20261108",
   "binaryReleasePublished": false,
-  "packVersion": "1.4.95",
-  "officialLauncherManifestSHA256": "0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372",
+  "packVersion": "1.4.96",
+  "officialLauncherManifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
   "modules": [
     {
       "modId": "customnpcs",
@@ -238,5 +238,7 @@
     "realLoginPassed": false
   },
   "normalCoreLoopPassed": false,
-  "userAccepted": false
+  "userAccepted": false,
+  "current1496NativeAcceptancePassed": false,
+  "lastNativeBaseVersion": "1.4.95"
 }

@@ -3,9 +3,9 @@
   "pack": {
     "id": "battermc5remake",
     "name": "BatterMC5Remake",
-    "version": "1.4.95",
-    "changelog": "纸牌动画重做：修复每次操作的空白帧闪烁和动画时钟倒退，移牌/发牌/收牌/翻牌全部平滑过渡；象棋和国际象棋加入抬起-飞行-拍下的走子与吃子击飞动画；女仆名字不再显示代码",
-    "released": "2026-11-08T16:47:03.991376+00:00"
+    "version": "1.4.96",
+    "changelog": "棋牌动画诊断版：修复旧视图覆盖新视图导致动画被跳过、视图过早过期导致画面直接跳到结果；棋盘移动按格子变化触发；可选动画录制诊断",
+    "released": "2026-11-08T22:03:47.387913+00:00"
   },
   "minecraft": {
     "version": "1.21.1",
@@ -14,7 +14,7 @@
     "versionJson": "versions/BatterMC5Remake/BatterMC5Remake.json",
     "versionId": "BatterMC5Remake"
   },
-  "sourceManifestSHA256": "0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372",
+  "sourceManifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
   "sourceManifestURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/manifest.json",
   "filesBaseURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/",
   "files": [
@@ -13104,7 +13104,8 @@
       "sha1": "637b207c60ce313deae3d0904bebd47133c871cb",
       "sha256": "d37f2118b1850a1b4b9f328ff39f354e1ffe8e1d5739ec9a606696d2f2019a88",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/extra.animation.json",
@@ -13112,7 +13113,8 @@
       "sha1": "4ba305580eaaeac1ba2a3a156525cde6823da49c",
       "sha256": "aba1160e4b532fd8dcfa373e0fa0681803071021c439a8fa73b3b9a02e4e7610",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/main.animation.json",
@@ -13120,7 +13122,8 @@
       "sha1": "a030a242170d0bec45ef32dbda2e88a0fef40735",
       "sha256": "182e01cc5df79ce6ef5a13c9099ea47c7bc982f9553af55fea0e37c6eb546bee",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/bfxm.jpg",
@@ -13128,7 +13131,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/gsl.png",
@@ -13136,7 +13140,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hl.png",
@@ -13144,7 +13149,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hys.png",
@@ -13152,7 +13158,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/lmg.png",
@@ -13160,7 +13167,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/maks.jpg",
@@ -13168,7 +13176,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/mrsy.png",
@@ -13176,7 +13185,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/nico.png",
@@ -13184,7 +13194,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wmdj.jpg",
@@ -13192,7 +13203,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wool.png",
@@ -13200,7 +13212,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/lang/zh_cn.json",
@@ -13208,7 +13221,8 @@
       "sha1": "f140882132e5b99e5bf4fd1c0c63b6e18bbc385d",
       "sha256": "67fb7b999d318df2056127922ad083aa69dd0e0633e8e3419b23e4849db92744",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/arm.json",
@@ -13216,7 +13230,8 @@
       "sha1": "6364f9069f26004e289d15300a35adebee517db8",
       "sha256": "4cbf65f84539809ba89e5d263a77efef5c437f02ff81702c3147dae4d66c3779",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/main.json",
@@ -13224,7 +13239,8 @@
       "sha1": "16787facbf45e1d497587697312e9cba60e1e4bf",
       "sha256": "5918a5c9c9f11f5f2fb257e5d394eb3864f7feff701db4e1e6dd6dbeb90c2dbe",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/background.png",
@@ -13232,7 +13248,8 @@
       "sha1": "3657f5ec585abacaba6eb8d668bf0d4c04dfe93a",
       "sha256": "c8c893197b017c6b5b338326146b85377e3ec4c44820b61c33f46e89ef189694",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/foreground.png",
@@ -13240,7 +13257,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/skin.png",
@@ -13248,7 +13266,8 @@
       "sha1": "45fc412cfbde1c0b55072ba068a59e769fd911d0",
       "sha256": "a0220d5c68835f3b30e9d48de1c927c8f0b391c7364b50df8904d0b00ea0fb28",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/wine-fox-original-metadata.json",
@@ -13256,7 +13275,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ysm.json",
@@ -13264,7 +13284,8 @@
       "sha1": "6f64528e4d760d45cfc14a2134d341c0567ad167",
       "sha256": "0f2aeb7253e7ffada17839173f066cb99514c0fdcaed7b1d2af89d7d3619a16e",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_gold_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ATTRIBUTION.txt",
@@ -13272,7 +13293,8 @@
       "sha1": "637b207c60ce313deae3d0904bebd47133c871cb",
       "sha256": "d37f2118b1850a1b4b9f328ff39f354e1ffe8e1d5739ec9a606696d2f2019a88",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/extra.animation.json",
@@ -13280,7 +13302,8 @@
       "sha1": "920766c9d267c61ab8774429c47473fca2ffc9f7",
       "sha256": "80e2626a6a0a0e1f482fdb170bea3c6be3b680fc23e5d281333a0875978d223c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/main.animation.json",
@@ -13288,7 +13311,8 @@
       "sha1": "8de166a27019b77ab9c66f19c09b50a6892ea4d6",
       "sha256": "5a70d6374eead81538a4ac32971f7bad7427ba8092cbcef6d998f97f24cb27a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/bfxm.jpg",
@@ -13296,7 +13320,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/gsl.png",
@@ -13304,7 +13329,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hl.png",
@@ -13312,7 +13338,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hys.png",
@@ -13320,7 +13347,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/lmg.png",
@@ -13328,7 +13356,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/maks.jpg",
@@ -13336,7 +13365,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/mrsy.png",
@@ -13344,7 +13374,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/nico.png",
@@ -13352,7 +13383,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wmdj.jpg",
@@ -13360,7 +13392,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wool.png",
@@ -13368,7 +13401,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/lang/zh_cn.json",
@@ -13376,7 +13410,8 @@
       "sha1": "272619d3ae0bb2b325133bc284631079f826ca62",
       "sha256": "15981171de34010099e347acdc131ecc03b06a3cb0d03e2143054d0429b50d74",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/arm.json",
@@ -13384,7 +13419,8 @@
       "sha1": "f6e5c1f4e04f6182a4e8a1e31fea441d51480bcd",
       "sha256": "60c46a0b1d7888f1965c33e75d687df3207d335424388080d912984f725ea689",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/main.json",
@@ -13392,7 +13428,8 @@
       "sha1": "c53054a768a7bc054c52dbd6a905d03f639ced52",
       "sha256": "82266616970d5547ab40a8c0ea4e3d040e96df5b2b653b54261a374a835de6bb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/background.png",
@@ -13400,7 +13437,8 @@
       "sha1": "5bdb984d4563977d8258a24696bc693a6f4bb87a",
       "sha256": "bc152f719482c093eb86acbe9542a23884e3c94b905749982469a3b45d4c75ce",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/foreground.png",
@@ -13408,7 +13446,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/skin.png",
@@ -13416,7 +13455,8 @@
       "sha1": "b34997b62cc72bb1024a6346f2ae31c6094438c4",
       "sha256": "526474484bb3b61e25d07a13b477361e011321a0cf6be6607067f6f26c19535d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/wine-fox-original-metadata.json",
@@ -13424,7 +13464,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ysm.json",
@@ -13432,7 +13473,8 @@
       "sha1": "d56b35b14aea28b93beb6b6098bbb9f3c83beb24",
       "sha256": "ea34c81322f8e250f586d9935db6d01d640c8f421d23e114257693df6512e164",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_mcqueen_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ATTRIBUTION.txt",
@@ -13440,7 +13482,8 @@
       "sha1": "637b207c60ce313deae3d0904bebd47133c871cb",
       "sha256": "d37f2118b1850a1b4b9f328ff39f354e1ffe8e1d5739ec9a606696d2f2019a88",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/extra.animation.json",
@@ -13448,7 +13491,8 @@
       "sha1": "198dee5c9069dfd2e3880744be8557fc0d62463d",
       "sha256": "7b8a993d86f60ba979700beeafddc580c6f77e803e63743c83805f95d5de3605",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/main.animation.json",
@@ -13456,7 +13500,8 @@
       "sha1": "0fee66c6eb4d4de277fa7f77c4f7c9f3c5e5c4d3",
       "sha256": "8e39be88eb545aab8dae3eac2113ac62efaf52da7017ab8356aafdd507f6153c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/bfxm.jpg",
@@ -13464,7 +13509,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/gsl.png",
@@ -13472,7 +13518,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hl.png",
@@ -13480,7 +13527,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hys.png",
@@ -13488,7 +13536,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/lmg.png",
@@ -13496,7 +13545,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/maks.jpg",
@@ -13504,7 +13554,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/mrsy.png",
@@ -13512,7 +13563,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/nico.png",
@@ -13520,7 +13572,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wmdj.jpg",
@@ -13528,7 +13581,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wool.png",
@@ -13536,7 +13590,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/lang/zh_cn.json",
@@ -13544,7 +13599,8 @@
       "sha1": "a43ba265fe4274bd95f297bab7d69be9791e19ef",
       "sha256": "6ea66e5a93a926b9cdc32f26ea29441b09f7e6ec2d9337958e561d97902fc92c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/arm.json",
@@ -13552,7 +13608,8 @@
       "sha1": "4bc3b15c5fba790e2306c749253770af00432825",
       "sha256": "f4eaae6bcf04c7c1636b58acf7dcc7a64659ada892cc6a5bb85810f36679e98d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/main.json",
@@ -13560,7 +13617,8 @@
       "sha1": "d0abadd717206b87600ddedca8bc5d422db5ffa9",
       "sha256": "da9ee192ab5bb8faa2a914328ecc783ddadeb3fc09c45f3322b6c3fb53d9c0f5",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/background.png",
@@ -13568,7 +13626,8 @@
       "sha1": "86cbb8990dce87059e92fcbd31ad28b6d9a010c1",
       "sha256": "48b4db39f18eb1ac0ca9a2a0caf2303ffb6be079d5dda1cbf3b27cd449494bda",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/foreground.png",
@@ -13576,7 +13635,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/skin.png",
@@ -13584,7 +13644,8 @@
       "sha1": "d939ee03b8f7734e5c6af264cfcb95e50d859bf5",
       "sha256": "237a7859e90aec34e63b397e2ce04eb907cfd8974eeb31df14aa65f55f1644eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/wine-fox-original-metadata.json",
@@ -13592,7 +13653,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ysm.json",
@@ -13600,7 +13662,8 @@
       "sha1": "96adf08f2df60975ca8cfcfa0ed9aeaaba10e8e5",
       "sha256": "58305c54709c92f008c8ebea9de26e0d44f9ff3a75051df1ac11f9a5e01d8aee",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_oguri_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ATTRIBUTION.txt",
@@ -13608,7 +13671,8 @@
       "sha1": "37b9ef6c1900bc820d9d207651314e7a01771977",
       "sha256": "fda7ba68516de41ca9ece9d172c44410875fcc2c65134e6c93c98d315fba51a7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/extra.animation.json",
@@ -13616,7 +13680,8 @@
       "sha1": "ecaff866d7c0ceabaf837e44c07a8dbc8823ea89",
       "sha256": "0b575533a564c8275d6bc22088623e611b64a030ae0dbd8b813057f10826d27f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/main.animation.json",
@@ -13624,7 +13689,8 @@
       "sha1": "b0a889dcc76b4862fd8f154d27347401d3ce71b9",
       "sha256": "99a658d592e5aa1c33cf51aab9065532a3007dccbb270cf50776261aa4af9fe5",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/bfxm.jpg",
@@ -13632,7 +13698,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/gsl.png",
@@ -13640,7 +13707,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hl.png",
@@ -13648,7 +13716,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hys.png",
@@ -13656,7 +13725,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/lmg.png",
@@ -13664,7 +13734,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/maks.jpg",
@@ -13672,7 +13743,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/mrsy.png",
@@ -13680,7 +13752,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/nico.png",
@@ -13688,7 +13761,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wmdj.jpg",
@@ -13696,7 +13770,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wool.png",
@@ -13704,7 +13779,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/lang/zh_cn.json",
@@ -13712,7 +13788,8 @@
       "sha1": "29d426a99c4b3913bb9e25137486f8cfb8673977",
       "sha256": "1c0ff1405f839a2d000ffbaf9b7e7583bf222fc14c30bd6b448784e9989d077c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/arm.json",
@@ -13720,7 +13797,8 @@
       "sha1": "3d933d0a62229132728668a2c4967e1a898f6ec1",
       "sha256": "448c917816df2f73355b1cc65068905d2f2ffe5e65d82379b847f3101bbbef03",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/main.json",
@@ -13728,7 +13806,8 @@
       "sha1": "2189d9e874a752d1b9b2cc0431ac7c8f419cb327",
       "sha256": "bb590dea4af5b210a894e65edb707d31836a9c51ce688f466b215412fc3dda58",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/background.png",
@@ -13736,7 +13815,8 @@
       "sha1": "18c853a9f2b98be00e0e49e6c5f6df1e3fe704e4",
       "sha256": "ab0dfbf5bdf2073a471f55d9af199853d91fc71a11baef3121086ee7ec2824ea",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/foreground.png",
@@ -13744,7 +13824,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/skin.png",
@@ -13752,7 +13833,8 @@
       "sha1": "7da684296d40e9545a16bf59bdbe7b18b10a05d8",
       "sha256": "0c3a3bb08930e24b14a12fcb25c68b0dd73c7dd0f7f309afb732a64502791b8c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/wine-fox-original-metadata.json",
@@ -13760,7 +13842,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ysm.json",
@@ -13768,7 +13851,8 @@
       "sha1": "8fb0e602d5163dc662f8ac499d0d0fb77a1ea953",
       "sha256": "b7c8b59cf045a463504b6826fabf56522356ec6bdf74c0c7173fcc9be1efb8aa",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_special_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ATTRIBUTION.txt",
@@ -13776,7 +13860,8 @@
       "sha1": "37b9ef6c1900bc820d9d207651314e7a01771977",
       "sha256": "fda7ba68516de41ca9ece9d172c44410875fcc2c65134e6c93c98d315fba51a7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/extra.animation.json",
@@ -13784,7 +13869,8 @@
       "sha1": "e09a37baef8aba3c09200654a1819efe6b339914",
       "sha256": "66dca952ae7e5b7d8c2dfc0d661bc0032c0a424b54fac968fa39baade7cb3b79",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/main.animation.json",
@@ -13792,7 +13878,8 @@
       "sha1": "b8094459ca47fe2a752e47b9a7d8bd98f4b11a81",
       "sha256": "e0012753d028687147d06319f62169bad53adeb3d1685bde5ec911425c76fe08",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/bfxm.jpg",
@@ -13800,7 +13887,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/gsl.png",
@@ -13808,7 +13896,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hl.png",
@@ -13816,7 +13905,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hys.png",
@@ -13824,7 +13914,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/lmg.png",
@@ -13832,7 +13923,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/maks.jpg",
@@ -13840,7 +13932,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/mrsy.png",
@@ -13848,7 +13941,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/nico.png",
@@ -13856,7 +13950,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wmdj.jpg",
@@ -13864,7 +13959,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wool.png",
@@ -13872,7 +13968,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/lang/zh_cn.json",
@@ -13880,7 +13977,8 @@
       "sha1": "c770ee19a9571e5396128202bf2ac553082c27c1",
       "sha256": "cd3a7925d94361a8c2aec3e0d2fca8671aeea528efbc28eb94a7905622cacca3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/licenses/original-metadata.json",
@@ -13888,7 +13986,8 @@
       "sha1": "6bdf9c2331fcab411b38218f4d07ca190effe842",
       "sha256": "018b50afcc067187eb187341b3ec1c0e1343c19197b98246764d9bc99b75fd6a",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/licenses/original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/licenses/original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/licenses/original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/arm.json",
@@ -13896,7 +13995,8 @@
       "sha1": "7c3de52c5b5a0528c82425d28ca98ff92c6e60a6",
       "sha256": "75d04a2d277dcdb0f98fdd998118624d8bf56532b743c1ca3b1df4a4fdad30a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/main.json",
@@ -13904,7 +14004,8 @@
       "sha1": "e871e7d6e4f84b19d8721f8dd1a0d06d0593bd9e",
       "sha256": "b2a520d18e2d004bdd00e6b208b5ecfcb7ae40e473d955cb7ff53a2e639a2979",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/background.png",
@@ -13912,7 +14013,8 @@
       "sha1": "f0be6b1adfe356617cadde6da7018839797d264b",
       "sha256": "8f88e45efe311117629a48a0b2c57cc3b22299ede402abf7ee9f6f9cd4a6dc21",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/foreground.png",
@@ -13920,7 +14022,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/skin.png",
@@ -13928,7 +14031,8 @@
       "sha1": "ef26b0679d03097ec210a72a2f5adb05f3bfce00",
       "sha256": "18a5328f01f599e4c9c83042393072bae4dd37e7040e5603ca5c338e1d397bc5",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/wine-fox-original-metadata.json",
@@ -13936,7 +14040,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ysm.json",
@@ -13944,7 +14049,8 @@
       "sha1": "e4d00e24959e51f3abed5b3295240530c182de21",
       "sha256": "97772fe388ba4d93b03e13cf39ae73a4502da339168736818e8b51a5e36712e9",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_suzuka_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ATTRIBUTION.txt",
@@ -13952,7 +14058,8 @@
       "sha1": "637b207c60ce313deae3d0904bebd47133c871cb",
       "sha256": "d37f2118b1850a1b4b9f328ff39f354e1ffe8e1d5739ec9a606696d2f2019a88",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ATTRIBUTION.txt"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ATTRIBUTION.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ATTRIBUTION.txt"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/extra.animation.json",
@@ -13960,7 +14067,8 @@
       "sha1": "4a32db227f6a50bf62cf41826f382c21c50f5cf6",
       "sha256": "120b35378ac5bfb4824a927583669e4b33dcd0fa6a9386fe95ef029637b48452",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/extra.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/extra.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/extra.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/main.animation.json",
@@ -13968,7 +14076,8 @@
       "sha1": "ddeb2b4bf92a8f22bc4b04ca94a6af2bea58312d",
       "sha256": "a7ea071e8ab4a788d6f5c1caba5cf3f2482054b27e0d4e25c1a5ccfd05b11c43",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/main.animation.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/main.animation.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/animations/main.animation.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/bfxm.jpg",
@@ -13976,7 +14085,8 @@
       "sha1": "36070cfc4b6cd1549a6d529c09290507a32b8806",
       "sha256": "41fb944b9d083ff69e1edc2ba69cf44d444f5645a4e1114026f1c9ad3ef6025f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/bfxm.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/bfxm.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/bfxm.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/gsl.png",
@@ -13984,7 +14094,8 @@
       "sha1": "f5ce10b8dda0d9eb421159d15810192771981db4",
       "sha256": "dbfee9f254d512bad28db7f7e23d631d4aa450cbe42a31d1e2ed3a756f16f4a1",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/gsl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/gsl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/gsl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hl.png",
@@ -13992,7 +14103,8 @@
       "sha1": "95e5dba3010dc87ccf64fe4ecf2834e05696504b",
       "sha256": "80f61d49f385faf974b8b3e579b6b307b9046992f1d3ae32647e8676102d5fa3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hl.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hl.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hl.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hys.png",
@@ -14000,7 +14112,8 @@
       "sha1": "fb7051d7c38756a46dbd2aba97bbf9c884a0c0a2",
       "sha256": "6dda47283fff88a4ed4ec07509de852b473cc97170e560b71f10339c2ab14ecf",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hys.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hys.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/hys.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/lmg.png",
@@ -14008,7 +14121,8 @@
       "sha1": "2ffa02e7a80d7958827d9d97d1bba84720820279",
       "sha256": "0d05a6be0b1ffb32f6497265f7411b7741f18ae89a82e82a4982e39ba4183fa4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/lmg.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/lmg.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/lmg.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/maks.jpg",
@@ -14016,7 +14130,8 @@
       "sha1": "f3f553f976a66f42ec6dcc4aa85385fa807435f6",
       "sha256": "836e8432f93fd41b5e6d19eb97a89027faf78e1ffa3758b489592f7f4a86ec9c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/maks.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/maks.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/maks.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/mrsy.png",
@@ -14024,7 +14139,8 @@
       "sha1": "b90b318323c907d744960b207c78a6550e0e1cfe",
       "sha256": "1d5f4b48bda1349a1f5f7ceb5de981dfc4590f6a766574d3db5323290e4010eb",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/mrsy.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/mrsy.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/mrsy.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/nico.png",
@@ -14032,7 +14148,8 @@
       "sha1": "8cc102f56e8916018ab68b48fb4538a77ddacf97",
       "sha256": "c4dc33bb154086be5c4ea25c3638257de58713a7ba5e198b05235e4252074f09",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/nico.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/nico.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/nico.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wmdj.jpg",
@@ -14040,7 +14157,8 @@
       "sha1": "c3c33e006924290de9514d54ac9f29defa69d146",
       "sha256": "ffabb00e0bb3328749e1d5ac542a8d2f36ce8dba291469976068e36b6fb9b8c7",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wmdj.jpg"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wmdj.jpg",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wmdj.jpg"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wool.png",
@@ -14048,7 +14166,8 @@
       "sha1": "c91ececb7f064f2cd2c9f47a5a2ddb12abd295ba",
       "sha256": "98eb2c163ca5c7beac09a80d892df1fd414ff102dd8f85c428d99ff15f85ea9d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wool.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wool.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/avatar/wool.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/lang/zh_cn.json",
@@ -14056,7 +14175,8 @@
       "sha1": "819c2a4403c9e2f38dcc3db46a26e7f9088dd695",
       "sha256": "db5415d55b9ff6cd2b380021a34cdb8103cb672391dccd5f075042406078f978",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/lang/zh_cn.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/lang/zh_cn.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/lang/zh_cn.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/arm.json",
@@ -14064,7 +14184,8 @@
       "sha1": "2b3490f42e39f2fe3b5e19cc9403813d3ad6e1fb",
       "sha256": "09aa22d2341c45858038b4c1dc2f2090212d6908cd9cbeff81d71d6c8bad470d",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/arm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/arm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/arm.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/main.json",
@@ -14072,7 +14193,8 @@
       "sha1": "312d92d1659851133aff29b9072c54b03642c73d",
       "sha256": "a0f16e57920cf6da6b3296e2b999a3f5218b84e762e4a324575eb5f7b235845c",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/main.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/main.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/models/main.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/background.png",
@@ -14080,7 +14202,8 @@
       "sha1": "4c9581428e76dde5b2c6bb2216ffbf2cdc0c84cc",
       "sha256": "7da1bdf108c6a68bcd0bc5d3c77022bf5ead5d30805d685047825c34f45413f3",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/background.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/background.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/background.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/foreground.png",
@@ -14088,7 +14211,8 @@
       "sha1": "95987f6206809c719a73c48a9dadb09d01aab7a5",
       "sha256": "b4c165d4d5bd7115be15fd8e8fb9dfea29f23052b96b20e7582c13d38fe557c4",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/foreground.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/foreground.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/gui/foreground.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/skin.png",
@@ -14096,7 +14220,8 @@
       "sha1": "571f5f8f4881facac7b5a608c909f64eff2a4f01",
       "sha256": "a51611c23b4b384552d559611417449e10bd9098b92476a78a281a39de91c7a0",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/skin.png"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/skin.png",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/textures/skin.png"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/wine-fox-original-metadata.json",
@@ -14104,7 +14229,8 @@
       "sha1": "e34e3e9f6d7c552c50f5f1c457ecaa370baf4768",
       "sha256": "503715425937ac9b61ff48a89cdea7374d373e8c46731b2ddc18ac6b42d1424f",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/wine-fox-original-metadata.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/wine-fox-original-metadata.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/wine-fox-original-metadata.json"
     },
     {
       "path": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ysm.json",
@@ -14112,7 +14238,8 @@
       "sha1": "6d46e07c26f0be53b9723d43544246f7b179de4e",
       "sha256": "c56d74696ee30213b0a8fa73e820d7072400631fffb40653fe4e2f81826bc2e0",
       "policy": "Managed",
-      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ysm.json"
+      "sourcePath": "config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ysm.json",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/releases/1.4.34/files/config/yes_steve_model/custom/11_umamusume_player/ground_teio_v1/ysm.json"
     },
     {
       "path": "config/yes_steve_model/custom/cpn_alex/animations/main.animation.json",
@@ -17120,7 +17247,8 @@
       "sha1": "fb6cd3be2d034dde369ffd7558c95c6daa44189e",
       "sha256": "e36a929420a0a616abdb28f5bbbdb866a426aa3bb78d1b39bc1183927c101ce6",
       "policy": "Managed",
-      "sourcePath": "mods/artifacts-neoforge-13.2.5.jar"
+      "sourcePath": "mods/artifacts-neoforge-13.2.5.jar",
+      "url": "https://mediafilez.forgecdn.net/files/8791/899/artifacts-neoforge-13.2.5.jar"
     },
     {
       "path": "mods/azurelib-neo-1.21.1-3.1.11.jar",
@@ -17248,7 +17376,8 @@
       "sha1": "c39f395e50f23d4746e5d42cafeea067b4011e50",
       "sha256": "8e85d336e3e7ff3f44dc8f06accc5cd15dc441d3f1ff7c54c2f302411736a679",
       "policy": "Managed",
-      "sourcePath": "mods/chesspvp-1.21.1-neoforge-1.0.0.jar"
+      "sourcePath": "mods/chesspvp-1.21.1-neoforge-1.0.0.jar",
+      "url": "https://edge.forgecdn.net/files/8626/073/chesspvp-1.21.1-neoforge-1.0.0.jar"
     },
     {
       "path": "mods/chipped-neoforge-1.21.1-4.0.2.jar",
@@ -17376,7 +17505,8 @@
       "sha1": "246915560f74b92e0186c22da26be8995380c443",
       "sha256": "4aee9a1af2754609ab31bfebf13dc0d7d648e61e440232dbf9bb3459941e23d5",
       "policy": "Managed",
-      "sourcePath": "mods/create-stuff-additions1.21.1_v2.1.4b.jar"
+      "sourcePath": "mods/create-stuff-additions1.21.1_v2.1.4b.jar",
+      "url": "https://cdn.modrinth.com/data/aq9qUUQG/versions/gMWQ1LX9/create-stuff-additions1.21.1_v2.1.4b.jar"
     },
     {
       "path": "mods/cristellib-neoforge-1.21.1-3.1.7.jar",
@@ -17696,7 +17826,8 @@
       "sha1": "ea1974335526554620e779c96c344bcfaf34c21d",
       "sha256": "d6eff2fefb1a1997d125ac9375b601767926819d8ed30189beb6d7420fba0609",
       "policy": "Managed",
-      "sourcePath": "mods/gunsmithlib-neoforge-1.21.1-tacz1.1.8-6.4.5.jar"
+      "sourcePath": "mods/gunsmithlib-neoforge-1.21.1-tacz1.1.8-6.4.5.jar",
+      "url": "https://mediafilez.forgecdn.net/files/9101/246/gunsmithlib-neoforge-1.21.1-tacz1.1.8-6.4.5.jar"
     },
     {
       "path": "mods/handcrafted-neoforge-1.21.1-4.0.3.jar",
@@ -17728,7 +17859,8 @@
       "sha1": "168846931c651ea15bb683a40ee63756509c2e0a",
       "sha256": "fa74ce13060875d4f8da72c9fdfec4ae08b0b76ef3e3ce5c4f6ebb56e5415d45",
       "policy": "Managed",
-      "sourcePath": "mods/hotbath-1.21.1-4.1.2.jar"
+      "sourcePath": "mods/hotbath-1.21.1-4.1.2.jar",
+      "url": "https://mediafilez.forgecdn.net/files/9225/290/hotbath-1.21.1-4.1.2.jar"
     },
     {
       "path": "mods/hybrid_aquatic-neoforge-1.21.1-1.7.0.jar",
@@ -17784,7 +17916,8 @@
       "sha1": "1c1cca4888ca30e12e6dee53f466ffa8af4ab796",
       "sha256": "d230a2960dcb0c3d5753bc1d4adb71c8c18c9491b8e3cfd4a6b56533dae7a2c6",
       "policy": "Managed",
-      "sourcePath": "mods/interiors-0.6.1 v3.jar"
+      "sourcePath": "mods/interiors-0.6.1 v3.jar",
+      "url": "https://mediafilez.forgecdn.net/files/8974/633/interiors-0.6.1%20v3.jar"
     },
     {
       "path": "mods/irons_lib-1.21.1-2.1.1.jar",
@@ -17824,7 +17957,8 @@
       "sha1": "3a3c849e5629a604c90b36741ab379a0a2e5f871",
       "sha256": "9876abc5bba1eaa06ea0c4ef140d1eb3b5a8fe9fa17150392a63e0449bc9eb34",
       "policy": "Managed",
-      "sourcePath": "mods/kaleidoscope_compat-2.9.7-neoforge+mc1.21.1-Patch.2.jar"
+      "sourcePath": "mods/kaleidoscope_compat-2.9.7-neoforge+mc1.21.1-Patch.2.jar",
+      "url": "https://cdn.modrinth.com/data/Xm1eP54z/versions/K9qzZOOA/kaleidoscope_compat-2.9.7-neoforge%2Bmc1.21.1-Patch.2.jar"
     },
     {
       "path": "mods/kaleidoscope_nether-1.1.2-neoforge+mc1.21.1.jar",
@@ -17832,7 +17966,8 @@
       "sha1": "0f4370e0252b8fc6efeccd891011fd90003ab722",
       "sha256": "4698b09f9a3edd84ab37a9506c3b88c7b59e947b21ae894c477998421335ffb6",
       "policy": "Managed",
-      "sourcePath": "mods/kaleidoscope_nether-1.1.2-neoforge+mc1.21.1.jar"
+      "sourcePath": "mods/kaleidoscope_nether-1.1.2-neoforge+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/O4YuhMsI/versions/PpoOMArg/kaleidoscope_nether-1.1.2-neoforge%2Bmc1.21.1.jar"
     },
     {
       "path": "mods/kaleidoscope_twilight-1.1.5-neoforge+mc1.21.1.jar",
@@ -17840,7 +17975,8 @@
       "sha1": "c3219f2260cf8f00c0187d7d62f8f0a72e6c4175",
       "sha256": "05aeaafa6420432617e6c583425bb6d25a1e6074666fab093e203d82558a7d00",
       "policy": "Managed",
-      "sourcePath": "mods/kaleidoscope_twilight-1.1.5-neoforge+mc1.21.1.jar"
+      "sourcePath": "mods/kaleidoscope_twilight-1.1.5-neoforge+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/uSH79VEy/versions/uqI820UK/kaleidoscope_twilight-1.1.5-neoforge%2Bmc1.21.1.jar"
     },
     {
       "path": "mods/kaleidoscopecookery-1.6.0-neoforge+mc1.21.1.jar",
@@ -17848,7 +17984,8 @@
       "sha1": "9093e830c91a8f2e19eca7dda78713f0bbc21327",
       "sha256": "e93784a3f17e546ebfa7c449572933bf67c6b694c01cb26b83ad120c40452b33",
       "policy": "Managed",
-      "sourcePath": "mods/kaleidoscopecookery-1.6.0-neoforge+mc1.21.1.jar"
+      "sourcePath": "mods/kaleidoscopecookery-1.6.0-neoforge+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/v17FatAc/versions/g8w0b2ly/kaleidoscopecookery-1.6.0-neoforge+mc1.21.1.jar"
     },
     {
       "path": "mods/kleeslabs-neoforge-1.21.1-21.1.11.jar",
@@ -18072,7 +18209,8 @@
       "sha1": "088f9f2d26e62ecde60ff743ed74de036d393ef5",
       "sha256": "f28d122e1923c3e547e62ff59e40d8d0ea174e31f258e6656876be9c858fa61d",
       "policy": "Managed",
-      "sourcePath": "mods/moreanimation-1.21.1-neoforge-1.6.0.jar"
+      "sourcePath": "mods/moreanimation-1.21.1-neoforge-1.6.0.jar",
+      "url": "https://edge.forgecdn.net/files/9361/252/moreanimation-1.21.1-neoforge-1.6.0.jar"
     },
     {
       "path": "mods/mowziesmobs-1.21.1-1.8.2.jar",
@@ -18084,9 +18222,9 @@
     },
     {
       "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
-      "size": 931764,
-      "sha1": "137c537baceb008b1276bfa04d4c21554d45b735",
-      "sha256": "a145d07bff0642489d7b18b638aa0f09d4183daf92eacf192b49bef386953bc2",
+      "size": 933425,
+      "sha1": "d1dedd01dcaf16e64534fdc5ffcbec3545d31f2c",
+      "sha256": "65376cec19fd003df9af6564d91fba2739665808281bacd6c6e57247a2bee361",
       "policy": "Managed",
       "sourcePath": "mods/muxi-board-games-0.2.0-club.preview.6.jar"
     },
@@ -18136,7 +18274,8 @@
       "sha1": "6f8bbf6a119cbe3ad73c5c9f6cef12ac515f7337",
       "sha256": "557dbe3c13047dfbca46a31b38e8a10d5ec128cd9f3d720f61fc511bd0960b72",
       "policy": "Managed",
-      "sourcePath": "mods/muxi-horse-racing-0.2.2-race.5-shop-ui-qa.4.jar"
+      "sourcePath": "mods/muxi-horse-racing-0.2.2-race.5-shop-ui-qa.4.jar",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/mods/muxi-horse-racing-0.2.2-race.5-shop-ui-qa.4.jar"
     },
     {
       "path": "mods/muxi-minigames-reward-presentation.20261029.1-return.2.jar",
@@ -18168,7 +18307,8 @@
       "sha1": "4844aff87e1b0d4d69b065f6fbfb3b01cb09e0c5",
       "sha256": "81d9dd3d6f4209ad91051db8e544ac5330ee1a4d935af62fbba6f902af194a1b",
       "policy": "Managed",
-      "sourcePath": "mods/muxi-performance-0.1.0-qa.4.jar"
+      "sourcePath": "mods/muxi-performance-0.1.0-qa.4.jar",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/mods/muxi-performance-0.1.0-qa.4.jar"
     },
     {
       "path": "mods/muxi-portal-0.4.0-lobby.1.jar",
@@ -18456,7 +18596,8 @@
       "sha1": "a7c03400abd7b0ff4d56f3c9a7fa19ee22094ab8",
       "sha256": "7ec43d925f7379a6c55f0ea9a94f3510baa3e71f1de9b8df01d30a8d4bccf2e3",
       "policy": "Managed",
-      "sourcePath": "mods/sable_sa_compat-1.0.4.jar"
+      "sourcePath": "mods/sable_sa_compat-1.0.4.jar",
+      "url": "https://cdn.modrinth.com/data/gsAqDfOu/versions/iGTmXDCM/sable_sa_compat-1.0.4.jar"
     },
     {
       "path": "mods/sawmill-1.21-1.8.1-neoforge.jar",
@@ -18488,7 +18629,8 @@
       "sha1": "fd762aac2257fb7af50a483cfba004741f38ab44",
       "sha256": "1aa51914c3808505b971e46ab0a5821191543c96d8279eb2965954a96754da26",
       "policy": "Managed",
-      "sourcePath": "mods/simplenicknames-1.21.1-neoforge-0.8.0.jar"
+      "sourcePath": "mods/simplenicknames-1.21.1-neoforge-0.8.0.jar",
+      "url": "https://cdn.modrinth.com/data/EmdnQtis/versions/kVVMxHOA/simplenicknames-1.21.1-neoforge-0.8.0.jar"
     },
     {
       "path": "mods/sliceanddice-4.3.4-neoforge.jar",
@@ -18496,7 +18638,8 @@
       "sha1": "bfcb12d13465caf6743f200fbd755b72705011e4",
       "sha256": "b3982e89611761d7f1cdce90794cd88498a2c9e1447d8a1aba33ed831f3c9201",
       "policy": "Managed",
-      "sourcePath": "mods/sliceanddice-4.3.4-neoforge.jar"
+      "sourcePath": "mods/sliceanddice-4.3.4-neoforge.jar",
+      "url": "https://cdn.modrinth.com/data/GmjmRQ0A/versions/D6mQaFRW/sliceanddice-4.3.4-neoforge.jar"
     },
     {
       "path": "mods/smarterfarmers-1.21-2.2.4-neoforge.jar",
@@ -18648,7 +18791,8 @@
       "sha1": "1cdbe9f9932fc2f741d6fb8cc8796bba740f3f52",
       "sha256": "88f3f5a74a2ad240956f23ef1e593f081a514ffc4b5d46c9f97df53c1b077ab1",
       "policy": "Managed",
-      "sourcePath": "mods/twilight_forest_final_boss-2.1.2+4.8.3345+1.21.1.jar"
+      "sourcePath": "mods/twilight_forest_final_boss-2.1.2+4.8.3345+1.21.1.jar",
+      "url": "https://mediafilez.forgecdn.net/files/8768/438/twilight_forest_final_boss-2.1.2%2B4.8.3345%2B1.21.1.jar"
     },
     {
       "path": "mods/twilightdelight-3.2.2.jar",
@@ -18840,7 +18984,8 @@
       "sha1": "a41c225a797963e5efd820c8e4e668a331950723",
       "sha256": "bf1f4f6776493755136879b3b38bfe7b651f0d9135dc2747016cccf88c447bcf",
       "policy": "Managed",
-      "sourcePath": "tacz/AnnoyingVillagersWeaponsPack-v2.0+1.21.1.zip"
+      "sourcePath": "tacz/AnnoyingVillagersWeaponsPack-v2.0+1.21.1.zip",
+      "url": "https://mediafilez.forgecdn.net/files/6769/881/%5BTACZ1.1.6%5DAnnoyingVillagersWeaponsPack%20v2.0.zip"
     },
     {
       "path": "tacz/[tacz1.1.6]yishu_att_pack_v1.0.1.zip",
@@ -18848,7 +18993,8 @@
       "sha1": "2a2beab5e1d8b40336ca78dd4c2612b1089f3e0b",
       "sha256": "a6db19cba73c9801dfb3d5e9406737eed0403b1f10e2c0be17053ff5625c1bd0",
       "policy": "Managed",
-      "sourcePath": "tacz/[tacz1.1.6]yishu_att_pack_v1.0.1.zip"
+      "sourcePath": "tacz/[tacz1.1.6]yishu_att_pack_v1.0.1.zip",
+      "url": "https://mediafilez.forgecdn.net/files/6828/80/%5Btacz1.1.6%5Dyishu_att_pack_v1.0.1.zip"
     },
     {
       "path": "tacz/cataclysm_guns_1.0.zip",
@@ -18856,7 +19002,8 @@
       "sha1": "823bbdad545edadfd9e46e776d687751f08b8e83",
       "sha256": "62bd181c86c984a4d6f603f76c778b157483ec030c5e62d66e2a6be6d9fab0ec",
       "policy": "Managed",
-      "sourcePath": "tacz/cataclysm_guns_1.0.zip"
+      "sourcePath": "tacz/cataclysm_guns_1.0.zip",
+      "url": "https://mediafilez.forgecdn.net/files/7248/594/cataclysm_guns_1.0.zip"
     },
     {
       "path": "tacz/guccivuitton-1.20.1-0.2.2.jar",
@@ -18864,7 +19011,8 @@
       "sha1": "59e5ef296ff50bd1f0feaccc1ab7262a65b5429f",
       "sha256": "9247e55f20acf8ec89af56d4ad45fcc8fe08bee9f7189421ef31835f3516bd57",
       "policy": "Managed",
-      "sourcePath": "tacz/guccivuitton-1.20.1-0.2.2.jar"
+      "sourcePath": "tacz/guccivuitton-1.20.1-0.2.2.jar",
+      "url": "https://mediafilez.forgecdn.net/files/6062/98/guccivuitton-1.20.1-0.2.2.jar"
     },
     {
       "path": "tacz/muxi-blue-archive-pixel10-20261025+1.21.1.zip",
@@ -18888,7 +19036,8 @@
       "sha1": "57929ec2b653a74165f3f74c8227abe5d56a0294",
       "sha256": "4523bce38870709fed685ef14a6723d6024d6d7adda9f65a1ba5ec56acb71d07",
       "policy": "Managed",
-      "sourcePath": "third-party-notices/muxi-music-compat-MIT.txt"
+      "sourcePath": "third-party-notices/muxi-music-compat-MIT.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/third-party-notices/muxi-music-compat-MIT.txt"
     },
     {
       "path": "third-party-notices/muxi-music-compat-NOTICE.txt",
@@ -18896,7 +19045,8 @@
       "sha1": "ca68e5af822a3cfa279240a60340d99fa47f5fe4",
       "sha256": "adbf0dd458bff08d2722d0f684c75e2262748dc4a24062433e3b264ce913cff4",
       "policy": "Managed",
-      "sourcePath": "third-party-notices/muxi-music-compat-NOTICE.txt"
+      "sourcePath": "third-party-notices/muxi-music-compat-NOTICE.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/third-party-notices/muxi-music-compat-NOTICE.txt"
     },
     {
       "path": "third-party-notices/net-music-better-login-MIT.txt",
@@ -18904,7 +19054,8 @@
       "sha1": "244c6c6c32c213ac84b213d7ce814794c5432ed6",
       "sha256": "25f067ce472f9a888bfc8914f2fc3d5abe111fb015e9b0b3c19c3e549c310b13",
       "policy": "Managed",
-      "sourcePath": "third-party-notices/net-music-better-login-MIT.txt"
+      "sourcePath": "third-party-notices/net-music-better-login-MIT.txt",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/third-party-notices/net-music-better-login-MIT.txt"
     },
     {
       "path": "third-party-notices/net-music-playlist-PolyForm-Shield-1.0.0.md",
@@ -18912,7 +19063,8 @@
       "sha1": "0eb55f847f4e8c0e8810f70ecbdf61f50ad77b58",
       "sha256": "0bfacb6dbdaafd97821cf27ef2efc399eb898fd5d8f78f7d2989fc25f194a5d7",
       "policy": "Managed",
-      "sourcePath": "third-party-notices/net-music-playlist-PolyForm-Shield-1.0.0.md"
+      "sourcePath": "third-party-notices/net-music-playlist-PolyForm-Shield-1.0.0.md",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/third-party-notices/net-music-playlist-PolyForm-Shield-1.0.0.md"
     },
     {
       "path": "third-party-notices/schematic/NOTICE.txt",
@@ -29096,7 +29248,8 @@
       "size": 717330,
       "sha1": "29e16d0e7a24deef7050a0320844420bd8df2877",
       "sha256": "33fa8bbad36e5d951b07791a26179ef795651238d868cd732a67d93f52559647",
-      "policy": "Managed"
+      "policy": "Managed",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/mods/nmbl-1.0.4-neoforge-mc1.21.1.jar"
     }
   ],
   "knownPrevious": [
@@ -44422,11 +44575,11 @@
     },
     {
       "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
-      "size": 921597,
-      "sha256": "e1cb1d52fe0c7a12dc3972816ed220cf26c746bb1b232602e9f56e500b5e83d4"
+      "size": 931764,
+      "sha256": "a145d07bff0642489d7b18b638aa0f09d4183daf92eacf192b49bef386953bc2"
     }
   ],
-  "scope": "Derived server common-content profile from actual launcher1.4.94 plus existing server-only utilities. Not an official upstream server manifest. Native acceptance pending.",
+  "scope": "Derived1.4.96 common server profile plus retained server-only utilities; not official server manifest; normal native join pending",
   "profileCorrections": [
     {
       "reason": "Actual native loader requires Kotlin language provider and exactnetmusicbetterlogin1.0.4; metadata exclusion corrected, no assertion weakened",
@@ -44440,5 +44593,11 @@
       "change": "One public Managed board-games binary update, all other9475 public paths/hash policies unchanged",
       "sha256": "a145d07bff0642489d7b18b638aa0f09d4183daf92eacf192b49bef386953bc2"
     }
-  ]
+  ],
+  "previousBaselineMilestone": {
+    "version": "1.4.95",
+    "sha256": "902c0d30e314d065f2cc30fcfcd5b3987ed26c7df498435691de4cdfd4f6bf30",
+    "manifestSHA256": "0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372",
+    "gitCommit": "687c429d39fba912133ba24ed60b83135436805a"
+  }
 }
