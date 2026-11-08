@@ -221,8 +221,8 @@
     }
   ],
   "validation": {
-    "installerClientTests": 60,
-    "installerServerTests": 71,
+    "installerClientTests": 62,
+    "installerServerTests": 73,
     "latestNativeNPCSaveLoadCloneMarks10000UnspawnedProbePassed": true,
     "old304TestsBelongTo029Only": true,
     "actualClient6GLoaded": true,
@@ -235,7 +235,8 @@
     "L2ActualServerItemBytes": 2,
     "L2ActualClientItemBytes": 2,
     "L2ActualClientRealPayloadUnreadBytes": 0,
-    "realLoginPassed": false
+    "realLoginPassed": false,
+    "actualBothVerifyBaseVersion": "1.4.96"
   },
   "normalCoreLoopPassed": false,
   "userAccepted": false,
