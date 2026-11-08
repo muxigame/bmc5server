@@ -1,8 +1,8 @@
 # 城市核心候选 2026.11.08（整合包 1.4.95）
 
-当前是未发布候选。客户端已进入登录流程，但完整正常入口验收被网络解码与缺失服务端地图素材阻断；不能作为已验收可玩的稳定版。`city-core-20261108` 下载地址是待发布资源位置，当前分支不保证能从该地址下载。
+本分支已推送源码和锁定清单，候选二进制尚未发布。完整正常入服、城市操作及持久化验收仍未完成，不能作为已验收的可玩稳定版。
 
-Minecraft 1.21.1、NeoForge 21.1.250、Java 21。官方启动器基线1.4.95，原始清单SHA256 `0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372`。`launcher-base-lock.json`逐文件锁定基线，`runtime-lock.json`锁定城市覆盖层。
+Minecraft 1.21.1、NeoForge 21.1.250、Java 21。本候选固定于官方启动器基线 1.4.95，原始清单 SHA256 为 `0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372`。`launcher-base-lock.json` 锁定基础文件，`runtime-lock.json` 锁定以下九个覆盖模块。`city-core-20261108` 下载地址仍是待发布资源位置，当前分支不保证能从该地址下载。
 
 ## 模块
 
@@ -16,27 +16,29 @@ Minecraft 1.21.1、NeoForge 21.1.250、Java 21。官方启动器基线1.4.95，�
 | `real_needs` | 0.5.2 | `ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc` |
 | `inner_monologue` | 0.1.1 | `61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280` |
 | `camera_lock` | 0.1.6 | `88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559` |
+| `city_core_l2_compat` | 0.0.2 | `8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511` |
 
-CustomNPCs使用YSM3兼容版本，两端完全一致；不同时安装YSM2。NPC六份已知工厂模板按准确旧SHA迁移，作者修改不覆盖，原版保存于本机`.runtime/npc-design-kit-originals`。已知旧模组也只在准确SHA匹配后移入回退目录，未知版本或手改文件会拒绝升级。
+CustomNPCs 使用 YSM 3 兼容版本，两端完全一致，不同时安装 YSM 2。六份已知工厂模板仅在准确旧 SHA 匹配后迁移，作者修改不会覆盖，原件保存于本机 `.runtime/npc-design-kit-originals`。已知旧模组也只在准确 SHA 匹配后移入回退目录，未知版本或手改文件会拒绝升级。
 
-## 已验证与未验证
+## 已验证的范围
 
-- 客户端安装工具60项、服务端71项单元检查通过；实际两端锁定模组及安装资源核对通过。
-- NPC原生加载/保存/克隆/MarkData与10000个未生成实体的GC探针通过。客户端YSM3护甲层注册已观察到，真实分段渲染和运动仍待验。
-- City 0.10.30服务端启动成功；修复旧魔杖绕过创建权限。本版开发环境实际无界面回归307/307通过，包含新增3项创建权限用例；测试服正常保存退出。该结果不等于完整启动器包的真实玩家UI和持久化闭环通过。
-- 正常入服出现L2Serial读取ModularGolems枚举的流解码错误。两端对应顶层JAR及实际选中l2serial 3.1.1一致，尚未证明原因。
-- 独立候选服缺少`data/muxi-zombie-authoring/map-assets`，小游戏登录初始化因此拒绝进入；通用登录错误文字不证明账号令牌错误。官方客户端清单与当前服务端仓库没有这份server-data。需要正确配套素材，不能以空目录或关闭内容代替。
-- 2城、1建筑、1NPC的正常UI核心循环、两个正常保存重启和持久化对照尚未完成。
+- 客户端安装工具 60 项、服务端 71 项检查通过；当前九模块覆盖层及两端安装资源的实际 verify 通过。
+- NPC 原生加载、保存、克隆、MarkData 和 10000 个未生成实体的 GC 探针通过。客户端已观察到 YSM 3 护甲层注册；真实分段画面、战斗动作、尸体与搬运显示尚未验收。
+- City 0.10.30 开发环境实际无界面 GameTest 为 307/307 通过，包含旧魔杖创建权限绕过修复的三项新增用例，测试服正常保存退出。该结果只覆盖开发环境测试，不等于完整启动器包的真实玩家操作和持久化闭环通过。
+- L2Serial 解码错误的原因已在真实客户端、服务端中复现：同一库初始化时缓存了不同 Item 编码，服务端为 36 字节名称编码，客户端为 2 字节索引编码；原始服务端配置会在客户端产生枚举流错位。兼容模块仅将原库的编码选择延迟到实际读写时，两端都需安装，上游 JAR 不改。
+- 兼容候选的真实服务端编码及配置回读通过；客户端标题页内存重放同一份 1072 字节配置，Item 编码为 2 字节，解码剩余字节为 0，得到 8 个过滤器和 3 个放大器。确定性打包保留全部受测类和资源字节，仅规范 ZIP 元数据。这不等于真实入服、注册表同步或完整跨进程配置语义验收。
 
-## 安装与回退边界
+兼容模块可移植源码与验证范围见 `modules/city-core-l2-compat`。源码包保留自有模块及补丁来源；完整第三方反编译源码、世界、账号、截图、日志和临时诊断探针不进入发布资源。
 
-待候选资源发布并解除上述阻断后，关闭对应实例，保留世界与现有配置，使用本分支setup/verify。客户端需完整官方启动器认证链，仓库不包含账号或令牌。进入验收世界第一步使用创造模式；不修改正在运行的正式实例。
+## 发布前仍需完成
 
-本仓库只分发源码、校验清单及许可允许的候选资源；不包含玩家世界、账号、截图、日志、临时探针或验收专用控制脚本。第三方原始资源继续从官方锁定来源获取，完整反编译源码不进入资源包。NPC源码补丁包保留基础JAR与多步构建的来源；单一补丁提交不等于完整motion134源码。
+1. 提供与本版本匹配的 `server-data/data/muxi-zombie-authoring/map-assets`。独立候选服日志显示地图素材缺失，小游戏登录初始化因而拒绝进入；通用登录错误文字不能证明账号令牌错误。已检查的官方客户端清单和当前服务端仓库没有该交付，不能用空目录、关闭内容或绕过认证代替。
+2. 在保持完整整合包的情况下实际正常入服，确认兼容模块经过真实注册表同步后的协议及语义。
+3. 第一时间进入创造模式，完成两城、一建筑、一 NPC 的正常 UI 核心循环，以及两个正常保存重启与完整持久化对照。
+4. 实际核验 YSM 3 分段护甲、战斗动作、尸体和搬运显示，并从清洁 checkout 进行 setup、verify 与 smoke。
 
-发布前必须取得配套server-data、修复正常入服、完成正常核心循环和YSM3分段画面/运动验证，再从清洁checkout做setup/verify/smoke。未完成时不更新稳定标签，也不替换正式服。
+上述范围完成前，不更新稳定标签，不替换正在运行的正式实例，也不把无界面测试或内存重放称为完整城市框架验收。
 
+## 安装与回退
 
-The candidate now includes `city_core_l2_compat`0.0.2 on both sides, pinned to L2Library3.0.8. Actual unmodified library startup cached different Item stream formats (server36 bytes, client2 bytes); exact server configuration bytes reproduced the client StatFilterType decode failure. The compatibility addon defers that choice until packet use. Actual dedicated encode/source-map roundtrip and exact1072-byte title-client replay passed with2-byte Item encoding and zero unread bytes. Canonical packaging preserves every tested class/resource byte; only ZIP metadata was normalized. Upstream jars are unchanged.
-
-This wire replay is not real-login, registry synchronization, complete cross-process map semantics, YSM rendering or normal city-loop acceptance. Matching `server-data/data/muxi-zombie-authoring/map-assets` is still missing. Do not publish a stable binary release or describe the full framework as accepted. Portable authored sources include `modules/city-core-l2-compat`; diagnostics, worlds, logs and account material are excluded. The 0.10.30 permission regression is now actually307/307 passing, exit0.
+候选资源发布并解除阻断后，关闭对应实例，保留世界与现有配置，再使用本分支 setup/verify。客户端需完整官方启动器认证链，仓库不包含账号或令牌。第三方原始资源继续从官方锁定来源获取；NPC 补丁包保留基础 JAR 和多步构建来源，单一补丁提交不等于完整 motion.134 源码。
