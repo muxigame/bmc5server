@@ -13,6 +13,7 @@ import tempfile
 import urllib.request
 import zipfile
 from npc_design_kit import install as install_npc_kit, verify as verify_npc_kit
+from city_core import preflight as preflight_city, retire as retire_city, verify as verify_city
 from local_rebuild import install as install_rebuilds, locked_records, overrides as rebuild_overrides, validated_sources, verify_rebuilds
 
 if sys.version_info < (3, 10):
@@ -20,6 +21,14 @@ if sys.version_info < (3, 10):
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / '.runtime'
+
+
+def configure_console():
+    # A GBK console cannot encode every character in a third-party mod log.
+    # Keep the UTF-8 evidence file exact; never abort a live server's controller.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(errors='backslashreplace')
 
 
 def digest(path):
@@ -45,6 +54,18 @@ def fetch(record, destination):
         return destination
     destination.parent.mkdir(parents=True, exist_ok=True)
     partial = destination.with_name(destination.name + '.partial')
+    if record.get('bundleMember'):
+        source = record['sourceBundle']
+        archive_path = fetch(source, CACHE / ('legacy-bundle-' + source['sha256'] + '.zip'))
+        member = record['bundleMember']
+        safe_path(member)
+        with zipfile.ZipFile(archive_path) as archive:
+            if archive.namelist().count(member) != 1: raise RuntimeError('Ambiguous legacy asset member')
+            with archive.open(member) as src, partial.open('wb') as out: shutil.copyfileobj(src,out)
+        if partial.stat().st_size != record['size'] or digest(partial) != record['sha256']:
+            raise RuntimeError('Legacy utility checksum mismatch')
+        partial.replace(destination)
+        return destination
     print('Downloading ' + record['url'], flush=True)
     request = urllib.request.Request(record['url'], headers={'User-Agent': 'muxigame-bmc5-bootstrap/1'})
     with urllib.request.urlopen(request, timeout=120) as response, partial.open('wb') as out:
@@ -72,7 +93,18 @@ def arguments_file(lock):
 
 
 def verify(lock):
-    failures = verify_rebuilds(ROOT, lock) + verify_npc_kit(ROOT, ROOT, lock)
+    if lock.get('launcherBase'):
+        from launcher_base import verify as verify_launcher
+        failures=verify_launcher(ROOT,ROOT,lock)+verify_rebuilds(ROOT,lock)+verify_npc_kit(ROOT,ROOT,lock)+verify_city(ROOT,ROOT,lock)
+        from server_model_runtime import verify as verify_model_runtime
+        failures += verify_model_runtime(ROOT,lock)
+        for record in lock['external']+[dict(r,path=r.get('installedPath',r['path'])) for r in lock.get('localBuilds',[])]:
+            path=safe_path(record['path'])
+            if not path.is_file() or path.stat().st_size!=record['size'] or digest(path)!=record['sha256']: failures.append(record['path'])
+        if failures: raise RuntimeError('Latest launcher-derived server/overlay mismatch:\n'+'\n'.join(failures[:30]))
+        print('Verified launcher'+lock['launcherBase']['version']+'-derived server candidate and city-core overlay.',flush=True)
+        return
+    failures = verify_rebuilds(ROOT, lock) + verify_npc_kit(ROOT, ROOT, lock) + verify_city(ROOT, ROOT, lock)
     for record in lock.get('retired', []):
         if safe_path(record['path']).exists():
             failures.append('Retired asset still present: ' + record['path'] + ' (run setup)')
@@ -86,6 +118,35 @@ def verify(lock):
 
 
 def setup(args, lock):
+    if lock.get('launcherBase'):
+        from launcher_base import setup as setup_launcher
+        preflight_city(ROOT,ROOT,lock)
+        validated_sources(ROOT,lock,getattr(args,'mcef_jar',None),getattr(args,'npc_jar',None))
+        java=java_binary(args.java)
+        local=CACHE/'launcher-local-resources.json'
+        resources=json.loads(local.read_text('utf8')) if local.exists() else {}
+        _,stats=setup_launcher(ROOT,ROOT,lock,local_resources=resources)
+        for record in lock['external']:
+            dest=safe_path(record['path'])
+            if dest.exists() and digest(dest)!=record['sha256']: raise RuntimeError('Modified server overlay: '+record['path'])
+            fetch(record,dest)
+        install_rebuilds(ROOT,ROOT,lock,getattr(args,'mcef_jar',None),getattr(args,'npc_jar',None))
+        retire_city(ROOT,ROOT,lock);install_npc_kit(ROOT,ROOT,lock)
+        from server_model_runtime import setup as setup_model_runtime
+        setup_model_runtime(ROOT,lock)
+        verify(lock)
+        installer=fetch(lock['installer'],CACHE/'neoforge-installer.jar')
+        if not arguments_file(lock).is_file():
+            with (CACHE/'install.log').open('w',encoding='utf8') as log:
+                result=subprocess.run([java,'-jar',str(installer),'--installServer',str(ROOT)],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
+            if result.returncode: raise RuntimeError('NeoForge installer failed; see .runtime/install.log')
+        for source,target in [('config-examples/server.properties','server.properties'),('config-examples/muxi-game-core.json','config/muxi-game-core.json'),*[(f'config-examples/maid-sites/{name}.json',f'config/touhou_little_maid/sites/{name}.json') for name in ('llm','tts','stt')]]:
+            dest=ROOT/target
+            if not dest.exists():dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/source,dest)
+        if args.accept_eula:(ROOT/'eula.txt').write_text('# Accepted explicitly via --accept-eula\neula=true\n',encoding='utf8')
+        print('Latest launcher-derived candidate prepared; no server started. '+str(stats),flush=True)
+        return
+    preflight_city(ROOT, ROOT, lock)
     validated_sources(ROOT, lock, getattr(args, 'mcef_jar', None), getattr(args, 'npc_jar', None))
     java = java_binary(args.java)
     bundle = Path(args.bundle).resolve() if args.bundle else CACHE / 'server-assets.zip'
@@ -118,6 +179,7 @@ def setup(args, lock):
             raise RuntimeError('Refusing to overwrite modified asset: ' + record['path'])
         fetch(record, dest)
     install_rebuilds(ROOT, ROOT, lock, getattr(args, 'mcef_jar', None), getattr(args, 'npc_jar', None))
+    retire_city(ROOT, ROOT, lock)
     install_npc_kit(ROOT, ROOT, lock)
     for name, record in retired.items():
         dest = safe_path(name)
@@ -166,6 +228,9 @@ def command(args, lock):
     argfile = arguments_file(lock)
     if not argfile.is_file():
         raise RuntimeError('NeoForge not installed. Run setup.')
+    if lock.get('serverModelRuntime'):
+        from server_model_runtime import arguments as model_arguments
+        argfile=model_arguments(ROOT,lock,argfile)
     java = java_binary(args.java)
     jvm = [java, '-Xms1G', '-Xmx' + args.memory, '-XX:+UseG1GC']
     if args.cpus:
@@ -245,6 +310,7 @@ def smoke(args, lock):
 
 
 def main():
+    configure_console()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['setup', 'verify', 'start', 'smoke'])
     parser.add_argument('--java', help='Path to Java 21+ executable')

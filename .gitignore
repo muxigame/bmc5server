@@ -111,3 +111,6 @@
 *.webp
 *.ysm
 *.zip
+
+# Owned city-core acceptance worlds and generated profile cache
+/city-core-acceptance-*/

@@ -61,15 +61,50 @@ def install(root,destination,lock,bundle=None):
     record=lock.get('npcDesignKit')
     if not record: return {'installed':0,'preserved':0}
     plan=inspect(cached(root,record,bundle),destination)
-    installed=preserved=0
-    # Validate the entire archive before writing; existing authored resources are never overwritten.
+    rules=record.get('knownFactoryMigrations',[])
+    if len({r['path'] for r in rules})!=len(rules):raise ValueError('Duplicate NPC factory migration')
+    byname={r['path']:r for r in record['files']};migrations={}
+    for rule in rules:
+        safe(destination,rule['path'])
+        old=rule['previousSHA256']
+        if len(old)!=64 or any(c not in '0123456789abcdef' for c in old) or rule['path'] not in byname or rule['sha256']!=byname[rule['path']]['sha256']:raise ValueError('Invalid exact NPC factory migration')
+        migrations[rule['path']]=rule
+    writes=[];preserved=0;authored=[];migrated=[]
+    # Validate every asset and rollback destination before the first mutation.
     for row,target,data in plan:
-        if target.exists(): preserved+=1;continue
+        if not target.exists():writes.append((row,target,data,None,None));continue
+        current=digest(target.read_bytes())
+        if current==row['sha256']:preserved+=1;continue
+        rule=migrations.get(row['path'])
+        if not rule or current!=rule['previousSHA256']:
+            preserved+=1;authored.append(row['path']);continue
+        backup=safe(root/'.runtime/npc-design-kit-originals'/current,row['path'])
+        if backup.exists() and (not backup.is_file() or digest(backup.read_bytes())!=current):raise ValueError('NPC factory rollback changed: '+row['path'])
+        writes.append((row,target,data,current,backup));migrated.append(row['path'])
+    for row,target,data,current,backup in writes:
+        if backup is not None and not backup.exists():
+            if digest(target.read_bytes())!=current:raise ValueError('NPC factory changed before backup')
+            backup.parent.mkdir(parents=True,exist_ok=True)
+            with backup.open('xb') as f:f.write(target.read_bytes())
+            if digest(backup.read_bytes())!=current:raise ValueError('NPC factory backup checksum mismatch')
+    for row,target,data,current,backup in writes:
+        if (digest(target.read_bytes()) if target.exists() else None)!=current:raise ValueError('NPC resource changed during installation')
         target.parent.mkdir(parents=True,exist_ok=True)
-        with target.open('xb') as f: f.write(data)
-        installed+=1
-    print('NPC design kit: installed %d files; preserved %d existing resources.'%(installed,preserved),flush=True)
-    return {'installed':installed,'preserved':preserved}
+        if current is None:
+            with target.open('xb') as f:f.write(data)
+        else:
+            with tempfile.NamedTemporaryFile(dir=target.parent,suffix='.npc-kit-tmp',delete=False) as f:
+                staged=Path(f.name);f.write(data)
+            try:
+                if digest(staged.read_bytes())!=row['sha256']:raise ValueError('NPC replacement checksum mismatch')
+                staged.replace(target) # Independent replacement; never write through linked resources.
+            finally:staged.unlink(missing_ok=True)
+    result={'installed':len(writes),'preserved':preserved,'knownFactoryMigrated':migrated,'authoredPreserved':authored}
+    (root/'.runtime').mkdir(exist_ok=True)
+    (root/'.runtime/npc-design-kit-install.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf8')
+    print('NPC design kit: installed %d files; preserved %d existing resources; migrated %d exact factory defaults.'%(len(writes),preserved,len(migrated)),flush=True)
+    return result
+
 
 def verify(root,destination,lock):
     record=lock.get('npcDesignKit')

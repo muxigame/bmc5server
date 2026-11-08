@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "status": "CANDIDATE_NETWORK_ACCEPTANCE_BLOCKED",
+  "releaseTag": "city-core-20261108",
+  "binaryReleasePublished": false,
+  "packVersion": "1.4.95",
+  "officialLauncherManifestSHA256": "0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372",
+  "modules": [
+    {
+      "modId": "customnpcs",
+      "path": "mods/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
+      "size": 105625076,
+      "sha256": "0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82",
+      "version": "1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1",
+      "license": "CC BY-NC",
+      "sourceProject": "customnpcs-source",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar"
+    },
+    {
+      "modId": "zaluoke_forging",
+      "path": "mods/zaluoke_forging-0.6.3-dev.jar",
+      "size": 250649,
+      "sha256": "99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02",
+      "version": "0.6.3-dev",
+      "license": "All Rights Reserved",
+      "sourceProject": "zaluoke-forging",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/zaluoke_forging-0.6.3-dev.jar"
+    },
+    {
+      "modId": "building_archive",
+      "path": "mods/building_archive-0.6.1.jar",
+      "size": 152700,
+      "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
+      "version": "0.6.1",
+      "license": "All Rights Reserved",
+      "sourceProject": "building-archive",
+      "bothSides": true,
+      "superseded": [
+        {
+          "path": "mods/building_archive-0.6.0.jar",
+          "size": 150955,
+          "sha256": "1d1123fcea9aae5fb8b734f17eb7cb001f7de4aec982b4113cdeb4b0f6d7ae2a"
+        }
+      ],
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/building_archive-0.6.1.jar"
+    },
+    {
+      "path": "mods/ysm-3.0-dev-neoforge+mc1.21.1.jar",
+      "size": 31309535,
+      "sha256": "4e758d94d5d62c180f2c79dee6144b3d3f72f3a2a676a5a933fd23309147a663",
+      "modId": "ysm",
+      "version": "3.0-dev-neoforge+mc1.21.1",
+      "license": "Apache-2.0",
+      "sourceProject": "latest-public-launcher-1.4.94",
+      "bothSides": true,
+      "superseded": [
+        {
+          "path": "mods/[是，史蒂夫模型]ysm-2.6.5-neoforge+mc1.21.1-release.jar",
+          "size": 63463229,
+          "sha256": "b285c73d4ec010d9a9be3c53c1bee890cf269645be5f1bcf1c27a2e8e82807cb"
+        }
+      ],
+      "compatibilityAcceptancePending": true
+    },
+    {
+      "modId": "city_settlements",
+      "path": "mods/city_settlements-0.10.30.jar",
+      "size": 1005944,
+      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
+      "version": "0.10.30",
+      "license": "All Rights Reserved",
+      "sourceProject": "city-settlements",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.10.30.jar",
+      "superseded": [
+        {
+          "path": "mods/city_settlements-0.10.29.jar",
+          "size": 1005949,
+          "sha256": "9085ee6d60df406ca26ddf6e74bed470e387955a088e1bbf17968364752afe22"
+        }
+      ]
+    },
+    {
+      "modId": "real_needs",
+      "path": "mods/real_needs-0.5.2.jar",
+      "size": 156843,
+      "sha256": "ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc",
+      "version": "0.5.2",
+      "license": "All Rights Reserved",
+      "sourceProject": "real-needs",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/real_needs-0.5.2.jar"
+    },
+    {
+      "modId": "inner_monologue",
+      "path": "mods/inner_monologue-0.1.1.jar",
+      "size": 47670,
+      "sha256": "61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280",
+      "version": "0.1.1",
+      "license": "All Rights Reserved",
+      "sourceProject": "monologue-psychology",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/inner_monologue-0.1.1.jar"
+    },
+    {
+      "modId": "camera_lock",
+      "path": "mods/camera_lock-0.1.6.jar",
+      "size": 42487,
+      "sha256": "88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559",
+      "version": "0.1.6",
+      "license": "All Rights Reserved",
+      "sourceProject": "camera-lock-movement",
+      "bothSides": true,
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/camera_lock-0.1.6.jar"
+    }
+  ],
+  "assets": [
+    {
+      "file": "CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
+      "sha256": "0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82",
+      "size": 105625076
+    },
+    {
+      "file": "zaluoke_forging-0.6.3-dev.jar",
+      "sha256": "99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02",
+      "size": 250649
+    },
+    {
+      "file": "building_archive-0.6.1.jar",
+      "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
+      "size": 152700
+    },
+    {
+      "file": "city_settlements-0.10.30.jar",
+      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
+      "size": 1005944
+    },
+    {
+      "file": "real_needs-0.5.2.jar",
+      "sha256": "ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc",
+      "size": 156843
+    },
+    {
+      "file": "inner_monologue-0.1.1.jar",
+      "sha256": "61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280",
+      "size": 47670
+    },
+    {
+      "file": "camera_lock-0.1.6.jar",
+      "sha256": "88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559",
+      "size": 42487
+    },
+    {
+      "file": "NPC-Design-Kit-motion134-rural092-markfix1.zip",
+      "sha256": "8c8189b76bdcb98065193cc106c59859125191ae7e64504e7b6c0ad634f2a95d",
+      "size": 1209849
+    },
+    {
+      "file": "NPC134-MarkFix-Publish-Kit.zip",
+      "sha256": "2a82bc91300ea2a6708a69a4b2d72669126414e7d73f960548d1a8e6e60481f8",
+      "size": 6552
+    },
+    {
+      "file": "glfw.dll",
+      "sha256": "0d22a3133722c2aa48ad6a898df12c4026c867dfc52db9c67f9fbdd2b24a586b",
+      "size": 366592
+    },
+    {
+      "file": "GLFW-LICENSE.md",
+      "sha256": "149704059b5d0bf551637e50042dd4de9c2cae921021f6636298911e3a5f9462",
+      "size": 904
+    },
+    {
+      "file": "owned-active-window.patch",
+      "sha256": "5207379f8ab336b336c83c819c47d2075a5f6b0e44aa921a07b36cc3695d6562",
+      "size": 655
+    },
+    {
+      "file": "lwjgl-compat.patch",
+      "sha256": "9847e44eb685c274f8ded6cdf1b2602554a1744d66b018cc96a5b4ba04c140ae",
+      "size": 11290
+    },
+    {
+      "file": "NPC134-YSM3-Compat-Source-Kit.zip",
+      "sha256": "9c45f39bb051d105bb391a70e9583245b33ae3ed79f94459edbfde0f0d540623",
+      "size": 34549
+    },
+    {
+      "file": "City-0.10.30-Changed-Sources.zip",
+      "sha256": "a57ee735f77d00439c2cc97fdc6b74eb351556aba990286bf458e7cb1a713dd6",
+      "size": 17388
+    },
+    {
+      "file": "city-0.10.29-to-0.10.30.patch",
+      "sha256": "00c3cb6401392e2e30927e1b86a97bdefd3f809afc81a75638069048f459cdc4",
+      "size": 10629
+    },
+    {
+      "file": "City-Core-Module-Sources-20261109-030.zip",
+      "sha256": "cec80cb7eef100d0d7e18d10669d1902b6f867ddf58e69fe01008d16cb3dcd33",
+      "size": 1830107
+    }
+  ],
+  "validation": {
+    "installerClientTests": 60,
+    "installerServerTests": 71,
+    "latestNativeNPCSaveLoadCloneMarks10000UnspawnedProbePassed": true,
+    "city030New3PermissionTestsCompiledNotRun": true,
+    "old304TestsBelongTo029Only": true,
+    "actualClient6GLoaded": true,
+    "actualClientJoinFailed": true,
+    "normalCoreLoopPassed": false,
+    "userWorldModified": false
+  },
+  "normalCoreLoopPassed": false,
+  "userAccepted": false
+}

@@ -41,4 +41,24 @@ class KitTests(unittest.TestCase):
   with zipfile.ZipFile(p,'a') as z:z.writestr(self.path,b'default')
   self.lock['npcDesignKit'].update(size=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
   with self.assertRaises(ValueError):kit.install(self.root,self.game,self.lock,p)
+ def test_exact_factory_migrates_and_preserves_backup(self):
+  p=self.bundle(data=b'new default');f=self.game/self.path;f.parent.mkdir(parents=True);f.write_bytes(b'old factory')
+  old=hashlib.sha256(b'old factory').hexdigest();row=self.lock['npcDesignKit']['files'][0]
+  self.lock['npcDesignKit']['knownFactoryMigrations']=[{'path':self.path,'previousSHA256':old,'sha256':row['sha256']}]
+  result=kit.install(self.root,self.game,self.lock,p)
+  self.assertEqual(f.read_bytes(),b'new default');self.assertEqual(result['knownFactoryMigrated'],[self.path])
+  self.assertEqual((self.root/'.runtime/npc-design-kit-originals'/old/self.path).read_bytes(),b'old factory')
+  again=kit.install(self.root,self.game,self.lock,p);self.assertEqual(again['installed'],0)
+ def test_migration_never_replaces_authored_file(self):
+  p=self.bundle(data=b'new default');f=self.game/self.path;f.parent.mkdir(parents=True);f.write_bytes(b'user authored')
+  old=hashlib.sha256(b'old factory').hexdigest();row=self.lock['npcDesignKit']['files'][0]
+  self.lock['npcDesignKit']['knownFactoryMigrations']=[{'path':self.path,'previousSHA256':old,'sha256':row['sha256']}]
+  result=kit.install(self.root,self.game,self.lock,p);self.assertEqual(f.read_bytes(),b'user authored');self.assertEqual(result['authoredPreserved'],[self.path])
+ def test_corrupt_factory_backup_prevents_replacement(self):
+  p=self.bundle(data=b'new default');f=self.game/self.path;f.parent.mkdir(parents=True);f.write_bytes(b'old factory')
+  old=hashlib.sha256(b'old factory').hexdigest();row=self.lock['npcDesignKit']['files'][0]
+  self.lock['npcDesignKit']['knownFactoryMigrations']=[{'path':self.path,'previousSHA256':old,'sha256':row['sha256']}]
+  backup=self.root/'.runtime/npc-design-kit-originals'/old/self.path;backup.parent.mkdir(parents=True);backup.write_bytes(b'wrong')
+  with self.assertRaisesRegex(ValueError,'rollback changed'):kit.install(self.root,self.game,self.lock,p)
+  self.assertEqual(f.read_bytes(),b'old factory')
 if __name__=='__main__':unittest.main()
