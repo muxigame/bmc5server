@@ -20,5 +20,6 @@
   "normalUserConfigsChanged": false,
   "formalInstanceModified": false,
   "nativeWholeModpackVerified": false,
-  "repositoryPushVerified": false
+  "repositoryPushVerified": true,
+  "remoteVerifiedAt": "2026-11-09T09:45:27.102824+00:00"
 }
