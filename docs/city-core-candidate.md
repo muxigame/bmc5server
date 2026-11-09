@@ -1,8 +1,8 @@
-# 城市核心候选 2026.11.08（整合包 1.4.100）
+# 城市核心候选 2026.11.08（整合包 1.4.101）
 
 本分支包含完整自有模块源码和锁定清单，配套二进制由服务端同分支Git LFS提供。完整正常入服、城市操作及持久化验收仍未完成，不能作为已验收的可玩稳定版。
 
-Minecraft 1.21.1、NeoForge 21.1.250、Java 21。本候选固定于官方启动器基线 1.4.100，原始清单 SHA256 为 `96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629`。`launcher-base-lock.json` 锁定基础文件，`runtime-lock.json` 锁定以下九个覆盖模块。当前自有资源地址指向服务端`release-assets/`的Git LFS文件；旧Releases地址仅属于历史交付。
+Minecraft 1.21.1、NeoForge 21.1.250、Java 21。本候选固定于官方启动器基线 1.4.101，原始清单 SHA256 为 `41652d9b1a57ff11e19a76b46bb22bdb61b3aaf67be9e0cead98a6d13e67fdd5`。`launcher-base-lock.json` 锁定基础文件，`runtime-lock.json` 锁定以下九个覆盖模块。当前自有资源地址指向服务端`release-assets/`的Git LFS文件；旧Releases地址仅属于历史交付。
 
 ## 模块
 
@@ -10,7 +10,7 @@ Minecraft 1.21.1、NeoForge 21.1.250、Java 21。本候选固定于官方启动�
 | --- | --- | --- |
 | `customnpcs` | 1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1 | `0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82` |
 | `zaluoke_forging` | 0.6.3-dev | `99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02` |
-| `building_archive` | 0.6.1 | `4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361` |
+| `building_archive` | 0.6.2 | `c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281` |
 | `ysm` | 3.0-dev-neoforge+mc1.21.1 | `4e758d94d5d62c180f2c79dee6144b3d3f72f3a2a676a5a933fd23309147a663` |
 | `city_settlements` | 0.11.0 | `95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27` |
 | `real_needs` | 0.5.2 | `ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc` |
@@ -77,3 +77,13 @@ CustomNPCs 使用 YSM 3 兼容版本，两端完全一致，不同时安装 YSM 
 ### 本次完整仓库交付
 
 官方1.4.100新增3个/退出2个JAR已按官方校验下载，City0.11.0和其他八模块保持。自有模块完整源码已加入两仓modules；二进制和完整内容包进入服务端release-assets的LFS目录。未把实际游戏/世界/账号上传，未更新稳定主分支或正在运行的实例。仓库文件可获得与原生玩法验收分别记录。
+
+
+### 建筑档案0.6.2搜索修复
+
+按固定SHA集成0.6.2。中文语言缓存、分帧目录/查询、120ms防抖取消旧任务、输入框/光标保留与可见行图标缓存。原操作/NBT/API/传输协议不变。原负责人完整48项GameTest（含60k合成条目）和独立开发客户端Picker通过；未做整个大整合包的端到端实测。两端候选更新，实际用户游戏及共享建筑环境未改。
+
+
+### 1.4.101干净检出融合
+
+先fetch目标分支，在独立干净源码worktree中合入1.4.101唯一棋牌增量与建筑档案0.6.2。其余9476条公开资源与其他八个自有模块复用，原普通服务端四个未提交配置保持。当前新完整包入口为complete-pack-1.4.101.json，历史1.4.100包不覆盖。

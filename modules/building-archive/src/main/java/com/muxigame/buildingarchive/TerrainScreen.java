@@ -1,14 +1,10 @@
 package com.muxigame.buildingarchive;
 
-import com.google.gson.JsonParser;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -16,12 +12,8 @@ import java.util.*;
 
 public final class TerrainScreen extends Screen {
     private CompoundTag data;private String message;private boolean pending;private int wait;private EditBox low,high;
-    private final Map<String,String> chinese=new HashMap<>();
-    public TerrainScreen(CompoundTag data){super(Component.literal("地形改造"));this.data=data;message=data.getString("Message");
-        var resources=Minecraft.getInstance().getResourceManager();
-        for(String ns:resources.getNamespaces())for(var resource:resources.getResourceStack(ResourceLocation.fromNamespaceAndPath(ns,"lang/zh_cn.json")))try(var reader=resource.openAsReader()){var json=JsonParser.parseReader(reader).getAsJsonObject();json.entrySet().forEach(e->{if(e.getValue().isJsonPrimitive())chinese.put(e.getKey(),e.getValue().getAsString());});}catch(Exception ignored){}
-    }
-    String label(Block b){String key=b.getDescriptionId();String value=chinese.get(key);if(value!=null)return value;String local=b.getName().getString();return local.matches(".*[\\u3400-\\u9fff].*")?local:local+"（未提供中文）";}
+    public TerrainScreen(CompoundTag data){super(Component.literal("地形改造"));this.data=data;message=data.getString("Message");}
+    String label(Block b){return TerrainClientCatalog.label(b);}
     private int x(){return (width-390)/2;}private int y(){return Math.max(2,(height-268)/2);}
     private Button button(String label,int x,int y,int width,Runnable action,boolean active){var b=addRenderableWidget(Button.builder(Component.literal(label),v->action.run()).bounds(x,y,width,18).build());b.active=active&&!pending;return b;}
     private String blockLabel(String key){return label(TerrainTool.block(data.getString(key)));}
@@ -46,19 +38,61 @@ public final class TerrainScreen extends Screen {
     @Override public boolean isPauseScreen(){return false;}
 
     static final class Picker extends Screen {
-        final TerrainScreen parent;final boolean target;EditBox search;String query="";int page;List<Block> matches=List.of();
+        static final int PAGE_SIZE=12,INDEX_BUDGET=512,SEARCH_BUDGET=4096;
+        static final long FRAME_BUDGET=2_000_000L,DEBOUNCE=120_000_000L;
+        final TerrainScreen parent;final boolean target;EditBox search;String query="";int page;
+        TerrainClientCatalog catalog;TerrainSearchIndex.Query<Block> job;
+        List<TerrainSearchIndex.Entry<Block>> matches=List.of();
+        final List<Button> rows=new ArrayList<>();final List<ItemStack> icons=new ArrayList<>();Button prev,next;
+        boolean requested=true;long due;
         Picker(TerrainScreen parent,boolean target){super(Component.literal(target?"选择目标方块":"选择要替换的原方块"));this.parent=parent;this.target=target;}
-        int x(){return (width-390)/2;}int y(){return Math.max(2,(height-268)/2);}
-        void filter(){String q=query.toLowerCase(Locale.ROOT);matches=BuiltInRegistries.BLOCK.stream().filter(b->b.asItem()!=Items.AIR&&(!target||TerrainTool.usableTarget(b))).filter(b->parent.label(b).toLowerCase(Locale.ROOT).contains(q)||BuiltInRegistries.BLOCK.getKey(b).toString().contains(q)).sorted(Comparator.comparing(parent::label)).toList();page=Math.min(page,Math.max(0,(matches.size()-1)/12));}
-        @Override protected void init(){clearWidgets();filter();int x=x(),y=y();
-            search=addRenderableWidget(new EditBox(font,x+10,y+30,370,18,Component.literal("输入中文名称或方块ID")));search.setHint(Component.literal("搜索中文，如：石头、泥土、橡木"));search.setValue(query);search.setResponder(v->{query=v;page=0;init();setFocused(search);search.setFocused(true);search.moveCursorToEnd(false);});
-            for(int i=0;i<12&&page*12+i<matches.size();i++){Block b=matches.get(page*12+i);int xx=x+10+(i%2)*190,yy=y+58+(i/2)*28;var button=addRenderableWidget(Button.builder(Component.literal(font.plainSubstrByWidth(parent.label(b),145)),v->{minecraft.setScreen(parent);parent.send(target?"terrain_target":"terrain_source",BuiltInRegistries.BLOCK.getKey(b).toString());}).bounds(xx+22,yy,158,24).build());button.setTooltip(Tooltip.create(Component.literal(parent.label(b)+"\n"+BuiltInRegistries.BLOCK.getKey(b))));}
-            var prev=addRenderableWidget(Button.builder(Component.literal("上一页"),b->{page--;init();}).bounds(x+10,y+230,100,18).build());prev.active=page>0;
-            var next=addRenderableWidget(Button.builder(Component.literal("下一页"),b->{page++;init();}).bounds(x+116,y+230,100,18).build());next.active=(page+1)*12<matches.size();
-            addRenderableWidget(Button.builder(Component.literal("返回"),b->onClose()).bounds(x+280,y+230,100,18).build());setInitialFocus(search);
+        int panelHeight(){return Math.min(268,height-4);}
+        int x(){return (width-390)/2;}int y(){return Math.max(2,(height-panelHeight())/2);}
+        int rowPitch(){return Math.min(28,Math.max(18,(panelHeight()-100)/6));}
+        boolean busy(){return catalog==null||!catalog.index.ready()||requested||job!=null&&!job.done();}
+        void request(String value){
+            if(query.equals(value))return;
+            query=value;page=0;requested=true;due=System.nanoTime()+DEBOUNCE;
+            if(job!=null){job.cancel();job=null;}for(var button:rows)button.active=false;
+            if(prev!=null){prev.active=false;next.active=false;}
         }
-        @Override public void onClose(){minecraft.setScreen(parent);}
-        @Override public void render(GuiGraphics g,int mx,int my,float p){int x=x(),y=y();g.fill(x,y,x+390,y+268,0xf0182735);g.drawString(font,title,x+10,y+10,0xffe4dbc0,false);for(int i=0;i<12&&page*12+i<matches.size();i++)g.renderItem(new ItemStack(matches.get(page*12+i)),x+12+(i%2)*190,y+62+(i/2)*28);g.drawString(font,"共 "+matches.size()+" 种 · 第 "+(page+1)+"/"+Math.max(1,(matches.size()+11)/12)+" 页",x+10,y+253,0xff8bd6cc,false);super.render(g,mx,my,p);}
+        @Override protected void init(){
+            int cursor=search==null?query.length():search.getCursorPosition();clearWidgets();rows.clear();icons.clear();int x=x(),y=y();
+            search=addRenderableWidget(new EditBox(font,x+10,y+30,370,18,Component.literal("输入中文名称或方块ID")));search.setMaxLength(256);search.setHint(Component.literal("搜索中文，如：石头、泥土、橡木"));search.setValue(query);search.moveCursorTo(Math.min(cursor,query.length()),false);search.setResponder(this::request);
+            prev=addRenderableWidget(Button.builder(Component.literal("上一页"),b->{if(!busy()){page--;resultRows();}}).bounds(x+10,y+panelHeight()-38,100,18).build());
+            next=addRenderableWidget(Button.builder(Component.literal("下一页"),b->{if(!busy()){page++;resultRows();}}).bounds(x+116,y+panelHeight()-38,100,18).build());
+            addRenderableWidget(Button.builder(Component.literal("返回"),b->onClose()).bounds(x+280,y+panelHeight()-38,100,18).build());resultRows();setInitialFocus(search);
+        }
+        void resultRows(){
+            for(var row:rows)removeWidget(row);rows.clear();icons.clear();page=Math.clamp(page,0,Math.max(0,(matches.size()-1)/PAGE_SIZE));int x=x(),y=y();
+            for(int i=0;i<PAGE_SIZE&&page*PAGE_SIZE+i<matches.size();i++){
+                var entry=matches.get(page*PAGE_SIZE+i);int xx=x+10+(i%2)*190,yy=y+58+(i/2)*rowPitch();
+                var button=addRenderableWidget(Button.builder(Component.literal(font.plainSubstrByWidth(entry.label(),145)),b->{if(!busy()){minecraft.setScreen(parent);parent.send(target?"terrain_target":"terrain_source",entry.id());}}).bounds(xx+22,yy,158,Math.min(24,rowPitch()-2)).build());
+                button.setTooltip(Tooltip.create(Component.literal(entry.label()+"\n"+entry.id())));button.active=!busy();rows.add(button);icons.add(new ItemStack(entry.value()));
+            }
+            prev.active=!busy()&&page>0;next.active=!busy()&&(page+1)*PAGE_SIZE<matches.size();
+        }
+        void advance(){
+            var current=TerrainClientCatalog.current();
+            if(catalog!=current){if(job!=null)job.cancel();job=null;catalog=current;matches=List.of();page=0;requested=true;due=0;resultRows();}
+            long deadline=System.nanoTime()+FRAME_BUDGET;
+            if(!catalog.index.ready())catalog.advance(INDEX_BUDGET,deadline);
+            if(!catalog.index.ready())return;
+            if(requested&&System.nanoTime()>=due){job=catalog.index.query(query,target);requested=false;}
+            if(job!=null&&!job.done()){
+                job.step(SEARCH_BUDGET,deadline);
+                if(job.done()){matches=job.results();page=0;resultRows();}
+            }
+        }
+        @Override public void onClose(){if(job!=null)job.cancel();minecraft.setScreen(parent);}
+        @Override public void removed(){if(job!=null)job.cancel();}
+        @Override public void render(GuiGraphics g,int mx,int my,float partial){
+            advance();int x=x(),y=y();g.fill(x,y,x+390,y+panelHeight(),0xf0182735);g.drawString(font,title,x+10,y+10,0xffe4dbc0,false);
+            if(!busy())for(int i=0;i<icons.size();i++)g.renderItem(icons.get(i),x+12+(i%2)*190,y+58+(Math.min(24,rowPitch()-2)-16)/2+(i/2)*rowPitch());
+            String status=catalog==null||!catalog.index.ready()?"正在建立方块索引 "+(catalog==null?0:catalog.visited())+" / "+(catalog==null?0:catalog.total())
+                :requested?"等待输入完成…":job!=null&&!job.done()?"搜索中 "+job.scanned()+" / "+job.total():"共 "+matches.size()+" 种 · 第 "+(page+1)+"/"+Math.max(1,(matches.size()+PAGE_SIZE-1)/PAGE_SIZE)+" 页";
+            g.drawString(font,status,x+10,y+panelHeight()-15,0xff8bd6cc,false);super.render(g,mx,my,partial);
+        }
         @Override public void renderBackground(GuiGraphics g,int x,int y,float p){}
         @Override public boolean isPauseScreen(){return false;}
     }

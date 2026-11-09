@@ -52,3 +52,6 @@ tasks.withType(AbstractArchiveTask).configureEach {
     preserveFileTimestamps = false
     reproducibleFileOrder = true
 }
+
+// Validation fixtures never ship in the playable mod.
+tasks.named('jar', Jar) { exclude 'com/muxigame/buildingarchive/*Tests*.class' }

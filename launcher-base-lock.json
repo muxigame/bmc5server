@@ -3,9 +3,9 @@
   "pack": {
     "id": "battermc5remake",
     "name": "BatterMC5Remake",
-    "version": "1.4.100",
-    "changelog": "PlayStation：修复JEI机型搜索与核心用途配方；主体拆至约1.25MB，固定模拟器运行库独立更新。",
-    "released": "2026-11-09T05:33:42.041565+00:00"
+    "version": "1.4.101",
+    "changelog": "修复棋牌动画在老服务器世界上失效：世界运行时间很长时动画计时精度不足，移牌变成停顿后瞬移；修复空当接龙空位闪出乱码牌",
+    "released": "2026-11-09T07:29:40.264930+00:00"
   },
   "minecraft": {
     "version": "1.21.1",
@@ -14,7 +14,7 @@
     "versionJson": "versions/BatterMC5Remake/BatterMC5Remake.json",
     "versionId": "BatterMC5Remake"
   },
-  "sourceManifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629",
+  "sourceManifestSHA256": "41652d9b1a57ff11e19a76b46bb22bdb61b3aaf67be9e0cead98a6d13e67fdd5",
   "sourceManifestURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/manifest.json",
   "filesBaseURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/",
   "files": [
@@ -18230,9 +18230,9 @@
     },
     {
       "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
-      "size": 933425,
-      "sha1": "d1dedd01dcaf16e64534fdc5ffcbec3545d31f2c",
-      "sha256": "65376cec19fd003df9af6564d91fba2739665808281bacd6c6e57247a2bee361",
+      "size": 933587,
+      "sha1": "52deffc5ab25014f90b8009bb7223b91a4371121",
+      "sha256": "a4f797f72ca90daa8dfc85f6f03b5ff4faf6fb66316f3184cf4299f3936d5333",
       "policy": "Managed",
       "sourcePath": "mods/muxi-board-games-0.2.0-club.preview.6.jar"
     },
@@ -44582,11 +44582,6 @@
       "sha256": "731fba4b4d47256d5f44f8392b093b53c7d1c650b66111eda75b820f7f89a14b"
     },
     {
-      "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
-      "size": 931764,
-      "sha256": "a145d07bff0642489d7b18b638aa0f09d4183daf92eacf192b49bef386953bc2"
-    },
-    {
       "path": "mods/muxi-console-0.1.0+mc1.21.1.jar",
       "size": 531648674,
       "sha256": "370f59645046e97386f5b89b3ba44d13085e37f29dccd44f4b7dec130ccc2f44"
@@ -44600,9 +44595,14 @@
       "path": "mods/muxi-console-0.2.0+mc1.21.1.jar",
       "size": 765477190,
       "sha256": "3159e379e49db8446dea43896cbcb60d6a229f1b0c96d02a06a4488c70fe2149"
+    },
+    {
+      "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
+      "size": 933425,
+      "sha256": "65376cec19fd003df9af6564d91fba2739665808281bacd6c6e57247a2bee361"
     }
   ],
-  "scope": "Official1.4.100 baseline + City0.11.0 and other8 locked modules; two retired and three new public modules; no worlds/accounts",
+  "scope": "Official1.4.101 + Archive0.6.2 + existing8 other modules; no user state",
   "profileCorrections": [
     {
       "reason": "Actual native loader requires Kotlin language provider and exactnetmusicbetterlogin1.0.4; metadata exclusion corrected, no assertion weakened",
@@ -44618,7 +44618,7 @@
     }
   ],
   "previousBaselineMilestone": {
-    "version": "1.4.97",
-    "sha256": "0e4c319cac3f01fc732da4cae8e46a77ab36591119d20b120c14c71a4d99aba4"
+    "version": "1.4.100",
+    "sha256": "1cbf9ffbbc66c8f0bc19aae6351208c4010f1248592e55971b6725149d26330c"
   }
 }

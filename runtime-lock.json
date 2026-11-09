@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "baseline": "launcher1.4.100-derived-server-city-core-20261108",
+  "baseline": "launcher1.4.101-derived-server-city-core-20261108",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "coreVersion": "1.12.9-social-map.20261101.1",
@@ -18193,10 +18193,10 @@
       "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/zaluoke_forging-0.6.3-dev.jar"
     },
     {
-      "path": "mods/building_archive-0.6.1.jar",
-      "size": 152700,
-      "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
-      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.1.jar"
+      "path": "mods/building_archive-0.6.2.jar",
+      "size": 132035,
+      "sha256": "c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.2.jar"
     },
     {
       "path": "mods/city_settlements-0.11.0.jar",
@@ -18563,10 +18563,10 @@
       },
       {
         "modId": "building_archive",
-        "path": "mods/building_archive-0.6.1.jar",
-        "size": 152700,
-        "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
-        "version": "0.6.1",
+        "path": "mods/building_archive-0.6.2.jar",
+        "size": 132035,
+        "sha256": "c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281",
+        "version": "0.6.2",
         "license": "All Rights Reserved",
         "sourceProject": "building-archive",
         "bothSides": true,
@@ -18575,9 +18575,15 @@
             "path": "mods/building_archive-0.6.0.jar",
             "size": 150955,
             "sha256": "1d1123fcea9aae5fb8b734f17eb7cb001f7de4aec982b4113cdeb4b0f6d7ae2a"
+          },
+          {
+            "path": "mods/building_archive-0.6.1.jar",
+            "size": 152700,
+            "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361"
           }
         ],
-        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.1.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.2.jar",
+        "validationScope": "Owner48 GameTests and development-picker UI passed; whole modpack not tested"
       },
       {
         "path": "mods/ysm-3.0-dev-neoforge+mc1.21.1.jar",
@@ -18678,11 +18684,11 @@
   },
   "launcherBase": {
     "path": "launcher-base-lock.json",
-    "sha256": "72accd6d72a540acba711d458e1f2279474ca0e87743b53333eb795a1791fee1",
-    "version": "1.4.100",
-    "manifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629",
+    "sha256": "6919643fa28178ff85b6e3e58baf7d3041a47781e63c65893a1bf6a5843fae12",
+    "version": "1.4.101",
+    "manifestSHA256": "41652d9b1a57ff11e19a76b46bb22bdb61b3aaf67be9e0cead98a6d13e67fdd5",
     "profile": "derived-common-server-candidate",
-    "sourceManifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629"
+    "sourceManifestSHA256": "41652d9b1a57ff11e19a76b46bb22bdb61b3aaf67be9e0cead98a6d13e67fdd5"
   },
   "serverModelRuntime": {
     "reason": "Actual YSM3 dedicated-server common model parser uses LWJGL MemoryUtil; vanilla dedicated classpath omits it. Minimal core library/native only, no GLFW/OpenGL/UI startup. Native acceptance pending.",
