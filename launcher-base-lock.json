@@ -3,9 +3,9 @@
   "pack": {
     "id": "battermc5remake",
     "name": "BatterMC5Remake",
-    "version": "1.4.96",
-    "changelog": "棋牌动画诊断版：修复旧视图覆盖新视图导致动画被跳过、视图过早过期导致画面直接跳到结果；棋盘移动按格子变化触发；可选动画录制诊断",
-    "released": "2026-11-08T22:03:47.387913+00:00"
+    "version": "1.4.97",
+    "changelog": "PlayStation 0.2.0：断点续传、可选云存储、原生刻录卡槽、机型合成、分组键位、Wii/NDS/3DS与游戏机连线。",
+    "released": "2026-11-09T01:40:15.238828+00:00"
   },
   "minecraft": {
     "version": "1.21.1",
@@ -14,7 +14,7 @@
     "versionJson": "versions/BatterMC5Remake/BatterMC5Remake.json",
     "versionId": "BatterMC5Remake"
   },
-  "sourceManifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
+  "sourceManifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d",
   "sourceManifestURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/manifest.json",
   "filesBaseURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/",
   "files": [
@@ -18237,12 +18237,12 @@
       "sourcePath": "mods/muxi-champion-companions-1.0.5.jar"
     },
     {
-      "path": "mods/muxi-console-0.1.0+mc1.21.1.jar",
-      "size": 531648674,
-      "sha1": "dad4dd609c745fce8524d1e846118b2388e53b80",
-      "sha256": "370f59645046e97386f5b89b3ba44d13085e37f29dccd44f4b7dec130ccc2f44",
-      "policy": "Managed",
-      "sourcePath": "mods/muxi-console-0.1.0+mc1.21.1.jar"
+      "path": "mods/muxi-console-0.2.0+mc1.21.1.jar",
+      "sourcePath": "mods/muxi-console-0.2.0+mc1.21.1.jar",
+      "size": 765477190,
+      "sha1": "91dbe776944992473024f22b033f7cca8fbb4e50",
+      "sha256": "3159e379e49db8446dea43896cbcb60d6a229f1b0c96d02a06a4488c70fe2149",
+      "policy": "Managed"
     },
     {
       "path": "mods/muxi-endless-runner-0.1.0-hud.20261029.1.jar",
@@ -44577,9 +44577,14 @@
       "path": "mods/muxi-board-games-0.2.0-club.preview.6.jar",
       "size": 931764,
       "sha256": "a145d07bff0642489d7b18b638aa0f09d4183daf92eacf192b49bef386953bc2"
+    },
+    {
+      "path": "mods/muxi-console-0.1.0+mc1.21.1.jar",
+      "size": 531648674,
+      "sha256": "370f59645046e97386f5b89b3ba44d13085e37f29dccd44f4b7dec130ccc2f44"
     }
   ],
-  "scope": "Derived1.4.96 common server profile plus retained server-only utilities; not official server manifest; normal native join pending",
+  "scope": "Official1.4.97 common baseline + nine unchanged city modules; one complete Console0.2 replacement; no worlds/accounts copied",
   "profileCorrections": [
     {
       "reason": "Actual native loader requires Kotlin language provider and exactnetmusicbetterlogin1.0.4; metadata exclusion corrected, no assertion weakened",
@@ -44595,9 +44600,9 @@
     }
   ],
   "previousBaselineMilestone": {
-    "version": "1.4.95",
-    "sha256": "902c0d30e314d065f2cc30fcfcd5b3987ed26c7df498435691de4cdfd4f6bf30",
-    "manifestSHA256": "0c9292e296ea5591567e674fe6bef4df8ca565eca23d95aa799e614db927f372",
-    "gitCommit": "687c429d39fba912133ba24ed60b83135436805a"
+    "version": "1.4.96",
+    "sha256": "4e665d8b1255ebf5ddc0f9f2921e3e362006522d6c85aff90b938fa980e02c9e",
+    "manifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
+    "gitCommit": "08921391ef90231177fe3e358bf7c8d3c662b5a0"
   }
 }

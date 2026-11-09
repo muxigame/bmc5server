@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "baseline": "launcher1.4.96-derived-server-city-core-20261108",
+  "baseline": "launcher1.4.97-derived-server-city-core-20261108",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "coreVersion": "1.12.9-social-map.20261101.1",
@@ -18668,11 +18668,11 @@
   },
   "launcherBase": {
     "path": "launcher-base-lock.json",
-    "sha256": "4e665d8b1255ebf5ddc0f9f2921e3e362006522d6c85aff90b938fa980e02c9e",
-    "version": "1.4.96",
-    "manifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
+    "sha256": "0e4c319cac3f01fc732da4cae8e46a77ab36591119d20b120c14c71a4d99aba4",
+    "version": "1.4.97",
+    "manifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d",
     "profile": "derived-common-server-candidate",
-    "sourceManifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7"
+    "sourceManifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d"
   },
   "serverModelRuntime": {
     "reason": "Actual YSM3 dedicated-server common model parser uses LWJGL MemoryUtil; vanilla dedicated classpath omits it. Minimal core library/native only, no GLFW/OpenGL/UI startup. Native acceptance pending.",
