@@ -10,7 +10,7 @@ Minecraft 1.21.1、NeoForge 21.1.250、Java 21。本候选固定于官方启动�
 | --- | --- | --- |
 | `customnpcs` | 1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1 | `0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82` |
 | `zaluoke_forging` | 0.6.3-dev | `99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02` |
-| `building_archive` | 0.6.2 | `c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281` |
+| `building_archive` | 0.6.3 | `87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb` |
 | `ysm` | 3.0-dev-neoforge+mc1.21.1 | `4e758d94d5d62c180f2c79dee6144b3d3f72f3a2a676a5a933fd23309147a663` |
 | `city_settlements` | 0.11.0 | `95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27` |
 | `real_needs` | 0.5.2 | `ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc` |
@@ -87,3 +87,8 @@ CustomNPCs 使用 YSM 3 兼容版本，两端完全一致，不同时安装 YSM 
 ### 1.4.101干净检出融合
 
 先fetch目标分支，在独立干净源码worktree中合入1.4.101唯一棋牌增量与建筑档案0.6.2。其余9476条公开资源与其他八个自有模块复用，原普通服务端四个未提交配置保持。当前新完整包入口为complete-pack-1.4.101.json，历史1.4.100包不覆盖。
+
+
+### 建筑档案0.6.3待审阅
+
+基于官方1.4.101完整候选，新增地基空气保护（协议5，两端同步升级）。保留其他8模块，旧完整ZIP作为基线，使用锁定增量更新；不重打1.78GB未变化资源。55项GameTest和开发GUI通过，整合包端到端未验，未部署正式实例。详见building-archive-063.md。

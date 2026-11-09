@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "AWAITING_MAINTAINER_REVIEW",
+  "packVersion": "1.4.101",
+  "buildingArchiveVersion": "0.6.3",
+  "artifactSHA256": "87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb",
+  "bytes": 138589,
+  "protocol": 5,
+  "requiredGameTestsPassed": 55,
+  "uiValidation": "Independent development menu fixture; entry, layer editing, return, confirmation and top-world-Y checked",
+  "wholeModpackEndToEndVerified": false,
+  "releaseTestClasses": 0,
+  "otherEightModuleRecordsUnchanged": true,
+  "officialPublicManifestSHA256": "41652d9b1a57ff11e19a76b46bb22bdb61b3aaf67be9e0cead98a6d13e67fdd5",
+  "officialPublicFileCount": 9477,
+  "productionDeployed": false,
+  "sharedTestManifestChanged": false,
+  "assets": [
+    {
+      "path": "release-assets/building_archive-0.6.3.jar",
+      "size": 138589,
+      "sha256": "87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/building_archive-0.6.3.jar"
+    },
+    {
+      "path": "release-assets/Building-Archive-0.6.3-Sources.zip",
+      "size": 132660,
+      "sha256": "6cbe4d039cc14c192d3c969ef4e9aab9348f6386bf76a4992b1cf59486d50a9c",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/Building-Archive-0.6.3-Sources.zip"
+    },
+    {
+      "path": "release-assets/City-Core-Module-Sources-20261109-0110-ba063.zip",
+      "size": 1529652,
+      "sha256": "102462470f7962b5aead3ce27dd8091681cb3ef34d67e0c15d99e74ed3d0237f",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/City-Core-Module-Sources-20261109-0110-ba063.zip"
+    }
+  ],
+  "installerTests": {
+    "server": 73,
+    "client": 62
+  },
+  "minimalRealJarUpgradeAndRollback": {
+    "server": true,
+    "client": true
+  },
+  "sourceKitsReadBackVerified": true,
+  "snapshotMatchesValidatedCanonicalSource": true,
+  "normalRuntimeCopiesCreated": 0,
+  "minimalUpgradeFixtureBytesPerSide": 270624
+}

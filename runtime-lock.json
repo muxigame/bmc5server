@@ -18193,10 +18193,10 @@
       "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/zaluoke_forging-0.6.3-dev.jar"
     },
     {
-      "path": "mods/building_archive-0.6.2.jar",
-      "size": 132035,
-      "sha256": "c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281",
-      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.2.jar"
+      "path": "mods/building_archive-0.6.3.jar",
+      "size": 138589,
+      "sha256": "87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/building_archive-0.6.3.jar"
     },
     {
       "path": "mods/city_settlements-0.11.0.jar",
@@ -18563,10 +18563,10 @@
       },
       {
         "modId": "building_archive",
-        "path": "mods/building_archive-0.6.2.jar",
-        "size": 132035,
-        "sha256": "c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281",
-        "version": "0.6.2",
+        "path": "mods/building_archive-0.6.3.jar",
+        "size": 138589,
+        "sha256": "87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb",
+        "version": "0.6.3",
         "license": "All Rights Reserved",
         "sourceProject": "building-archive",
         "bothSides": true,
@@ -18580,10 +18580,16 @@
             "path": "mods/building_archive-0.6.1.jar",
             "size": 152700,
             "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361"
+          },
+          {
+            "path": "mods/building_archive-0.6.2.jar",
+            "size": 132035,
+            "sha256": "c20cbcc949c38a9ed4d4ec97985fe29b462cae27042d7290d6b1957ff05e6281"
           }
         ],
-        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.2.jar",
-        "validationScope": "Owner48 GameTests and development-picker UI passed; whole modpack not tested"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/building_archive-0.6.3.jar",
+        "validationScope": "55 GameTests and dev GUI fixture passed; whole modpack end-to-end not tested",
+        "protocol": 5
       },
       {
         "path": "mods/ysm-3.0-dev-neoforge+mc1.21.1.jar",
