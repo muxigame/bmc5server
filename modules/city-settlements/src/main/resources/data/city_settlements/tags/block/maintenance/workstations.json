@@ -1,0 +1,41 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "minecraft:crafting_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:smithing_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:grindstone",
+      "required": false
+    },
+    {
+      "id": "minecraft:stonecutter",
+      "required": false
+    },
+    {
+      "id": "minecraft:loom",
+      "required": false
+    },
+    {
+      "id": "minecraft:fletching_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:cartography_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:composter",
+      "required": false
+    }
+  ]
+}

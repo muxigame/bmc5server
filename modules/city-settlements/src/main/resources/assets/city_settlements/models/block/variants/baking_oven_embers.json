@@ -1,0 +1,6 @@
+{
+  "parent": "city_settlements:block/baking_oven",
+  "textures": {
+    "dark": "city_settlements:block/workstations/embers"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "key.camera_lock.lock": "锁定 / 解除目标",
+  "key.categories.camera_lock": "视角，锁定与万向移动",
+  "message.camera_lock.none": "前方20格内没有可锁定目标",
+  "message.camera_lock.too_far": "%s · 距离太远",
+  "message.camera_lock.blocked": "%s · 被遮挡"
+}

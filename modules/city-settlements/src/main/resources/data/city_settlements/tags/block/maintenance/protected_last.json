@@ -1,0 +1,53 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#minecraft:beds",
+      "required": false
+    },
+    {
+      "id": "minecraft:crafting_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:chipped_anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:damaged_anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:grindstone",
+      "required": false
+    },
+    {
+      "id": "minecraft:stonecutter",
+      "required": false
+    },
+    {
+      "id": "minecraft:smithing_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:loom",
+      "required": false
+    },
+    {
+      "id": "minecraft:cartography_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:fletching_table",
+      "required": false
+    },
+    {
+      "id": "minecraft:composter",
+      "required": false
+    }
+  ]
+}

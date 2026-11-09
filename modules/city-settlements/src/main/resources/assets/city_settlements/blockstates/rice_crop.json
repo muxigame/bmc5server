@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "city_settlements:block/rice_0"
+    },
+    "age=1": {
+      "model": "city_settlements:block/rice_1"
+    },
+    "age=2": {
+      "model": "city_settlements:block/rice_2"
+    },
+    "age=3": {
+      "model": "city_settlements:block/rice_3"
+    },
+    "age=4": {
+      "model": "city_settlements:block/rice_4"
+    },
+    "age=5": {
+      "model": "city_settlements:block/rice_5"
+    },
+    "age=6": {
+      "model": "city_settlements:block/rice_6"
+    },
+    "age=7": {
+      "model": "city_settlements:block/rice_7"
+    }
+  }
+}

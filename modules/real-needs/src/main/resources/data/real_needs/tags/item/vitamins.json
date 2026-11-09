@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:apple",
+    "minecraft:golden_apple",
+    "minecraft:enchanted_golden_apple",
+    "minecraft:carrot",
+    "minecraft:golden_carrot",
+    "minecraft:potato",
+    "minecraft:baked_potato",
+    "minecraft:beetroot",
+    "minecraft:beetroot_soup",
+    "minecraft:melon_slice",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:dried_kelp",
+    "minecraft:rabbit_stew",
+    {
+      "required": false,
+      "id": "#c:foods/fruit"
+    },
+    {
+      "required": false,
+      "id": "#c:foods/vegetable"
+    }
+  ]
+}

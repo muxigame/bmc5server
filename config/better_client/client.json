@@ -40,7 +40,7 @@
 	"enableFastTrading": true,
 	"enableAltKey": false,
 	"enableDisplayRemainingSales": true,
-	"enableTradingHud": true,
+	"enableTradingHud": false,
 	"tradingHudXOffset": 0,
 	"tradingHudYOffset": 0,
 	"tradingHudPos": "TOP_RIGHT",

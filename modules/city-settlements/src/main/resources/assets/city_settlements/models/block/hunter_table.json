@@ -1,0 +1,1535 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "wood": "city_settlements:block/workstations/dark_oak",
+    "frame": "city_settlements:block/workstations/oak",
+    "leather": "city_settlements:block/workstations/leather",
+    "hemp": "city_settlements:block/workstations/hemp",
+    "iron": "city_settlements:block/workstations/iron",
+    "forest_cloth": "city_settlements:block/workstations/hunter_cloth",
+    "particle": "city_settlements:block/workstations/dark_oak"
+  },
+  "elements": [
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        4,
+        10,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        12
+      ],
+      "to": [
+        4,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        10,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        12
+      ],
+      "to": [
+        15,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "top",
+      "from": [
+        0.5,
+        10,
+        0.5
+      ],
+      "to": [
+        15.5,
+        12,
+        15.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "lower left brace",
+      "from": [
+        1,
+        3,
+        2
+      ],
+      "to": [
+        4,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "lower right brace",
+      "from": [
+        12,
+        3,
+        2
+      ],
+      "to": [
+        15,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "lower shelf",
+      "from": [
+        2,
+        3,
+        2
+      ],
+      "to": [
+        14,
+        4,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            12,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            12,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "leather pack",
+      "from": [
+        2,
+        12,
+        7
+      ],
+      "to": [
+        8,
+        15,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            5
+          ],
+          "texture": "#leather"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            5
+          ],
+          "texture": "#leather"
+        }
+      }
+    },
+    {
+      "name": "pack strap",
+      "from": [
+        4.5,
+        12,
+        6.75
+      ],
+      "to": [
+        5.5,
+        15.25,
+        12.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            3.25
+          ],
+          "texture": "#forest_cloth"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            3.25
+          ],
+          "texture": "#forest_cloth"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            3.25
+          ],
+          "texture": "#forest_cloth"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            3.25
+          ],
+          "texture": "#forest_cloth"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            5.5
+          ],
+          "texture": "#forest_cloth"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            5.5
+          ],
+          "texture": "#forest_cloth"
+        }
+      }
+    },
+    {
+      "name": "rope cloth pad",
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        6,
+        12.25,
+        5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.25
+          ],
+          "texture": "#hemp"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.25
+          ],
+          "texture": "#hemp"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            0.25
+          ],
+          "texture": "#hemp"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            0.25
+          ],
+          "texture": "#hemp"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#hemp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#hemp"
+        }
+      }
+    },
+    {
+      "name": "quiver",
+      "from": [
+        11,
+        12,
+        8
+      ],
+      "to": [
+        14,
+        15,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            4
+          ],
+          "texture": "#leather"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            4
+          ],
+          "texture": "#leather"
+        }
+      }
+    },
+    {
+      "name": "knife handle",
+      "from": [
+        9,
+        12,
+        3
+      ],
+      "to": [
+        13,
+        12.5,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "knife blade",
+      "from": [
+        6,
+        12.1,
+        3
+      ],
+      "to": [
+        9,
+        12.4,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            1
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "arrow shaft",
+      "from": [
+        11.5,
+        14.5,
+        9
+      ],
+      "to": [
+        11.75,
+        16,
+        9.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "arrow hemp fletching",
+      "from": [
+        11.375,
+        15.5,
+        8.75
+      ],
+      "to": [
+        11.875,
+        16,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        }
+      }
+    },
+    {
+      "name": "arrow shaft",
+      "from": [
+        12.5,
+        14.5,
+        9
+      ],
+      "to": [
+        12.75,
+        16,
+        9.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "arrow hemp fletching",
+      "from": [
+        12.375,
+        15.5,
+        8.75
+      ],
+      "to": [
+        12.875,
+        16,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        }
+      }
+    },
+    {
+      "name": "arrow shaft",
+      "from": [
+        13.25,
+        14.5,
+        9
+      ],
+      "to": [
+        13.5,
+        16,
+        9.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            1.5
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            0.25
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "arrow hemp fletching",
+      "from": [
+        13.125,
+        15.5,
+        8.75
+      ],
+      "to": [
+        13.625,
+        16,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.75
+          ],
+          "texture": "#hemp"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

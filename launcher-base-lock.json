@@ -3,9 +3,9 @@
   "pack": {
     "id": "battermc5remake",
     "name": "BatterMC5Remake",
-    "version": "1.4.97",
-    "changelog": "PlayStation 0.2.0：断点续传、可选云存储、原生刻录卡槽、机型合成、分组键位、Wii/NDS/3DS与游戏机连线。",
-    "released": "2026-11-09T01:40:15.238828+00:00"
+    "version": "1.4.100",
+    "changelog": "PlayStation：修复JEI机型搜索与核心用途配方；主体拆至约1.25MB，固定模拟器运行库独立更新。",
+    "released": "2026-11-09T05:33:42.041565+00:00"
   },
   "minecraft": {
     "version": "1.21.1",
@@ -14,7 +14,7 @@
     "versionJson": "versions/BatterMC5Remake/BatterMC5Remake.json",
     "versionId": "BatterMC5Remake"
   },
-  "sourceManifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d",
+  "sourceManifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629",
   "sourceManifestURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/manifest.json",
   "filesBaseURL": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/",
   "files": [
@@ -18004,6 +18004,14 @@
       "sourcePath": "mods/konkrete_neoforge_1.9.9_MC_1.21.jar"
     },
     {
+      "path": "mods/kotlinforforge-5.12.0-all.jar",
+      "sourcePath": "mods/kotlinforforge-5.12.0-all.jar",
+      "size": 7279276,
+      "sha1": "a2032c921e93a0ccb0db5d742167e3139c2de01b",
+      "sha256": "095aed94f21b4e55895b21ea957750ae3ab829fbcfc6d3c66a3489f5f1128d46",
+      "policy": "Managed"
+    },
+    {
       "path": "mods/krypton_fnp-neoforge-1.21.1-0.2.28.1-1.21.1.jar",
       "size": 1015871,
       "sha1": "3b9253fcfaa11586ce528fbc0a26175991c9408f",
@@ -18237,11 +18245,19 @@
       "sourcePath": "mods/muxi-champion-companions-1.0.5.jar"
     },
     {
-      "path": "mods/muxi-console-0.2.0+mc1.21.1.jar",
-      "sourcePath": "mods/muxi-console-0.2.0+mc1.21.1.jar",
-      "size": 765477190,
-      "sha1": "91dbe776944992473024f22b033f7cca8fbb4e50",
-      "sha256": "3159e379e49db8446dea43896cbcb60d6a229f1b0c96d02a06a4488c70fe2149",
+      "path": "mods/muxi-console-0.2.2+mc1.21.1.jar",
+      "sourcePath": "mods/muxi-console-0.2.2+mc1.21.1.jar",
+      "size": 1254470,
+      "sha1": "4ae7ea53c6e0627105dec0540b0ce304439100d1",
+      "sha256": "e3a8f1308624b64f6e0dd62d92b511aa5c3bfa9213673de6de60bfe19090c569",
+      "policy": "Managed"
+    },
+    {
+      "path": "mods/muxi-console-runtime-1.0.0+mc1.21.1.jar",
+      "sourcePath": "mods/muxi-console-runtime-1.0.0+mc1.21.1.jar",
+      "size": 158785083,
+      "sha1": "e74c79ea2d57d66ab90a4ca6c6c8029cb45a92ff",
+      "sha256": "a237f798f8f03b158e9d1a61c9dd724217e5ec51b47c8ba3bcd139454b3d75e6",
       "policy": "Managed"
     },
     {
@@ -18278,12 +18294,12 @@
       "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/latest/files/mods/muxi-horse-racing-0.2.2-race.5-shop-ui-qa.4.jar"
     },
     {
-      "path": "mods/muxi-minigames-reward-presentation.20261029.1-return.2.jar",
-      "size": 2125627,
-      "sha1": "62973cc13ca69b5523c6e9a94400802dd1dc0514",
-      "sha256": "946ef2f3d8d4ea8a4d8ae383b480902c0ca9e8dcd497b94d965a96247604d69f",
-      "policy": "Managed",
-      "sourcePath": "mods/muxi-minigames-reward-presentation.20261029.1-return.2.jar"
+      "path": "mods/muxi-minigames-reward-presentation.20261029.1-return.3.jar",
+      "sourcePath": "mods/muxi-minigames-reward-presentation.20261029.1-return.3.jar",
+      "size": 2125608,
+      "sha1": "6322b3ee1a04d2be750d0fe6ef119fba3bafdf76",
+      "sha256": "f70997c4e4ec46773a0eb4e500958fe46b2105d9030d58c824a24e9ea5c91018",
+      "policy": "Managed"
     },
     {
       "path": "mods/muxi-outbreak-external-editor.20261029.1.jar",
@@ -18405,6 +18421,15 @@
       "sha256": "73e3c64a1e953b23b560cb73c36758d75cfec0e8681f223761df6d44e852b89d",
       "policy": "Managed",
       "sourcePath": "mods/netmusic-1.5.2-muxi.19+mc1.21.1.jar"
+    },
+    {
+      "path": "mods/nmbl-1.0.4-neoforge-mc1.21.1.jar",
+      "sourcePath": "mods/nmbl-1.0.4-neoforge-mc1.21.1.jar",
+      "size": 717330,
+      "sha1": "29e16d0e7a24deef7050a0320844420bd8df2877",
+      "sha256": "33fa8bbad36e5d951b07791a26179ef795651238d868cd732a67d93f52559647",
+      "policy": "Managed",
+      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/mods/nmbl-1.0.4-neoforge-mc1.21.1.jar"
     },
     {
       "path": "mods/oceansdelight-neoforge-1.0.4-1.21.1.jar",
@@ -29233,23 +29258,6 @@
       "sha256": "af1714bb66a877021ede496e61f35d2358fb69b8878eda7b553f07fb4588075f",
       "policy": "Managed",
       "sourcePath": "tlm_custom_pack/touhou_little_maid-1.0.0/pack.png"
-    },
-    {
-      "path": "mods/kotlinforforge-5.12.0-all.jar",
-      "sourcePath": "mods/kotlinforforge-5.12.0-all.jar",
-      "size": 7279276,
-      "sha1": "a2032c921e93a0ccb0db5d742167e3139c2de01b",
-      "sha256": "095aed94f21b4e55895b21ea957750ae3ab829fbcfc6d3c66a3489f5f1128d46",
-      "policy": "Managed"
-    },
-    {
-      "path": "mods/nmbl-1.0.4-neoforge-mc1.21.1.jar",
-      "sourcePath": "mods/nmbl-1.0.4-neoforge-mc1.21.1.jar",
-      "size": 717330,
-      "sha1": "29e16d0e7a24deef7050a0320844420bd8df2877",
-      "sha256": "33fa8bbad36e5d951b07791a26179ef795651238d868cd732a67d93f52559647",
-      "policy": "Managed",
-      "url": "https://muxigame-prod-static-cn.oss-cn-hangzhou.aliyuncs.com/bmc/release/candidates/1.4.33-entry3-director4-3b27ac5b8a70/files/mods/nmbl-1.0.4-neoforge-mc1.21.1.jar"
     }
   ],
   "knownPrevious": [
@@ -44582,9 +44590,19 @@
       "path": "mods/muxi-console-0.1.0+mc1.21.1.jar",
       "size": 531648674,
       "sha256": "370f59645046e97386f5b89b3ba44d13085e37f29dccd44f4b7dec130ccc2f44"
+    },
+    {
+      "path": "mods/muxi-minigames-reward-presentation.20261029.1-return.2.jar",
+      "size": 2125627,
+      "sha256": "946ef2f3d8d4ea8a4d8ae383b480902c0ca9e8dcd497b94d965a96247604d69f"
+    },
+    {
+      "path": "mods/muxi-console-0.2.0+mc1.21.1.jar",
+      "size": 765477190,
+      "sha256": "3159e379e49db8446dea43896cbcb60d6a229f1b0c96d02a06a4488c70fe2149"
     }
   ],
-  "scope": "Official1.4.97 common baseline + nine unchanged city modules; one complete Console0.2 replacement; no worlds/accounts copied",
+  "scope": "Official1.4.100 baseline + City0.11.0 and other8 locked modules; two retired and three new public modules; no worlds/accounts",
   "profileCorrections": [
     {
       "reason": "Actual native loader requires Kotlin language provider and exactnetmusicbetterlogin1.0.4; metadata exclusion corrected, no assertion weakened",
@@ -44600,9 +44618,7 @@
     }
   ],
   "previousBaselineMilestone": {
-    "version": "1.4.96",
-    "sha256": "4e665d8b1255ebf5ddc0f9f2921e3e362006522d6c85aff90b938fa980e02c9e",
-    "manifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
-    "gitCommit": "08921391ef90231177fe3e358bf7c8d3c662b5a0"
+    "version": "1.4.97",
+    "sha256": "0e4c319cac3f01fc732da4cae8e46a77ab36591119d20b120c14c71a4d99aba4"
   }
 }

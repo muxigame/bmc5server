@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "real_needs:splint"
+    }
+  ],
+  "result": {
+    "id": "real_needs:rehabilitation_kit",
+    "count": 1
+  }
+}

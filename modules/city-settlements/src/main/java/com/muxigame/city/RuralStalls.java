@@ -1,0 +1,17 @@
+package com.muxigame.city;
+import java.util.*;
+import net.minecraft.server.MinecraftServer;
+
+/** Farmers may offer real overflow when a middleman cannot clear it; private reserves are never listed. */
+public final class RuralStalls {
+ static int surplus(RuralSettlement d,RuralRules.Person p,UUID city){var f=d.state.families.get(p.family);return p.dead||f==null||!f.city.equals(city)?0:Math.max(0,p.pendingWheat-RuralRules.capacity(d.stocks(f.id)));}
+ static int stock(MinecraftServer s,UUID city){var d=RuralSettlement.get(s);if(!CityCurrency.model(s,city))return 0;return d.state.people.values().stream().mapToInt(p->surplus(d,p,city)).sum();}
+ static FoodAge.Portion take(RuralRules.Person p,int n){p.pendingAge.ensure(p.pendingWheat);var part=p.pendingAge.take(Math.min(n,p.pendingWheat));p.pendingWheat-=part.count();return part;}
+ static int household(RuralSettlement d,RuralRules.Family home,Map<UUID,Long> money,int wanted){if(!RuralFoodAccess.active(d,home.city)||wanted<=0)return 0;var t=CityTrade.get(d.serverContext);var list=new ArrayList<>(d.state.people.values().stream().filter(p->!home.members.contains(p.id)&&surplus(d,p,home.city)>0).toList());UUID last=t.state.grainStallCursor.get(home.city);if(last!=null)for(int i=0;i<list.size();i++)if(list.get(i).id.equals(last)){Collections.rotate(list,-i-1);break;}int done=0;
+  for(var p:list){if(!WorkHours.active(d.serverContext,CityData.get(d.serverContext).require(home.city),p.id))continue;int q=t.quote(d.serverContext,home.city,0,d.state.simulationTicks);int n=(int)Math.min(Math.min(wanted-done,surplus(d,p,home.city)),Math.min(RuralRules.capacity(d.stocks(home.id)),RuralRules.balance(home,money)/q));if(n<=0||!RuralRules.pay(home,p.id,n*(long)q,money))continue;var portion=take(p,n);CityEconomy.require(FoodMoves.add(d.stocks(home.id),0,n,portion.age())==n,"Direct grain sale capacity changed");record(d,t,home.city,p.id,n,n*(long)q);done+=n;if(done>=wanted)break;}return done;
+ }
+ static int freight(MinecraftServer s,CityTrade.Business b,UUID village,int wanted){var t=CityTrade.get(s);var d=RuralSettlement.get(s);var head=t.liveHead(s,village);if(head==null||wanted<=0)return 0;var hp=d.state.people.get(head.worker);int protect=RuralMarket.reserve(d,d.state.families.values().stream().filter(f->f.city.equals(village)).toList(),d.state.families.get(hp.family));int allowed=Math.max(0,stock(s,village)+RuralRules.count(d.stocks(hp.family),false)+RuralRules.count(d.stocks(hp.family),true)-protect),done=0;
+  for(var p:d.state.people.values()){if(!WorkHours.active(s,CityData.get(s).require(village),p.id))continue;int available=Math.min(surplus(d,p,village),allowed-done);if(available<=0)continue;int q=t.quote(s,village,0,d.state.simulationTicks);int n=(int)Math.min(Math.min(wanted-done,available),Math.min(Math.min(192-b.cargo[0].count,CityRoute.room(s,b)),Math.max(0,CityEconomy.get(s).balance(b.account)-40)/q));if(n<=0||!CityTrade.pay(s,b.account,CityEconomy.person(p.id),n*(long)q,"FARM_STALL_FREIGHT"))continue;var portion=take(p,n);b.cargo[0].receive(n,n*q*100L,portion);b.purchases+=n*(long)q;t.state.run.grainTrades+=n;record(d,t,village,p.id,n,n*(long)q);done+=n;if(done>=wanted)break;}return done;
+ }
+ static void record(RuralSettlement d,CityTrade t,UUID city,UUID seller,int n,long cost){d.state.wheatProduced+=n;d.audit(city).wheatHarvested+=n;d.audit(city).tradeSilver+=cost;d.state.tradedSilver+=cost;t.state.directGrain+=n;t.state.grainStallCursor.put(city,seller);d.setDirty();t.setDirty();}
+}

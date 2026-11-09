@@ -1,0 +1,1257 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "stone": "city_settlements:block/workstations/stone",
+    "iron": "city_settlements:block/workstations/iron",
+    "dark": "city_settlements:block/workstations/soot",
+    "soup": "city_settlements:block/workstations/soup",
+    "particle": "city_settlements:block/workstations/stone"
+  },
+  "elements": [
+    {
+      "name": "stone footing",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#stone"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "name": "left hearth jamb",
+      "from": [
+        0,
+        2,
+        0
+      ],
+      "to": [
+        4,
+        9,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "texture": "#stone"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "name": "right hearth jamb",
+      "from": [
+        12,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        9,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "texture": "#stone"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "name": "rear hearth",
+      "from": [
+        4,
+        2,
+        9
+      ],
+      "to": [
+        12,
+        9,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            7
+          ],
+          "texture": "#stone"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            7
+          ],
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "name": "firebox soot",
+      "from": [
+        4,
+        2,
+        8.75
+      ],
+      "to": [
+        12,
+        7,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            5
+          ],
+          "texture": "#dark"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            5
+          ],
+          "texture": "#dark"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            5
+          ],
+          "texture": "#dark"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0.25,
+            5
+          ],
+          "texture": "#dark"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        }
+      }
+    },
+    {
+      "name": "coal floor",
+      "from": [
+        4,
+        2,
+        1
+      ],
+      "to": [
+        12,
+        2.25,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            0.25
+          ],
+          "texture": "#dark"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#dark"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#dark"
+        }
+      }
+    },
+    {
+      "name": "lintel",
+      "from": [
+        4,
+        7,
+        0
+      ],
+      "to": [
+        12,
+        9,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            9,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            9,
+            2
+          ],
+          "texture": "#stone"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            9
+          ],
+          "texture": "#stone"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            9
+          ],
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "name": "iron cookplate",
+      "from": [
+        1,
+        9,
+        1
+      ],
+      "to": [
+        15,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            14,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            14,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            14,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            14,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "pot body",
+      "from": [
+        5,
+        10,
+        5
+      ],
+      "to": [
+        11,
+        13,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            3
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            6
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            6
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "pot rim",
+      "from": [
+        4.5,
+        13,
+        4.5
+      ],
+      "to": [
+        5.5,
+        14,
+        11.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            7.0
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            7.0
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "pot rim",
+      "from": [
+        10.5,
+        13,
+        4.5
+      ],
+      "to": [
+        11.5,
+        14,
+        11.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            7.0
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            7.0
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "pot rim",
+      "from": [
+        5.5,
+        13,
+        4.5
+      ],
+      "to": [
+        10.5,
+        14,
+        5.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1.0
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1.0
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "pot rim",
+      "from": [
+        5.5,
+        13,
+        10.5
+      ],
+      "to": [
+        10.5,
+        14,
+        11.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1.0
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            1.0
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "stew surface",
+      "from": [
+        5.5,
+        13.125,
+        5.5
+      ],
+      "to": [
+        10.5,
+        13.25,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            0.125
+          ],
+          "texture": "#soup"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            0.125
+          ],
+          "texture": "#soup"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            0.125
+          ],
+          "texture": "#soup"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            0.125
+          ],
+          "texture": "#soup"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            5.0
+          ],
+          "texture": "#soup"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            5.0,
+            5.0
+          ],
+          "texture": "#soup"
+        }
+      }
+    },
+    {
+      "name": "left handle",
+      "from": [
+        3.5,
+        11,
+        7
+      ],
+      "to": [
+        5,
+        12.5,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "right handle",
+      "from": [
+        11,
+        11,
+        7
+      ],
+      "to": [
+        12.5,
+        12.5,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#iron"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

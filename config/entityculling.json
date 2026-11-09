@@ -15,7 +15,8 @@
     "drg_flares:drg_flares",
     "minecraft:ender_dragon",
     "minecraft:end_crystal",
-    "quark:soul_bead"
+    "quark:soul_bead",
+    "minecraft:player"
   ],
   "tracingDistance": 128,
   "debugMode": false,

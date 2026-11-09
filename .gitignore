@@ -114,3 +114,8 @@
 
 # Owned city-core acceptance worlds and generated profile cache
 /city-core-acceptance-*/
+
+# User-authorized complete candidate distribution and buildable module wrappers.
+!/release-assets/
+!/release-assets/**
+!/modules/*/gradle/wrapper/gradle-wrapper.jar

@@ -22,7 +22,7 @@
 	#Chance that an undead with a hood spawns with an army of matching animals.
 	# Default: 0.1
 	# Range: 0.0 ~ 1.0
-	armyHoodChanceMultiplier = 0.0
+	armyHoodChanceMultiplier = 0.1
 
 #Gear
 [gear]

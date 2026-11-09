@@ -1,0 +1,1122 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "wood": "city_settlements:block/workstations/oak",
+    "frame": "city_settlements:block/workstations/dark_oak",
+    "drawers": "city_settlements:block/workstations/cabinet_front",
+    "cover": "city_settlements:block/workstations/guild_cover",
+    "paper": "city_settlements:block/workstations/paper",
+    "leather": "city_settlements:block/workstations/leather",
+    "iron": "city_settlements:block/workstations/iron",
+    "particle": "city_settlements:block/workstations/oak"
+  },
+  "elements": [
+    {
+      "name": "cabinet feet",
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        2,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "cabinet body",
+      "from": [
+        1,
+        2,
+        1
+      ],
+      "to": [
+        15,
+        11,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            14,
+            9
+          ],
+          "texture": "#drawers"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            14,
+            9
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            14,
+            9
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            14,
+            9
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "square countertop",
+      "from": [
+        0,
+        11,
+        0
+      ],
+      "to": [
+        16,
+        13,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "rear ledger sorter",
+      "from": [
+        2,
+        13,
+        12
+      ],
+      "to": [
+        14,
+        14,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            12,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            12,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "sorted ledger spine",
+      "from": [
+        3,
+        14,
+        12.5
+      ],
+      "to": [
+        4.5,
+        16,
+        14.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#cover"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#cover"
+        }
+      }
+    },
+    {
+      "name": "sorted ledger spine",
+      "from": [
+        5.5,
+        14,
+        12.5
+      ],
+      "to": [
+        7.0,
+        16,
+        14.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "name": "sorted ledger spine",
+      "from": [
+        8,
+        14,
+        12.5
+      ],
+      "to": [
+        9.5,
+        16,
+        14.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#cover"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#cover"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#cover"
+        }
+      }
+    },
+    {
+      "name": "sorted ledger spine",
+      "from": [
+        10.5,
+        14,
+        12.5
+      ],
+      "to": [
+        12.0,
+        16,
+        14.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2.0,
+            2
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            2.0
+          ],
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "name": "working ledger",
+      "from": [
+        2,
+        13,
+        3
+      ],
+      "to": [
+        9,
+        13.5,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.5
+          ],
+          "texture": "#cover"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.5
+          ],
+          "texture": "#cover"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#cover"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#cover"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            7,
+            6
+          ],
+          "texture": "#cover"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            7,
+            6
+          ],
+          "texture": "#cover"
+        }
+      }
+    },
+    {
+      "name": "ledger page",
+      "from": [
+        2.25,
+        13.5,
+        3.25
+      ],
+      "to": [
+        8.75,
+        13.75,
+        8.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            5.5
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            5.5
+          ],
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "name": "travelling satchel",
+      "from": [
+        11,
+        13,
+        3
+      ],
+      "to": [
+        14.5,
+        15.5,
+        7
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3.5,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3.5,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3.5,
+            4
+          ],
+          "texture": "#leather"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3.5,
+            4
+          ],
+          "texture": "#leather"
+        }
+      }
+    },
+    {
+      "name": "satchel strap",
+      "from": [
+        12,
+        13,
+        2.75
+      ],
+      "to": [
+        13,
+        15.75,
+        7.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            4.5,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            4.5,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1,
+            4.5
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1,
+            4.5
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "small moneybox",
+      "from": [
+        10,
+        13,
+        9
+      ],
+      "to": [
+        14,
+        14.5,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "cargo tag",
+      "from": [
+        11,
+        14.5,
+        9.25
+      ],
+      "to": [
+        13,
+        14.75,
+        10.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            1.5
+          ],
+          "texture": "#paper"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

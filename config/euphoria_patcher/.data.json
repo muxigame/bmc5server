@@ -1,7 +1,7 @@
 {
-  "shaderHash": "d1d9206d37df9ee741f622d986682564432bfaabf7a824f378be61db33dba626",
+  "shaderHash": "ee2d3d739a17be90f81cbe0e346986403bb0e8d73b7a6ac0292cda2419baff58",
   "EPVersion": "1.10.0",
-  "styleReimagined": true,
+  "styleReimagined": false,
   "styleUnbound": false,
-  "alternativeShaderNames": "Better MC - High,Better MC - Low,Better MC - MacBook High,Better MC - MacBook Low,Better MC - MacBook Medium,Better MC - Medium,Better MC - Ultra,Better MC - Very Low"
+  "alternativeShaderNames": ""
 }

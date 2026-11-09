@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:snowball"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "result": {
+    "id": "real_needs:cooling_pack",
+    "count": 2
+  }
+}

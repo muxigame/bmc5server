@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-09T06:31:31.920230+00:00",
+  "path": "D:\\CPN\\work\\bmc5server-city-core-20261108\\release-assets\\City-Core-1.4.100-Complete-20261109-r02.zip",
+  "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/City-Core-1.4.100-Complete-20261109-r02.zip",
+  "size": 1779946750,
+  "sha256": "03f3a29a8ebd21b1ef112052e3ffe76862c365ea96c0139421a40ddc53746d62",
+  "entries": 11064,
+  "publicFiles": 9477,
+  "cityCoreModules": 9,
+  "allEntrySHA256ReadBackPassed": true,
+  "worldCopies": 0,
+  "runtimeCopies": 0,
+  "sourceUserRuntimeWrites": 0,
+  "fullCoreLoopPassed": false,
+  "native14100AcceptancePassed": false,
+  "userAccepted": false,
+  "installerClientTests": 62,
+  "installerServerTests": 73,
+  "actualBothFileVerifyPassed": true,
+  "repositoryBinaryPushVerified": false,
+  "freeBefore": 87251906560,
+  "estimatedRawBytes": 2205220997
+}

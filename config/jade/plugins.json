@@ -1,4 +1,8 @@
 {
+  "net_music_list": {
+    "player_entity": true,
+    "player_block": true
+  },
   "minecraft": {
     "item_storage.show_name_amount": 5,
     "furnace": true,
@@ -6,8 +10,8 @@
     "animal_owner": true,
     "harvest_tool.effective_tool": true,
     "energy_storage.style": "PROGRESS_BAR",
-    "item_storage.normal_amount": 9,
     "item_storage": true,
+    "item_storage.normal_amount": 9,
     "harvest_tool": true,
     "armor_stand": true,
     "fluid_storage.detailed": false,
@@ -52,8 +56,18 @@
     "painting": true,
     "chiseled_bookshelf": true
   },
-  "jadeaddons": {
-    "equipment_requirement": ""
+  "champions": {
+    "enable_affix_compact": true
+  },
+  "jadeaddons.create": {
+    "filter": true,
+    "backtank_capacity": true,
+    "goggles.requires_goggles": true,
+    "goggles": false,
+    "blaze_burner": true,
+    "exact_block": true,
+    "goggles.detailed": false,
+    "placard": true
   },
   "jade_access": {
     "held_item": true,
@@ -64,19 +78,6 @@
   },
   "ftbquests": {
     "barrier": true
-  },
-  "toms_storage": {
-    "inventory_hopper": true,
-    "inventory_config": true,
-    "inventory_connector": true
-  },
-  "twilightforest": {
-    "drying_rack": true,
-    "chiseled_bookshelf_spawner": true,
-    "quest_ram_wool": true
-  },
-  "supplementaries": {
-    "hat_stand": true
   },
   "jade": {
     "coordinates.rel": false,
@@ -89,13 +90,46 @@
     "block_properties": false,
     "mod_name": true
   },
-  "waystones": {
-    "waystone": true
-  },
   "underlay": {
     "overlay": true
   },
+  "iceandfire": {
+    "dragon_egg_entity": true,
+    "multipart": true,
+    "dragon": true,
+    "dragon_egg_block": true
+  },
   "balm": {
     "jade": true
+  },
+  "modulargolems": {
+    "maid_model": true,
+    "player_skin": true
+  },
+  "jadeaddons": {
+    "equipment_requirement": ""
+  },
+  "yes_steve_model": {
+    "model_info": true
+  },
+  "toms_storage": {
+    "inventory_hopper": true,
+    "inventory_config": true,
+    "inventory_connector": true
+  },
+  "touhou_little_maid": {
+    "maid": true,
+    "shrine_lamp": true
+  },
+  "twilightforest": {
+    "drying_rack": true,
+    "chiseled_bookshelf_spawner": true,
+    "quest_ram_wool": true
+  },
+  "supplementaries": {
+    "hat_stand": true
+  },
+  "waystones": {
+    "waystone": true
   }
 }

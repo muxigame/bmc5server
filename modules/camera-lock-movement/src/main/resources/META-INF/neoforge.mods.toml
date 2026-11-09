@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+[[mods]]
+modId="camera_lock"
+version="0.1.6"
+displayName="视角，锁定与万向移动"
+description='''Independent third-person combat camera, lock-on and movement. Optional CustomNPCs faction integration.'''
+[[dependencies.camera_lock]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,21.2)"
+side="BOTH"
+[[dependencies.camera_lock]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+side="BOTH"
+[[mixins]]
+config="camera_lock.mixins.json"
+
+
+
+
+
+

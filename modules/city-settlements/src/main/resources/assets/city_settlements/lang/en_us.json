@@ -1,0 +1,14 @@
+{
+  "item.city_settlements.surveyor": "City Wand",
+  "itemGroup.city_settlements": "City Settlements",
+  "item.city_settlements.charter": "Settlement Charter",
+  "item.city_settlements.claim_stamp": "Claim Stamp",
+  "item.city_settlements.exclude_stamp": "Exclusion Stamp",
+  "item.city_settlements.city_atlas": "Information Wand",
+  "item.city_settlements.building_wand": "Building Wand",
+  "item.city_settlements.city_ledger": "City Ledger",
+  "item.city_settlements.rice_seeds": "Rice Seeds",
+  "item.city_settlements.rice": "Rice",
+  "item.city_settlements.cooked_rice": "Cooked Rice",
+  "block.city_settlements.rice_crop": "Rice crop"
+}

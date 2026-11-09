@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "zaluoke_forging:block/placed_blank",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "zaluoke_forging:block/placed_blank",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "zaluoke_forging:block/placed_blank",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "zaluoke_forging:block/placed_blank",
+      "y": 270
+    }
+  }
+}

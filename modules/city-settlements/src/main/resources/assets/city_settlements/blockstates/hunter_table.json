@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "city_settlements:block/hunter_table"
+    },
+    "facing=east": {
+      "model": "city_settlements:block/hunter_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "city_settlements:block/hunter_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "city_settlements:block/hunter_table",
+      "y": 270
+    }
+  }
+}

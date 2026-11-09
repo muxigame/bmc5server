@@ -1,0 +1,93 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#minecraft:crops",
+      "required": false
+    },
+    {
+      "id": "#minecraft:flowers",
+      "required": false
+    },
+    {
+      "id": "#minecraft:saplings",
+      "required": false
+    },
+    {
+      "id": "#minecraft:leaves",
+      "required": false
+    },
+    {
+      "id": "minecraft:fire",
+      "required": false
+    },
+    {
+      "id": "minecraft:soul_fire",
+      "required": false
+    },
+    {
+      "id": "minecraft:water",
+      "required": false
+    },
+    {
+      "id": "minecraft:lava",
+      "required": false
+    },
+    {
+      "id": "minecraft:snow",
+      "required": false
+    },
+    {
+      "id": "minecraft:vine",
+      "required": false
+    },
+    {
+      "id": "minecraft:glow_lichen",
+      "required": false
+    },
+    {
+      "id": "minecraft:sculk_vein",
+      "required": false
+    },
+    {
+      "id": "minecraft:cave_vines",
+      "required": false
+    },
+    {
+      "id": "minecraft:cave_vines_plant",
+      "required": false
+    },
+    {
+      "id": "minecraft:bamboo",
+      "required": false
+    },
+    {
+      "id": "minecraft:bamboo_sapling",
+      "required": false
+    },
+    {
+      "id": "minecraft:sugar_cane",
+      "required": false
+    },
+    {
+      "id": "minecraft:cactus",
+      "required": false
+    },
+    {
+      "id": "minecraft:kelp",
+      "required": false
+    },
+    {
+      "id": "minecraft:kelp_plant",
+      "required": false
+    },
+    {
+      "id": "minecraft:seagrass",
+      "required": false
+    },
+    {
+      "id": "minecraft:tall_seagrass",
+      "required": false
+    }
+  ]
+}

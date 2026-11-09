@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_supply": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "real_needs:splint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_supply",
+      "has_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "real_needs:splint"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "city_settlements:block/baking_oven"
+    },
+    "facing=east": {
+      "model": "city_settlements:block/baking_oven",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "city_settlements:block/baking_oven",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "city_settlements:block/baking_oven",
+      "y": 270
+    }
+  }
+}

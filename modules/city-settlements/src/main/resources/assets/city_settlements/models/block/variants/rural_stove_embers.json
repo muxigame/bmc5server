@@ -1,0 +1,6 @@
+{
+  "parent": "city_settlements:block/rural_stove",
+  "textures": {
+    "dark": "city_settlements:block/workstations/embers"
+  }
+}

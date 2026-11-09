@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "real_needs:bandage"
+    }
+  ],
+  "result": {
+    "id": "real_needs:burn_dressing",
+    "count": 2
+  }
+}

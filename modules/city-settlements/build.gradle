@@ -1,0 +1,64 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+    id 'idea'
+}
+version = mod_version
+group = mod_group_id
+base { archivesName = mod_id }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+neoForge {
+    version = project.neo_version
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory = project.file('run/gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', providers.gradleProperty('cityTestNamespace').getOrElse(project.mod_id)
+            systemProperty 'city.audit.days', providers.gradleProperty('cityAuditDays').getOrElse('30')
+            systemProperty 'city.audit.scale', providers.gradleProperty('cityAuditScale').getOrElse('0')
+            systemProperty 'city.audit.farmEnd', providers.gradleProperty('cityAuditFarmEnd').getOrElse('14')
+            systemProperty 'city.audit.tag', providers.gradleProperty('cityAuditTag').getOrElse('ratio3')
+            systemProperty 'city.audit.merchants', providers.gradleProperty('cityAuditMerchants').getOrElse('3')
+            systemProperty 'city.profile.enabled', providers.gradleProperty('cityProfile').getOrElse('false')
+            systemProperty 'city.profile.days', providers.gradleProperty('cityProfileDays').getOrElse('500')
+        }
+        client {
+            client()
+            gameDirectory = project.file('run/client')
+            systemProperty 'org.lwjgl.glfw.libname', 'D:/CPN/BMC5-workspace/npc-forging-test/runtime/native-fixes/glfw-3.4-owned/glfw.dll'
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            gameDirectory = project.file('run/server')
+        }
+        data {
+            data()
+            gameDirectory = project.file('run/data')
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources').absolutePath, '--existing', file('src/main/resources').absolutePath
+        }
+    }
+    mods {
+        "${mod_id}" { sourceSet(sourceSets.main) }
+    }
+}
+sourceSets.main.resources.srcDir('src/generated/resources')
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    var values = [mod_id:mod_id,mod_name:mod_name,mod_version:mod_version,mod_license:mod_license,neo_version:neo_version]
+    inputs.properties(values)
+    expand(values)
+    from 'src/main/templates'
+    into 'build/generated/modMetadata'
+}
+sourceSets.main.resources.srcDir(generateModMetadata)
+neoForge.ideSyncTask(generateModMetadata)
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+// GameTests run from the development source set, never ship executable test fixtures.
+tasks.named('jar', Jar) { exclude 'com/muxigame/city/CityTests*.class'; exclude 'data/city_large_area_focus/**' }

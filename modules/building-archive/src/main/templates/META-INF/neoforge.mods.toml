@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="${mod_license}"
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="建筑档案"
+description='''Select, export, inspect and restore buildings, with block palettes and style-analysis reports.'''
+[[dependencies.${mod_id}]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.${mod_id}]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

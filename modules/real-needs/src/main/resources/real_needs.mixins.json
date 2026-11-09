@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.muxigame.realneeds.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["QuietIllnessDamageMixin"],
+  "injectors": {"defaultRequire": 1}
+}

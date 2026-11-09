@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "result": {
+    "id": "real_needs:splint",
+    "count": 2
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "item.building_archive.archive_wand": "建筑档案仪",
+  "itemGroup.building_archive": "建筑档案",
+  "tooltip.building_archive.wand": "连续右键选两角 · 右键空气打开档案面板",
+  "item.building_archive.archive_guide": "建筑档案使用指南",
+  "item.building_archive.terrain_tool": "地形改造工具",
+  "item.building_archive.archive_transfer": "建筑导入导出器"
+}

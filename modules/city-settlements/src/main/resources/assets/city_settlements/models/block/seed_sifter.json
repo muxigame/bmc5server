@@ -1,0 +1,1119 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "wood": "city_settlements:block/workstations/oak",
+    "frame": "city_settlements:block/workstations/dark_oak",
+    "grain": "city_settlements:block/workstations/grain",
+    "mesh": "city_settlements:block/workstations/mesh",
+    "particle": "city_settlements:block/workstations/oak"
+  },
+  "elements": [
+    {
+      "name": "sifter leg",
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        3,
+        12,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "sifter leg",
+      "from": [
+        1,
+        0,
+        13
+      ],
+      "to": [
+        3,
+        12,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "sifter leg",
+      "from": [
+        13,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        12,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "sifter leg",
+      "from": [
+        13,
+        0,
+        13
+      ],
+      "to": [
+        15,
+        12,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "tray bottom",
+      "from": [
+        2,
+        10,
+        2
+      ],
+      "to": [
+        14,
+        11,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            1
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            12,
+            12
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            12,
+            12
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "seed bed",
+      "from": [
+        3,
+        11,
+        3
+      ],
+      "to": [
+        13,
+        11.25,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#grain"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#grain"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#grain"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#grain"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#grain"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#grain"
+        }
+      }
+    },
+    {
+      "name": "screen frame side",
+      "from": [
+        1,
+        11,
+        1
+      ],
+      "to": [
+        3,
+        13,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "screen frame side",
+      "from": [
+        13,
+        11,
+        1
+      ],
+      "to": [
+        15,
+        13,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            14,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "screen frame end",
+      "from": [
+        3,
+        11,
+        1
+      ],
+      "to": [
+        13,
+        13,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "screen frame end",
+      "from": [
+        3,
+        11,
+        13
+      ],
+      "to": [
+        13,
+        13,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "woven screen",
+      "from": [
+        3,
+        12,
+        3
+      ],
+      "to": [
+        13,
+        12.25,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            10,
+            0.25
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#mesh"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#mesh"
+        }
+      }
+    },
+    {
+      "name": "few seed grains",
+      "from": [
+        5,
+        12.25,
+        5
+      ],
+      "to": [
+        5.75,
+        12.75,
+        6
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        }
+      }
+    },
+    {
+      "name": "few seed grains",
+      "from": [
+        8,
+        12.25,
+        7
+      ],
+      "to": [
+        8.75,
+        12.75,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        }
+      }
+    },
+    {
+      "name": "few seed grains",
+      "from": [
+        10,
+        12.25,
+        9
+      ],
+      "to": [
+        10.75,
+        12.75,
+        10
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#grain"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.75,
+            1
+          ],
+          "texture": "#grain"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

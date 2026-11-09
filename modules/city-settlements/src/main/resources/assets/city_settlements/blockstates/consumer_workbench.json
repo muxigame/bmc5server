@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "city_settlements:block/consumer_workbench"
+    },
+    "facing=east": {
+      "model": "city_settlements:block/consumer_workbench",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "city_settlements:block/consumer_workbench",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "city_settlements:block/consumer_workbench",
+      "y": 270
+    }
+  }
+}

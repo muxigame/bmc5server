@@ -1,0 +1,1191 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "wood": "city_settlements:block/workstations/oak",
+    "frame": "city_settlements:block/workstations/dark_oak",
+    "cover": "city_settlements:block/workstations/cover",
+    "paper": "city_settlements:block/workstations/paper",
+    "abacus": "city_settlements:block/workstations/abacus",
+    "leather": "city_settlements:block/workstations/leather",
+    "hemp": "city_settlements:block/workstations/hemp",
+    "particle": "city_settlements:block/workstations/oak"
+  },
+  "elements": [
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        4,
+        10,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        12
+      ],
+      "to": [
+        4,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        10,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        12
+      ],
+      "to": [
+        15,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            10
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "top",
+      "from": [
+        0.5,
+        10,
+        0.5
+      ],
+      "to": [
+        15.5,
+        12,
+        15.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "lower left brace",
+      "from": [
+        1,
+        3,
+        2
+      ],
+      "to": [
+        4,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "lower right brace",
+      "from": [
+        12,
+        3,
+        2
+      ],
+      "to": [
+        15,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "ledger lower cover",
+      "from": [
+        2,
+        12,
+        4
+      ],
+      "to": [
+        8,
+        12.375,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.375
+          ],
+          "texture": "#cover"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.375
+          ],
+          "texture": "#cover"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.375
+          ],
+          "texture": "#cover"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.375
+          ],
+          "texture": "#cover"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            7
+          ],
+          "texture": "#cover"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            7
+          ],
+          "texture": "#cover"
+        }
+      }
+    },
+    {
+      "name": "ledger pages",
+      "from": [
+        2.25,
+        12.375,
+        4.25
+      ],
+      "to": [
+        7.75,
+        13.125,
+        10.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            0.75
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            0.75
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            0.75
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6.5,
+            0.75
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            6.5
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            5.5,
+            6.5
+          ],
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "name": "ledger top cover",
+      "from": [
+        2,
+        13.125,
+        4
+      ],
+      "to": [
+        8,
+        13.375,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#cover"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#cover"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.25
+          ],
+          "texture": "#cover"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7,
+            0.25
+          ],
+          "texture": "#cover"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            7
+          ],
+          "texture": "#cover"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            7
+          ],
+          "texture": "#cover"
+        }
+      }
+    },
+    {
+      "name": "wood abacus",
+      "from": [
+        10,
+        12,
+        6
+      ],
+      "to": [
+        14,
+        12.5,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            6
+          ],
+          "texture": "#abacus"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            6
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "abacus end",
+      "from": [
+        10,
+        12.5,
+        6
+      ],
+      "to": [
+        10.5,
+        13,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            6
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            6
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "abacus end",
+      "from": [
+        13.5,
+        12.5,
+        6
+      ],
+      "to": [
+        14,
+        13,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            6
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0.5,
+            6
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "purse",
+      "from": [
+        10.5,
+        12,
+        2
+      ],
+      "to": [
+        13.5,
+        14.5,
+        5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3.0,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3.0,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            2.5
+          ],
+          "texture": "#leather"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3.0,
+            3
+          ],
+          "texture": "#leather"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3.0,
+            3
+          ],
+          "texture": "#leather"
+        }
+      }
+    },
+    {
+      "name": "purse tie",
+      "from": [
+        11.5,
+        14.5,
+        3
+      ],
+      "to": [
+        12.5,
+        15,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#hemp"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#hemp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#hemp"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

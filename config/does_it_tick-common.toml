@@ -38,5 +38,5 @@
 [Misc]
 	SendWarningMessageWhenPlayerLogIn = true
 	#If you disable this, entities near player bases may be affected.
-	DisableInActiveChunks = false
+	DisableInActiveChunks = true
 	DisableOnClient = true

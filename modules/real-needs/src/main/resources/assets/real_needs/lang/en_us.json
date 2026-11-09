@@ -1,0 +1,14 @@
+{
+  "item.real_needs.bandage": "绷带",
+  "item.real_needs.splint": "夹板",
+  "item.real_needs.antibacterial_dose": "抗菌药剂",
+  "item.real_needs.antiparasitic_dose": "驱虫药剂",
+  "item.real_needs.antiviral_dose": "抗病毒药剂",
+  "item.real_needs.cooling_pack": "降温包",
+  "item.real_needs.warming_pack": "保温包",
+  "item.real_needs.burn_dressing": "烧伤敷料",
+  "item.real_needs.soothing_paste": "舒缓药膏",
+  "item.real_needs.rehabilitation_kit": "康复护理包",
+  "death.attack.real_needs.ailment": "%1$s 因伤病恶化倒下了",
+  "death.attack.real_needs.ailment.player": "%1$s 在与 %2$s 交战后因伤病倒下了"
+}

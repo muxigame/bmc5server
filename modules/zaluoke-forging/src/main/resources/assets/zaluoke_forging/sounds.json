@@ -1,0 +1,73 @@
+{
+  "bellows": {
+    "subtitle": "subtitle.zaluoke_forging.bellows",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:bellows",
+        "volume": 0.65
+      }
+    ]
+  },
+  "place_work": {
+    "subtitle": "subtitle.zaluoke_forging.place_work",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:place_work",
+        "volume": 0.65
+      }
+    ]
+  },
+  "take_work": {
+    "subtitle": "subtitle.zaluoke_forging.take_work",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:take_work",
+        "volume": 0.65
+      }
+    ]
+  },
+  "clear_slag": {
+    "subtitle": "subtitle.zaluoke_forging.clear_slag",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:clear_slag",
+        "volume": 0.65
+      }
+    ]
+  },
+  "solidify": {
+    "subtitle": "subtitle.zaluoke_forging.solidify",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:solidify",
+        "volume": 0.65
+      }
+    ]
+  },
+  "pour": {
+    "subtitle": "subtitle.zaluoke_forging.pour",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:pour",
+        "volume": 0.65
+      }
+    ]
+  },
+  "embers": {
+    "subtitle": "subtitle.zaluoke_forging.embers",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:embers",
+        "volume": 0.65
+      }
+    ]
+  },
+  "forge_complete": {
+    "subtitle": "subtitle.zaluoke_forging.forge_complete",
+    "sounds": [
+      {
+        "name": "zaluoke_forging:forge_complete"
+      }
+    ]
+  }
+}

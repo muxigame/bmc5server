@@ -1,0 +1,1 @@
+{"required":true,"minVersion":"0.8","package":"com.muxigame.cameralock.mixin","compatibilityLevel":"JAVA_21","client":["MouseMixin","CameraMixin","ReleaseMixin","PickingMixin"],"injectors":{"defaultRequire":1}}

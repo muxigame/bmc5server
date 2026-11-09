@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:charcoal"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "result": {
+    "id": "real_needs:warming_pack",
+    "count": 2
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:milk_bucket",
+    "minecraft:mushroom_stew",
+    "minecraft:beetroot_soup",
+    "minecraft:rabbit_stew",
+    "minecraft:suspicious_stew"
+  ]
+}

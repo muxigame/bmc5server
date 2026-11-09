@@ -1,6 +1,6 @@
 #.
 #URL to send data to.
-"Metrics Endpoint URL" = "https://analyticsinjest.txni.dev/"
+"Metrics Endpoint URL" = ""
 #.
 #Identifier for this modpack
 "Pack ID" = "bmc5forge"

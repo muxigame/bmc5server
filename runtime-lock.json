@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "baseline": "launcher1.4.97-derived-server-city-core-20261108",
+  "baseline": "launcher1.4.100-derived-server-city-core-20261108",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "coreVersion": "1.12.9-social-map.20261101.1",
@@ -18190,37 +18190,37 @@
       "path": "mods/zaluoke_forging-0.6.3-dev.jar",
       "size": 250649,
       "sha256": "99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/zaluoke_forging-0.6.3-dev.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/zaluoke_forging-0.6.3-dev.jar"
     },
     {
       "path": "mods/building_archive-0.6.1.jar",
       "size": 152700,
       "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/building_archive-0.6.1.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.1.jar"
     },
     {
       "path": "mods/city_settlements-0.11.0.jar",
       "size": 1040367,
       "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.11.0.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/city_settlements-0.11.0.jar"
     },
     {
       "path": "mods/real_needs-0.5.2.jar",
       "size": 156843,
       "sha256": "ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/real_needs-0.5.2.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/real_needs-0.5.2.jar"
     },
     {
       "path": "mods/inner_monologue-0.1.1.jar",
       "size": 47670,
       "sha256": "61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/inner_monologue-0.1.1.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/inner_monologue-0.1.1.jar"
     },
     {
       "path": "mods/camera_lock-0.1.6.jar",
       "size": 42487,
       "sha256": "88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/camera_lock-0.1.6.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/camera_lock-0.1.6.jar"
     },
     {
       "path": "mods/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.120.jar",
@@ -18243,7 +18243,7 @@
       "path": "mods/city-core-l2-compat-0.0.2.jar",
       "size": 3381,
       "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city-core-l2-compat-0.0.2.jar"
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/city-core-l2-compat-0.0.2.jar"
     }
   ],
   "retired": [],
@@ -18300,13 +18300,13 @@
           "sha256": "8cab6bab41c828f4780d67270cabc9214b550ec2ee0c75097ca3ad7dc90bc074"
         }
       ],
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
+      "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
       "sourceProvenance": {
         "baseArtifactSHA256": "19e6c7d5945ab96948160cacb10683bcafbd47030ae4c210ca5205a629532b7d",
         "overlayCommit": "c2d5079a283caffc9f2181c267f5af3f2ba8e213",
         "full134SourceReconstructibleFromOverlayCommitAlone": false,
-        "publishKitURL": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/NPC134-MarkFix-Publish-Kit.zip",
-        "ysm3CompatSourceKitURL": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/NPC134-YSM3-Compat-Source-Kit.zip",
+        "publishKitURL": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/NPC134-MarkFix-Publish-Kit.zip",
+        "ysm3CompatSourceKitURL": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/NPC134-YSM3-Compat-Source-Kit.zip",
         "ysm3CompatSourceKitSHA256": "9c45f39bb051d105bb391a70e9583245b33ae3ed79f94459edbfde0f0d540623"
       },
       "packagingFix": "Manifest-first canonical CRLF folding; actual SecureJar3.0.8 main attrs proven"
@@ -18314,7 +18314,7 @@
   ],
   "npcDesignKit": {
     "version": "motion.134-rural092-markfix1",
-    "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/NPC-Design-Kit-motion134-rural092-markfix1.zip",
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/NPC-Design-Kit-motion134-rural092-markfix1.zip",
     "size": 1209849,
     "sha256": "8c8189b76bdcb98065193cc106c59859125191ae7e64504e7b6c0ad634f2a95d",
     "files": [
@@ -18548,7 +18548,7 @@
         "license": "CC BY-NC",
         "sourceProject": "customnpcs-source",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar"
       },
       {
         "modId": "zaluoke_forging",
@@ -18559,7 +18559,7 @@
         "license": "All Rights Reserved",
         "sourceProject": "zaluoke-forging",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/zaluoke_forging-0.6.3-dev.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/zaluoke_forging-0.6.3-dev.jar"
       },
       {
         "modId": "building_archive",
@@ -18577,7 +18577,7 @@
             "sha256": "1d1123fcea9aae5fb8b734f17eb7cb001f7de4aec982b4113cdeb4b0f6d7ae2a"
           }
         ],
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/building_archive-0.6.1.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/building_archive-0.6.1.jar"
       },
       {
         "path": "mods/ysm-3.0-dev-neoforge+mc1.21.1.jar",
@@ -18595,7 +18595,8 @@
             "sha256": "b285c73d4ec010d9a9be3c53c1bee890cf269645be5f1bcf1c27a2e8e82807cb"
           }
         ],
-        "compatibilityAcceptancePending": true
+        "compatibilityAcceptancePending": true,
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/ysm-3.0-dev-neoforge+mc1.21.1.jar"
       },
       {
         "modId": "city_settlements",
@@ -18606,7 +18607,7 @@
         "license": "All Rights Reserved",
         "sourceProject": "city-settlements",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.11.0.jar",
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/city_settlements-0.11.0.jar",
         "superseded": [
           {
             "path": "mods/city_settlements-0.10.29.jar",
@@ -18633,7 +18634,7 @@
         "license": "All Rights Reserved",
         "sourceProject": "real-needs",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/real_needs-0.5.2.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/real_needs-0.5.2.jar"
       },
       {
         "modId": "inner_monologue",
@@ -18644,7 +18645,7 @@
         "license": "All Rights Reserved",
         "sourceProject": "monologue-psychology",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/inner_monologue-0.1.1.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/inner_monologue-0.1.1.jar"
       },
       {
         "modId": "camera_lock",
@@ -18655,7 +18656,7 @@
         "license": "All Rights Reserved",
         "sourceProject": "camera-lock-movement",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/camera_lock-0.1.6.jar"
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/camera_lock-0.1.6.jar"
       },
       {
         "modId": "city_core_l2_compat",
@@ -18666,7 +18667,7 @@
         "license": "MIT",
         "sourceProject": "city-core-l2-compat",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city-core-l2-compat-0.0.2.jar",
+        "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/city-core-l2-compat-0.0.2.jar",
         "acceptanceScope": "Actual dedicated encode/source-map roundtrip + title-client exact1072B payload decode passed; real login and full city loop pending"
       }
     ],
@@ -18677,11 +18678,11 @@
   },
   "launcherBase": {
     "path": "launcher-base-lock.json",
-    "sha256": "0e4c319cac3f01fc732da4cae8e46a77ab36591119d20b120c14c71a4d99aba4",
-    "version": "1.4.97",
-    "manifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d",
+    "sha256": "72accd6d72a540acba711d458e1f2279474ca0e87743b53333eb795a1791fee1",
+    "version": "1.4.100",
+    "manifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629",
     "profile": "derived-common-server-candidate",
-    "sourceManifestSHA256": "30f3104522c1383e441397384d28c237919aa1810099fd5ca2ca42e3c0ff562d"
+    "sourceManifestSHA256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629"
   },
   "serverModelRuntime": {
     "reason": "Actual YSM3 dedicated-server common model parser uses LWJGL MemoryUtil; vanilla dedicated classpath omits it. Minimal core library/native only, no GLFW/OpenGL/UI startup. Native acceptance pending.",

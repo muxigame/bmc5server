@@ -1,0 +1,7 @@
+{
+  "key.camera_lock.lock": "Lock / unlock target",
+  "key.categories.camera_lock": "Camera, Lock and Omnidirectional Movement",
+  "message.camera_lock.none": "No visible target within 20 blocks ahead",
+  "message.camera_lock.too_far": "%s · Out of reach",
+  "message.camera_lock.blocked": "%s · Obstructed"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "real_needs:antiviral_dose",
+    "count": 2
+  }
+}

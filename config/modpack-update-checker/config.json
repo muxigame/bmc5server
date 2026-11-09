@@ -7,7 +7,7 @@
   "advanced": {
     "bccEnabled": true,
     "expandButton": false,
-    "updateCheckerType": 2,
+    "updateCheckerType": 0,
     "showAllChangelogsIfUpToDate": false,
     "markdownRenderer": "builtin:basic"
   }

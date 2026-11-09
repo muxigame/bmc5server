@@ -1,0 +1,1189 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "wood": "city_settlements:block/workstations/oak",
+    "frame": "city_settlements:block/workstations/dark_oak",
+    "iron": "city_settlements:block/workstations/iron",
+    "cloth": "city_settlements:block/workstations/cloth_blue",
+    "paper": "city_settlements:block/workstations/paper",
+    "particle": "city_settlements:block/workstations/oak"
+  },
+  "elements": [
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        4,
+        11,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        1,
+        0,
+        12
+      ],
+      "to": [
+        4,
+        11,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        11,
+        4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "leg",
+      "from": [
+        12,
+        0,
+        12
+      ],
+      "to": [
+        15,
+        11,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            3,
+            11
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "top",
+      "from": [
+        0.5,
+        11,
+        0.5
+      ],
+      "to": [
+        15.5,
+        13,
+        15.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            2
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            15.0,
+            15.0
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "lower left brace",
+      "from": [
+        1,
+        3,
+        2
+      ],
+      "to": [
+        4,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "lower right brace",
+      "from": [
+        12,
+        3,
+        2
+      ],
+      "to": [
+        15,
+        5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            3,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            12,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            3,
+            12
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "wood vise body",
+      "from": [
+        1,
+        8,
+        1
+      ],
+      "to": [
+        5,
+        11,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            3
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            3
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            2,
+            3
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "vise fixed jaw",
+      "from": [
+        1,
+        11,
+        1
+      ],
+      "to": [
+        5,
+        13.75,
+        2
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            2.75
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "vise moving jaw",
+      "from": [
+        1,
+        11,
+        0.25
+      ],
+      "to": [
+        5,
+        13.75,
+        1.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.75
+          ],
+          "texture": "#wood"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            2.75
+          ],
+          "texture": "#wood"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            2.75
+          ],
+          "texture": "#wood"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            2.75
+          ],
+          "texture": "#wood"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            1.0
+          ],
+          "texture": "#wood"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            1.0
+          ],
+          "texture": "#wood"
+        }
+      }
+    },
+    {
+      "name": "vise screw",
+      "from": [
+        2.5,
+        9,
+        0
+      ],
+      "to": [
+        3.5,
+        10,
+        1.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1.25,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1.25,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1.25
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.0,
+            1.25
+          ],
+          "texture": "#iron"
+        }
+      }
+    },
+    {
+      "name": "cloth roll",
+      "from": [
+        2,
+        13,
+        9
+      ],
+      "to": [
+        8,
+        15,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            2
+          ],
+          "texture": "#cloth"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            2
+          ],
+          "texture": "#cloth"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5,
+            2
+          ],
+          "texture": "#cloth"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5,
+            2
+          ],
+          "texture": "#cloth"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            5
+          ],
+          "texture": "#cloth"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            5
+          ],
+          "texture": "#cloth"
+        }
+      }
+    },
+    {
+      "name": "paper workpad",
+      "from": [
+        8,
+        13,
+        4
+      ],
+      "to": [
+        14,
+        13.25,
+        10
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            6,
+            0.25
+          ],
+          "texture": "#paper"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            6,
+            6
+          ],
+          "texture": "#paper"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            6,
+            6
+          ],
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "name": "chisel handle",
+      "from": [
+        5,
+        13,
+        2
+      ],
+      "to": [
+        9,
+        13.5,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "texture": "#frame"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            4,
+            1
+          ],
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "name": "chisel tip",
+      "from": [
+        3.5,
+        13.1,
+        2
+      ],
+      "to": [
+        5,
+        13.4,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            0.3000000000000007
+          ],
+          "texture": "#iron"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1
+          ],
+          "texture": "#iron"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1.5,
+            1
+          ],
+          "texture": "#iron"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

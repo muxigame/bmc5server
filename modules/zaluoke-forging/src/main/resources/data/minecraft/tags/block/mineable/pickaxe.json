@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "zaluoke_forging:blacksmith_anvil",
+    "zaluoke_forging:blacksmith_hearth",
+    "zaluoke_forging:refining_furnace",
+    "zaluoke_forging:mold_stand"
+  ]
+}

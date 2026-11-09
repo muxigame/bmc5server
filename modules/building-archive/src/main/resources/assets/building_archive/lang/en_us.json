@@ -1,0 +1,8 @@
+{
+  "item.building_archive.archive_wand": "Building Archive Wand",
+  "itemGroup.building_archive": "Building Archive",
+  "tooltip.building_archive.wand": "Right click: first corner. Sneak: second corner. /ba for export/import.",
+  "item.building_archive.archive_guide": "Building Archive Guide",
+  "item.building_archive.terrain_tool": "Terrain Shaper",
+  "item.building_archive.archive_transfer": "Building Import / Export Tool"
+}

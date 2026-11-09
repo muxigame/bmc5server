@@ -1,0 +1,69 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+    id 'idea'
+}
+version = mod_version
+group = mod_group_id
+base { archivesName = mod_id }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+neoForge {
+    version = project.neo_version
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory = project.file('run/gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        client {
+            client()
+            gameDirectory = project.file('run/client')
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            gameDirectory = project.file('run/server')
+        }
+        data {
+            data()
+            gameDirectory = project.file('run/data')
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources').absolutePath, '--existing', file('src/main/resources').absolutePath
+        }
+    }
+    mods {
+        "${mod_id}" { sourceSet(sourceSets.main) }
+    }
+}
+sourceSets.main.resources.srcDir('src/generated/resources')
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    var values = [mod_id:mod_id,mod_name:mod_name,mod_version:mod_version,mod_license:mod_license,neo_version:neo_version]
+    inputs.properties(values)
+    expand(values)
+    from 'src/main/templates'
+    into 'build/generated/modMetadata'
+}
+sourceSets.main.resources.srcDir(generateModMetadata)
+neoForge.ideSyncTask(generateModMetadata)
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+// Plain Java tests intentionally have no Minecraft or CustomNPCs on their classpath.
+tasks.register('compileMathChecks', JavaCompile) {
+    source = files('src/main/java/com/muxigame/cameralock/MotionMath.java', 'tests/MathChecks.java')
+    classpath = files()
+    destinationDirectory = layout.buildDirectory.dir('math-checks')
+    javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+}
+tasks.register('mathChecks', JavaExec) {
+    dependsOn 'compileMathChecks'
+    classpath = files(layout.buildDirectory.dir('math-checks'))
+    mainClass = 'MathChecks'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+}
+tasks.named('check') { dependsOn 'mathChecks' }

@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "zaluoke_forging:block/quenching_barrel",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "zaluoke_forging:block/quenching_barrel",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "zaluoke_forging:block/quenching_barrel",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "zaluoke_forging:block/quenching_barrel",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}
