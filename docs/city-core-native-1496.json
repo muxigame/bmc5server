@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "baseVersion": "1.4.96",
+  "officialManifestSHA256": "5b81ef0419d0a8bae6517076f238f1144fbaf21f554c9416ff0c2ec1191fffa7",
+  "runStartedAt": "2026-11-09T00:31:44.186591+00:00",
+  "runFinishedAt": "2026-11-09T00:33:37.625057+00:00",
+  "scope": "Current launcher-derived dedicated server startup and explicit unspawned NPC audit only",
+  "nativeJavaExitCode": 0,
+  "controllerExitCode": 1,
+  "controllerGuard": {
+    "reason": "Minecraft reserialized server.properties; wrapper refused byte drift",
+    "independentResolution": "Complete property keysets and every other value unchanged; only approved level-name differed; exact original bytes restored",
+    "resolved": true
+  },
+  "temporaryNeverPublishProbeRemoved": true,
+  "npcChecks": [
+    {
+      "pass": true,
+      "name": "expected_candidate_version"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/mixin/EntityMarkDataMixin.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/entity/data/IEntityMarkData.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/dragon/DragonPowerItem.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/items/ItemNpcCloner.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/client/gui/GuiNpcMobSpawner.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/client/gui/mainmenu/GuiNpcDisplay.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/client/gui/DesignRecoveryScreen.class"
+    },
+    {
+      "pass": true,
+      "name": "class_resource:noppes/npcs/client/gui/SubGuiNpcRespawn.class"
+    },
+    {
+      "pass": true,
+      "name": "dragon_power_item_registered"
+    },
+    {
+      "pass": true,
+      "name": "core_legacy_map_compatibility"
+    },
+    {
+      "pass": true,
+      "name": "legacy_mark_map_empty"
+    },
+    {
+      "pass": true,
+      "name": "real_npc_has_injected_holder"
+    },
+    {
+      "pass": true,
+      "name": "npc_same_object_cache"
+    },
+    {
+      "pass": true,
+      "name": "save_load:design"
+    },
+    {
+      "pass": true,
+      "name": "save_load:inventory_gear_durability_template"
+    },
+    {
+      "pass": true,
+      "name": "save_load:stats_death_policy"
+    },
+    {
+      "pass": true,
+      "name": "save_load:display"
+    },
+    {
+      "pass": true,
+      "name": "save_load:custom_persistent_data"
+    },
+    {
+      "pass": true,
+      "name": "save_load:mark_type_color"
+    },
+    {
+      "pass": true,
+      "name": "save_load:independent_mark_cache"
+    },
+    {
+      "pass": true,
+      "name": "clone_cleanup_removes_identity_position"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:design"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:inventory_gear_durability_template"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:stats_death_policy"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:display"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:custom_persistent_data"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:mark_type_color"
+    },
+    {
+      "pass": true,
+      "name": "clone_clean_load:independent_mark_cache"
+    },
+    {
+      "pass": true,
+      "name": "clone_new_identity"
+    },
+    {
+      "pass": true,
+      "name": "real_vanilla_has_injected_holder"
+    },
+    {
+      "pass": true,
+      "name": "real_vanilla_same_object_cache"
+    },
+    {
+      "pass": true,
+      "name": "legacy_mark_map_stays_empty"
+    },
+    {
+      "pass": true,
+      "name": "no_test_entities_added"
+    },
+    {
+      "pass": true,
+      "name": "all_unspawned_candidates_collectible"
+    }
+  ],
+  "unspawnedCandidates": 10000,
+  "aliveAfterGC": 0,
+  "worldEntitiesBeforeAfter": [
+    0,
+    0
+  ],
+  "all18InstalledModuleHashesUnchanged": true,
+  "modules": [
+    {
+      "modId": "customnpcs",
+      "version": "1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1",
+      "sha256": "0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82",
+      "bytes": 105625076
+    },
+    {
+      "modId": "zaluoke_forging",
+      "version": "0.6.3-dev",
+      "sha256": "99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02",
+      "bytes": 250649
+    },
+    {
+      "modId": "building_archive",
+      "version": "0.6.1",
+      "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
+      "bytes": 152700
+    },
+    {
+      "modId": "ysm",
+      "version": "3.0-dev-neoforge+mc1.21.1",
+      "sha256": "4e758d94d5d62c180f2c79dee6144b3d3f72f3a2a676a5a933fd23309147a663",
+      "bytes": 31309535
+    },
+    {
+      "modId": "city_settlements",
+      "version": "0.10.30",
+      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
+      "bytes": 1005944
+    },
+    {
+      "modId": "real_needs",
+      "version": "0.5.2",
+      "sha256": "ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc",
+      "bytes": 156843
+    },
+    {
+      "modId": "inner_monologue",
+      "version": "0.1.1",
+      "sha256": "61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280",
+      "bytes": 47670
+    },
+    {
+      "modId": "camera_lock",
+      "version": "0.1.6",
+      "sha256": "88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559",
+      "bytes": 42487
+    },
+    {
+      "modId": "city_core_l2_compat",
+      "version": "0.0.2",
+      "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
+      "bytes": 3381
+    }
+  ],
+  "newEmptyWorldLogicalBytes": 9936365,
+  "newWorldCopies": 0,
+  "newRuntimeCopies": 0,
+  "normalPlayerJoinPassed": false,
+  "actual1496L2PlayerSyncPassed": false,
+  "NPCBuildingCityPersistenceLoopPassed": false,
+  "YSM3ActualRenderMotionPassed": false,
+  "stableReleaseReady": false,
+  "missingDeploymentData": {
+    "module": "muxi_zombie_challenge",
+    "artifact": "muxi-zombie-challenge-0.1.6-shop-editor.20261102.1-revive.1.jar",
+    "actualSHA256": "2b0e05b0b29fd21cc150810024f0300a5a25a3e32a30e40c10b8266a3535ff0a",
+    "actualJarMembers": 194,
+    "embeddedMapDataPayloadFound": false,
+    "requiredRelativePath": "data/muxi-zombie-authoring/map-assets",
+    "compatibleDataVersionKnown": false,
+    "releaseListsChecked": 8,
+    "noMatchingAssetInInspectedReleaseAssetLists": true,
+    "lookupScope": "bmc5server seven releases and bmc5client one release; not a global absence claim",
+    "serverReleasesURL": "https://api.github.com/repos/muxigame/bmc5server/releases",
+    "clientReleasesURL": "https://api.github.com/repos/muxigame/bmc5client/releases"
+  },
+  "userAccepted": false
+}
