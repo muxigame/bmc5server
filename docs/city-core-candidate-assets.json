@@ -66,21 +66,30 @@
     },
     {
       "modId": "city_settlements",
-      "path": "mods/city_settlements-0.10.30.jar",
-      "size": 1005944,
-      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
-      "version": "0.10.30",
+      "path": "mods/city_settlements-0.11.0.jar",
+      "size": 1040367,
+      "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+      "version": "0.11.0",
       "license": "All Rights Reserved",
       "sourceProject": "city-settlements",
       "bothSides": true,
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.10.30.jar",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.11.0.jar",
       "superseded": [
         {
           "path": "mods/city_settlements-0.10.29.jar",
           "size": 1005949,
           "sha256": "9085ee6d60df406ca26ddf6e74bed470e387955a088e1bbf17968364752afe22"
+        },
+        {
+          "path": "mods/city_settlements-0.10.30.jar",
+          "size": 1005944,
+          "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452"
         }
-      ]
+      ],
+      "networkProtocol": 3,
+      "savedDataSchema": 4,
+      "controlsUnchanged": true,
+      "acceptanceScope": "Full320 on r04; final bounded resize/Y fixes6 focused passed; real UI unverified; formal deployment false"
     },
     {
       "modId": "real_needs",
@@ -131,93 +140,119 @@
   "assets": [
     {
       "file": "CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
       "sha256": "0b1708d45f8f4cd02cc3bfed5e829ae8f36ebd417d2c014ef18106e7c6adbb82",
       "size": 105625076
     },
     {
       "file": "zaluoke_forging-0.6.3-dev.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\zaluoke_forging-0.6.3-dev.jar",
       "sha256": "99716f37ad7b3e28e498739b7ea0c3de6d7f04307ae7f4725f729b7701d27b02",
       "size": 250649
     },
     {
       "file": "building_archive-0.6.1.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\building_archive-0.6.1.jar",
       "sha256": "4073598e83dc34b07dc238956afdae676b2f3d5a89883a4c4c2a0c00ef16c361",
       "size": 152700
     },
     {
-      "file": "city_settlements-0.10.30.jar",
-      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
-      "size": 1005944
-    },
-    {
       "file": "real_needs-0.5.2.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\real_needs-0.5.2.jar",
       "sha256": "ecbdbdc4d4cbd176eb975c1877b75c0901576aa8f9681443cb8b5c461789fefc",
       "size": 156843
     },
     {
       "file": "inner_monologue-0.1.1.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\inner_monologue-0.1.1.jar",
       "sha256": "61a78053858102cbd949957077307068be102cb2e2f98aab444193a6a5796280",
       "size": 47670
     },
     {
       "file": "camera_lock-0.1.6.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\camera_lock-0.1.6.jar",
       "sha256": "88104dc5dbc3c0320d4dbaaa3eddcf48fc44b10cab15734ba80d94f3dd219559",
       "size": 42487
     },
     {
       "file": "NPC-Design-Kit-motion134-rural092-markfix1.zip",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\NPC-Design-Kit-motion134-rural092-markfix1.zip",
       "sha256": "8c8189b76bdcb98065193cc106c59859125191ae7e64504e7b6c0ad634f2a95d",
       "size": 1209849
     },
     {
       "file": "NPC134-MarkFix-Publish-Kit.zip",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\NPC134-MarkFix-Publish-Kit.zip",
       "sha256": "2a82bc91300ea2a6708a69a4b2d72669126414e7d73f960548d1a8e6e60481f8",
       "size": 6552
     },
     {
       "file": "glfw.dll",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\glfw.dll",
       "sha256": "0d22a3133722c2aa48ad6a898df12c4026c867dfc52db9c67f9fbdd2b24a586b",
       "size": 366592
     },
     {
       "file": "GLFW-LICENSE.md",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\GLFW-LICENSE.md",
       "sha256": "149704059b5d0bf551637e50042dd4de9c2cae921021f6636298911e3a5f9462",
       "size": 904
     },
     {
       "file": "owned-active-window.patch",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\owned-active-window.patch",
       "sha256": "5207379f8ab336b336c83c819c47d2075a5f6b0e44aa921a07b36cc3695d6562",
       "size": 655
     },
     {
       "file": "lwjgl-compat.patch",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\lwjgl-compat.patch",
       "sha256": "9847e44eb685c274f8ded6cdf1b2602554a1744d66b018cc96a5b4ba04c140ae",
       "size": 11290
     },
     {
       "file": "NPC134-YSM3-Compat-Source-Kit.zip",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\NPC134-YSM3-Compat-Source-Kit.zip",
       "sha256": "9c45f39bb051d105bb391a70e9583245b33ae3ed79f94459edbfde0f0d540623",
       "size": 34549
     },
     {
       "file": "City-0.10.30-Changed-Sources.zip",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\City-0.10.30-Changed-Sources.zip",
       "sha256": "a57ee735f77d00439c2cc97fdc6b74eb351556aba990286bf458e7cb1a713dd6",
       "size": 17388
     },
     {
       "file": "city-0.10.29-to-0.10.30.patch",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\city-0.10.29-to-0.10.30.patch",
       "sha256": "00c3cb6401392e2e30927e1b86a97bdefd3f809afc81a75638069048f459cdc4",
       "size": 10629
     },
     {
       "file": "city-core-l2-compat-0.0.2.jar",
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\city-core-l2-compat-0.0.2.jar",
       "sha256": "8996fdaf339ff89dae8be66436b73d5a9d69b9be5994b1a58d2c8c3cc8084511",
       "size": 3381
     },
     {
-      "file": "City-Core-Module-Sources-20261109-030-l2a.zip",
-      "sha256": "ff31ae68c6753fbb12bb951e9614bc4c02177d0e7c9d312234065ef6ad706010",
-      "size": 1833182
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\city_settlements-0.11.0.jar",
+      "size": 1040367,
+      "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27"
+    },
+    {
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\City-0.11.0-Source-Kit.zip",
+      "size": 655474,
+      "sha256": "248253e483efe18bc9d8833808349cf3f533f3e55d30db94d769d1e7a8f6d9bd"
+    },
+    {
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\city-0.10.30-to-0.11.0.patch",
+      "size": 191695,
+      "sha256": "dd68a494296f1e5109cd527a00bcefbd570f71ff47399df35f8b2c9c202a90f2"
+    },
+    {
+      "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\City-Core-Module-Sources-20261109-0110.zip",
+      "size": 1515234,
+      "sha256": "2f5523a16483475b7ecb20a18923243ef4f12c9ca9c695b2bed11b559157387a"
     }
   ],
   "validation": {
@@ -242,5 +277,60 @@
   "userAccepted": false,
   "current1496NativeAcceptancePassed": false,
   "lastNativeBaseVersion": "1.4.96",
-  "current1497NativeAcceptancePassed": false
+  "current1497NativeAcceptancePassed": false,
+  "city0110SourceBundle": {
+    "path": "D:\\CPN\\work\\city-core-release-20261108\\artifacts\\City-Core-Module-Sources-20261109-0110.zip",
+    "size": 1515234,
+    "sha256": "2f5523a16483475b7ecb20a18923243ef4f12c9ca9c695b2bed11b559157387a"
+  },
+  "city0110Validation": {
+    "at": "2026-11-09T04:10:45.343570+00:00",
+    "sourceOriginalStillUnchanged": true,
+    "originalChangedFiles": [],
+    "version": "0.11.0",
+    "finalCandidateSHA256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+    "jarBytes": 1040367,
+    "fullRegression": {
+      "tests": 320,
+      "passed": 320,
+      "log": "gametest-large-area-r04.log",
+      "artifactSHA256": "d3fcaabe0bf77f21caae29d9220926c80042d047b4a5c4d0faa8b8beee090851"
+    },
+    "focusedFinalCandidate": {
+      "tests": 6,
+      "passed": 6,
+      "log": "gametest-large-area-focus-r02.log",
+      "artifactSHA256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27"
+    },
+    "finalChangesAfterFullRegression": [
+      "com/muxigame/city/CityBlockStore$1$1.class",
+      "com/muxigame/city/CityBlockStore$1.class",
+      "com/muxigame/city/CityBlockStore$Adapter.class",
+      "com/muxigame/city/CityBlockStore.class",
+      "com/muxigame/city/CityScanCursor.class",
+      "com/muxigame/city/CityService.class",
+      "com/muxigame/city/CityWorks$EffCache.class",
+      "com/muxigame/city/CityWorks$TaskCache.class",
+      "com/muxigame/city/CityWorks$UnknownCache.class",
+      "com/muxigame/city/CityWorks.class"
+    ],
+    "productionClassesMatchDevelopmentBytecode": true,
+    "testClassesAndFocusFixtureExcludedFromProduction": true,
+    "productionDeployed": false,
+    "nativeUI": "UNVERIFIED_CAPTURE_RETURNED_OTHER_GAME",
+    "nativeUIInputsSent": 0,
+    "nativeClientExitVerified": false,
+    "updatedAt": "2026-11-09T04:15:34.184852+00:00",
+    "installerRegression": {
+      "client": 21,
+      "server": 26,
+      "allPassed": true,
+      "scope": "City retirement, launcher-base and entrypoint unit tests"
+    },
+    "actualCandidateFileVerify": {
+      "client": true,
+      "server": true,
+      "baseVersion": "1.4.97"
+    }
+  }
 }

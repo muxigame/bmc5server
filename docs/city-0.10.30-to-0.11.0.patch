@@ -1,0 +1,1233 @@
+diff --git a/build.gradle b/build.gradle
+index 967e9d7..02ec20f 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -16,7 +16,7 @@ neoForge {
+         gameTestServer {
+             type = 'gameTestServer'
+             gameDirectory = project.file('run/gametest')
+-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
++            systemProperty 'neoforge.enabledGameTestNamespaces', providers.gradleProperty('cityTestNamespace').getOrElse(project.mod_id)
+             systemProperty 'city.audit.days', providers.gradleProperty('cityAuditDays').getOrElse('30')
+             systemProperty 'city.audit.scale', providers.gradleProperty('cityAuditScale').getOrElse('0')
+             systemProperty 'city.audit.farmEnd', providers.gradleProperty('cityAuditFarmEnd').getOrElse('14')
+@@ -28,6 +28,7 @@ neoForge {
+         client {
+             client()
+             gameDirectory = project.file('run/client')
++            systemProperty 'org.lwjgl.glfw.libname', 'D:/CPN/BMC5-workspace/npc-forging-test/runtime/native-fixes/glfw-3.4-owned/glfw.dll'
+         }
+         server {
+             server()
+@@ -60,4 +61,4 @@ tasks.withType(AbstractArchiveTask).configureEach {
+     reproducibleFileOrder = true
+ }
+ // GameTests run from the development source set, never ship executable test fixtures.
+-tasks.named('jar', Jar) { exclude 'com/muxigame/city/CityTests*.class' }
++tasks.named('jar', Jar) { exclude 'com/muxigame/city/CityTests*.class'; exclude 'data/city_large_area_focus/**' }
+diff --git "a/docs/\345\267\250\345\244\247\345\237\216\345\270\202-\344\277\235\346\214\201\345\216\237\346\223\215\344\275\234-20261109.txt" "b/docs/\345\267\250\345\244\247\345\237\216\345\270\202-\344\277\235\346\214\201\345\216\237\346\223\215\344\275\234-20261109.txt"
+new file mode 100644
+index 0000000..db7f6a7
+--- /dev/null
++++ "b/docs/\345\267\250\345\244\247\345\237\216\345\270\202-\344\277\235\346\214\201\345\216\237\346\223\215\344\275\234-20261109.txt"
+@@ -0,0 +1,29 @@
++巨大城市候选0.11.0：保留原操作
++
++用户2026-11-09明确要求：巨大区域城市，尽可能不改刚学会的框定城市操作。
++
++原操作继续使用
++1. 城市魔杖右键地面选第一角，潜行右键选第二角。
++2. 右键空气，仍在原页面填写名字并点击“新建城市”。
++3. 扩城仍点“纳入城市”，挖去归属仍点“排除城市”；原撤销和权限检查保留。
++4. 信息魔杖、建筑魔杖、住房、NPC与经济入口保留。没有增加必学快捷键、命令或街区登记步骤。
++5. 大型选区的自动高度为所选两角的较低地面至当前维度建造上界。若要包含更低地下空间，仍使用原来的最低Y/最高Y框和“应用手动高度”。
++
++后台变化
++- 城市领地取消128格边长、131072格体积上限；只保留世界边界、建造高度和坐标可表示性校验。
++- 用互不重叠的矩形区域保存纳入/排除；空地不展开为逐方块记录。不相邻纳入仍不填满中间空隙。
++- 体积、统计和调整数量采用64位计数；4096×4096×128超过21亿格也不能溢出。
++- 空间索引查询归属；统计只遍历已经加载的区块，跳过纯空气段，维持全局每tick4096次工作预算。
++- 首次定稿和修补按预算执行；已记录的房屋和地形保留权威基准，未加载地形明确待记录，靠近后续录，不声称已经检查完整远方世界。
++- 后续扩张只登记新纳入的地形；维护记录随撤销恢复。玩家破坏或放置前的原始状态用于保护已有数据。
++- 地形和房屋基准按区块层与方块状态调色板压缩，保留完整属性；相同状态不逐格重复存长文本。未记录过的远方地形不会作为已验证目标自动修复。
++- 数据城市仍是权威；不按寻路/动画发钱、产物，不强制加载全城，不修改工资、价格、职业和资金规则。
++
++兼容和部署
++- 世界城市SavedData升级schema4；读取旧schema1/2/3，保留UUID、所有者、居民、房屋、库存和账户引用。
++- 城市数据JSON升级schema3，兼容原schema1/2。
++- 网络协议3：客户端和服务端必须同时更新City模组。只换一端会被版本校验拒绝。
++- 单栋建筑登记、生产任务、实际居民数量仍有独立的工作量/容量校验；不等于城市领地尺寸限制。大量实体同时活动仍取决于服务器负荷。
++- 升级前正常保存停服并保留旧世界；不要把旧模组直接加载已经写入schema4的新世界来回退。
++
++本文件是候选操作说明。编译、自动测试、真实客户端界面和正式服部署各自记录，不相互冒充。
+diff --git a/gradle.properties b/gradle.properties
+index 00b1a43..be39032 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -7,7 +7,7 @@ minecraft_version=1.21.1
+ neo_version=21.1.250
+ mod_id=city_settlements
+ mod_name=City Settlements
+-mod_version=0.10.30
++mod_version=0.11.0
+ mod_group_id=com.muxigame.city
+ mod_license=All Rights Reserved
+ 
+diff --git a/src/main/java/com/muxigame/city/CityAreas.java b/src/main/java/com/muxigame/city/CityAreas.java
+new file mode 100644
+index 0000000..69d70d7
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityAreas.java
+@@ -0,0 +1,76 @@
++package com.muxigame.city;
++
++import java.util.*;
++import net.minecraft.core.BlockPos;
++
++/** Disjoint rectangular regions. Work depends on edit complexity, never empty land volume. */
++final class CityAreas {
++    private CityAreas() {}
++    static final int MAX_PARTS = 4096;
++    private record Cached(Object regions,Index index) {}
++    private static final Map<CityData.City,Cached> CACHE=new WeakHashMap<>();
++    /** A bounding-volume tree, independent of the number of blocks inside a region. */
++    static final class Index {
++        final CityBounds bounds;final Index left,right;final List<CityBounds> leaf;
++        Index(List<CityBounds> regions){
++            if(regions.isEmpty()){bounds=null;left=right=null;leaf=List.of();return;}
++            int x=Integer.MAX_VALUE,y=x,z=x,a=Integer.MIN_VALUE,b=a,c=a;
++            for(var r:regions){x=Math.min(x,r.min().getX());y=Math.min(y,r.min().getY());z=Math.min(z,r.min().getZ());a=Math.max(a,r.max().getX());b=Math.max(b,r.max().getY());c=Math.max(c,r.max().getZ());}
++            bounds=new CityBounds(new BlockPos(x,y,z),new BlockPos(a,b,c));
++            if(regions.size()<=8){left=right=null;leaf=List.copyOf(regions);return;}
++            int axis=(long)a-x>=(long)b-y&&((long)a-x>=(long)c-z)?0:(long)b-y>=(long)c-z?1:2;
++            var sorted=new ArrayList<>(regions);sorted.sort(Comparator.comparingLong(r->axis==0?(long)r.min().getX()+r.max().getX():axis==1?(long)r.min().getY()+r.max().getY():(long)r.min().getZ()+r.max().getZ()));int mid=sorted.size()/2;
++            left=new Index(sorted.subList(0,mid));right=new Index(sorted.subList(mid,sorted.size()));leaf=null;
++        }
++        boolean contains(BlockPos p){if(bounds==null||!bounds.contains(p))return false;if(leaf!=null)return leaf.stream().anyMatch(b->b.contains(p));return left.contains(p)||right.contains(p);}
++        boolean intersects(CityBounds b){if(bounds==null||!bounds.intersects(b))return false;if(leaf!=null)return leaf.stream().anyMatch(r->r.intersects(b));return left.intersects(b)||right.intersects(b);}
++    }
++    private static Index index(CityData.City c){var cached=CACHE.get(c);if(cached==null||cached.regions!=c.areas){cached=new Cached(c.areas,new Index(c.areas));CACHE.put(c,cached);}return cached.index;}
++    static List<CityBounds> regions(CityData.City c) { return c.areas == null ? List.of(c.bounds) : c.areas; }
++    static boolean contains(CityData.City c, BlockPos p) {
++        return c.bounds.contains(p) && !c.excluded.contains(p.asLong()) && (c.areas == null || index(c).contains(p));
++    }
++    static CityBounds intersection(CityBounds a, CityBounds b) {
++        if (!a.intersects(b)) return null;
++        return new CityBounds(new BlockPos(Math.max(a.min().getX(), b.min().getX()), Math.max(a.min().getY(), b.min().getY()), Math.max(a.min().getZ(), b.min().getZ())),
++                new BlockPos(Math.min(a.max().getX(), b.max().getX()), Math.min(a.max().getY(), b.max().getY()), Math.min(a.max().getZ(), b.max().getZ())));
++    }
++    static void subtract(CityBounds from, CityBounds cut, List<CityBounds> out) {
++        CityBounds i = intersection(from, cut);
++        if (i == null) { out.add(from); return; }
++        int x0=from.min().getX(), y0=from.min().getY(), z0=from.min().getZ(), x1=from.max().getX(), y1=from.max().getY(), z1=from.max().getZ();
++        int a=i.min().getX(), b=i.min().getY(), c=i.min().getZ(), d=i.max().getX(), e=i.max().getY(), f=i.max().getZ();
++        if (x0<a) box(out,x0,y0,z0,a-1,y1,z1);
++        if (d<x1) box(out,d+1,y0,z0,x1,y1,z1);
++        if (y0<b) box(out,a,y0,z0,d,b-1,z1);
++        if (e<y1) box(out,a,e+1,z0,d,y1,z1);
++        if (z0<c) box(out,a,b,z0,d,e,c-1);
++        if (f<z1) box(out,a,b,f+1,d,e,z1);
++    }
++    private static void box(List<CityBounds> out,int x,int y,int z,int a,int b,int c) {out.add(new CityBounds(new BlockPos(x,y,z),new BlockPos(a,b,c)));}
++    static List<CityBounds> edit(List<CityBounds> old, CityBounds area, boolean include) {
++        var next = new ArrayList<CityBounds>();
++        for (CityBounds b : old) { subtract(b, area, next); if (next.size()>MAX_PARTS) throw complex(); }
++        if (include) next.add(area);
++        if (next.size()>MAX_PARTS) throw complex();
++        return List.copyOf(next);
++    }
++    static IllegalArgumentException complex() {return new IllegalArgumentException("区域形状过于零碎，请合并相邻选区；城市边长不受此项限制。");}
++    static long volume(CityData.City c) {
++        long n=0; for (CityBounds b:regions(c)) n=Math.addExact(n,b.volumeLong());
++        for (long p:c.excluded) if (c.areas==null||index(c).contains(BlockPos.of(p))) n--;
++        return n;
++    }
++    static long volumeIn(CityData.City c,CityBounds area) {
++        long n=0;for (CityBounds b:regions(c)) {var i=intersection(b,area);if(i!=null)n=Math.addExact(n,i.volumeLong());}
++        for(long p:c.excluded)if(area.contains(BlockPos.of(p))&&(c.areas==null||index(c).contains(BlockPos.of(p))))n--;
++        return n;
++    }
++    static boolean covers(CityData.City c,CityBounds b) {return volumeIn(c,b)==b.volumeLong();}
++    static List<CityBounds> validate(CityBounds bounds,List<CityBounds> areas) {
++        if(areas==null)return null;
++        if(areas.size()>MAX_PARTS)throw complex();
++        for(int n=0;n<areas.size();n++){var b=areas.get(n);if(!bounds.contains(b.min())||!bounds.contains(b.max()))throw new IllegalArgumentException("区域记录超出城市边界。");for(int k=0;k<n;k++)if(b.intersects(areas.get(k)))throw new IllegalArgumentException("区域记录重复重叠。");}
++        return List.copyOf(areas);
++    }
++}
+diff --git a/src/main/java/com/muxigame/city/CityBlockStore.java b/src/main/java/com/muxigame/city/CityBlockStore.java
+new file mode 100644
+index 0000000..b7be8b6
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityBlockStore.java
+@@ -0,0 +1,79 @@
++package com.muxigame.city;
++
++import java.util.*;
++import java.lang.reflect.Type;
++import com.google.gson.*;
++import net.minecraft.core.BlockPos;
++
++/** Palette-backed 16x16 layers; flat terrain does not allocate a boxed map entry per block. */
++public final class CityBlockStore extends AbstractMap<Long,String> {
++    private static final class Layer {int uniform;int[] cells;int get(int i){return cells==null?uniform:cells[i];}void set(int i,int id){if(cells==null){if(uniform==id)return;cells=new int[256];Arrays.fill(cells,uniform);}cells[i]=id;}void compact(){if(cells==null)return;int v=cells[0];for(int n:cells)if(n!=v)return;uniform=v;cells=null;}}
++    private static final class Section {final TreeMap<Integer,Layer> layers=new TreeMap<>();}
++    private final LinkedHashMap<Long,Section> sections=new LinkedHashMap<>();
++    private final ArrayList<String> palette=new ArrayList<>();
++    private final HashMap<String,Integer> ids=new HashMap<>();
++    private long count;
++    private long revision;
++    public CityBlockStore(){palette.add(null);}
++    public CityBlockStore(Map<Long,String> source){this();putAll(source);compact();}
++    private static long section(BlockPos p){return new BlockPos(p.getX()>>4,p.getY()>>4,p.getZ()>>4).asLong();}
++    private int id(String value){Objects.requireNonNull(value);return ids.computeIfAbsent(value,v->{palette.add(v);return palette.size()-1;});}
++    @Override public int size(){return (int)Math.min(Integer.MAX_VALUE,count);}
++    public long blockCount(){return count;}
++    public long revision(){return revision;}
++    @Override public String get(Object key){if(!(key instanceof Long packed))return null;var p=BlockPos.of(packed);var s=sections.get(section(p));if(s==null)return null;var layer=s.layers.get(p.getY()&15);return layer==null?null:palette.get(layer.get(((p.getZ()&15)<<4)|(p.getX()&15)));}
++    @Override public boolean containsKey(Object key){return get(key)!=null;}
++    @Override public String put(Long key,String value){var p=BlockPos.of(key);var s=sections.computeIfAbsent(section(p),k->new Section());var layer=s.layers.computeIfAbsent(p.getY()&15,k->new Layer());int index=((p.getZ()&15)<<4)|(p.getX()&15),old=layer.get(index),next=id(value);if(old!=next){layer.set(index,next);revision++;if(old==0)count++;}return palette.get(old);}
++    @Override public String remove(Object key){if(!(key instanceof Long packed))return null;var p=BlockPos.of(packed);var s=sections.get(section(p));if(s==null)return null;var layer=s.layers.get(p.getY()&15);if(layer==null)return null;int index=((p.getZ()&15)<<4)|(p.getX()&15),old=layer.get(index);if(old!=0){layer.set(index,0);count--;revision++;}return palette.get(old);}
++    @Override public void clear(){sections.clear();ids.clear();palette.clear();palette.add(null);count=0;revision++;}
++    public void compact(){for(var s:sections.values())for(var l:s.layers.values())l.compact();}
++    public int storedSections(){return sections.size();}
++    static Collection<String> states(Map<Long,String> values){return values instanceof CityBlockStore b?b.states():new HashSet<>(values.values());}
++    public Collection<String> states(){var used=new HashSet<Integer>();for(var s:sections.values())for(var layer:s.layers.values()){if(layer.cells==null){if(layer.uniform!=0)used.add(layer.uniform);}else for(int id:layer.cells)if(id!=0)used.add(id);}return used.stream().map(palette::get).toList();}
++    public boolean inside(CityBounds bounds){
++        for(var entry:sections.entrySet()){var base=BlockPos.of(entry.getKey());var min=new BlockPos(base.getX()<<4,base.getY()<<4,base.getZ()<<4);if(bounds.contains(min)&&bounds.contains(min.offset(15,15,15)))continue;
++            for(var e:entry.getValue().layers.entrySet())for(int i=0;i<256;i++)if(e.getValue().get(i)!=0&&!bounds.contains(min.offset(i&15,e.getKey(),i>>4)))return false;
++        }return true;
++    }
++    static boolean inside(Map<Long,String> values,CityBounds bounds){return values instanceof CityBlockStore b?b.inside(bounds):values.keySet().stream().allMatch(p->bounds.contains(BlockPos.of(p)));}
++    public void removeWithin(CityBounds bounds){
++        for(var entry:sections.entrySet()){var base=BlockPos.of(entry.getKey());int x=base.getX()<<4,y=base.getY()<<4,z=base.getZ()<<4;
++            if(x>bounds.max().getX()||x+15<bounds.min().getX()||y>bounds.max().getY()||y+15<bounds.min().getY()||z>bounds.max().getZ()||z+15<bounds.min().getZ())continue;
++            for(var layer:entry.getValue().layers.entrySet()){int height=y+layer.getKey();if(height<bounds.min().getY()||height>bounds.max().getY())continue;for(int i=0;i<256;i++)if(layer.getValue().get(i)!=0){var p=new BlockPos(x+(i&15),height,z+(i>>4));if(bounds.contains(p))remove(p.asLong());}}
++        }
++    }
++    public void retainWithin(CityBounds bounds){
++        var iterator=sections.entrySet().iterator();while(iterator.hasNext()){var entry=iterator.next();var base=BlockPos.of(entry.getKey());int x=base.getX()<<4,y=base.getY()<<4,z=base.getZ()<<4;
++            if(bounds.contains(new BlockPos(x,y,z))&&bounds.contains(new BlockPos(x+15,y+15,z+15)))continue;
++            if(x>bounds.max().getX()||x+15<bounds.min().getX()||y>bounds.max().getY()||y+15<bounds.min().getY()||z>bounds.max().getZ()||z+15<bounds.min().getZ()){
++                for(var layer:entry.getValue().layers.values()){if(layer.cells==null){if(layer.uniform!=0)count-=256;}else for(int id:layer.cells)if(id!=0)count--;}
++                iterator.remove();revision++;continue;
++            }
++            for(var layer:entry.getValue().layers.entrySet())for(int i=0;i<256;i++)if(layer.getValue().get(i)!=0){var p=new BlockPos(x+(i&15),y+layer.getKey(),z+(i>>4));if(!bounds.contains(p))remove(p.asLong());}
++        }
++    }
++    @Override public Set<Entry<Long,String>> entrySet(){return new AbstractSet<>(){
++        @Override public int size(){return CityBlockStore.this.size();}
++        @Override public Iterator<Entry<Long,String>> iterator(){return new Iterator<>(){
++            final Iterator<Entry<Long,Section>> chunks=sections.entrySet().iterator();Iterator<Entry<Integer,Layer>> layers=Collections.emptyIterator();BlockPos base;Layer layer;int y,index;Long ready,last;
++            private void advance(){while(ready==null){if(layer!=null){while(index<256){int i=index++;if(layer.get(i)!=0){ready=new BlockPos((base.getX()<<4)+(i&15),(base.getY()<<4)+y,(base.getZ()<<4)+(i>>4)).asLong();return;}}layer=null;}if(layers.hasNext()){var e=layers.next();y=e.getKey();layer=e.getValue();index=0;}else if(chunks.hasNext()){var e=chunks.next();base=BlockPos.of(e.getKey());layers=e.getValue().layers.entrySet().iterator();}else return;}}
++            @Override public boolean hasNext(){advance();return ready!=null;}
++            @Override public Entry<Long,String> next(){advance();if(ready==null)throw new NoSuchElementException();last=ready;ready=null;return new SimpleImmutableEntry<>(last,get(last));}
++            @Override public void remove(){if(last==null)throw new IllegalStateException();CityBlockStore.this.remove(last);last=null;}
++        };}
++    };}
++    /** Reads original plain coordinate maps as well as the compact format. */
++    public static final class Adapter implements JsonSerializer<Map<Long,String>>,JsonDeserializer<Map<Long,String>> {
++        @Override public JsonElement serialize(Map<Long,String> map,Type type,JsonSerializationContext context){
++            CityBlockStore store=map instanceof CityBlockStore b?b:new CityBlockStore(map);store.compact();var root=new JsonObject();root.addProperty("format","layers-v1");var used=new HashSet<Integer>();for(var section:store.sections.values())for(var layer:section.layers.values()){if(layer.cells==null){if(layer.uniform!=0)used.add(layer.uniform);}else for(int id:layer.cells)if(id!=0)used.add(id);}var active=used.stream().map(store.palette::get).sorted().toList();var canonical=new HashMap<String,Integer>();var palette=new JsonArray();for(String state:active){canonical.put(state,canonical.size()+1);palette.add(state);}root.add("palette",palette);var chunks=new JsonArray();
++            for(var entry:new TreeMap<>(store.sections).entrySet()){var row=new JsonObject();row.addProperty("pos",Long.toString(entry.getKey()));var layers=new JsonArray();for(var item:entry.getValue().layers.entrySet()){var layer=item.getValue();var record=new JsonArray();record.add(item.getKey());if(layer.cells==null){if(layer.uniform==0)continue;record.add(canonical.get(store.palette.get(layer.uniform)));}else{var runs=new JsonArray();for(int i=0;i<256;){int id=layer.cells[i],start=i++;while(i<256&&layer.cells[i]==id)i++;if(id==0)continue;var run=new JsonArray();run.add(start);run.add(i-start);run.add(canonical.get(store.palette.get(id)));runs.add(run);}if(runs.isEmpty())continue;record.add(runs);}layers.add(record);}if(layers.isEmpty())continue;row.add("layers",layers);chunks.add(row);}root.add("sections",chunks);return root;
++        }
++        @Override public Map<Long,String> deserialize(JsonElement json,Type type,JsonDeserializationContext context)throws JsonParseException{
++            var out=new CityBlockStore();var root=json.getAsJsonObject();
++            if(!root.has("format")){for(var e:root.entrySet()){long key=Long.parseLong(e.getKey());if(!e.getValue().isJsonPrimitive()||!e.getValue().getAsJsonPrimitive().isString())throw new JsonParseException("Invalid legacy block state");out.put(key,e.getValue().getAsString());}out.compact();return out;}
++            if(!root.get("format").getAsString().equals("layers-v1"))throw new JsonParseException("Unsupported block store format");
++            var states=root.getAsJsonArray("palette");var palette=new ArrayList<String>();palette.add(null);for(var v:states){String value=v.getAsString();if(value.length()>1024)throw new JsonParseException("Block state too long");palette.add(value);}
++            var seen=new HashSet<Long>();for(var raw:root.getAsJsonArray("sections")){var row=raw.getAsJsonObject();long key=Long.parseLong(row.get("pos").getAsString());if(!seen.add(key))throw new JsonParseException("Duplicate section");var base=BlockPos.of(key);if(Math.abs((long)base.getX())>1875000L||Math.abs((long)base.getZ())>1875000L||base.getY() < -128||base.getY()>127)throw new JsonParseException("Section coordinate outside representable world");var ys=new HashSet<Integer>();for(var layerRaw:row.getAsJsonArray("layers")){var layer=layerRaw.getAsJsonArray();if(layer.size()!=2)throw new JsonParseException("Invalid layer");int y=layer.get(0).getAsBigDecimal().intValueExact();if(y<0||y>15||!ys.add(y))throw new JsonParseException("Invalid layer coordinate");var runs=new JsonArray();if(layer.get(1).isJsonPrimitive()){var run=new JsonArray();run.add(0);run.add(256);run.add(layer.get(1));runs.add(run);}else runs=layer.get(1).getAsJsonArray();int previousEnd=0;for(var runRaw:runs){var run=runRaw.getAsJsonArray();if(run.size()!=3)throw new JsonParseException("Invalid layer run");int start=run.get(0).getAsBigDecimal().intValueExact(),length=run.get(1).getAsBigDecimal().intValueExact(),id=run.get(2).getAsBigDecimal().intValueExact();if(start<previousEnd||length<1||start<0||start>255||length>256-start||id<1||id>=palette.size())throw new JsonParseException("Invalid palette run");previousEnd=start+length;for(int i=start;i<previousEnd;i++)out.put(new BlockPos((base.getX()<<4)+(i&15),(base.getY()<<4)+y,(base.getZ()<<4)+(i>>4)).asLong(),palette.get(id));}}}out.compact();return out;
++        }
++    }
++}
+diff --git a/src/main/java/com/muxigame/city/CityBlocksScreen.java b/src/main/java/com/muxigame/city/CityBlocksScreen.java
+index 90c5ca0..573a8d0 100644
+--- a/src/main/java/com/muxigame/city/CityBlocksScreen.java
++++ b/src/main/java/com/muxigame/city/CityBlocksScreen.java
+@@ -29,13 +29,13 @@ public final class CityBlocksScreen extends Screen {
+     @Override public void tick(){if(pending&&--wait<=0){pending=false;message="请求超时，请重新统计。";}if(!pending&&++age%20==0&&data.getBoolean("Scanning"))send(false);}
+     @Override public void onClose(){minecraft.setScreen(new CityInfoScreen(data));}
+     @Override public void render(GuiGraphics g,int mx,int my,float partial){g.fill(0,0,width,height,0xff101923);g.drawString(font,font.plainSubstrByWidth("方块种类与数量 · "+data.getString("Name"),width-24),12,12,0xffedcf8c,false);
+-        String summary=data.contains("Id")?(data.getBoolean("HasStats")?data.getList("Counts",Tag.TAG_COMPOUND).size()+" 种 / "+data.getInt("NonAir")+" 块":"尚无统计结果")+(data.getBoolean("Scanning")?" · 正在扫描…":" · 快照 "+data.getLong("Age")+" 秒前"):"当前城市已删除或尚未选择";
++        String summary=data.contains("Id")?(data.getBoolean("HasStats")?data.getList("Counts",Tag.TAG_COMPOUND).size()+" 种 / "+data.getLong("NonAir")+" 块":"尚无统计结果")+(data.getBoolean("Scanning")?" · 正在扫描…":" · 快照 "+data.getLong("Age")+" 秒前"):"当前城市已删除或尚未选择";
+         g.drawString(font,summary,12,67,0xffb4d8c1,false);g.drawString(font,"方块名称 / ID",12,84,0xffa8bdc7,false);g.drawString(font,"数量",width-58,84,0xffa8bdc7,false);
+         List<CompoundTag> all=entries();int pages=Math.max(1,(all.size()+rows()-1)/rows());page=Math.clamp(page,0,pages-1);
+-        for(int i=0;i<rows()&&page*rows()+i<all.size();i++){CompoundTag t=all.get(page*rows()+i);int y=99+i*25;g.fill(10,y-2,width-10,y+22,i%2==0?0xff1b2b38:0xff14232e);g.drawString(font,font.plainSubstrByWidth(name(t),width-100),14,y,0xffe1e7df,false);g.drawString(font,font.plainSubstrByWidth(t.getString("Block"),width-100),14,y+11,0xff91abb9,false);g.drawString(font,""+t.getInt("Count"),width-58,y+5,0xffb4e19e,false);if(my>=y-2&&my<y+22&&mx>=10&&mx<width-10)g.renderTooltip(font,Component.literal(name(t)+" · "+t.getString("Block")),mx,my);}
++        for(int i=0;i<rows()&&page*rows()+i<all.size();i++){CompoundTag t=all.get(page*rows()+i);int y=99+i*25;g.fill(10,y-2,width-10,y+22,i%2==0?0xff1b2b38:0xff14232e);g.drawString(font,font.plainSubstrByWidth(name(t),width-100),14,y,0xffe1e7df,false);g.drawString(font,font.plainSubstrByWidth(t.getString("Block"),width-100),14,y+11,0xff91abb9,false);g.drawString(font,""+t.getLong("Count"),width-58,y+5,0xffb4e19e,false);if(my>=y-2&&my<y+22&&mx>=10&&mx<width-10)g.renderTooltip(font,Component.literal(name(t)+" · "+t.getString("Block")),mx,my);}
+         if(all.isEmpty())g.drawString(font,data.getBoolean("Scanning")?"正在统计，请稍候…":"没有符合条件的方块",12,103,0xffa8bdc7,false);
+         g.drawCenteredString(font,(page+1)+" / "+pages,width/2,height-49,0xffc7d8df);
+-        String note=!message.isEmpty()?message:data.getInt("Unloaded")>0?"未加载 "+data.getInt("Unloaded")+" 格，统计不完整；靠近后重新统计。":"仅统计已纳入且已加载的非空气方块；相同方块ID合并。";
++        String note=!message.isEmpty()?message:data.getLong("Unloaded")>0?"未加载 "+data.getLong("Unloaded")+" 格，统计不完整；靠近后重新统计。":"仅统计已纳入且已加载的非空气方块；相同方块ID合并。";
+         g.drawString(font,font.plainSubstrByWidth(note,width-24),12,height-24,0xffffc985,false);super.render(g,mx,my,partial);
+     }
+     @Override public boolean mouseScrolled(double x,double y,double dx,double dy){page=Math.clamp(page+(dy<0?1:-1),0,Math.max(0,(entries().size()-1)/rows()));return true;}
+diff --git a/src/main/java/com/muxigame/city/CityBlueprints.java b/src/main/java/com/muxigame/city/CityBlueprints.java
+index bbecd2f..bc4451f 100644
+--- a/src/main/java/com/muxigame/city/CityBlueprints.java
++++ b/src/main/java/com/muxigame/city/CityBlueprints.java
+@@ -19,18 +19,19 @@ public final class CityBlueprints {
+     private static final Gson JSON=new GsonBuilder().setPrettyPrinting().create();
+     static JsonArray pos(BlockPos p){JsonArray a=new JsonArray();a.add(p.getX());a.add(p.getY());a.add(p.getZ());return a;}
+     static BlockPos pos(JsonArray a){if(a.size()!=3)throw new IllegalArgumentException("坐标需要三个整数。");int[] n=new int[3];for(int i=0;i<3;i++)n[i]=a.get(i).getAsBigDecimal().intValueExact();return new BlockPos(n[0],n[1],n[2]);}
+-    public static JsonObject export(CityData.City c){JsonObject j=new JsonObject();j.addProperty("schema",2);j.addProperty("id",c.id.toString());j.addProperty("owner",c.owner.toString());j.addProperty("dimension",c.dimension);j.addProperty("revision",c.revision);j.addProperty("name",c.name);j.add("min",pos(c.bounds.min()));j.add("max",pos(c.bounds.max()));JsonArray excluded=new JsonArray();c.excluded.stream().sorted().forEach(v->excluded.add(pos(BlockPos.of(v))));j.add("excluded",excluded);JsonArray residents=new JsonArray();c.residents.stream().sorted().forEach(v->residents.add(v.toString()));j.add("residents",residents);j.add("registry",CityRegistry.export(c));return j;}
++    public static JsonObject export(CityData.City c){JsonObject j=new JsonObject();j.addProperty("schema",3);j.addProperty("id",c.id.toString());j.addProperty("owner",c.owner.toString());j.addProperty("dimension",c.dimension);j.addProperty("revision",c.revision);j.addProperty("name",c.name);j.add("min",pos(c.bounds.min()));j.add("max",pos(c.bounds.max()));JsonArray excluded=new JsonArray();c.excluded.stream().sorted().forEach(v->excluded.add(pos(BlockPos.of(v))));j.add("excluded",excluded);if(c.areas!=null){JsonArray regions=new JsonArray();for(var b:c.areas){JsonObject row=new JsonObject();row.add("min",pos(b.min()));row.add("max",pos(b.max()));regions.add(row);}j.add("areas",regions);}JsonArray residents=new JsonArray();c.residents.stream().sorted().forEach(v->residents.add(v.toString()));j.add("residents",residents);j.add("registry",CityRegistry.export(c));return j;}
+     public static void apply(CityData d,CityData.City c,ServerLevel level,JsonObject j,long revision){
+         try{
+-            if((j.get("schema").getAsInt()!=1&&j.get("schema").getAsInt()!=2)||!j.get("id").getAsString().equals(c.id.toString())||!j.get("owner").getAsString().equals(c.owner.toString())||!j.get("dimension").getAsString().equals(c.dimension))throw new IllegalArgumentException("版本、ID、所有者和维度必须与目标聚落一致。");
++            if((j.get("schema").getAsInt()!=1&&j.get("schema").getAsInt()!=2&&j.get("schema").getAsInt()!=3)||!j.get("id").getAsString().equals(c.id.toString())||!j.get("owner").getAsString().equals(c.owner.toString())||!j.get("dimension").getAsString().equals(c.dimension))throw new IllegalArgumentException("版本、ID、所有者和维度必须与目标聚落一致。");
+             if(c.revision!=revision||j.get("revision").getAsLong()!=revision)throw new IllegalArgumentException("数据版本已变化，请重新导出。");
+             String name=CityData.validName(j.get("name").getAsString());CityBounds b=new CityBounds(pos(j.getAsJsonArray("min")),pos(j.getAsJsonArray("max")));b.validateWorld(level);d.checkBounds(c.id,c.dimension,b);
+-            Set<Long> mask=new HashSet<>();JsonArray excluded=j.getAsJsonArray("excluded");if(excluded.size()>b.volume())throw new IllegalArgumentException("排除数据过多。");for(JsonElement e:excluded){BlockPos p=pos(e.getAsJsonArray());if(!b.contains(p)||!mask.add(p.asLong()))throw new IllegalArgumentException("排除坐标越界或重复。");}
++            Set<Long> mask=new HashSet<>();JsonArray excluded=j.getAsJsonArray("excluded");if(excluded.size()>b.volumeLong())throw new IllegalArgumentException("排除数据过多。");for(JsonElement e:excluded){BlockPos p=pos(e.getAsJsonArray());if(!b.contains(p)||!mask.add(p.asLong()))throw new IllegalArgumentException("排除坐标越界或重复。");}
+             Set<UUID> residents=new HashSet<>();if(j.getAsJsonArray("residents").size()>4096)throw new IllegalArgumentException("居民数据过多。");for(JsonElement e:j.getAsJsonArray("residents")){UUID id=UUID.fromString(e.getAsString());if(!residents.add(id)||d.cities().stream().anyMatch(other->other!=c&&other.residents.contains(id)))throw new IllegalArgumentException("居民重复或属于其他聚落。");}
+             CityData.City candidate=new CityData.City(c.id,c.owner,name,c.dimension,b);
+-            CityRegistry.read(candidate,j.get("schema").getAsInt()==2?j.getAsJsonObject("registry"):CityRegistry.export(c));
++            candidate.excluded.addAll(mask);if(j.has("areas")){JsonArray rows=j.getAsJsonArray("areas");if(rows.size()>CityAreas.MAX_PARTS)throw CityAreas.complex();var regions=new ArrayList<CityBounds>();for(var raw:rows){var row=raw.getAsJsonObject();regions.add(new CityBounds(pos(row.getAsJsonArray("min")),pos(row.getAsJsonArray("max"))));}candidate.areas=CityAreas.validate(b,regions);}
++            CityRegistry.read(candidate,j.get("schema").getAsInt()>=2?j.getAsJsonObject("registry"):CityRegistry.export(c));
+             c.housing=candidate.housing;c.works=candidate.works;c.buildings.clear();c.buildings.putAll(candidate.buildings);c.warehouses.clear();c.warehouses.putAll(candidate.warehouses);
+-            c.name=name;c.bounds=b;c.excluded.clear();c.excluded.addAll(mask);c.residents.clear();c.residents.addAll(residents);d.changed(c);CityService.invalidate(c);
++            c.name=name;c.bounds=b;c.areas=candidate.areas;c.excluded.clear();c.excluded.addAll(mask);c.residents.clear();c.residents.addAll(residents);d.changed(c);CityService.invalidate(c);
+         }catch(RuntimeException e){throw new IllegalArgumentException("导入拒绝："+e.getMessage(),e);}
+     }
+     private static Path file(CommandSourceStack s,String name)throws Exception{if(!name.matches("[A-Za-z0-9_-]{1,64}"))throw new IllegalArgumentException("文件名只允许字母、数字、下划线和连字符。");Path dir=s.getServer().getWorldPath(LevelResource.ROOT).resolve("city_settlements/blueprints");Files.createDirectories(dir);return dir.resolve(name+".json");}
+@@ -39,14 +40,14 @@ public final class CityBlueprints {
+     private static ServerLevel level(CommandSourceStack s,CityData.City c){ServerLevel l=s.getServer().getLevel(ResourceKey.create(Registries.DIMENSION,ResourceLocation.parse(c.dimension)));if(l==null)throw new IllegalArgumentException("维度未启用。");return l;}
+     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
+         var root=Commands.literal("citydata").requires(s->s.hasPermission(2));
+-        root.then(Commands.literal("list").executes(ctx->run(ctx.getSource(),()->{StringBuilder out=new StringBuilder();for(var c:CityData.get(ctx.getSource().getServer()).cities())out.append(c.id).append(" ").append(c.name).append(" revision=").append(c.revision).append(" included=").append(c.bounds.volume()-c.excluded.size()).append("\n");return out.toString();})));
++        root.then(Commands.literal("list").executes(ctx->run(ctx.getSource(),()->{StringBuilder out=new StringBuilder();for(var c:CityData.get(ctx.getSource().getServer()).cities())out.append(c.id).append(" ").append(c.name).append(" revision=").append(c.revision).append(" included=").append(CityAreas.volume(c)).append("\n");return out.toString();})));
+         for(String op:List.of("export","apply")){
+             var path=Commands.argument("file",StringArgumentType.word());
+             if(op.equals("export"))path.executes(ctx->run(ctx.getSource(),()->{var c=CityData.get(ctx.getSource().getServer()).require(UUID.fromString(StringArgumentType.getString(ctx,"id")));Path f=file(ctx.getSource(),StringArgumentType.getString(ctx,"file"));Files.writeString(f,JSON.toJson(export(c)));return "已导出 "+f;}));
+             else path.then(Commands.argument("revision",LongArgumentType.longArg(0)).executes(ctx->run(ctx.getSource(),()->{var d=CityData.get(ctx.getSource().getServer());var c=d.require(UUID.fromString(StringArgumentType.getString(ctx,"id")));Path f=file(ctx.getSource(),StringArgumentType.getString(ctx,"file"));if(Files.size(f)>16*1024*1024)throw new IllegalArgumentException("文件超过16MB。");JsonObject j=JsonParser.parseString(Files.readString(f)).getAsJsonObject();Files.writeString(f.resolveSibling(f.getFileName()+".before-"+c.revision+"-"+System.currentTimeMillis()+".json"),JSON.toJson(export(c)));apply(d,c,level(ctx.getSource(),c),j,LongArgumentType.getLong(ctx,"revision"));return "已应用数据，revision="+c.revision;})));
+             root.then(Commands.literal(op).then(Commands.argument("id",StringArgumentType.word()).then(path)));
+         }
+-        for(String op:List.of("include","exclude"))root.then(Commands.literal(op).then(Commands.argument("id",StringArgumentType.word()).then(Commands.argument("from",BlockPosArgument.blockPos()).then(Commands.argument("to",BlockPosArgument.blockPos()).then(Commands.argument("revision",LongArgumentType.longArg(0)).executes(ctx->run(ctx.getSource(),()->{var d=CityData.get(ctx.getSource().getServer());var c=d.require(UUID.fromString(StringArgumentType.getString(ctx,"id")));if(c.revision!=LongArgumentType.getLong(ctx,"revision"))throw new IllegalArgumentException("版本冲突。");int n=CityService.area(d,c,level(ctx.getSource(),c),new UUID(0,0),CityBounds.between(BlockPosArgument.getBlockPos(ctx,"from"),BlockPosArgument.getBlockPos(ctx,"to")),op.equals("include"));return "已调整 "+n+" 格，revision="+c.revision;})))))));
++        for(String op:List.of("include","exclude"))root.then(Commands.literal(op).then(Commands.argument("id",StringArgumentType.word()).then(Commands.argument("from",BlockPosArgument.blockPos()).then(Commands.argument("to",BlockPosArgument.blockPos()).then(Commands.argument("revision",LongArgumentType.longArg(0)).executes(ctx->run(ctx.getSource(),()->{var d=CityData.get(ctx.getSource().getServer());var c=d.require(UUID.fromString(StringArgumentType.getString(ctx,"id")));if(c.revision!=LongArgumentType.getLong(ctx,"revision"))throw new IllegalArgumentException("版本冲突。");long n=CityService.area(d,c,level(ctx.getSource(),c),new UUID(0,0),CityBounds.between(BlockPosArgument.getBlockPos(ctx,"from"),BlockPosArgument.getBlockPos(ctx,"to")),op.equals("include"));return "已调整 "+n+" 格，revision="+c.revision;})))))));
+         root.then(Commands.literal("create").then(Commands.argument("owner",StringArgumentType.word()).then(Commands.argument("name",StringArgumentType.string()).then(Commands.argument("from",BlockPosArgument.blockPos()).then(Commands.argument("to",BlockPosArgument.blockPos()).executes(ctx->run(ctx.getSource(),()->{CityBounds b=CityBounds.between(BlockPosArgument.getBlockPos(ctx,"from"),BlockPosArgument.getBlockPos(ctx,"to"));b.validateWorld(ctx.getSource().getLevel());var c=CityData.get(ctx.getSource().getServer()).create(UUID.fromString(StringArgumentType.getString(ctx,"owner")),StringArgumentType.getString(ctx,"name"),ctx.getSource().getLevel().dimension().location().toString(),b);CityService.scan(c);return c.id.toString();})))))));
+         dispatcher.register(root);
+     }
+diff --git a/src/main/java/com/muxigame/city/CityBounds.java b/src/main/java/com/muxigame/city/CityBounds.java
+index e91da75..c4ecfd1 100644
+--- a/src/main/java/com/muxigame/city/CityBounds.java
++++ b/src/main/java/com/muxigame/city/CityBounds.java
+@@ -9,8 +9,9 @@ public record CityBounds(BlockPos min, BlockPos max) {
+     public CityBounds {
+         min = min.immutable(); max = max.immutable();
+         long x=(long)max.getX()-min.getX()+1, y=(long)max.getY()-min.getY()+1, z=(long)max.getZ()-min.getZ()+1;
+-        if(x<1||y<1||z<1||x>128||y>128||z>128||x*y*z>MAX_VOLUME)
+-            throw new IllegalArgumentException("范围每边最多128格，体积最多131072格；请缩小框选高度或范围。");
++        if(x<1||y<1||z<1||Math.abs((long)min.getX())>30_000_000L||Math.abs((long)max.getX())>30_000_000L||Math.abs((long)min.getZ())>30_000_000L||Math.abs((long)max.getZ())>30_000_000L||min.getY() < -2048 || max.getY() > 2047)
++            throw new IllegalArgumentException("选区坐标超出世界可表示范围。");
++        try { Math.multiplyExact(Math.multiplyExact(x,y),z); } catch(ArithmeticException ex) {throw new IllegalArgumentException("选区体积无法表示。",ex);}
+     }
+     public static CityBounds between(BlockPos a, BlockPos b) {
+         return new CityBounds(new BlockPos(Math.min(a.getX(),b.getX()),Math.min(a.getY(),b.getY()),Math.min(a.getZ(),b.getZ())),
+@@ -18,10 +19,15 @@ public record CityBounds(BlockPos min, BlockPos max) {
+     }
+     public int sizeX(){return max.getX()-min.getX()+1;}
+     public int sizeZ(){return max.getZ()-min.getZ()+1;}
+-    public int volume(){return sizeX()*sizeZ()*(max.getY()-min.getY()+1);}
++    public long volumeLong(){return (long)sizeX()*sizeZ()*((long)max.getY()-min.getY()+1);}
++    public boolean smallSelection(){return sizeX()<=128&&sizeZ()<=128&&(long)max.getY()-min.getY()+1<=128&&volumeLong()<=MAX_VOLUME;}
++    /** Only bounded, single-building operations may use an int index. */
++    public int volume(){if(volumeLong()>Integer.MAX_VALUE)throw new IllegalArgumentException("此操作需要分批处理大型区域。");return (int)volumeLong();}
++    public void validateBuilding(){if(!smallSelection())throw new IllegalArgumentException("单栋建筑登记最多131072格；城市领地不受此项限制。");}
+     public boolean contains(BlockPos p){return p.getX()>=min.getX()&&p.getX()<=max.getX()&&p.getY()>=min.getY()&&p.getY()<=max.getY()&&p.getZ()>=min.getZ()&&p.getZ()<=max.getZ();}
+     public boolean intersects(CityBounds b){return min.getX()<=b.max.getX()&&max.getX()>=b.min.getX()&&min.getY()<=b.max.getY()&&max.getY()>=b.min.getY()&&min.getZ()<=b.max.getZ()&&max.getZ()>=b.min.getZ();}
+-    public BlockPos at(int index){return min.offset(index%sizeX(),index/(sizeX()*sizeZ()),index/sizeX()%sizeZ());}
++    public BlockPos at(int index){return at((long)index);}
++    public BlockPos at(long index){if(index<0||index>=volumeLong())throw new IllegalArgumentException("区域游标越界。");return min.offset((int)(index%sizeX()),(int)(index/((long)sizeX()*sizeZ())),(int)(index/sizeX()%sizeZ()));}
+     public void validateWorld(ServerLevel level){
+         if(min.getY()<level.getMinBuildHeight()||max.getY()>=level.getMaxBuildHeight()||!level.getWorldBorder().isWithinBounds(min)||!level.getWorldBorder().isWithinBounds(max))
+             throw new IllegalArgumentException("选区超出世界边界或建造高度。");
+diff --git a/src/main/java/com/muxigame/city/CityDashboardScreen.java b/src/main/java/com/muxigame/city/CityDashboardScreen.java
+index 1e07310..30588c8 100644
+--- a/src/main/java/com/muxigame/city/CityDashboardScreen.java
++++ b/src/main/java/com/muxigame/city/CityDashboardScreen.java
+@@ -28,7 +28,7 @@ public final class CityDashboardScreen extends Screen {
+         g.drawString(font,"城市信息 · "+data.getString("Name"),x+12,y+12,0xffedcf8c,false);
+         g.drawString(font,"居民登记："+data.getInt("Residents")+" 人（含未加载）",x+12,y+36,0xffb4d8c1,false);
+         g.drawString(font,"建筑："+data.getList("Buildings",Tag.TAG_COMPOUND).size()+" 栋    仓库容器："+data.getList("Warehouses",Tag.TAG_COMPOUND).size(),x+12,y+54,0xffb4d8c1,false);
+-        g.drawString(font,"方块快照："+(data.getBoolean("HasStats")?data.getInt("NonAir")+" 非空气方块":"待统计"),x+12,y+72,0xffb4d8c1,false);
++        g.drawString(font,"方块快照："+(data.getBoolean("HasStats")?data.getLong("NonAir")+" 非空气方块":"待统计"),x+12,y+72,0xffb4d8c1,false);
+         g.drawString(font,"稳定度："+data.getInt("Stability")+"  · 暴乱风险："+data.getString("RiotRisk"),x+12,y+132,0xffa8bdc7,false);
+         g.drawString(font,"治安："+(data.contains("Security")?data.getInt("Security"):100)+" / 100 · 赃物扣分待盘问接入",x+12,y+148,0xffa8bdc7,false);
+         if(!data.getString("Message").isEmpty())g.drawString(font,font.plainSubstrByWidth(data.getString("Message"),296),x+12,y+120,0xffffc985,false);super.render(g,mx,my,partial);
+diff --git a/src/main/java/com/muxigame/city/CityData.java b/src/main/java/com/muxigame/city/CityData.java
+index b7e8513..f507e24 100644
+--- a/src/main/java/com/muxigame/city/CityData.java
++++ b/src/main/java/com/muxigame/city/CityData.java
+@@ -8,7 +8,7 @@ import net.minecraft.world.level.saveddata.SavedData;
+ 
+ /** Stored in overworld/data/city_settlements.dat; dimension is part of every city identity. */
+ public final class CityData extends SavedData {
+-    public static final int SCHEMA=3;
++    public static final int SCHEMA=4;
+     final LinkedHashMap<UUID,City> cities=new LinkedHashMap<>();
+     public static final class City {
+         public final UUID id, owner;
+@@ -16,6 +16,7 @@ public final class CityData extends SavedData {
+         public final String dimension;
+         public CityBounds bounds;
+         public long revision;
++        List<CityBounds> areas;
+         public CityHousing.State housing=new CityHousing.State();
+         public CityWorks.Plan works=new CityWorks.Plan();
+         final Set<Long> excluded=new HashSet<>();
+@@ -23,7 +24,7 @@ public final class CityData extends SavedData {
+         final LinkedHashMap<UUID,CityRegistry.Building> buildings=new LinkedHashMap<>();
+         final LinkedHashMap<UUID,CityRegistry.Warehouse> warehouses=new LinkedHashMap<>();
+         City(UUID id,UUID owner,String name,String dimension,CityBounds bounds){this.id=id;this.owner=owner;this.name=validName(name);this.dimension=dimension;this.bounds=bounds;}
+-        public boolean includes(BlockPos pos){return bounds.contains(pos)&&!excluded.contains(pos.asLong());}
++        public boolean includes(BlockPos pos){return CityAreas.contains(this,pos);}
+         public Set<UUID> residents(){return Set.copyOf(residents);}
+     }
+     public static CityData get(MinecraftServer server){return server.overworld().getDataStorage().computeIfAbsent(new Factory<>(()->CitySaveSafety.newData(server,"city_settlements",CityData::new),CityData::load),"city_settlements");}
+@@ -45,12 +46,13 @@ public final class CityData extends SavedData {
+         for(City c:cities.values()){
+             CompoundTag t=new CompoundTag();t.putUUID("Id",c.id);t.putUUID("Owner",c.owner);t.putString("Name",c.name);t.putString("Dimension",c.dimension);
+             t.putLong("Min",c.bounds.min().asLong());t.putLong("Max",c.bounds.max().asLong());t.putLong("Revision",c.revision);
++            if(c.areas!=null){ListTag regions=new ListTag();for(var b:c.areas){CompoundTag region=new CompoundTag();region.putLong("Min",b.min().asLong());region.putLong("Max",b.max().asLong());regions.add(region);}t.put("Areas",regions);}
+             t.putLongArray("Excluded",c.excluded.stream().mapToLong(Long::longValue).sorted().toArray());
+             ListTag residents=new ListTag();c.residents.stream().sorted().forEach(id->residents.add(StringTag.valueOf(id.toString())));t.put("Residents",residents);t.putByteArray("RegistryUtf8",CityRegistry.export(c).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));list.add(t);
+         }tag.put("Cities",list);return tag;
+     }
+     public static CityData load(CompoundTag tag,HolderLookup.Provider provider){
+-        if(tag.getInt("Schema")!=1&&tag.getInt("Schema")!=2&&tag.getInt("Schema")!=SCHEMA)throw new IllegalArgumentException("Unsupported city data schema");
++        if(tag.getInt("Schema")!=1&&tag.getInt("Schema")!=2&&tag.getInt("Schema")!=3&&tag.getInt("Schema")!=SCHEMA)throw new IllegalArgumentException("Unsupported city data schema");
+         CityData data=new CityData();ListTag list=tag.getList("Cities",Tag.TAG_COMPOUND);
+         if(list.size()>128)throw new IllegalArgumentException("Too many cities");
+         Set<UUID> linked=new HashSet<>();
+@@ -58,6 +60,7 @@ public final class CityData extends SavedData {
+             City c=new City(t.getUUID("Id"),t.getUUID("Owner"),t.getString("Name"),t.getString("Dimension"),new CityBounds(BlockPos.of(t.getLong("Min")),BlockPos.of(t.getLong("Max"))));
+             data.checkBounds(null,c.dimension,c.bounds);
+             if(data.cities.containsKey(c.id))throw new IllegalArgumentException("Duplicate city ID");
++            if(t.contains("Areas",Tag.TAG_LIST)){var regions=t.getList("Areas",Tag.TAG_COMPOUND);if(regions.size()>CityAreas.MAX_PARTS)throw CityAreas.complex();var boxes=new ArrayList<CityBounds>();for(Tag raw:regions){var row=(CompoundTag)raw;boxes.add(new CityBounds(BlockPos.of(row.getLong("Min")),BlockPos.of(row.getLong("Max"))));}c.areas=CityAreas.validate(c.bounds,boxes);}
+             c.revision=t.getLong("Revision");for(long p:t.getLongArray("Excluded")){if(!c.bounds.contains(BlockPos.of(p)))throw new IllegalArgumentException("Excluded position outside bounds");c.excluded.add(p);}
+             for(Tag r:t.getList("Residents",Tag.TAG_STRING)){UUID id=UUID.fromString(r.getAsString());if(!linked.add(id))throw new IllegalArgumentException("Duplicate resident");c.residents.add(id);}
+             String registry=t.contains("RegistryUtf8",Tag.TAG_BYTE_ARRAY)?new String(t.getByteArray("RegistryUtf8"),java.nio.charset.StandardCharsets.UTF_8):t.getString("Registry");
+diff --git a/src/main/java/com/muxigame/city/CityFoundingScreen.java b/src/main/java/com/muxigame/city/CityFoundingScreen.java
+index 75895f3..dcc87b4 100644
+--- a/src/main/java/com/muxigame/city/CityFoundingScreen.java
++++ b/src/main/java/com/muxigame/city/CityFoundingScreen.java
+@@ -28,9 +28,9 @@ public final class CityFoundingScreen extends Screen {
+     @Override public void render(GuiGraphics g,int mx,int my,float partial){int x=left(),y=upper();g.fill(x,y,x+320,y+240,0xf0182735);
+         g.drawString(font,(building?"建筑魔杖 · ":"城市魔杖 · ")+(selection.contains("CityName")?selection.getString("CityName"):"尚未选择城市"),x+12,y+10,0xffe4dbc0,false);
+         g.drawString(font,selection.getString("CornerA")+" → "+selection.getString("CornerB"),x+12,y+29,0xffa8bdc7,false);
+-        g.drawString(font,selection.getBoolean("Automatic")?"自动：从地面包含至最高方块（含树木）":"手动：按指定上下高度选择",x+12,y+47,0xff8bd6cc,false);
++        g.drawString(font,selection.getBoolean("LargeAutoHeight")?"大型区域：从所选地面包含至世界最高处":selection.getBoolean("Automatic")?"自动：从地面包含至最高方块（含树木）":"手动：按指定上下高度选择",x+12,y+47,0xff8bd6cc,false);
+         g.drawString(font,"最低 Y（可包含地下）",x+12,y+65,0xffa8bdc7,false);g.drawString(font,"最高 Y（屋顶 / 楼层）",x+168,y+65,0xffa8bdc7,false);
+-        g.drawString(font,selection.getBoolean("Valid")?"当前生效：Y "+selection.getInt("Bottom")+" 至 "+selection.getInt("Top")+" · "+selection.getInt("Volume")+" 格":"自动范围不可用，请手动调整或缩小选区",x+12,y+127,0xffe4dbc0,false);
++        g.drawString(font,selection.getBoolean("Valid")?"当前生效：Y "+selection.getInt("Bottom")+" 至 "+selection.getInt("Top")+" · "+selection.getLong("Volume")+" 格":"自动范围不可用，请手动调整或缩小选区",x+12,y+127,0xffe4dbc0,false);
+         if(!founding)g.drawString(font,building?"只登记建筑，不改变城市范围。":"填写城市名称，或应用到当前城市。",x+12,y+149,0xffa8bdc7,false);
+         String note=dirty()?"已修改输入：请先点击应用手动高度。":message;int ty=y+218;for(var line:font.split(Component.literal(note),296)){if(ty>y+229)break;g.drawString(font,line,x+12,ty,0xffffbc77,false);ty+=11;}super.render(g,mx,my,partial);
+     }
+diff --git a/src/main/java/com/muxigame/city/CityHousing.java b/src/main/java/com/muxigame/city/CityHousing.java
+index 76f38e5..7ebc252 100644
+--- a/src/main/java/com/muxigame/city/CityHousing.java
++++ b/src/main/java/com/muxigame/city/CityHousing.java
+@@ -15,26 +15,29 @@ import net.neoforged.neoforge.network.PacketDistributor;
+ /** Building ownership, occupancy, bounded data production and explicitly labelled test-material supply. */
+ public final class CityHousing {
+  public static final class State {public int schema=1;public long clock,day;public boolean started,testSupply,constructionSupplyOnly;public long supplyClock,supplied;public boolean importedMaterials;public long materialImportSegment=-1,materialImportCursor;public Map<String,Long> imported=new TreeMap<>(),exported=new TreeMap<>();public Map<UUID,House> houses=new LinkedHashMap<>();public Map<String,Material> market=new TreeMap<>();public Map<String,Integer> tails=new TreeMap<>();}
+- public static final class House {public Set<Long> clears=new HashSet<>(),pendingClear=new HashSet<>();public Map<Long,String> blockData=new HashMap<>();public String stage="BUILT";public boolean extra,artisanWorkshop;public long decayCredit;public long revision,produced;public boolean configured,personal,production;public UUID owner;public int beds,workerLimit;public int periodSeconds=60,quantity=1;public String purpose="";public String product="minecraft:oak_planks",status="尚未记录房屋血量";public Set<UUID> residents=new LinkedHashSet<>(),workers=new LinkedHashSet<>();public Map<UUID,Long> progress=new HashMap<>();public LinkedHashMap<Long,String> baseline=new LinkedHashMap<>();public Set<Long> damaged=new HashSet<>();public Map<String,Integer> materials=new TreeMap<>();}
++ public static final class House {public Set<Long> clears=new HashSet<>(),pendingClear=new HashSet<>();public Map<Long,String> blockData=new HashMap<>();public String stage="BUILT";public boolean extra,artisanWorkshop;public long decayCredit;public long revision,produced;public boolean configured,personal,production;public UUID owner;public int beds,workerLimit;public int periodSeconds=60,quantity=1;public String purpose="";public String product="minecraft:oak_planks",status="尚未记录房屋血量";public Set<UUID> residents=new LinkedHashSet<>(),workers=new LinkedHashSet<>();public Map<UUID,Long> progress=new HashMap<>();@com.google.gson.annotations.JsonAdapter(CityBlockStore.Adapter.class) public Map<Long,String> baseline=new CityBlockStore();public Set<Long> damaged=new HashSet<>();public Map<String,Integer> materials=new TreeMap<>();}
+  public static final class Material {public FoodAge.State freshness=new FoodAge.State();public UUID supplier;public int stock,priceCents=40,supply=40,cap=4096;public long supplied,sold;}
+- private record Capture(UUID city,UUID building,long revision,int cursor,LinkedHashMap<Long,String> blocks){}
++ private record Capture(UUID city,UUID building,long revision,int cursor,Map<Long,String> blocks){}
+  private static final Map<UUID,Capture> captures=new LinkedHashMap<>();private static int scan;
+- static void clear(){captures.clear();scan=0;}
++ private record Points(Object source,long revision,int size,ArrayList<Long> values){}
++ private static final Map<House,Points> pointsCache=new WeakHashMap<>();
++ private static ArrayList<Long> points(House house){var prior=pointsCache.get(house);long rev=house.baseline instanceof CityBlockStore store?store.revision():0;int size=house.baseline.size();if(prior==null||prior.source!=house.baseline||prior.revision!=rev||prior.size!=size){prior=new Points(house.baseline,rev,size,new ArrayList<>(house.baseline.keySet()));pointsCache.put(house,prior);}return prior.values;}
++ static void clear(){captures.clear();pointsCache.clear();scan=0;}
+  static void repaired(MinecraftServer server,CityData.City c,BlockPos pos){for(var h:c.housing.houses.values())if(h.baseline.containsKey(pos.asLong()))h.damaged.remove(pos.asLong());CityData.get(server).setDirty();}
+  static void changed(ServerLevel level,BlockPos pos,boolean removed){CityWorks.changed(level,pos,removed);var data=CityData.get(level.getServer());for(var c:data.cities())if(!c.works.finalized&&c.dimension.equals(level.dimension().location().toString())&&c.includes(pos))for(var h:c.housing.houses.values())if(h.baseline.containsKey(pos.asLong())){if(removed||!CityMaintenance.same(level.getBlockState(pos),CityMaintenance.decode(h.baseline.get(pos.asLong()))))h.damaged.add(pos.asLong());else h.damaged.remove(pos.asLong());data.setDirty();}}
+- static void broken(BlockEvent.BreakEvent e){if(e.isCanceled())return;if(e.getLevel() instanceof ServerLevel l){var c=RuralTools.city(l,e.getPos());if(c!=null&&c.works.pending.containsKey(e.getPos().asLong())){e.setCanceled(true);e.getPlayer().displayClientMessage(Component.literal("正在施工，此处暂时不能改动"),true);return;}changed(l,e.getPos(),true);}}
+- static void placed(BlockEvent.EntityPlaceEvent e){if(e.isCanceled())return;if(e.getLevel() instanceof ServerLevel l){var c=RuralTools.city(l,e.getPos());if(c!=null&&c.works.pending.containsKey(e.getPos().asLong())){e.setCanceled(true);return;}changed(l,e.getPos(),false);}}
+- static void exploded(ExplosionEvent.Detonate e){if(e.getLevel() instanceof ServerLevel l){e.getAffectedBlocks().removeIf(p->{var c=RuralTools.city(l,p);return c!=null&&c.works.pending.containsKey(p.asLong());});for(var p:e.getAffectedBlocks().stream().limit(8192).toList())changed(l,p,true);}}
++ static void broken(BlockEvent.BreakEvent e){if(e.isCanceled())return;if(e.getLevel() instanceof ServerLevel l){var c=RuralTools.city(l,e.getPos());if(c!=null&&c.works.pending.containsKey(e.getPos().asLong())){e.setCanceled(true);e.getPlayer().displayClientMessage(Component.literal("正在施工，此处暂时不能改动"),true);return;}CityWorks.beforeTerrainEdit(l,e.getPos(),e.getState());changed(l,e.getPos(),true);}}
++ static void placed(BlockEvent.EntityPlaceEvent e){if(e.isCanceled())return;if(e.getLevel() instanceof ServerLevel l){var c=RuralTools.city(l,e.getPos());if(c!=null&&c.works.pending.containsKey(e.getPos().asLong())){e.setCanceled(true);return;}CityWorks.beforeTerrainEdit(l,e.getPos(),e.getBlockSnapshot().getState());changed(l,e.getPos(),false);}}
++ static void exploded(ExplosionEvent.Detonate e){if(e.getLevel() instanceof ServerLevel l){e.getAffectedBlocks().removeIf(p->{var c=RuralTools.city(l,p);return c!=null&&c.works.pending.containsKey(p.asLong());});for(var p:e.getAffectedBlocks().stream().limit(8192).toList()){CityWorks.beforeTerrainEdit(l,p,l.getBlockState(p));changed(l,p,true);}}}
+  static void interacting(net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock e){if(e.getLevel() instanceof ServerLevel l){var c=RuralTools.city(l,e.getPos());if(c!=null&&(c.works.pending.containsKey(e.getPos().asLong())||c.works.deferredContainers.contains(e.getPos().asLong()))){e.setCanceled(true);e.setCancellationResult(net.minecraft.world.InteractionResult.FAIL);}}}
+  static boolean pending(ServerLevel l,BlockPos p){var c=RuralTools.city(l,p);return c!=null&&c.works.pending.containsKey(p.asLong());}
+  static void piston(net.neoforged.neoforge.event.level.PistonEvent.Pre event){if(!(event.getLevel() instanceof ServerLevel l)||event.isCanceled())return;var resolver=event.getStructureHelper();if(resolver==null)return;resolver.resolve();var positions=new HashSet<BlockPos>(resolver.getToPush());positions.addAll(resolver.getToDestroy());positions.add(event.getPos());positions.add(event.getFaceOffsetPos());var shift=event.getPistonMoveType().isExtend?event.getDirection():event.getDirection().getOpposite();for(var p:new ArrayList<>(positions))positions.add(p.relative(shift));if(positions.stream().anyMatch(p->pending(l,p)))event.setCanceled(true);}
+  static House defaults(CityRegistry.Building b){var h=new House();h.purpose=b.type();h.personal=b.type().equals("住宅")||b.type().equals("工坊");h.beds=b.type().equals("住宅")?3:0;h.workerLimit=b.type().equals("工坊")?2:0;return h;}
+  static House house(CityData.City c,UUID building){var b=c.buildings.get(building);CityEconomy.require(b!=null,"房屋登记不存在");return c.housing.houses.computeIfAbsent(building,k->defaults(b));}
+  static void seedCatalog(State state){for(String id:List.of("minecraft:oak_planks","minecraft:glass","minecraft:stone_bricks","minecraft:cobblestone","minecraft:stone","minecraft:dirt","minecraft:grass_block","minecraft:sand","minecraft:gravel"))state.market.computeIfAbsent(id,k->{var m=new Material();m.priceCents=List.of("minecraft:dirt","minecraft:grass_block","minecraft:stone","minecraft:cobblestone","minecraft:sand","minecraft:gravel").contains(id)?1:id.equals("minecraft:oak_planks")?20:id.equals("minecraft:glass")?30:40;return m;});}
+- static void validate(CityData.City c,State state){CityEconomy.require(state!=null&&state.imported!=null&&state.exported!=null&&state.imported.size()<=128&&state.exported.size()<=128&&state.materialImportCursor>=0,"建材进口账容量无效");for(var ledger:List.of(state.imported,state.exported))ledger.forEach((item,n)->{CityEconomy.item(item);CityEconomy.require(n>=0,"建材进口账不能为负");});CityEconomy.require(state!=null&&state.schema==1&&state.houses.size()<=128&&state.market.size()<=128&&state.tails.size()<=8192,"房屋数据容量或版本错误");var occupants=new HashSet<UUID>();var workers=new HashSet<UUID>();int blocks=0;
++ static void validate(CityData.City c,State state){CityEconomy.require(state!=null&&state.imported!=null&&state.exported!=null&&state.imported.size()<=128&&state.exported.size()<=128&&state.materialImportCursor>=0,"建材进口账容量无效");for(var ledger:List.of(state.imported,state.exported))ledger.forEach((item,n)->{CityEconomy.item(item);CityEconomy.require(n>=0,"建材进口账不能为负");});CityEconomy.require(state!=null&&state.schema==1&&state.houses.size()<=128&&state.market.size()<=128&&state.tails.size()<=8192,"房屋数据容量或版本错误");var occupants=new HashSet<UUID>();var workers=new HashSet<UUID>();
+   CityEconomy.require(state.houses.values().stream().mapToInt(v->v.workers.size()).sum()<=512,"房屋工人数超过512");
+-  for(var entry:state.houses.entrySet()){var b=c.buildings.get(entry.getKey());CityEconomy.require(b!=null,"房屋属性引用了不存在的建筑");var h=entry.getValue();validateHouse(h);for(UUID resident:h.residents)CityEconomy.require(occupants.add(resident),"住户重复");for(UUID id:h.workers)CityEconomy.require(workers.add(id),"工人重复归属");blocks+=h.baseline.size();CityEconomy.require(h.baseline.keySet().containsAll(h.damaged),"损坏坐标不在房屋基准中");for(var p:h.baseline.entrySet()){CityEconomy.require(b.bounds().contains(BlockPos.of(p.getKey())),"房屋血量坐标越界");CityMaintenance.decode(p.getValue());}}
+-  CityEconomy.require(blocks<=262144,"房屋血量记录总数超过262144");for(var entry:state.market.entrySet()){CityEconomy.item(entry.getKey());var m=entry.getValue();CityEconomy.require(m.stock>=0&&m.stock<=4096&&m.priceCents>=1&&m.priceCents<=1000000&&m.supply>=0&&m.supply<=4096&&m.cap>=1&&m.cap<=4096,"建材库存/报价/测试供货无效");}state.tails.values().forEach(v->CityEconomy.require(v>=0&&v<100,"材料货款尾数无效"));
++  for(var entry:state.houses.entrySet()){var b=c.buildings.get(entry.getKey());CityEconomy.require(b!=null,"房屋属性引用了不存在的建筑");var h=entry.getValue();validateHouse(h);for(UUID resident:h.residents)CityEconomy.require(occupants.add(resident),"住户重复");for(UUID id:h.workers)CityEconomy.require(workers.add(id),"工人重复归属");CityEconomy.require(h.baseline.keySet().containsAll(h.damaged),"损坏坐标不在房屋基准中");CityEconomy.require(CityBlockStore.inside(h.baseline,b.bounds()),"房屋血量坐标越界");for(String value:CityBlockStore.states(h.baseline))CityMaintenance.decode(value);}
++  for(var entry:state.market.entrySet()){CityEconomy.item(entry.getKey());var m=entry.getValue();CityEconomy.require(m.stock>=0&&m.stock<=4096&&m.priceCents>=1&&m.priceCents<=1000000&&m.supply>=0&&m.supply<=4096&&m.cap>=1&&m.cap<=4096,"建材库存/报价/测试供货无效");}state.tails.values().forEach(v->CityEconomy.require(v>=0&&v<100,"材料货款尾数无效"));
+  }
+  static void validateHouse(House h){CityEconomy.require(h!=null&&h.revision>=0&&h.beds>=0&&h.beds<=1000&&h.workerLimit>=0&&h.workerLimit<=512&&h.residents.size()<=h.beds&&h.workers.size()<=h.workerLimit&&h.periodSeconds>=1&&h.periodSeconds<=86400&&h.quantity>=1&&h.quantity<=4096&&h.baseline.size()<=131072,"容量、生产参数或人数越界");CityEconomy.item(h.product);CityEconomy.require(h.materials.size()<=128&&h.materials.values().stream().allMatch(n->n>=0&&n<=4096),"房屋材料库存越界");h.materials.keySet().forEach(CityEconomy::item);}
+  static String payer(CityData.City c,House h){CityEconomy.require(!h.personal||h.owner!=null,"私人房屋尚未指定所有者，不能支出");return h.personal?CityEconomy.person(h.owner):CityEconomy.treasury(c.id);}
+@@ -45,16 +48,17 @@ public final class CityHousing {
+  static House view(House h){var v=new House();v.stage=h.stage;v.extra=h.extra;v.artisanWorkshop=h.artisanWorkshop;v.purpose=h.purpose;v.configured=h.configured;v.revision=h.revision;v.personal=h.personal;v.owner=h.owner;v.beds=h.beds;v.workerLimit=h.workerLimit;v.periodSeconds=h.periodSeconds;v.quantity=h.quantity;v.product=h.product;v.production=h.production;v.produced=h.produced;v.status=h.status;v.residents=h.residents;v.workers=h.workers;v.materials=h.materials;return v;}
+  static void capacity(CityData.City c,UUID building,UUID worker,CityEconomy economy){var h=c.housing.houses.get(building);if(h==null||!h.configured)return;var staff=new HashSet<>(h.workers);for(var j:economy.state.production)if(j.enabled&&j.city.equals(c.id)&&j.building.equals(building))staff.add(j.worker);staff.add(worker);CityEconomy.require(staff.size()<=h.workerLimit,"房屋工人容量不足");}
+  static void assign(CityData.City c,UUID building,UUID npc,int mode,CityEconomy economy){var h=house(c,building);CityEconomy.require(c.residents.contains(npc),"只能选择本城居民");CityEconomy.require(mode>=0&&mode<=2,"未知居民关联类型");var set=mode==1?h.residents:h.workers;if(mode==0){h.owner=npc;return;}CityEconomy.require(h.stage.equals("BUILT"),"建筑尚未竣工，不能安排住户或工作岗位");if(set.remove(npc)){if(mode==2)h.progress.remove(npc);return;}CityEconomy.require(set.size()<(mode==1?h.beds:h.workerLimit),"房屋容量已满");for(var entry:c.housing.houses.entrySet())if(!entry.getKey().equals(building))CityEconomy.require(!(mode==1?entry.getValue().residents:entry.getValue().workers).contains(npc),"该居民已有住房/工作房屋，请先解除");if(mode==2){CityEconomy.require(c.housing.houses.values().stream().mapToInt(v->v.workers.size()).sum()<512,"本城房屋工人总数已达512");CityEconomy.require(economy.state.production.stream().noneMatch(j->j.enabled&&j.worker.equals(npc)),"该居民已有生产任务");var rural=RuralSettlement.get(economy.serverContext).state;CityEconomy.require(rural.sites.values().stream().noneMatch(site->site.present&&npc.equals(site.worker)),"该居民已有农村工作点");}set.add(npc);}
+- static void capture(MinecraftServer s,CityData.City c,UUID id){var b=c.buildings.get(id);var l=CityEconomy.level(s,c);for(int x=b.bounds().min().getX()>>4;x<=b.bounds().max().getX()>>4;x++)for(int z=b.bounds().min().getZ()>>4;z<=b.bounds().max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"请先靠近房屋，记录不会强制加载区块");CityEconomy.require(!captures.containsKey(c.id),"本城正在记录另一栋房屋");var h=house(c,id);CityEconomy.require(h.configured&&(!h.personal||h.owner!=null),"请先指定产权与所有者并保存房屋属性");captures.put(c.id,new Capture(c.id,id,h.revision,0,new LinkedHashMap<>()));h.status="正在分批记录房屋血量";}
++ static void capture(MinecraftServer s,CityData.City c,UUID id){var b=c.buildings.get(id);var l=CityEconomy.level(s,c);for(int x=b.bounds().min().getX()>>4;x<=b.bounds().max().getX()>>4;x++)for(int z=b.bounds().min().getZ()>>4;z<=b.bounds().max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"请先靠近房屋，记录不会强制加载区块");CityEconomy.require(!captures.containsKey(c.id),"本城正在记录另一栋房屋");var h=house(c,id);CityEconomy.require(h.configured&&(!h.personal||h.owner!=null),"请先指定产权与所有者并保存房屋属性");captures.put(c.id,new Capture(c.id,id,h.revision,0,new CityBlockStore()));h.status="正在分批记录房屋血量";}
+  static void advanceSupply(State state,int ticks){if(!state.testSupply)return;state.supplyClock+=ticks;while(state.supplyClock>=1200){state.supplyClock-=1200;for(var entry:state.market.entrySet()){if(state.constructionSupplyOnly&&!CityMaterialCatalog.material(entry.getKey()))continue;if(state.importedMaterials&&CityMaterialCatalog.material(entry.getKey()))continue;var m=entry.getValue();int n=Math.max(0,Math.min(m.supply,m.cap-m.stock));m.stock+=n;m.supplied+=n;state.supplied+=n;}}}
+  static int efficiency(House h){return CityWorks.efficiency(h);}
+  static void work(House h,UUID worker,State market,int ticks){long progress=h.progress.getOrDefault(worker,0L)+(long)ticks*efficiency(h),period=h.periodSeconds*20L*10000;if(progress>=period){var m=market.market.get(h.product);if(m==null&&market.market.size()>=128){h.status="市场商品种类已满";h.progress.put(worker,period);return;}m=market.market.computeIfAbsent(h.product,k->new Material());if(m.stock+h.quantity<=4096){m.stock+=h.quantity;h.produced+=h.quantity;progress-=period;h.status="简化生产已入市场；原料链待补充";}else{progress=period;h.status="市场满仓，产出保留为待生产";}}h.progress.put(worker,progress);}
+- static void tick(MinecraftServer s){var data=CityData.get(s);if(!captures.isEmpty()){var task=captures.values().iterator().next();var c=data.cities.get(task.city);var b=c==null?null:c.buildings.get(task.building);if(b==null){captures.remove(task.city);}else{var h=house(c,b.id());if(h.revision!=task.revision){h.status="设置变化，记录取消";captures.remove(c.id);}else{var l=CityEconomy.level(s,c);int cursor=task.cursor;for(int n=0;n<512&&cursor<b.bounds().volume();n++){var pos=b.bounds().at(cursor);if(!l.hasChunkAt(pos))break;cursor++;var state=l.getBlockState(pos);if(!state.isAir()&&!(state.getBlock() instanceof net.minecraft.world.level.block.LiquidBlock)&&!(state.getBlock() instanceof CropBlock))task.blocks.put(pos.asLong(),CityMaintenance.encode(state));}if(cursor==b.bounds().volume()){int total=data.cities().stream().flatMap(v->v.housing.houses.values().stream()).mapToInt(v->v.baseline.size()).sum()-h.baseline.size()+task.blocks.size();if(total<=262144){try{CityMaintenance.recordHouse(s,c,b,task.blocks);h.baseline=task.blocks;h.damaged.clear();h.status="房屋基准已记录："+h.baseline.size()+"血";h.revision++;}catch(IllegalArgumentException ex){h.status="记录拒绝，旧基准保留："+ex.getMessage();}}else h.status="记录总数超过262144，旧基准保留";captures.remove(c.id);}else captures.put(c.id,new Capture(c.id,b.id(),task.revision,cursor,task.blocks));data.setDirty();}}}
++ static void tick(MinecraftServer s){var data=CityData.get(s);if(!captures.isEmpty()){var task=captures.values().iterator().next();var c=data.cities.get(task.city);var b=c==null?null:c.buildings.get(task.building);if(b==null){captures.remove(task.city);}else{var h=house(c,b.id());if(h.revision!=task.revision){h.status="设置变化，记录取消";captures.remove(c.id);}else{var l=CityEconomy.level(s,c);int cursor=task.cursor;for(int n=0;n<512&&cursor<b.bounds().volume();n++){var pos=b.bounds().at(cursor);if(!l.hasChunkAt(pos))break;cursor++;var state=l.getBlockState(pos);if(!state.isAir()&&!(state.getBlock() instanceof net.minecraft.world.level.block.LiquidBlock)&&!(state.getBlock() instanceof CropBlock))task.blocks.put(pos.asLong(),CityMaintenance.encode(state));}if(cursor==b.bounds().volume()){{try{CityMaintenance.recordHouse(s,c,b,task.blocks);h.baseline=task.blocks;if(h.baseline instanceof CityBlockStore store)store.compact();h.damaged.clear();h.status="房屋基准已记录："+h.baseline.size()+"血";h.revision++;}catch(IllegalArgumentException ex){h.status="记录拒绝，旧基准保留："+ex.getMessage();}}captures.remove(c.id);}else captures.put(c.id,new Capture(c.id,b.id(),task.revision,cursor,task.blocks));data.setDirty();}}}
+   int steps=SimulationClock.steps(s);if(steps==0)return;var economy=CityEconomy.get(s);for(var c:data.cities()){if(CityCurrency.model(s,c.id)&&!RuralSettlement.active(s,c.id))continue;var st=c.housing;if(st.houses.isEmpty()&&!st.testSupply)continue;if(!st.started){st.day=s.overworld().getDayTime();st.started=true;}var ruralClock=RuralSettlement.get(s).state;if(ruralClock.clockStarted&&!ruralClock.enabled.isEmpty())st.day=ruralClock.simulationDay;if(s.getTickCount()%20==0)for(var home:st.houses.values()){java.util.function.Predicate<UUID> departed=id->{if(!c.residents.contains(id))return true;var rural=RuralSettlement.get(s).state.people.get(id);if(rural!=null)return rural.dead;var entity=CityEconomy.level(s,c).getEntity(id);return entity!=null&&!entity.isAlive();};home.residents.removeIf(departed);home.workers.removeIf(departed);home.progress.keySet().retainAll(home.workers);}for(int n=0;n<steps;n++){st.clock+=20;st.day+=20;advanceSupply(st,20);for(var entry:st.houses.entrySet()){var h=entry.getValue();if(!h.production)continue;if(efficiency(h)==0){h.status="等待记录房屋或恢复血量";continue;}for(UUID worker:h.workers){var person=RuralSettlement.get(s).state.people.get(worker);if(person!=null&&person.dead)continue;if(person==null&&!CityMaintenance.available(CityEconomy.level(s,c),c,worker))continue;var hours=WorkHours.config(s,worker);if(!WorkHours.allowed(hours,st.day,CityLiving.stability(economy,c),Math.floorMod(Objects.hash(worker,Math.floorDiv(st.day-12000,24000)),100)))continue;work(h,worker,st,20);}}}data.setDirty();}
+-  var homes=new ArrayList<Map.Entry<CityData.City,House>>();for(var c:data.cities())for(var h:c.housing.houses.values())if(!h.baseline.isEmpty())homes.add(Map.entry(c,h));if(!homes.isEmpty()){var pair=homes.get(Math.floorMod(scan++,homes.size()));var c=pair.getKey();var h=pair.getValue();var positions=new ArrayList<>(h.baseline.keySet());int start=Math.floorMod(scan/homes.size()*128,positions.size());var l=CityEconomy.level(s,c);for(int i=0;i<Math.min(128,positions.size());i++){long p=positions.get((start+i)%positions.size());var pos=BlockPos.of(p);if(l.hasChunkAt(pos)&&!c.works.finalized){var maintenance=CityMaintenance.get(s).state.cities.get(c.id);if((maintenance!=null&&maintenance.ready.contains(p))||CityMaintenance.same(l.getBlockState(pos),CityMaintenance.decode(h.baseline.get(p))))h.damaged.remove(p);else h.damaged.add(p);}}}
++  var homes=new ArrayList<Map.Entry<CityData.City,House>>();for(var c:data.cities())for(var h:c.housing.houses.values())if(!h.baseline.isEmpty())homes.add(Map.entry(c,h));if(!homes.isEmpty()){var pair=homes.get(Math.floorMod(scan++,homes.size()));var c=pair.getKey();var h=pair.getValue();var positions=points(h);int start=Math.floorMod(scan/homes.size()*128,positions.size());var l=CityEconomy.level(s,c);for(int i=0;i<Math.min(128,positions.size());i++){long p=positions.get((start+i)%positions.size());var pos=BlockPos.of(p);if(l.hasChunkAt(pos)&&!c.works.finalized){var maintenance=CityMaintenance.get(s).state.cities.get(c.id);if((maintenance!=null&&maintenance.ready.contains(p))||CityMaintenance.same(l.getBlockState(pos),CityMaintenance.decode(h.baseline.get(p))))h.damaged.remove(p);else h.damaged.add(p);}}}
+  }
+  static void request(ServerPlayer p,CityNetwork.Request r){try{var c=CityData.get(p.server).require(UUID.fromString(r.city()));CityEconomy.require(CityService.editor(p),"需要管理员或城市所有者权限");CityEconomy.require(c.dimension.equals(p.level().dimension().location().toString()),"城市维度不一致");UUID id=UUID.fromString(r.value().split("\n",2)[0]);var h=house(c,id);String message="";var economy=CityEconomy.get(p.server);if(!r.op().equals("houseview"))CityEconomy.require(r.revision()==h.revision,"房屋设置已更新，请刷新");
+    switch(r.op()){case "houseview"->{}case "housesave"->{var inputJson=JsonParser.parseString(r.value().split("\n",2)[1]);CityMaintenance.exact(inputJson);var input=CityEconomy.JSON.fromJson(inputJson,House.class);validateHouse(input);CityEconomy.require(h.residents.size()<=input.beds&&h.workers.size()<=input.workerLimit,"请先解除超出新容量的住户/工人");CityEconomy.require(!input.personal||h.owner!=null,"先选择私人所有者");CityEconomy.require(!input.production||economy.state.production.stream().noneMatch(j->j.enabled&&j.city.equals(c.id)&&j.building.equals(id)),"本屋已有旧生产任务，先停用以免重复生产");int legacy=(int)economy.state.production.stream().filter(j->j.enabled&&j.city.equals(c.id)&&j.building.equals(id)).map(j->j.worker).distinct().count();CityEconomy.require(legacy<=input.workerLimit,"容量低于现有生产工人数");if(!h.product.equals(input.product)||h.periodSeconds!=input.periodSeconds||h.quantity!=input.quantity)h.progress.clear();if(!input.purpose.isEmpty()){CityEconomy.require(CityRegistry.TYPES.contains(input.purpose),"未知房屋用途");var old=c.buildings.get(id);c.buildings.put(id,new CityRegistry.Building(id,old.name(),input.purpose,old.bounds()));h.purpose=input.purpose;CityData.get(p.server).changed(c);}h.configured=true;h.personal=input.personal;h.beds=input.beds;h.workerLimit=input.workerLimit;h.periodSeconds=input.periodSeconds;h.quantity=input.quantity;h.product=input.product;h.production=input.production;h.revision++;CityMaintenance.enableDataCity(p.server,c);message="房屋属性已保存";}case "housecapture"->{capture(p.server,c,id);message="开始记录房屋方块；不包含箱内物品";}case "houseperson"->{assign(c,id,UUID.fromString(r.value().split("\n",2)[1]),r.x(),economy);h.revision++;CityMaintenance.enableDataCity(p.server,c);message="居民关联已保存";}case "housesupply"->{seedCatalog(c.housing);c.housing.testSupply=r.surface();message="测试虚空供货"+(r.surface()?"已开启":"已关闭");}case "housemat"->{String[] a=r.value().split("\n");CityEconomy.item(a[1]);CityEconomy.require(c.housing.market.size()<128||c.housing.market.containsKey(a[1]),"商品种类已满");CityEconomy.require(r.x()>=1&&r.x()<=1000000&&r.y()>=0&&r.y()<=4096,"报价/供货数量越界");var m=c.housing.market.computeIfAbsent(a[1],k->new Material());m.priceCents=r.x();m.supply=r.y();message="建材报价与测试供货量已保存";}case "housebuy"->{long paid=purchase(c,h,r.value().split("\n",2)[1],r.x(),economy);message="已采购入房屋材料库，支付"+paid+"银币，零头累计结算";}default->throw new IllegalArgumentException("未知房屋操作");}CityData.get(p.server).setDirty();snapshot(p,c,id,r.z(),message);
+   }catch(Exception e){try{var c=CityData.get(p.server).require(UUID.fromString(r.city()));if(CityService.editor(p)){snapshot(p,c,UUID.fromString(r.value().split("\\n",2)[0]),r.z(),"拒绝："+e.getMessage());return;}}catch(Exception ignored){}p.sendSystemMessage(Component.literal("[房屋] "+e.getMessage()));}}
+  static void snapshot(ServerPlayer p,CityData.City c,UUID id,int tab,String message){var h=house(c,id);seedCatalog(c.housing);var t=new CompoundTag();t.putBoolean("Housing",true);t.putString("Id",c.id.toString());t.putString("Name",c.name);t.putString("HouseId",id.toString());t.putString("HouseName",c.buildings.get(id).name());t.putString("Type",c.buildings.get(id).type());t.putString("House",CityEconomy.JSON.toJson(view(h)));t.putLong("Revision",c.revision);t.putLong("HouseRevision",h.revision);t.putLong("CityRevision",c.revision);t.putInt("Efficiency",CityWorks.efficiency(h));t.putInt("Health",h.baseline.size()-h.damaged.size());t.putInt("MaxHealth",h.baseline.size());t.putInt("Tab",tab);t.putBoolean("Editable",true);t.putBoolean("TestSupply",c.housing.testSupply);t.putString("Market",CityEconomy.JSON.toJson(c.housing.market));t.putString("Message",message);try{String payer=payer(c,h);t.putString("Payer",payer);t.putLong("Balance",CityEconomy.get(p.server).balance(payer));}catch(Exception e){t.putString("Payer","私人所有者待指定");}CityRegistry.snapshot(p,c,t);ListTag people=new ListTag();for(UUID npc:c.residents.stream().sorted().toList()){var n=new CompoundTag();n.putString("Id",npc.toString());var rural=RuralSettlement.get(p.server).state.people.get(npc);var entity=p.serverLevel().getEntity(npc);n.putString("Name",rural!=null?rural.name:entity==null?"居民 "+npc.toString().substring(0,8):entity.getName().getString());n.putBoolean("Dead",rural!=null&&rural.dead);people.add(n);}t.put("People",people);PacketDistributor.sendToPlayer(p,new CityNetwork.Snapshot(t));}
+ }
++
+diff --git a/src/main/java/com/muxigame/city/CityLoadedChunks.java b/src/main/java/com/muxigame/city/CityLoadedChunks.java
+new file mode 100644
+index 0000000..f1ad624
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityLoadedChunks.java
+@@ -0,0 +1,29 @@
++package com.muxigame.city;
++
++import java.util.*;
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.ServerLevel;
++import net.minecraft.world.level.ChunkPos;
++import net.neoforged.bus.api.SubscribeEvent;
++import net.neoforged.fml.common.EventBusSubscriber;
++import net.neoforged.neoforge.event.level.ChunkEvent;
++
++/** A server-thread index of chunks already loaded by the game. Never obtains a chunk ticket. */
++@EventBusSubscriber(modid=CityMod.ID)
++public final class CityLoadedChunks {
++    private static final Map<ServerLevel,Set<Long>> LOADED=new WeakHashMap<>();
++    @SubscribeEvent public static void load(ChunkEvent.Load event){if(event.getLevel() instanceof ServerLevel l)LOADED.computeIfAbsent(l,k->new TreeSet<>()).add(event.getChunk().getPos().toLong());}
++    @SubscribeEvent public static void unload(ChunkEvent.Unload event){if(event.getLevel() instanceof ServerLevel l){var set=LOADED.get(l);if(set!=null)set.remove(event.getChunk().getPos().toLong());}}
++    static List<CityBounds> boxes(ServerLevel l,CityBounds bounds){
++        var out=new ArrayList<CityBounds>();
++        for(long key:LOADED.getOrDefault(l,Set.of())){
++            var p=new ChunkPos(key);
++            if(p.x<(bounds.min().getX()>>4)||p.x>(bounds.max().getX()>>4)||p.z<(bounds.min().getZ()>>4)||p.z>(bounds.max().getZ()>>4)||l.getChunkSource().getChunkNow(p.x,p.z)==null)continue;
++            var box=new CityBounds(new BlockPos(Math.max(bounds.min().getX(),p.getMinBlockX()),bounds.min().getY(),Math.max(bounds.min().getZ(),p.getMinBlockZ())),new BlockPos(Math.min(bounds.max().getX(),p.getMaxBlockX()),bounds.max().getY(),Math.min(bounds.max().getZ(),p.getMaxBlockZ())));
++            out.add(box);
++        }
++        return out;
++    }
++    /** Small selections retain their exact old traversal, including explicit unloaded status. */
++    static List<CityBounds> scanBoxes(ServerLevel l,CityBounds bounds){return bounds.smallSelection()?List.of(bounds):boxes(l,bounds);}
++}
+diff --git a/src/main/java/com/muxigame/city/CityMaintenance.java b/src/main/java/com/muxigame/city/CityMaintenance.java
+index 838795f..92a63e1 100644
+--- a/src/main/java/com/muxigame/city/CityMaintenance.java
++++ b/src/main/java/com/muxigame/city/CityMaintenance.java
+@@ -17,15 +17,15 @@ import net.neoforged.neoforge.network.PacketDistributor;
+ public final class CityMaintenance extends SavedData {
+  public static final List<String> FARM=List.of("minecraft:grass_block","minecraft:dirt","minecraft:farmland","minecraft:water","minecraft:wheat","minecraft:composter");
+  public static final class Worker {public UUID city;public String role="无职业";public boolean enabled,artisan;public int perHour=30,priority=50;public List<String> blocks=new ArrayList<>();public long next,workClock;}
+- public static final class Plan {public boolean enabled=true,collective;public UUID warehouse;public long nextFood,foodCredit;public int scan,foodScan,foodPlots,healthyPlots;public long repaired;public String status="尚未落成";public Set<Long> damaged=new HashSet<>(),ready=new HashSet<>();public LinkedHashMap<Long,String> baseline=new LinkedHashMap<>();}
++ public static final class Plan {public boolean enabled=true,collective;public UUID warehouse;public long nextFood,foodCredit;public int scan,foodScan,foodPlots,healthyPlots;public long repaired;public String status="尚未落成";public Set<Long> damaged=new HashSet<>(),ready=new HashSet<>();@com.google.gson.annotations.JsonAdapter(CityBlockStore.Adapter.class) public Map<Long,String> baseline=new CityBlockStore();}
+  public static final class State {public long revision;public Map<UUID,Worker> workers=new LinkedHashMap<>();public Map<UUID,Plan> cities=new LinkedHashMap<>();}
+  State state=new State();private final Map<UUID,ArrayList<Long>> positions=new HashMap<>();private final Map<String,BlockState> decoded=new HashMap<>();private final Map<UUID,Build> builds=new LinkedHashMap<>();private int cityCursor;
+- private static final class Build {int cursor;long revision;LinkedHashMap<Long,String> blocks=new LinkedHashMap<>();Build(long r){revision=r;}}
++ private static final class Build {CityScanCursor cursor;long revision;Map<Long,String> blocks=new CityBlockStore();Build(long r,CityScanCursor scan){revision=r;cursor=scan;}}
+  public static CityMaintenance get(MinecraftServer s){return s.overworld().getDataStorage().computeIfAbsent(new Factory<>(()->CitySaveSafety.newData(s,"city_maintenance",CityMaintenance::new),CityMaintenance::load),"city_maintenance");}
+  public static CityMaintenance load(CompoundTag tag,HolderLookup.Provider lookup){var d=new CityMaintenance();if(tag.contains("Json"))d.state=CityEconomy.JSON.fromJson(new String(tag.getByteArray("Json"),StandardCharsets.UTF_8),State.class);validate(d.state);return d;}
+  @Override public CompoundTag save(CompoundTag tag,HolderLookup.Provider lookup){tag.putByteArray("Json",CityEconomy.JSON.toJson(state).getBytes(StandardCharsets.UTF_8));return tag;}
+  static void exact(JsonElement v){if(v.isJsonObject())v.getAsJsonObject().entrySet().forEach(e->exact(e.getValue()));else if(v.isJsonArray())v.getAsJsonArray().forEach(CityMaintenance::exact);else if(v.isJsonPrimitive()&&v.getAsJsonPrimitive().isNumber())v.getAsBigDecimal().longValueExact();}
+- static void validate(State s){CityEconomy.require(s!=null&&s.revision>=0&&s.workers!=null&&s.workers.size()<=512&&s.cities!=null&&s.cities.size()<=128,"修补数据越界");for(var w:s.workers.values()){CityEconomy.require(w!=null&&w.city!=null&&List.of("无职业","农民","工匠","自定义").contains(w.role)&&w.perHour>=1&&w.perHour<=3600&&w.priority>=1&&w.priority<=100&&w.blocks!=null&&w.blocks.size()<=256&&w.next>=0,"职业参数无效");for(String id:w.blocks)CityEconomy.require(BuiltInRegistries.BLOCK.containsKey(ResourceLocation.parse(id))&&!id.equals("minecraft:air"),"修补方块无效");}CityEconomy.require(s.cities.values().stream().filter(Objects::nonNull).mapToInt(v->v.baseline==null?0:v.baseline.size()).sum()<=262144,"落成总量超过262144格");for(var p:s.cities.values()){CityEconomy.require(p!=null&&p.baseline!=null&&p.baseline.size()<=CityBounds.MAX_VOLUME&&p.damaged!=null&&p.ready!=null&&p.baseline.keySet().containsAll(p.damaged)&&p.damaged.containsAll(p.ready)&&p.nextFood>=0&&p.foodCredit>=0&&p.foodCredit<72000&&(!p.collective||p.warehouse!=null),"落成记录无效");for(String v:p.baseline.values()){CityEconomy.require(v!=null&&v.length()<1024,"方块状态过长");decode(v);}}}
++ static void validate(State s){CityEconomy.require(s!=null&&s.revision>=0&&s.workers!=null&&s.workers.size()<=512&&s.cities!=null&&s.cities.size()<=128,"修补数据越界");for(var w:s.workers.values()){CityEconomy.require(w!=null&&w.city!=null&&List.of("无职业","农民","工匠","自定义").contains(w.role)&&w.perHour>=1&&w.perHour<=3600&&w.priority>=1&&w.priority<=100&&w.blocks!=null&&w.blocks.size()<=256&&w.next>=0,"职业参数无效");for(String id:w.blocks)CityEconomy.require(BuiltInRegistries.BLOCK.containsKey(ResourceLocation.parse(id))&&!id.equals("minecraft:air"),"修补方块无效");}for(var p:s.cities.values()){CityEconomy.require(p!=null&&p.baseline!=null&&p.damaged!=null&&p.ready!=null&&p.baseline.keySet().containsAll(p.damaged)&&p.damaged.containsAll(p.ready)&&p.nextFood>=0&&p.foodCredit>=0&&p.foodCredit<72000&&(!p.collective||p.warehouse!=null),"落成记录无效");for(String v:CityBlockStore.states(p.baseline)){CityEconomy.require(v!=null&&v.length()<1024,"方块状态过长");decode(v);}}}
+  static BlockState decode(String s){try{var n=TagParser.parseTag(s);CityEconomy.require(n.contains("Name")&&BuiltInRegistries.BLOCK.containsKey(ResourceLocation.parse(n.getString("Name"))),"落成方块不存在");return NbtUtils.readBlockState(BuiltInRegistries.BLOCK.asLookup(),n);}catch(com.mojang.brigadier.exceptions.CommandSyntaxException ex){throw new IllegalArgumentException("方块状态无效",ex);}}
+  static String encode(BlockState s){return NbtUtils.writeBlockState(s).toString();}
+  public static boolean collective(MinecraftServer s,UUID city){var p=get(s).state.cities.get(city);return p!=null&&p.collective;}
+@@ -33,7 +33,7 @@ public final class CityMaintenance extends SavedData {
+ 
+  static boolean same(BlockState a,BlockState b){if(a.getBlock()!=b.getBlock())return false;if(a.getBlock() instanceof CropBlock||a.is(Blocks.WATER)||a.is(Blocks.FARMLAND)||a.is(Blocks.COMPOSTER))return true;return a.equals(b);}
+  static boolean matches(Worker w,String id,Set<String> assigned){return w.blocks.contains(id)||(w.artisan&&!assigned.contains(id));}
+- void start(MinecraftServer s,CityData.City c){CityEconomy.require(!builds.containsKey(c.id),"正在记录，请等待");var l=CityEconomy.level(s,c);for(int x=c.bounds.min().getX()>>4;x<=c.bounds.max().getX()>>4;x++)for(int z=c.bounds.min().getZ()>>4;z<=c.bounds.max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"请先靠近城市加载全部范围，再落成；不会强制加载");builds.put(c.id,new Build(c.revision));state.cities.computeIfAbsent(c.id,k->new Plan()).status="正在分批记录落成方块";setDirty();}
++ void start(MinecraftServer s,CityData.City c){CityEconomy.require(!builds.containsKey(c.id),"正在记录，请等待");var l=CityEconomy.level(s,c);if(c.bounds.smallSelection())for(int x=c.bounds.min().getX()>>4;x<=c.bounds.max().getX()>>4;x++)for(int z=c.bounds.min().getZ()>>4;z<=c.bounds.max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"请先靠近城市加载全部范围，再落成；不会强制加载");builds.put(c.id,new Build(c.revision,new CityScanCursor(CityLoadedChunks.scanBoxes(l,c.bounds))));state.cities.computeIfAbsent(c.id,k->new Plan()).status="正在分批记录落成方块";setDirty();}
+  public static void tick(MinecraftServer s){var d=get(s);var data=CityData.get(s);var e=CityEconomy.get(s);long now=s.overworld().getGameTime();
+   d.capture(s,data);
+   if(d.state.cities.isEmpty())return;var ids=new ArrayList<>(d.state.cities.keySet());UUID id=ids.get(Math.floorMod(d.cityCursor++,ids.size()));var c=data.cities.get(id);if(c==null)return; /* Preserve registration when the city registry is temporarily unavailable; explicit deletion is separate. */var p=d.state.cities.get(id);if(c.works.finalized)return;var l=CityEconomy.level(s,c);
+@@ -54,7 +54,7 @@ public final class CityMaintenance extends SavedData {
+   }
+  }
+  private void capture(MinecraftServer s,CityData data){var d=this;
+-  if(!d.builds.isEmpty()){var entry=d.builds.entrySet().iterator().next();var c=data.cities.get(entry.getKey());var b=entry.getValue();var p=d.state.cities.get(entry.getKey());if(c==null||c.revision!=b.revision){d.builds.remove(entry.getKey());if(p!=null)p.status="范围变化，记录取消，旧基准保留";return;}var l=CityEconomy.level(s,c);for(int i=0;i<512&&b.cursor<c.bounds.volume();i++){var pos=c.bounds.at(b.cursor);if(!l.hasChunkAt(pos)){p.status="等待城市区块加载";return;}b.cursor++;if(c.includes(pos)){var block=l.getBlockState(pos);if(!block.isAir())b.blocks.put(pos.asLong(),encode(block));}}if(b.cursor==c.bounds.volume()){if(d.state.cities.values().stream().mapToInt(v->v.baseline.size()).sum()-p.baseline.size()+b.blocks.size()>262144){p.status="落成记录总量超过262144格，请拆分存档或清理旧基准";d.builds.remove(c.id);return;}p.baseline=b.blocks;p.damaged.clear();p.ready.clear();p.scan=0;p.foodScan=0;p.foodPlots=0;p.healthyPlots=0;p.status="已落成："+b.blocks.size()+"格；按职业逐步修补";d.positions.remove(c.id);d.builds.remove(c.id);d.state.revision++;d.setDirty();}return;}
++  if(!d.builds.isEmpty()){var entry=d.builds.entrySet().iterator().next();var c=data.cities.get(entry.getKey());var b=entry.getValue();var p=d.state.cities.get(entry.getKey());if(c==null||c.revision!=b.revision){d.builds.remove(entry.getKey());if(p!=null)p.status="范围变化，记录取消，旧基准保留";return;}var l=CityEconomy.level(s,c);b.cursor.step(l,512,pos->{if(c.includes(pos)){var block=l.getBlockState(pos);if(!block.isAir())b.blocks.put(pos.asLong(),encode(block));}},air->{});if(b.cursor.lostChunk){p.status="区块已卸载，旧基准保留；靠近后重新记录";d.builds.remove(c.id);return;}if(b.cursor.done()){if(b.blocks instanceof CityBlockStore store)store.compact();p.baseline=b.blocks;p.damaged.clear();p.ready.clear();p.scan=0;p.foodScan=0;p.foodPlots=0;p.healthyPlots=0;p.status="已落成："+b.blocks.size()+"格；按职业逐步修补";d.positions.remove(c.id);d.builds.remove(c.id);d.state.revision++;d.setDirty();}return;}
+  }
+  void food(MinecraftServer s,CityData.City c,Plan p){var e=CityEconomy.get(s);var l=CityEconomy.level(s,c);long farmers=state.workers.entrySet().stream().filter(v->v.getValue().enabled&&v.getValue().role.equals("农民")&&v.getValue().city.equals(c.id)&&c.residents.contains(v.getKey())&&available(l,c,v.getKey())&&WorkHours.active(s,c,v.getKey())).count();if(farmers==0)return;
+   // City-wide plots, never a local work radius; cache baseline damage conservatively when unloaded.
+@@ -62,7 +62,7 @@ public final class CityMaintenance extends SavedData {
+   long capacity=Math.min(plots,farmers*80);p.foodCredit+=capacity*1200;int wheat=(int)(p.foodCredit/72000);p.foodCredit%=72000;
+   try{var box=CityEconomy.warehouse(l,c,p.warehouse);var slots=new CityEconomy.Slots(box);if(wheat>0)slots.add("minecraft:wheat",wheat);slots.commit();var contents=CitySimulation.contents(box);int bread=Math.min(64,contents.getOrDefault("minecraft:wheat",0)/3);if(bread>0){var cook=new CityEconomy.Slots(box);cook.remove("minecraft:wheat",bread*3);cook.add("minecraft:bread",bread);cook.commit();}p.status="集体口粮：有效麦田"+plots+"格，农民"+farmers+"人；每3小麦制1面包";}catch(IllegalArgumentException ex){p.status="集体口粮暂停："+ex.getMessage();}
+  }
+- static void recordHouse(MinecraftServer s,CityData.City c,CityRegistry.Building building,Map<Long,String> blocks){var d=get(s);var plan=d.state.cities.computeIfAbsent(c.id,k->new Plan());int removed=(int)plan.baseline.keySet().stream().filter(v->building.bounds().contains(BlockPos.of(v))).count();int total=d.state.cities.values().stream().mapToInt(v->v.baseline.size()).sum()-removed+blocks.size();CityEconomy.require(total<=262144,"维护目标总数超过262144");plan.baseline.keySet().removeIf(v->building.bounds().contains(BlockPos.of(v)));plan.baseline.putAll(blocks);plan.damaged.retainAll(plan.baseline.keySet());plan.ready.retainAll(plan.baseline.keySet());d.positions.remove(c.id);d.setDirty();}
++ static void recordHouse(MinecraftServer s,CityData.City c,CityRegistry.Building building,Map<Long,String> blocks){var d=get(s);var plan=d.state.cities.computeIfAbsent(c.id,k->new Plan());if(plan.baseline instanceof CityBlockStore store)store.removeWithin(building.bounds());else plan.baseline.keySet().removeIf(v->building.bounds().contains(BlockPos.of(v)));plan.baseline.putAll(blocks);plan.damaged.retainAll(plan.baseline.keySet());plan.ready.retainAll(plan.baseline.keySet());d.positions.remove(c.id);d.setDirty();}
+  static void enableDataCity(MinecraftServer server,CityData.City c){var e=CityEconomy.get(server);var simulation=e.state.simulation.computeIfAbsent(c.id,k->new CitySimulation.Policy());simulation.enabled=true;simulation.emigrateAfter=0;var l=CityEconomy.level(server,c);for(UUID npc:c.residents)if(l.getEntity(npc) instanceof net.minecraft.world.entity.LivingEntity living)CitySimulation.remember(e,c,simulation,living,false);e.setDirty();}
+  public static void request(ServerPlayer player,CityNetwork.Request r){var d=get(player.server);try{CityEconomy.require(player.hasPermissions(2),"需要管理员权限");var c=CityData.get(player.server).require(UUID.fromString(r.city()));CityEconomy.require(c.dimension.equals(player.level().dimension().location().toString()),"城市不在当前维度");
+   if(r.op().equals("maintworker")){UUID npc=UUID.fromString(r.value());CityNpcBridge.editing(player,npc);CityEconomy.require(c.residents.contains(npc),"NPC未绑定此城");d.workerSnapshot(player,c,npc,"");return;}
+diff --git a/src/main/java/com/muxigame/city/CityMod.java b/src/main/java/com/muxigame/city/CityMod.java
+index c15ef54..9d0bcc7 100644
+--- a/src/main/java/com/muxigame/city/CityMod.java
++++ b/src/main/java/com/muxigame/city/CityMod.java
+@@ -90,7 +90,7 @@ public final class CityMod {
+     private static void selectionSnapshot(ServerPlayer p,boolean founding,String message,boolean building){
+         Session s=building?buildingDraft(p):session(p);requireCorners(s);CompoundTag t=new CompoundTag();t.putBoolean("BuildingDraft",building);t.putBoolean("SelectionEditor",true);t.putBoolean("Founding",founding);t.putBoolean("Automatic",s.bottom==null);t.putLong("SelectionRevision",s.selectionRevision);
+         t.putString("CornerA",s.a.toShortString());t.putString("CornerB",s.b.toShortString());t.putInt("Bottom",s.bottom==null?Math.min(s.a.getY(),s.b.getY()):s.bottom);t.putInt("Top",s.top==null?Math.max(s.a.getY(),s.b.getY()):s.top);
+-        try{CityBounds b=selection(p,s);t.putBoolean("Valid",true);t.putInt("Bottom",b.min().getY());t.putInt("Top",b.max().getY());t.putInt("Volume",b.volume());}catch(IllegalArgumentException ex){message=ex.getMessage();}
++        try{CityBounds b=selection(p,s);t.putBoolean("Valid",true);t.putInt("Bottom",b.min().getY());t.putInt("Top",b.max().getY());t.putLong("Volume",b.volumeLong());t.putBoolean("LargeAutoHeight",s.bottom==null&&(b.sizeX()>128||b.sizeZ()>128));}catch(IllegalArgumentException ex){message=ex.getMessage();}
+         if(session(p).city!=null&&CityData.get(p.server).cities.containsKey(session(p).city)){var c=current(p);t.putString("CityId",c.id.toString());t.putString("CityName",c.name);t.putLong("CityRevision",c.revision);}t.putString("Message",message);PacketDistributor.sendToPlayer(p,new CityNetwork.Snapshot(t));
+     }
+     private static CityData.City create(ServerPlayer p,String name){editor(p);CityData.City c=CityData.get(p.server).create(p.getUUID(),name,session(p).dimension,selection(p));select(p,c);CityService.scan(c);return c;}
+@@ -121,7 +121,7 @@ public final class CityMod {
+                 if(!(p.getMainHandItem().getItem() instanceof PlanningItem))throw new IllegalArgumentException("请手持魔杖。");
+                 if(r.revision()!=s.selectionRevision)throw new IllegalArgumentException("选区已改变，请重试。");
+                 CityData.City c=current(p);if(!c.id.toString().equals(r.city()))throw new IllegalArgumentException("当前城市已改变。");
+-                CityService.checkEditor(p,c,Long.parseLong(r.value()));int changed=CityService.area(data,c,p.serverLevel(),p.getUUID(),selection(p),r.op().equals("areaadd"));
++                CityService.checkEditor(p,c,Long.parseLong(r.value()));long changed=CityService.area(data,c,p.serverLevel(),p.getUUID(),selection(p),r.op().equals("areaadd"));
+                 selectionSnapshot(p,true,"已"+(r.op().equals("areaadd")?"纳入":"排除")+changed+"格；信息魔杖可撤销。");return;
+             }
+             if(r.op().equals("height")){
+@@ -170,7 +170,7 @@ public final class CityMod {
+                 case "undo" -> {if(CityService.undoChangesWorld(p.getUUID()))editor(p);CityService.undo(data,c,p.serverLevel(),p.getUUID());message="已撤销上一步。";}
+                 case "npcbind","npcunbind" -> {resident(p,r.op().equals("npcbind"));message="居民归属已更新。";}
+                 case "rename" -> {c.name=CityData.validName(r.value());data.changed(c);CityService.invalidate(c);message="名称已保存。";}
+-                case "resize" -> {CityBounds b=selection(p);data.checkBounds(c.id,c.dimension,b);CityRegistry.validateBounds(c,b);c.bounds=b;c.excluded.removeIf(pos->!b.contains(BlockPos.of(pos)));data.changed(c);CityService.invalidate(c);select(p,c);message="范围已更新；新扩展部分默认纳入聚落。";}
++                case "resize" -> {CityBounds b=selection(p);data.checkBounds(c.id,c.dimension,b);CityRegistry.validateBounds(c,b);CityService.resizeAreas(c,b);c.bounds=b;c.excluded.removeIf(pos->!b.contains(BlockPos.of(pos)));data.changed(c);CityService.invalidate(c);select(p,c);message="范围已更新；新扩展部分默认纳入聚落。";}
+                 default -> throw new IllegalArgumentException("不支持的沙盘操作。");
+             }
+             snapshot(p,message,false);
+@@ -186,20 +186,20 @@ public final class CityMod {
+         if(s.city!=null&&data.cities.containsKey(s.city)){
+             CityData.City c=data.require(s.city);t.putString("Id",c.id.toString());t.putString("Name",c.name);t.putLong("Revision",c.revision);
+             t.putBoolean("Editable",p.hasPermissions(2)||p.getUUID().equals(c.owner));t.putBoolean("WorldEditable",CityService.editor(p)&&(p.hasPermissions(2)||p.getUUID().equals(c.owner)));
+-            t.putInt("X",s.x);t.putInt("Y",s.y);t.putInt("Z",s.z);t.putBoolean("Surface",s.surface);t.putLong("Min",c.bounds.min().asLong());t.putLong("Max",c.bounds.max().asLong());t.putInt("Volume",c.bounds.volume());t.putInt("Residents",c.residents.size());t.putInt("Stability",CityLiving.stability(CityEconomy.get(p.server),c));t.putString("PublicOrder",CitySecurity.summary(CityEconomy.get(p.server),c));t.putString("RiotRisk",CitySociety.risk(CitySecurity.riskIndex(CityEconomy.get(p.server),c)));t.putInt("Security",CityLaw.security(p.server,c.id));
++            t.putInt("X",s.x);t.putInt("Y",s.y);t.putInt("Z",s.z);t.putBoolean("Surface",s.surface);t.putLong("Min",c.bounds.min().asLong());t.putLong("Max",c.bounds.max().asLong());t.putLong("Volume",c.bounds.volumeLong());t.putInt("Residents",c.residents.size());t.putInt("Stability",CityLiving.stability(CityEconomy.get(p.server),c));t.putString("PublicOrder",CitySecurity.summary(CityEconomy.get(p.server),c));t.putString("RiotRisk",CitySociety.risk(CitySecurity.riskIndex(CityEconomy.get(p.server),c)));t.putInt("Security",CityLaw.security(p.server,c.id));
+             ListTag cells=new ListTag();for(int z=s.z;z<=Math.min(s.z+31,c.bounds.max().getZ());z++)for(int x=s.x;x<=Math.min(s.x+31,c.bounds.max().getX());x++){
+                 int y=s.y;BlockPos pos=new BlockPos(x,y,z);CompoundTag cell=new CompoundTag();cell.putInt("X",x);cell.putInt("Z",z);
+                 boolean loaded=p.serverLevel().hasChunkAt(pos);cell.putBoolean("Loaded",loaded);
+                 if(loaded){
+-                    if(s.surface)while(y>c.bounds.min().getY()&&p.serverLevel().getBlockState(new BlockPos(x,y,z)).isAir())y--;
++                    if(s.surface){var chunk=p.serverLevel().getChunkSource().getChunkNow(x>>4,z>>4);if(chunk!=null)y=Math.min(y,Math.max(c.bounds.min().getY(),chunk.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE,x,z)));while(y>c.bounds.min().getY()&&p.serverLevel().getBlockState(new BlockPos(x,y,z)).isAir())y--;}
+                     pos=new BlockPos(x,y,z);var state=p.serverLevel().getBlockState(pos);cell.putInt("State",Block.getId(state));cell.putInt("Color",state.getMapColor(p.serverLevel(),pos).col);cell.putBoolean("Air",state.isAir());
+                 }
+                 cell.putInt("Y",y);cell.putBoolean("Included",c.includes(pos));cells.add(cell);
+             }t.put("Cells",cells);
+             CityRegistry.snapshot(p,c,t);
+             CityService.Statistics stats=CityService.statistics(c.id);t.putBoolean("Scanning",CityService.scanning(c.id));
+-            if(stats!=null){t.putBoolean("HasStats",true);t.putInt("NonAir",stats.nonAir());t.putInt("Excluded",stats.excluded());t.putInt("Unloaded",stats.unloaded());t.putLong("Age",Math.max(0,p.serverLevel().getGameTime()-stats.tick())/20);
+-                ListTag counts=new ListTag();stats.blocks().entrySet().stream().sorted(Map.Entry.<String,Integer>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey())).forEach(e->{CompoundTag v=new CompoundTag();v.putString("Block",e.getKey());v.putInt("Count",e.getValue());counts.add(v);});t.put("Counts",counts);
++            if(stats!=null){t.putBoolean("HasStats",true);t.putLong("NonAir",stats.nonAir());t.putLong("Excluded",stats.excluded());t.putLong("Unloaded",stats.unloaded());t.putLong("Age",Math.max(0,p.serverLevel().getGameTime()-stats.tick())/20);
++                ListTag counts=new ListTag();stats.blocks().entrySet().stream().sorted(Map.Entry.<String,Long>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey())).forEach(e->{CompoundTag v=new CompoundTag();v.putString("Block",e.getKey());v.putLong("Count",e.getValue());counts.add(v);});t.put("Counts",counts);
+             }
+         }
+         s.lastSnapshot=t.copy();PacketDistributor.sendToPlayer(p,new CityNetwork.Snapshot(t));
+@@ -240,7 +240,7 @@ public final class CityMod {
+                 CityData.City c=current(p);CityService.checkEditor(p,c,c.revision);
+                 if(clicked==null&&!p.isShiftKeyDown())throw new IllegalArgumentException("右键方块调整一格；潜行右键应用城市魔杖选区。");
+                 CityBounds b=p.isShiftKeyDown()?selection(p):CityBounds.between(clicked,clicked);
+-                int changed=CityService.area(CityData.get(p.server),c,p.serverLevel(),p.getUUID(),b,kind.equals("claim"));
++                long changed=CityService.area(CityData.get(p.server),c,p.serverLevel(),p.getUUID(),b,kind.equals("claim"));
+                 say(p,c.name+"："+(kind.equals("claim")?"纳入 ":"排除 ")+changed+" 格；/city undo 撤销。世界方块不变。");
+             }
+         }
+diff --git a/src/main/java/com/muxigame/city/CityNetwork.java b/src/main/java/com/muxigame/city/CityNetwork.java
+index e4a8358..8a6da55 100644
+--- a/src/main/java/com/muxigame/city/CityNetwork.java
++++ b/src/main/java/com/muxigame/city/CityNetwork.java
+@@ -23,7 +23,7 @@ public final class CityNetwork {
+         @Override public Type<Snapshot> type(){return TYPE;}
+     }
+     public static void register(RegisterPayloadHandlersEvent event){
+-        var r=event.registrar("2");
++        var r=event.registrar("3");
+         r.playToServer(Request.TYPE,Request.CODEC,(p,ctx)->{if(ctx.player() instanceof ServerPlayer player)CityMod.request(player,p);});
+         r.playToClient(Snapshot.TYPE,Snapshot.CODEC,(p,ctx)->ClientBridge.receive.accept(p.data));
+     }
+diff --git a/src/main/java/com/muxigame/city/CityRegistry.java b/src/main/java/com/muxigame/city/CityRegistry.java
+index d5a6aa8..acc82bf 100644
+--- a/src/main/java/com/muxigame/city/CityRegistry.java
++++ b/src/main/java/com/muxigame/city/CityRegistry.java
+@@ -20,7 +20,7 @@ public final class CityRegistry {
+         inside(c,b);if(!TYPES.contains(type))throw new IllegalArgumentException("未知建筑用途。");
+         if(c.buildings.size()>=128)throw new IllegalArgumentException("每城最多128栋建筑。");
+         if(c.buildings.values().stream().anyMatch(v->v.bounds.intersects(b)))throw new IllegalArgumentException("建筑登记范围不能重叠。");
+-        for(int i=0;i<b.volume();i++)if(!c.includes(b.at(i)))throw new IllegalArgumentException("建筑选区含未纳入城市的空间，请先纳入。");
++        b.validateBuilding();if(!CityAreas.covers(c,b))throw new IllegalArgumentException("建筑选区含未纳入城市的空间，请先纳入。");
+         UUID id=UUID.randomUUID();c.buildings.put(id,new Building(id,CityData.validName(name),type,b));d.changed(c);
+     }
+     public static void warehouse(CityData d,CityData.City c,ServerLevel level,String name,BlockPos pos){
+@@ -42,7 +42,7 @@ public final class CityRegistry {
+     /** Parse into a detached city; callers commit only after all checks pass. World absence is a status, not data loss. */
+     public static void read(CityData.City c,JsonObject j){
+         JsonArray bs=j.getAsJsonArray("buildings"),ws=j.getAsJsonArray("warehouses");if(bs.size()>128||ws.size()>128)throw new IllegalArgumentException("建筑或仓库超过128个。");
+-        for(JsonElement raw:bs){JsonObject v=raw.getAsJsonObject();UUID id=UUID.fromString(v.get("id").getAsString());String name=CityData.validName(v.get("name").getAsString()),type=v.get("type").getAsString();CityBounds b=new CityBounds(CityBlueprints.pos(v.getAsJsonArray("min")),CityBlueprints.pos(v.getAsJsonArray("max")));inside(c,b);
++        for(JsonElement raw:bs){JsonObject v=raw.getAsJsonObject();UUID id=UUID.fromString(v.get("id").getAsString());String name=CityData.validName(v.get("name").getAsString()),type=v.get("type").getAsString();CityBounds b=new CityBounds(CityBlueprints.pos(v.getAsJsonArray("min")),CityBlueprints.pos(v.getAsJsonArray("max")));b.validateBuilding();inside(c,b);
+             if(!TYPES.contains(type)||c.buildings.containsKey(id)||c.buildings.values().stream().anyMatch(old->old.bounds.intersects(b)))throw new IllegalArgumentException("建筑用途、ID或范围无效。");c.buildings.put(id,new Building(id,name,type,b));}
+         Set<BlockPos> positions=new HashSet<>();for(JsonElement raw:ws){JsonObject v=raw.getAsJsonObject();UUID id=UUID.fromString(v.get("id").getAsString());BlockPos p=CityBlueprints.pos(v.getAsJsonArray("pos"));if(!c.bounds.contains(p)||!positions.add(p)||c.warehouses.containsKey(id))throw new IllegalArgumentException("仓库坐标越界或重复。");c.warehouses.put(id,new Warehouse(id,CityData.validName(v.get("name").getAsString()),p));}
+         if(j.has("works")){CityMaintenance.exact(j.get("works"));c.works=CityEconomy.JSON.fromJson(j.get("works"),CityWorks.Plan.class);CityWorks.validate(c.works,c);}
+diff --git a/src/main/java/com/muxigame/city/CityScanCursor.java b/src/main/java/com/muxigame/city/CityScanCursor.java
+new file mode 100644
+index 0000000..c73d187
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityScanCursor.java
+@@ -0,0 +1,44 @@
++package com.muxigame.city;
++
++import java.util.*;
++import java.util.function.Consumer;
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.ServerLevel;
++
++/** Bounded visits to already-loaded chunks; empty sections are skipped as a range. */
++final class CityScanCursor {
++    final List<CityBounds> boxes;
++    int part;
++    long index, work;
++    boolean lostChunk;
++    CityScanCursor(List<CityBounds> boxes){this.boxes=List.copyOf(boxes);}
++    boolean done(){return part>=boxes.size();}
++    int step(ServerLevel level,int budget,Consumer<BlockPos> block,Consumer<CityBounds> air){
++        int used=0;
++        while(!done()&&used<budget){
++            var box=boxes.get(part);
++            if(index>=box.volumeLong()){part++;index=0;continue;}
++            var pos=box.at(index);used++;work++;
++            boolean oneChunk=(box.min().getX()>>4)==(box.max().getX()>>4)&&(box.min().getZ()>>4)==(box.max().getZ()>>4);
++            if(pos.getY()<level.getMinBuildHeight()||pos.getY()>=level.getMaxBuildHeight()){
++                lostChunk=true;long layer=(long)box.sizeX()*box.sizeZ();
++                if(index%layer==0){int end=pos.getY()<level.getMinBuildHeight()?Math.min(box.max().getY(),level.getMinBuildHeight()-1):box.max().getY();index+=((long)end-pos.getY()+1)*layer;}else index++;
++                continue;
++            }
++            var chunk=level.getChunkSource().getChunkNow(pos.getX()>>4,pos.getZ()>>4);
++            if(chunk==null){lostChunk=true;if(oneChunk){part++;index=0;}else index++;continue;}
++            long layer=(long)box.sizeX()*box.sizeZ();
++            if(oneChunk&&index%layer==0){
++                var section=chunk.getSection(level.getSectionIndex(pos.getY()));
++                if(section.hasOnlyAir()){
++                    int endY=Math.min(box.max().getY(),pos.getY()|15);
++                    var empty=new CityBounds(new BlockPos(box.min().getX(),pos.getY(),box.min().getZ()),new BlockPos(box.max().getX(),endY,box.max().getZ()));
++                    index+=empty.volumeLong();air.accept(empty);continue;
++                }
++            }
++            index++;block.accept(pos);
++        }
++        while(!done()&&index>=boxes.get(part).volumeLong()){part++;index=0;}
++        return used;
++    }
++}
+diff --git a/src/main/java/com/muxigame/city/CityScreen.java b/src/main/java/com/muxigame/city/CityScreen.java
+index 3697abc..3df16be 100644
+--- a/src/main/java/com/muxigame/city/CityScreen.java
++++ b/src/main/java/com/muxigame/city/CityScreen.java
+@@ -105,9 +105,9 @@ public final class CityScreen extends Screen {
+         if(!advanced){text(g,"区域魔杖 → 标记两角",10,151,0xffa8bdc7);text(g,"右键空气 → 应用选区",10,166,0xffa8bdc7);text(g,"绿=归属 红=排除",10,181,0xffa8bdc7);text(g,"信息魔杖 → 城市设置",10,196,0xffa8bdc7);}
+         int y=221;
+         if(height>285){text(g,"居民绑定："+data.getInt("Residents"),10,y,0xff92cfc5);y+=13;
+-            text(g,data.getBoolean("HasStats")?"非空气："+data.getInt("NonAir"):"尚无统计",10,y,0xffe4dbc0);y+=13;
+-            text(g,data.getBoolean("Scanning")?"正在扫描…":"排除格："+data.getInt("Excluded"),10,y,0xffa8bdc7);y+=13;
+-            if(data.getInt("Unloaded")>0)text(g,"未加载："+data.getInt("Unloaded"),10,y,0xffffbe79);
++            text(g,data.getBoolean("HasStats")?"非空气："+data.getLong("NonAir"):"尚无统计",10,y,0xffe4dbc0);y+=13;
++            text(g,data.getBoolean("Scanning")?"正在扫描…":"排除格："+data.getLong("Excluded"),10,y,0xffa8bdc7);y+=13;
++            if(data.getLong("Unloaded")>0)text(g,"未加载："+data.getLong("Unloaded"),10,y,0xffffbe79);
+         }
+         String detail=selected==null?"点选方块；右键或Shift+点击第二角框选（切片）":position(selected)+" "+blockName(selected)+(selected.getBoolean("Included")?" [纳入]":" [排除]");
+         text(g,font.plainSubstrByWidth(detail,width-151),142,height-62,0xffc9dbdf);
+@@ -118,11 +118,11 @@ public final class CityScreen extends Screen {
+     }
+     private void text(GuiGraphics g,String text,int x,int y,int color){g.drawString(font,text,x,y,color,false);}
+     private void drawCounts(GuiGraphics g){
+-        text(g,"非空气 "+data.getInt("NonAir")+" / 范围 "+data.getInt("Volume")+" 格",146,71,0xffd9e6df);
+-        text(g,data.getBoolean("Scanning")?"正在统计；完成后自动显示":"快照 "+data.getLong("Age")+" 秒前 · 未加载 "+data.getInt("Unloaded"),146,85,0xffafc1ca);
++        text(g,"非空气 "+data.getLong("NonAir")+" / 范围 "+data.getLong("Volume")+" 格",146,71,0xffd9e6df);
++        text(g,data.getBoolean("Scanning")?"正在统计；完成后自动显示":"快照 "+data.getLong("Age")+" 秒前 · 未加载 "+data.getLong("Unloaded"),146,85,0xffafc1ca);
+         ListTag counts=data.getList("Counts",Tag.TAG_COMPOUND);int rows=Math.max(1,(height-175)/16);countScroll=Math.clamp(countScroll,0,Math.max(0,counts.size()-rows));
+         for(int i=0;i<rows&&i+countScroll<counts.size();i++){CompoundTag entry=counts.getCompound(i+countScroll);int y=104+i*16;
+-            g.fill(142,y-2,width-10,y+12,i%2==0?0xff1c2d3b:0xff15232f);text(g,font.plainSubstrByWidth(entry.getString("Block"),width-215),146,y,0xffc5d9db);text(g,""+entry.getInt("Count"),width-59,y,0xffb1d89d);
++            g.fill(142,y-2,width-10,y+12,i%2==0?0xff1c2d3b:0xff15232f);text(g,font.plainSubstrByWidth(entry.getString("Block"),width-215),146,y,0xffc5d9db);text(g,""+entry.getLong("Count"),width-59,y,0xffb1d89d);
+         }
+     }
+     private void drawMap(GuiGraphics g){
+@@ -160,9 +160,9 @@ public final class CityScreen extends Screen {
+         if(!isometric&&right-infoX>=130){
+             int infoY=top+12;
+             text(g,"聚落概况",infoX,infoY,0xffe4dbc0);infoY+=20;
+-            text(g,"非空气方块  "+(data.getBoolean("HasStats")?data.getInt("NonAir"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
+-            text(g,"已排除格数  "+(data.getBoolean("HasStats")?data.getInt("Excluded"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
+-            text(g,"未加载格数  "+(data.getBoolean("HasStats")?data.getInt("Unloaded"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
++            text(g,"非空气方块  "+(data.getBoolean("HasStats")?data.getLong("NonAir"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
++            text(g,"已排除格数  "+(data.getBoolean("HasStats")?data.getLong("Excluded"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
++            text(g,"未加载格数  "+(data.getBoolean("HasStats")?data.getLong("Unloaded"):"—"),infoX,infoY,0xffc5d9db);infoY+=16;
+             text(g,data.getBoolean("Scanning")?"统计扫描中…":"统计快照 / 点击重统计刷新",infoX,infoY,0xff8eacae);infoY+=28;
+             if(selected!=null){
+                 text(g,"当前选中",infoX,infoY,0xffe4dbc0);infoY+=18;
+diff --git a/src/main/java/com/muxigame/city/CitySelection.java b/src/main/java/com/muxigame/city/CitySelection.java
+index 421c47f..9462b26 100644
+--- a/src/main/java/com/muxigame/city/CitySelection.java
++++ b/src/main/java/com/muxigame/city/CitySelection.java
+@@ -15,6 +15,9 @@ public final class CitySelection {
+     public static CityBounds automatic(ServerLevel level,BlockPos a,BlockPos b){
+         int bottom=Math.min(a.getY(),b.getY());
+         CityBounds footprint=manual(level,a,b,bottom,bottom);
++        // A distant city boundary must not require loading its interior. Same two clicks and buttons.
++        if(footprint.sizeX()>128||footprint.sizeZ()>128)
++            return manual(level,a,b,bottom,level.getMaxBuildHeight()-1);
+         // Check the whole footprint before height-map calls; never load/generate a missing chunk.
+         for(int cx=footprint.min().getX()>>4;cx<=footprint.max().getX()>>4;cx++)for(int cz=footprint.min().getZ()>>4;cz<=footprint.max().getZ()>>4;cz++)
+             if(!level.hasChunk(cx,cz))throw new IllegalArgumentException("选区有未加载区块；请靠近后重试，或改用手动高度。");
+diff --git a/src/main/java/com/muxigame/city/CityService.java b/src/main/java/com/muxigame/city/CityService.java
+index 44ad193..36f265e 100644
+--- a/src/main/java/com/muxigame/city/CityService.java
++++ b/src/main/java/com/muxigame/city/CityService.java
+@@ -12,18 +12,18 @@ import net.minecraft.world.level.block.state.BlockState;
+ /** Server-thread operations shared by commands, network and integration tests. */
+ public final class CityService {
+     private CityService(){}
+-    public record Statistics(Map<String,Integer> blocks,int nonAir,int excluded,int unloaded,long revision,long tick) {
++    public record Statistics(Map<String,Long> blocks,long nonAir,long excluded,long unloaded,long revision,long tick) {
+         public Statistics {blocks=Map.copyOf(blocks);}
+         public boolean complete(){return unloaded==0;}
+     }
+     private static final Map<UUID,Statistics> STATS=new HashMap<>();
+     private static final LinkedHashMap<UUID,Scan> SCANS=new LinkedHashMap<>();
+     private static final Map<UUID,Undo> UNDO=new HashMap<>();
+-    private record Undo(UUID city,long revision,Map<Long,Boolean> membership,BlockPos pos,BlockState before,BlockState after,CityBounds bounds,Set<Long> excluded){
+-        Undo(UUID city,long revision,Map<Long,Boolean> membership,BlockPos pos,BlockState before,BlockState after){this(city,revision,membership,pos,before,after,null,null);}
++    private record Undo(UUID city,long revision,Map<Long,Boolean> membership,BlockPos pos,BlockState before,BlockState after,CityBounds bounds,Set<Long> excluded,List<CityBounds> areas,List<long[]> unknown){
++        Undo(UUID city,long revision,Map<Long,Boolean> membership,BlockPos pos,BlockState before,BlockState after){this(city,revision,membership,pos,before,after,null,null,null,null);}
+     }
+     private static final class Scan {
+-        final CityData.City city;final long revision;final Map<String,Integer> blocks=new TreeMap<>();int index,nonAir,excluded,unloaded;
++        final CityData.City city;final long revision;final Map<String,Long> blocks=new TreeMap<>();long nonAir,known;CityScanCursor cursor;
+         Scan(CityData.City city){this.city=city;revision=city.revision;}
+     }
+     public static void clear(){STATS.clear();SCANS.clear();UNDO.clear();}
+@@ -44,6 +44,7 @@ public final class CityService {
+     }
+     public static void scan(CityData.City c){SCANS.computeIfAbsent(c.id,id->new Scan(c));}
+     public static boolean scanning(UUID id){return SCANS.containsKey(id);}
++    static void forget(UUID id){STATS.remove(id);SCANS.remove(id);UNDO.entrySet().removeIf(e->e.getValue().city.equals(id));}
+     public static Statistics statistics(UUID id){return STATS.get(id);}
+     public static void tick(MinecraftServer server){
+         // One global budget, irrespective of the number of cities or connected viewers.
+@@ -54,33 +55,37 @@ public final class CityService {
+             if(s.revision!=s.city.revision){iterator.remove();continue;}
+             ServerLevel level=server.getLevel(ResourceKey.create(net.minecraft.core.registries.Registries.DIMENSION,ResourceLocation.parse(s.city.dimension)));
+             if(level==null){iterator.remove();continue;}
+-            while(s.index<s.city.bounds.volume()&&budget-->0){BlockPos p=s.city.bounds.at(s.index++);
+-                if(!s.city.includes(p)){s.excluded++;continue;}
+-                if(!level.hasChunkAt(p)){s.unloaded++;continue;}
+-                BlockState state=level.getBlockState(p);if(!state.isAir()){s.nonAir++;s.blocks.merge(BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString(),1,Integer::sum);}
+-            }
+-            if(s.index==s.city.bounds.volume()){STATS.put(s.city.id,new Statistics(s.blocks,s.nonAir,s.excluded,s.unloaded,s.revision,level.getGameTime()));iterator.remove();}
++            if(s.cursor==null)s.cursor=new CityScanCursor(CityLoadedChunks.scanBoxes(level,s.city.bounds));
++            budget-=s.cursor.step(level,budget,p->{
++                if(!s.city.includes(p))return;
++                s.known++;
++                BlockState state=level.getBlockState(p);if(!state.isAir()){s.nonAir++;s.blocks.merge(BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString(),1L,Long::sum);}
++            },air->s.known+=CityAreas.volumeIn(s.city,air));
++            if(s.cursor.done()){long included=CityAreas.volume(s.city);STATS.put(s.city.id,new Statistics(s.blocks,s.nonAir,s.city.bounds.volumeLong()-included,Math.max(0,included-s.known),s.revision,level.getGameTime()));iterator.remove();}
+         }
+     }
+     public static void invalidate(CityData.City c){STATS.remove(c.id);SCANS.remove(c.id);scan(c);}
+     public static boolean undoChangesWorld(UUID actor){Undo u=UNDO.get(actor);return u!=null&&u.pos!=null;}
+-    public static int area(CityData data,CityData.City c,ServerLevel level,UUID actor,CityBounds area,boolean include){
++    static void resizeAreas(CityData.City c,CityBounds next){
++        CityWorks.validateResize(c,next);
++        List<CityBounds> out=null;if(c.areas!=null){var clipped=new ArrayList<CityBounds>();for(var old:c.areas){var part=CityAreas.intersection(old,next);if(part!=null)clipped.add(part);}CityAreas.subtract(next,c.bounds,clipped);if(clipped.size()>CityAreas.MAX_PARTS)throw CityAreas.complex();out=List.copyOf(clipped);}
++        var added=new ArrayList<CityBounds>();CityAreas.subtract(next,c.bounds,added);CityWorks.trimForResize(c,next);for(var part:added)CityWorks.areaChanged(c,part,true);if(out!=null)c.areas=out;
++    }
++    public static long area(CityData data,CityData.City c,ServerLevel level,UUID actor,CityBounds area,boolean include){
+         area.validateWorld(level);
+         CityBounds old=c.bounds;
+         CityBounds next=include?CityBounds.between(new BlockPos(Math.min(old.min().getX(),area.min().getX()),Math.min(old.min().getY(),area.min().getY()),Math.min(old.min().getZ(),area.min().getZ())),new BlockPos(Math.max(old.max().getX(),area.max().getX()),Math.max(old.max().getY(),area.max().getY()),Math.max(old.max().getZ(),area.max().getZ()))):old;
+         if(!include&&(!old.contains(area.min())||!old.contains(area.max())))throw new IllegalArgumentException("排除选区必须完全位于当前聚落范围内。");
+         next.validateWorld(level);data.checkBounds(c.id,c.dimension,next);
+-        Set<Long> mask=new HashSet<>(c.excluded);int changed=0;
+-        for(int i=0;i<next.volume();i++){BlockPos p=next.at(i);if(!old.contains(p))mask.add(p.asLong());}
+-        for(int i=0;i<area.volume();i++){BlockPos p=area.at(i);boolean before=old.contains(p)&&!c.excluded.contains(p.asLong());if(before!=include)changed++;if(include)mask.remove(p.asLong());else mask.add(p.asLong());}
+-        if(changed>0){Set<Long> previous=new HashSet<>(c.excluded);c.bounds=next;c.excluded.clear();c.excluded.addAll(mask);data.changed(c);UNDO.put(actor,new Undo(c.id,c.revision,Map.of(),null,null,null,old,previous));invalidate(c);}return changed;
++        long before=CityAreas.volumeIn(c,area),changed=include?area.volumeLong()-before:before;
++        if(changed>0){var regions=CityAreas.edit(CityAreas.regions(c),area,include);Set<Long> previous=new HashSet<>(c.excluded);var previousAreas=c.areas;var previousUnknown=CityWorks.pendingSnapshot(c);CityWorks.areaChanged(c,area,include);c.bounds=next;c.areas=regions;if(include)c.excluded.removeIf(p->area.contains(BlockPos.of(p)));data.changed(c);UNDO.put(actor,new Undo(c.id,c.revision,Map.of(),null,null,null,old,previous,previousAreas,previousUnknown));invalidate(c);}return changed;
+     }
+     public static int membership(CityData data,CityData.City c,UUID actor,Collection<BlockPos> positions,boolean include){
+         if(positions.isEmpty()||positions.size()>1024)throw new IllegalArgumentException("一次可调整1–1024格。");
+         for(BlockPos p:positions)if(!c.bounds.contains(p))throw new IllegalArgumentException("方块不在当前聚落范围内。");
+-        Map<Long,Boolean> before=new HashMap<>();
+-        for(BlockPos p:positions){boolean old=c.includes(p);if(old!=include){before.put(p.asLong(),old);if(include)c.excluded.remove(p.asLong());else c.excluded.add(p.asLong());}}
+-        if(!before.isEmpty()){data.changed(c);UNDO.put(actor,new Undo(c.id,c.revision,before,null,null,null));invalidate(c);}return before.size();
++        Map<Long,Boolean> before=new HashMap<>();var regions=CityAreas.regions(c);
++        for(BlockPos p:positions)if(!before.containsKey(p.asLong())&&c.includes(p)!=include){before.put(p.asLong(),c.includes(p));regions=CityAreas.edit(regions,new CityBounds(p,p),include);}
++        if(!before.isEmpty()){var oldAreas=c.areas;var oldExcluded=new HashSet<>(c.excluded);var oldUnknown=CityWorks.pendingSnapshot(c);for(BlockPos p:positions)CityWorks.areaChanged(c,new CityBounds(p,p),include);c.areas=regions;if(include)for(BlockPos p:positions)c.excluded.remove(p.asLong());data.changed(c);UNDO.put(actor,new Undo(c.id,c.revision,Map.of(),null,null,null,c.bounds,oldExcluded,oldAreas,oldUnknown));invalidate(c);}return before.size();
+     }
+     public static void replace(CityData data,CityData.City c,ServerLevel level,UUID actor,BlockPos pos,int expectedState,String blockId){
+         if(!c.includes(pos))throw new IllegalArgumentException("请先将此格纳入聚落。");
+@@ -104,7 +109,7 @@ public final class CityService {
+         if(undo.pos!=null){
+             if(!level.hasChunkAt(undo.pos)||!level.getBlockState(undo.pos).equals(undo.after)||level.getBlockEntity(undo.pos)!=null)throw new IllegalArgumentException("世界方块已有变化，撤销已拒绝。");
+             if(!level.setBlock(undo.pos,undo.before,3))throw new IllegalArgumentException("世界拒绝撤销。");
+-        }else if(undo.bounds!=null){data.checkBounds(c.id,c.dimension,undo.bounds);c.bounds=undo.bounds;c.excluded.clear();c.excluded.addAll(undo.excluded);}
++        }else if(undo.bounds!=null){data.checkBounds(c.id,c.dimension,undo.bounds);c.bounds=undo.bounds;c.areas=undo.areas;c.works.unknownTerrain=new ArrayList<>(undo.unknown);c.works.deferredTerrain=!c.works.unknownTerrain.isEmpty();c.excluded.clear();c.excluded.addAll(undo.excluded);}
+         else for(var e:undo.membership.entrySet()){if(e.getValue())c.excluded.remove(e.getKey());else c.excluded.add(e.getKey());}
+         data.changed(c);UNDO.remove(actor);invalidate(c);
+     }
+diff --git a/src/main/java/com/muxigame/city/CitySimulation.java b/src/main/java/com/muxigame/city/CitySimulation.java
+index 76bb047..4d0342b 100644
+--- a/src/main/java/com/muxigame/city/CitySimulation.java
++++ b/src/main/java/com/muxigame/city/CitySimulation.java
+@@ -111,7 +111,7 @@ public final class CitySimulation {
+         var reason=entity.getRemovalReason();boolean unload=reason==Entity.RemovalReason.UNLOADED_TO_CHUNK||reason==Entity.RemovalReason.UNLOADED_WITH_PLAYER;
+         r.present=(entity.isAlive()||leaving&&unload&&entity.getHealth()>0)&&c.includes(entity.blockPosition());r.pos=entity.blockPosition().asLong();r.health=Math.clamp(entity.getHealth()/entity.getMaxHealth(),0,1);r.armor=entity.getArmorValue();e.setDirty();
+     }
+-    static String stamp(CityData.City c,CityRegistry.Building b){return b.bounds().min().asLong()+":"+b.bounds().max().asLong()+":"+c.excluded.hashCode();}
++    static String stamp(CityData.City c,CityRegistry.Building b){return b.bounds().min().asLong()+":"+b.bounds().max().asLong()+":"+c.excluded.hashCode()+(c.areas==null?"":":"+c.areas.hashCode());}
+     static boolean loaded(ServerLevel l,CityBounds b){for(int x=b.min().getX()>>4;x<=b.max().getX()>>4;x++)for(int z=b.min().getZ()>>4;z<=b.max().getZ()>>4;z++)if(!l.hasChunk(x,z))return false;return true;}
+     static void facility(CityEconomy e,ServerLevel l,CityData.City c,Policy p,CityRegistry.Building b){
+         if(b.bounds().volume()>4096||!loaded(l,b.bounds()))return;var f=new Facility();f.stamp=stamp(c,b);f.valid=true;
+diff --git a/src/main/java/com/muxigame/city/CityTests.java b/src/main/java/com/muxigame/city/CityTests.java
+index 56fff28..c36ed0f 100644
+--- a/src/main/java/com/muxigame/city/CityTests.java
++++ b/src/main/java/com/muxigame/city/CityTests.java
+@@ -90,8 +90,9 @@ public final class CityTests {
+         CityBounds b=CityBounds.between(new BlockPos(-3,-4,-5),new BlockPos(-5,-6,-7));h.assertTrue(b.volume()==27,"Inclusive reversed negative coordinates");
+         Set<BlockPos> positions=new HashSet<>();for(int i=0;i<b.volume();i++){h.assertTrue(b.contains(b.at(i)),"Indexed point within bounds");positions.add(b.at(i));}h.assertTrue(positions.size()==27,"No duplicate coordinates");
+         reject(h,()->CityBounds.between(new BlockPos(Integer.MIN_VALUE,0,0),new BlockPos(Integer.MAX_VALUE,0,0)),"Overflow rejected");
+-        reject(h,()->CityBounds.between(BlockPos.ZERO,new BlockPos(127,127,127)),"Volume cap");
+-        reject(h,()->new CityBounds(BlockPos.ZERO,new BlockPos(128,0,0)),"Axis cap");h.succeed();
++        h.assertTrue(CityBounds.between(BlockPos.ZERO,new BlockPos(127,127,127)).volumeLong()==2097152L,"Large city volume allowed");
++        reject(h,()->CityBounds.between(BlockPos.ZERO,new BlockPos(127,127,127)).validateBuilding(),"Single-building operation remains bounded");
++        h.assertTrue(new CityBounds(BlockPos.ZERO,new BlockPos(128,0,0)).volumeLong()==129L,"City axes are not capped at128");h.succeed();
+     }
+     @GameTest(template="empty") public static void overlapAndDimensions(GameTestHelper h){
+         CityData d=new CityData();CityData.City c=city(d,h);
+@@ -153,10 +154,10 @@ public final class CityTests {
+     }
+     @GameTest(template="empty") public static void areaExpansionAndUndo(GameTestHelper h){
+         CityData d=new CityData();CityData.City c=city(d,h);CityBounds old=c.bounds;UUID actor=UUID.randomUUID();BlockPos target=old.max().east(3);var state=h.getLevel().getBlockState(target);
+-        int n=CityService.area(d,c,h.getLevel(),actor,CityBounds.between(target,target),true);h.assertTrue(n==1&&c.includes(target)&&!c.includes(target.west()),"Annex preserves unselected gap");h.assertTrue(h.getLevel().getBlockState(target).equals(state),"No world edit");
++        long n=CityService.area(d,c,h.getLevel(),actor,CityBounds.between(target,target),true);h.assertTrue(n==1&&c.includes(target)&&!c.includes(target.west()),"Annex preserves unselected gap");h.assertTrue(h.getLevel().getBlockState(target).equals(state),"No world edit");
+         CityService.undo(d,c,h.getLevel(),actor);h.assertTrue(c.bounds.equals(old)&&c.excluded.isEmpty(),"Undo restores original mask and bounds");
+         d.create(UUID.randomUUID(),"邻城",c.dimension,CityBounds.between(target,target));reject(h,()->CityService.area(d,c,h.getLevel(),actor,CityBounds.between(target,target),true),"Neighbor overlap denied");h.assertTrue(c.bounds.equals(old),"Rejected annex atomic");
+-        CityService.area(d,c,h.getLevel(),actor,old,false);h.assertTrue(c.excluded.size()==old.volume(),"Whole volume excluded");CityService.undo(d,c,h.getLevel(),actor);h.assertTrue(c.excluded.isEmpty(),"Whole volume undo");h.succeed();
++        CityService.area(d,c,h.getLevel(),actor,old,false);h.assertTrue(CityAreas.volume(c)==0,"Whole volume excluded without point expansion");CityService.undo(d,c,h.getLevel(),actor);h.assertTrue(CityAreas.volume(c)==old.volumeLong(),"Whole volume undo");h.succeed();
+     }
+     @GameTest(template="empty") public static void blueprintValidation(GameTestHelper h){
+         CityData d=new CityData();CityData.City c=city(d,h);var j=CityBlueprints.export(c);j.addProperty("name","数据城");j.getAsJsonArray("excluded").add(CityBlueprints.pos(c.bounds.min()));CityBlueprints.apply(d,c,h.getLevel(),j,0);h.assertTrue(c.name.equals("数据城")&&!c.includes(c.bounds.min())&&c.revision==1,"JSON applies all fields atomically");
+@@ -173,11 +174,11 @@ public final class CityTests {
+     @GameTest(template="empty") public static void manualHeightAndWorldLimits(GameTestHelper h){
+         var level=h.getLevel();BlockPos a=h.absolutePos(new BlockPos(1,3,1)),b=h.absolutePos(new BlockPos(3,3,3));CityBounds manual=CitySelection.manual(level,a,b,a.getY()-2,a.getY()+5);
+         h.assertTrue(manual.min().getY()==a.getY()-2&&manual.max().getY()==a.getY()+5&&manual.volume()==72,"Manual includes basement and chosen upper floor");
+-        reject(h,()->CitySelection.manual(level,a,b,5,4),"Inverted height rejected");reject(h,()->CitySelection.manual(level,a,b,level.getMinBuildHeight()-1,level.getMinBuildHeight()),"Below world rejected");reject(h,()->CitySelection.manual(level,a,b,a.getY(),a.getY()+128),"Height cap enforced");h.succeed();
++        reject(h,()->CitySelection.manual(level,a,b,5,4),"Inverted height rejected");reject(h,()->CitySelection.manual(level,a,b,level.getMinBuildHeight()-1,level.getMinBuildHeight()),"Below world rejected");h.assertTrue(CitySelection.manual(level,a,b,a.getY(),a.getY()+128).max().getY()==a.getY()+128,"City height remains valid within actual world bounds");reject(h,()->CitySelection.manual(level,a,b,a.getY(),level.getMaxBuildHeight()),"Actual world height remains enforced");h.succeed();
+     }
+-    @GameTest(template="empty") public static void autoHeightRejectsOverflowInsteadOfClipping(GameTestHelper h){
++    @GameTest(template="empty") public static void autoHeightIncludesTallRoofWithoutClipping(GameTestHelper h){
+         var level=h.getLevel();BlockPos a=h.absolutePos(new BlockPos(1,2,1));level.setBlock(a.above(128),Blocks.STONE.defaultBlockState(),2);
+-        try{reject(h,()->CitySelection.automatic(level,a,a),"High roof must not silently truncate");}finally{level.setBlock(a.above(128),Blocks.AIR.defaultBlockState(),2);}h.succeed();
++        try{h.assertTrue(CitySelection.automatic(level,a,a).max().getY()>=a.getY()+128,"High roof is included rather than clipped by the retired128 cap");}finally{level.setBlock(a.above(128),Blocks.AIR.defaultBlockState(),2);}h.succeed();
+     }
+     @GameTest(template="empty") public static void autoHeightDoesNotLoadChunks(GameTestHelper h){
+         var level=h.getLevel();BlockPos a=new BlockPos(1244567,70,1244567);h.assertTrue(!level.hasChunkAt(a),"Initial missing chunk");reject(h,()->CitySelection.automatic(level,a,a.east(16)),"Auto requires all chunks loaded");h.assertTrue(!level.hasChunkAt(a)&&!level.hasChunkAt(a.east(16)),"No chunk generated by height detection");CitySelection.manual(level,a,a,70,80);h.assertTrue(!level.hasChunkAt(a),"Manual fallback also avoids loading");h.succeed();
+diff --git a/src/main/java/com/muxigame/city/CityTestsHousing.java b/src/main/java/com/muxigame/city/CityTestsHousing.java
+index f932945..bb2550a 100644
+--- a/src/main/java/com/muxigame/city/CityTestsHousing.java
++++ b/src/main/java/com/muxigame/city/CityTestsHousing.java
+@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Blocks;
+ import net.neoforged.neoforge.gametest.*;
+ @GameTestHolder(CityMod.ID) @PrefixGameTestTemplate(false)
+ public class CityTestsHousing {
+- @GameTest(template="empty") public static void largeHouseRegistryWritesRealNbt(GameTestHelper helper){try{var data=new CityData();var c=city();c.bounds=CityBounds.between(BlockPos.ZERO,new BlockPos(63,15,63));UUID id=UUID.randomUUID();c.buildings.put(id,new CityRegistry.Building(id,"大房屋","住宅",c.bounds));var h=CityHousing.house(c,id);for(int i=0;i<4096;i++)h.baseline.put(c.bounds.at(i).asLong(),CityMaintenance.encode(Blocks.OAK_PLANKS.defaultBlockState()));data.cities.put(c.id,c);var saved=data.save(new CompoundTag(),helper.getLevel().registryAccess());var bytes=new java.io.ByteArrayOutputStream();net.minecraft.nbt.NbtIo.write(saved,new java.io.DataOutputStream(bytes));helper.assertTrue(bytes.size()>65535,"Exercise registry beyond short UTF string capacity");var loaded=CityData.load(saved,helper.getLevel().registryAccess());helper.assertTrue(loaded.require(c.id).housing.houses.get(id).baseline.size()==4096,"Large baseline survives persistence");var legacy=new CityData();var small=city();legacy.cities.put(small.id,small);var old=legacy.save(new CompoundTag(),helper.getLevel().registryAccess());old.putInt("Schema",2);var row=old.getList("Cities",10).getCompound(0);row.putString("Registry",new String(row.getByteArray("RegistryUtf8"),java.nio.charset.StandardCharsets.UTF_8));row.remove("RegistryUtf8");helper.assertTrue(CityData.load(old,helper.getLevel().registryAccess()).cities.size()==1,"Actual old string registry remains readable");helper.succeed();}catch(Exception ex){helper.fail(ex.toString());}}
++ @GameTest(template="empty") public static void largeHouseRegistryWritesRealNbt(GameTestHelper helper){try{var data=new CityData();var c=city();c.bounds=CityBounds.between(BlockPos.ZERO,new BlockPos(63,15,63));UUID id=UUID.randomUUID();c.buildings.put(id,new CityRegistry.Building(id,"大房屋","住宅",c.bounds));var h=CityHousing.house(c,id);for(int i=0;i<8192;i++)h.baseline.put(c.bounds.at(i).asLong(),CityMaintenance.encode((i%2==0?Blocks.OAK_PLANKS:Blocks.GLASS).defaultBlockState()));data.cities.put(c.id,c);var saved=data.save(new CompoundTag(),helper.getLevel().registryAccess());var bytes=new java.io.ByteArrayOutputStream();net.minecraft.nbt.NbtIo.write(saved,new java.io.DataOutputStream(bytes));helper.assertTrue(bytes.size()>65535,"Exercise registry beyond short UTF string capacity");var loaded=CityData.load(saved,helper.getLevel().registryAccess());helper.assertTrue(loaded.require(c.id).housing.houses.get(id).baseline.size()==8192,"Large baseline survives persistence");var legacy=new CityData();var small=city();legacy.cities.put(small.id,small);var old=legacy.save(new CompoundTag(),helper.getLevel().registryAccess());old.putInt("Schema",2);var row=old.getList("Cities",10).getCompound(0);row.putString("Registry",new String(row.getByteArray("RegistryUtf8"),java.nio.charset.StandardCharsets.UTF_8));row.remove("RegistryUtf8");helper.assertTrue(CityData.load(old,helper.getLevel().registryAccess()).cities.size()==1,"Actual old string registry remains readable");helper.succeed();}catch(Exception ex){helper.fail(ex.toString());}}
+  @GameTest(template="empty",timeoutTicks=100) public static void captureAndDamageUseRealWorldBlocks(GameTestHelper helper){var server=helper.getLevel().getServer();var data=CityData.get(server);var origin=helper.absolutePos(new BlockPos(0,1,0));var bounds=CityBounds.between(origin,origin.offset(2,2,2));var c=data.create(UUID.randomUUID(),"房屋血量实测",helper.getLevel().dimension().location().toString(),bounds);UUID id=UUID.randomUUID();c.buildings.put(id,new CityRegistry.Building(id,"小屋","住宅",bounds));var h=CityHousing.house(c,id);h.configured=true;h.personal=false;var pos=origin.offset(1,1,1);helper.getLevel().setBlock(pos,Blocks.GLASS.defaultBlockState(),3);CityHousing.capture(server,c,id);helper.runAfterDelay(8,()->{helper.assertTrue(h.baseline.containsKey(pos.asLong()),"Capture records real building block");helper.getLevel().setBlock(pos,Blocks.AIR.defaultBlockState(),3);CityHousing.changed(helper.getLevel(),pos,true);helper.assertTrue(h.damaged.contains(pos.asLong()),"Breaking block immediately lowers data health");var economy=CityEconomy.get(server);economy.state.accounts.put(CityEconomy.treasury(c.id),10L);var stock=new CityHousing.Material();stock.priceCents=100;stock.stock=2;c.housing.market.put("minecraft:glass",stock);helper.assertTrue(CityHousing.repairMaterial(server,c,pos,Blocks.GLASS.defaultBlockState())&&stock.stock==1&&economy.balance(CityEconomy.treasury(c.id))==9,"Repair buys and consumes its actual material from public funds");CityHousing.repaired(server,c,pos);helper.assertTrue(!h.damaged.contains(pos.asLong()),"Data repair restores health before world projection");helper.getLevel().setBlock(pos,Blocks.GLASS.defaultBlockState(),3);CityHousing.changed(helper.getLevel(),pos,false);economy.state.accounts.remove(CityEconomy.treasury(c.id));economy.state.accounts.remove("market:"+c.id);helper.assertTrue(!h.damaged.contains(pos.asLong()),"Restoring target immediately restores health");data.cities.remove(c.id);CityMaintenance.get(server).state.cities.remove(c.id);helper.succeed();});}
+  static CityData.City city(){return new CityData.City(UUID.randomUUID(),UUID.randomUUID(),"房屋规则验证","minecraft:overworld",CityBounds.between(BlockPos.ZERO,new BlockPos(15,15,15)));}
+  static UUID building(CityData.City c,int offset){UUID id=UUID.randomUUID();c.buildings.put(id,new CityRegistry.Building(id,"住宅"+offset,"住宅",CityBounds.between(new BlockPos(offset,0,0),new BlockPos(offset+2,2,2))));return id;}
+diff --git a/src/main/java/com/muxigame/city/CityTestsLargeAreas.java b/src/main/java/com/muxigame/city/CityTestsLargeAreas.java
+new file mode 100644
+index 0000000..c5f3b9a
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityTestsLargeAreas.java
+@@ -0,0 +1,94 @@
++package com.muxigame.city;
++
++import java.util.*;
++import java.nio.file.Files;
++import com.google.gson.*;
++import net.minecraft.core.BlockPos;
++import net.minecraft.gametest.framework.*;
++import net.minecraft.nbt.*;
++import net.minecraft.world.level.GameType;
++import net.minecraft.world.level.block.Blocks;
++import net.neoforged.neoforge.gametest.*;
++
++@GameTestHolder(CityMod.ID)
++@PrefixGameTestTemplate(false)
++public final class CityTestsLargeAreas {
++    private static CityBounds large(int x,int z){return new CityBounds(new BlockPos(x,64,z),new BlockPos(x+4095,191,z+4095));}
++    private static void reject(GameTestHelper h,Runnable task,String message){boolean rejected=false;try{task.run();}catch(RuntimeException e){rejected=true;}h.assertTrue(rejected,message);}
++    @GameTest(template="empty") public static void giantVolumeUsesLongWithoutAirAllocation(GameTestHelper h){
++        var b=large(-4096,-4096);h.assertTrue(b.volumeLong()==2147483648L,"4096-square at128-high does not overflow int");
++        h.assertTrue(b.at(b.volumeLong()-1).equals(b.max()),"Long cursor reaches final coordinate exactly");
++        var d=new CityData();var c=d.create(UUID.randomUUID(),"巨大城市",h.getLevel().dimension().location().toString(),b);
++        h.assertTrue(c.includes(b.min())&&c.includes(b.max())&&c.excluded.isEmpty()&&c.areas==null,"A giant rectangle uses two corners, not billions of records");
++        reject(h,b::validateBuilding,"Single building work keeps independent bounded validation");h.succeed();
++    }
++    @GameTest(template="empty") public static void distantAnnexAndBillionCellCutAreSparseAndUndoable(GameTestHelper h){
++        var d=new CityData();var origin=new BlockPos(5000000,64,5000000);var old=CityBounds.between(origin,origin.offset(31,7,31));var owner=UUID.randomUUID();var c=d.create(owner,"可扩张",h.getLevel().dimension().location().toString(),old);
++        var annex=new CityBounds(origin.offset(4096,0,4096),origin.offset(8191,127,8191));long n=CityService.area(d,c,h.getLevel(),owner,annex,true);
++        h.assertTrue(n==2147483648L&&c.areas.size()==2&&c.excluded.isEmpty(),"Huge annex stores two regions and exact changed count");
++        h.assertTrue(c.includes(annex.max())&&!c.includes(origin.offset(2048,0,2048)),"Annex does not fill the unselected gap");
++        CityService.undo(d,c,h.getLevel(),owner);h.assertTrue(c.bounds.equals(old)&&c.areas==null,"Undo restores exact prior representation");
++        CityService.area(d,c,h.getLevel(),owner,annex,true);long before=CityAreas.volume(c);
++        CityService.area(d,c,h.getLevel(),owner,annex,false);h.assertTrue(CityAreas.volume(c)==old.volumeLong()&&!c.includes(annex.min()),"Billion-cell exclusion does not expand a point mask");
++        CityService.undo(d,c,h.getLevel(),owner);h.assertTrue(CityAreas.volume(c)==before&&c.includes(annex.max()),"Undo cut restores annex");h.succeed();
++    }
++    @GameTest(template="empty") public static void pointEditsAcrossSparseHolesPreserveLegacyExclusions(GameTestHelper h){
++        var d=new CityData();var b=large(4000000,4000000);var owner=UUID.randomUUID();var c=d.create(owner,"混合编辑",h.getLevel().dimension().location().toString(),b);var p=b.min().offset(8,2,8);c.excluded.add(p.asLong());
++        var hole=CityBounds.between(p.offset(-4,-2,-4),p.offset(4,4,4));CityService.area(d,c,h.getLevel(),owner,hole,false);
++        CityService.membership(d,c,owner,List.of(p,p),true);h.assertTrue(c.includes(p)&&!c.includes(p.east()),"A single included point does not refill the whole hole");
++        CityService.undo(d,c,h.getLevel(),owner);h.assertTrue(!c.includes(p)&&!c.includes(p.east()),"Point undo restores sparse exclusion and original point mask");h.succeed();
++    }
++    @GameTest(template="empty") public static void giantSchema4AndLegacySchema3RoundTrip(GameTestHelper h)throws Exception{
++        var d=new CityData();var b=large(3000000,3000000);var c=d.create(UUID.randomUUID(),"保存大城",h.getLevel().dimension().location().toString(),b);var npc=UUID.randomUUID();c.residents.add(npc);
++        CityService.area(d,c,h.getLevel(),c.owner,CityBounds.between(b.min().offset(100,0,100),b.min().offset(999,127,999)),false);
++        var tag=d.save(new CompoundTag(),h.getLevel().registryAccess());var file=Files.createTempFile("city-large-schema4-",".nbt");try{NbtIo.writeCompressed(tag,file);var read=NbtIo.readCompressed(file,NbtAccounter.unlimitedHeap());var restored=CityData.load(read,h.getLevel().registryAccess()).require(c.id);h.assertTrue(restored.owner.equals(c.owner)&&restored.residents.contains(npc)&&CityAreas.volume(restored)==CityAreas.volume(c)&&restored.areas.equals(c.areas),"Actual compressed disk roundtrip preserves identity, residents and sparse geometry");}finally{Files.deleteIfExists(file);}
++        var legacy=new CityData();var old=legacy.create(UUID.randomUUID(),"旧城",c.dimension,CityBounds.between(b.min(),b.min().offset(7,7,7)));old.excluded.add(old.bounds.min().asLong());var oldTag=legacy.save(new CompoundTag(),h.getLevel().registryAccess());oldTag.putInt("Schema",3);var migrated=CityData.load(oldTag,h.getLevel().registryAccess()).require(old.id);h.assertTrue(migrated.areas==null&&!migrated.includes(old.bounds.min())&&migrated.includes(old.bounds.max()),"Schema3 geometry is read without changing ownership");h.succeed();
++    }
++    @GameTest(template="empty") public static void giantJsonImportIsAtomicAndKeepsSparseShape(GameTestHelper h){
++        var d=new CityData();var c=d.create(UUID.randomUUID(),"JSON大城",h.getLevel().dimension().location().toString(),large(2000000,2000000));var hole=CityBounds.between(c.bounds.min().offset(1,0,1),c.bounds.min().offset(1000,127,1000));CityService.area(d,c,h.getLevel(),c.owner,hole,false);var json=CityBlueprints.export(c);
++        CityBlueprints.apply(d,c,h.getLevel(),json,c.revision);h.assertTrue(!c.includes(hole.min())&&c.includes(c.bounds.max()),"JSON preserves excluded regions");
++        var before=CityBlueprints.export(c);var corrupt=before.deepCopy();corrupt.getAsJsonArray("areas").add(corrupt.getAsJsonArray("areas").get(0).deepCopy());reject(h,()->CityBlueprints.apply(d,c,h.getLevel(),corrupt,c.revision),"Overlapping region records rejected");h.assertTrue(before.equals(CityBlueprints.export(c)),"Invalid shape import leaves every field untouched");h.succeed();
++    }
++    @GameTest(template="empty") public static void originalTwoCornerWorkflowCreatesGiantCityWithoutLoadingIt(GameTestHelper h)throws Exception{
++        var p=h.makeMockServerPlayerInLevel();p.setGameMode(GameType.CREATIVE);var a=new BlockPos(12000000,70,12000000);var b=a.offset(4095,0,4095);var level=h.getLevel();var knownBefore=CityLoadedChunks.boxes(level,large(12000000,12000000)).size();
++        var point=CityMod.class.getDeclaredMethod("point",net.minecraft.server.level.ServerPlayer.class,BlockPos.class,boolean.class);point.setAccessible(true);point.invoke(null,p,a,false);point.invoke(null,p,b,true);
++        var selection=CityMod.class.getDeclaredMethod("selection",net.minecraft.server.level.ServerPlayer.class);selection.setAccessible(true);var bounds=(CityBounds)selection.invoke(null,p);
++        h.assertTrue(bounds.min().equals(a)&&bounds.max().getX()==b.getX()&&bounds.max().getY()==level.getMaxBuildHeight()-1,"Same two-corner automatic selection covers future roofs without new controls");
++        var create=CityMod.class.getDeclaredMethod("create",net.minecraft.server.level.ServerPlayer.class,String.class);create.setAccessible(true);var data=CityData.get(p.server);var ids=new HashSet<>(data.cities.keySet());try{create.invoke(null,p,"原操作巨大城市");var created=data.cities.values().stream().filter(c->!ids.contains(c.id)).findFirst().orElseThrow();h.assertTrue(created.bounds.equals(bounds)&&created.owner.equals(p.getUUID()),"Existing creation method creates one whole city");h.assertTrue(CityLoadedChunks.boxes(level,bounds).size()==knownBefore&&level.getChunkSource().getChunkNow(b.getX()>>4,b.getZ()>>4)==null,"Founding does not generate or load remote chunks");}finally{for(UUID id:new HashSet<>(data.cities.keySet()))if(!ids.contains(id)){data.cities.remove(id);CityService.forget(id);}data.setDirty();for(String field:List.of("SESSIONS","BUILDING_DRAFTS")){var f=CityMod.class.getDeclaredField(field);f.setAccessible(true);((Map<?,?>)f.get(null)).remove(p.getUUID());}}h.succeed();
++    }
++    @GameTest(template="empty") public static void unloadedGiantStatisticsFinishWithoutVisitingItsVolume(GameTestHelper h){
++        var server=h.getLevel().getServer();var data=CityData.get(server);var b=large(13000000,13000000);var c=data.create(UUID.randomUUID(),"远方统计",h.getLevel().dimension().location().toString(),b);
++        try{CityService.scan(c);for(int i=0;i<128&&CityService.scanning(c.id);i++)CityService.tick(server);var result=CityService.statistics(c.id);h.assertTrue(result!=null&&!CityService.scanning(c.id)&&result.nonAir()==0&&result.unloaded()==2147483648L,"Unloaded status is exact, never reported as scanned empty terrain");h.assertTrue(h.getLevel().getChunkSource().getChunkNow(b.min().getX()>>4,b.min().getZ()>>4)==null,"Statistics acquires no chunks");}finally{data.cities.remove(c.id);CityService.forget(c.id);data.setDirty();}h.succeed();
++    }
++    @GameTest(template="empty",timeoutTicks=1200) public static void millionBlockPalettePersistsCompactlyAndPreservesProperties(GameTestHelper h){
++        String stone=CityMaintenance.encode(Blocks.STONE_BRICKS.defaultBlockState()),glass=CityMaintenance.encode(Blocks.GLASS.defaultBlockState());var map=new CityBlockStore();
++        for(int z=-512;z<512;z++)for(int x=-512;x<512;x++)map.put(new BlockPos(x,64,z).asLong(),stone);map.compact();long changed=new BlockPos(-5,64,-8).asLong();map.put(changed,glass);
++        var adapter=new CityBlockStore.Adapter();var json=adapter.serialize(map,null,null);String text=json.toString();h.assertTrue(map.size()==1048576&&map.storedSections()==4096&&text.length()<2000000,"A million flat blocks use compact section layers, not a million JSON key strings");
++        var restored=adapter.deserialize(json,null,null);h.assertTrue(restored.size()==map.size()&&glass.equals(restored.get(changed))&&stone.equals(restored.get(new BlockPos(511,64,511).asLong())),"Palette and negative positions preserve exact state");h.assertTrue(adapter.serialize(restored,null,null).equals(json),"Compact save is stable after loading");
++        var iterator=restored.keySet().iterator();var key=iterator.next();iterator.remove();h.assertTrue(restored.size()==1048575&&!restored.containsKey(key),"Map iterator removal remains compatible with existing repair code");h.succeed();
++    }
++    @GameTest(template="empty") public static void legacyBaselinePaletteAndCorruptRunsAreValidated(GameTestHelper h){
++        String value=CityMaintenance.encode(Blocks.OAK_STAIRS.defaultBlockState());long key=new BlockPos(-17,-1,-33).asLong();var old=new JsonObject();old.addProperty(Long.toString(key),value);var adapter=new CityBlockStore.Adapter();var loaded=adapter.deserialize(old,null,null);h.assertTrue(value.equals(loaded.get(key)),"Original plain maps remain readable with full state properties");
++        var bad=adapter.serialize(loaded,null,null).getAsJsonObject();bad.getAsJsonArray("sections").get(0).getAsJsonObject().getAsJsonArray("layers").get(0).getAsJsonArray().set(0,new JsonPrimitive(16));reject(h,()->adapter.deserialize(bad,null,null),"Malformed layer cannot inject out-of-section blocks");h.succeed();
++    }
++    @GameTest(template="empty") public static void loadedCursorHonorsPerTickBudget(GameTestHelper h){
++        var a=h.absolutePos(new BlockPos(1,1,1));var box=CityBounds.between(a,a.offset(6,6,6));var cursor=new CityScanCursor(List.of(box));int[] visits={0};int used=cursor.step(h.getLevel(),7,p->visits[0]++,air->{});
++        h.assertTrue(used<=7&&visits[0]<=7&&!cursor.done(),"A request cannot exceed its global operation budget");while(!cursor.done())cursor.step(h.getLevel(),7,p->visits[0]++,air->{});h.assertTrue(cursor.work<=343,"Progress completes without a hidden full-region pass");h.succeed();
++    }
++    @GameTest(template="empty") public static void expansionDoesNotRebaselinePreviouslyKnownAirAndUndoRestoresPendingWork(GameTestHelper h){
++        var d=new CityData();var owner=UUID.randomUUID();var old=CityBounds.between(new BlockPos(6000000,64,6000000),new BlockPos(6000015,80,6000015));var c=d.create(owner,"旧维护城扩张",h.getLevel().dimension().location().toString(),old);c.works.finalized=true;
++        var annex=CityBounds.between(old.min().east(16),old.max().east(4096));CityService.area(d,c,h.getLevel(),owner,annex,true);
++        h.assertTrue(CityWorks.recorded(c,old.min())&&!CityWorks.recorded(c,annex.min()),"Expansion queues only new land, preserving the old air baseline");
++        var saved=CityData.load(d.save(new CompoundTag(),h.getLevel().registryAccess()),h.getLevel().registryAccess()).require(c.id);h.assertTrue(CityWorks.recorded(saved,old.min())&&!CityWorks.recorded(saved,annex.min()),"Pending terrain survives save/load without changing known land");
++        CityService.undo(d,c,h.getLevel(),owner);h.assertTrue(c.bounds.equals(old)&&c.works.unknownTerrain.isEmpty()&&!c.works.deferredTerrain,"Undo restores maintenance metadata as well as territory");h.succeed();
++    }
++    @GameTest(template="empty") public static void giantFinalizeLabelsUnloadedTerrainAndSurvivesReload(GameTestHelper h){
++        var server=h.getLevel().getServer();var data=CityData.get(server);var c=data.create(UUID.randomUUID(),"巨大城市定稿",h.getLevel().dimension().location().toString(),large(14000000,14000000));
++        try{CityWorks.beginFinalize(server,c);CityWorks.capture(server);h.assertTrue(c.works.finalized&&c.works.deferredTerrain&&c.works.terrain.isEmpty()&&!c.works.unknownTerrain.isEmpty(),"A distant city is not claimed to have a verified terrain baseline");var saved=CityData.load(data.save(new CompoundTag(),h.getLevel().registryAccess()),h.getLevel().registryAccess()).require(c.id);h.assertTrue(saved.works.deferredTerrain&&!CityWorks.recorded(saved,c.bounds.min()),"Pending territory persists for later loaded-only capture");h.assertTrue(h.getLevel().getChunkSource().getChunkNow(c.bounds.min().getX()>>4,c.bounds.min().getZ()>>4)==null,"Finalization never force-loads the giant city");}finally{data.cities.remove(c.id);CityMaintenance.get(server).state.cities.remove(c.id);CityEconomy.get(server).state.simulation.remove(c.id);CityService.forget(c.id);data.setDirty();}h.succeed();
++    }
++    @GameTest(template="empty") public static void longThinTerritoryAlsoSkipsUnloadedSpace(GameTestHelper h){
++        var b=CityBounds.between(new BlockPos(15000000,70,15000000),new BlockPos(15131071,70,15000000));h.assertTrue(b.volumeLong()==131072&&!b.smallSelection(),"A small volume with a huge span is still a large territory");
++        h.assertTrue(CityLoadedChunks.scanBoxes(h.getLevel(),b).isEmpty(),"Long narrow roads do not walk8192 missing chunks");var server=h.getLevel().getServer();var data=CityData.get(server);var c=data.create(UUID.randomUUID(),"细长城区",h.getLevel().dimension().location().toString(),b);
++        try{CityWorks.beginFinalize(server,c);CityWorks.capture(server);h.assertTrue(c.works.finalized&&c.works.deferredTerrain&&!CityWorks.recorded(c,b.max()),"Same finalization operation accepts a long narrow city without loading it");}finally{data.cities.remove(c.id);CityMaintenance.get(server).state.cities.remove(c.id);CityEconomy.get(server).state.simulation.remove(c.id);CityService.forget(c.id);data.setDirty();}h.succeed();
++    }
++}
+diff --git a/src/main/java/com/muxigame/city/CityTestsLargeFocus.java b/src/main/java/com/muxigame/city/CityTestsLargeFocus.java
+new file mode 100644
+index 0000000..91c3db3
+--- /dev/null
++++ b/src/main/java/com/muxigame/city/CityTestsLargeFocus.java
+@@ -0,0 +1,41 @@
++package com.muxigame.city;
++
++import java.util.*;
++import net.minecraft.core.BlockPos;
++import net.minecraft.gametest.framework.*;
++import net.minecraft.nbt.*;
++import net.minecraft.network.RegistryFriendlyByteBuf;
++import net.minecraft.world.level.block.Blocks;
++import net.neoforged.neoforge.gametest.*;
++
++/** A separately selectable suite for the final resize and legacy-coordinate corrections. */
++@GameTestHolder("city_large_area_focus")
++@PrefixGameTestTemplate(false)
++public final class CityTestsLargeFocus {
++    @GameTest(template="empty") public static void shrinkingClipsPendingTerrainAndKeepsReloadValid(GameTestHelper h){
++        var d=new CityData();var a=new BlockPos(8000000,64,8000000);var c=d.create(UUID.randomUUID(),"缩小测试",h.getLevel().dimension().location().toString(),CityBounds.between(a,a.offset(4095,127,4095)));c.works.finalized=true;c.works.deferredTerrain=true;c.works.unknownTerrain.add(new long[]{c.bounds.min().asLong(),c.bounds.max().asLong()});String stone=CityMaintenance.encode(Blocks.STONE.defaultBlockState());var inside=a.offset(1,1,1);var outside=a.offset(3000,1,3000);c.works.terrain.put(inside.asLong(),stone);c.works.terrain.put(outside.asLong(),stone);
++        var next=CityBounds.between(a,a.offset(255,127,255));CityService.resizeAreas(c,next);c.bounds=next;d.changed(c);
++        h.assertTrue(c.works.terrain.containsKey(inside.asLong())&&!c.works.terrain.containsKey(outside.asLong()),"Released territory no longer leaves stale maintenance targets outside the city");
++        var copy=CityData.load(d.save(new CompoundTag(),h.getLevel().registryAccess()),h.getLevel().registryAccess()).require(c.id);h.assertTrue(copy.bounds.equals(next)&&copy.works.unknownTerrain.size()==1&&!CityWorks.recorded(copy,inside),"Pending terrain is clipped and remains valid after save/load");h.succeed();
++    }
++    @GameTest(template="empty") public static void shrinkingCannotDiscardCommittedWork(GameTestHelper h){
++        var a=new BlockPos(8100000,64,8100000);var c=new CityData.City(UUID.randomUUID(),UUID.randomUUID(),"保护施工","minecraft:overworld",CityBounds.between(a,a.offset(31,15,31)));String state=CityMaintenance.encode(Blocks.STONE.defaultBlockState());c.works.pending.put(a.offset(30,1,30).asLong(),new CityWorks.Projection(state,state,"已付费施工"));var before=CityBlueprints.export(c);boolean rejected=false;try{CityService.resizeAreas(c,CityBounds.between(a,a.offset(7,7,7)));}catch(IllegalArgumentException e){rejected=true;}
++        h.assertTrue(rejected&&before.equals(CityBlueprints.export(c)),"Invalid shrink leaves geometry, paid task and all metadata unchanged");h.succeed();
++    }
++    @GameTest(template="empty") public static void legacyOutOfWorldHeightDoesNotIndexChunkSections(GameTestHelper h){
++        var a=h.absolutePos(new BlockPos(1,1,1));int y=h.getLevel().getMaxBuildHeight()+2;var box=CityBounds.between(new BlockPos(a.getX(),y,a.getZ()),new BlockPos(a.getX()+1,y+3,a.getZ()+1));var cursor=new CityScanCursor(List.of(box));int[] count={0};int work=cursor.step(h.getLevel(),8,p->count[0]++,air->count[0]++);
++        h.assertTrue(cursor.done()&&cursor.lostChunk&&count[0]==0&&work<=8,"Unavailable legacy height is never claimed scanned and never accesses an invalid section");h.succeed();
++    }
++    @GameTest(template="empty") public static void paletteMapMatchesReferenceThroughMixedEditsAndClipping(GameTestHelper h){
++        var actual=new CityBlockStore();var reference=new HashMap<Long,String>();var random=new Random(20261109);
++        for(int i=0;i<12000;i++){long key=new BlockPos(random.nextInt(96)-48,random.nextInt(32)-16,random.nextInt(96)-48).asLong();if(i%4==0){h.assertTrue(Objects.equals(actual.remove(key),reference.remove(key)),"Removal returns the same old value");}else{String value="state"+random.nextInt(7);h.assertTrue(Objects.equals(actual.put(key,value),reference.put(key,value)),"Insertion returns the same old value");}}
++        var bounds=CityBounds.between(new BlockPos(-17,-4,-19),new BlockPos(23,9,26));actual.retainWithin(bounds);reference.keySet().removeIf(p->!bounds.contains(BlockPos.of(p)));h.assertTrue(actual.equals(reference)&&actual.inside(bounds)&&new HashSet<>(actual.states()).equals(new HashSet<>(reference.values())),"Partial sections and negative coordinates clip exactly like the reference map");
++        var hole=CityBounds.between(new BlockPos(-3,0,-2),new BlockPos(5,5,8));actual.removeWithin(hole);reference.keySet().removeIf(p->hole.contains(BlockPos.of(p)));var adapter=new CityBlockStore.Adapter();var json=adapter.serialize(actual,null,null);var loaded=adapter.deserialize(json,null,null);h.assertTrue(loaded.equals(reference)&&adapter.serialize(loaded,null,null).equals(json),"Clipping, palette compression and canonical reload preserve every entry");h.succeed();
++    }
++    @GameTest(template="empty") public static void networkSnapshotPreservesBillionCellCounters(GameTestHelper h){
++        var data=new CompoundTag();data.putLong("Volume",4294967296L);data.putLong("Unloaded",2147483648L);var buffer=new RegistryFriendlyByteBuf(io.netty.buffer.Unpooled.buffer(),h.getLevel().registryAccess());try{CityNetwork.Snapshot.CODEC.encode(buffer,new CityNetwork.Snapshot(data));var result=CityNetwork.Snapshot.CODEC.decode(buffer).data();h.assertTrue(result.getLong("Volume")==4294967296L&&result.getLong("Unloaded")==2147483648L,"Actual packet codec preserves64-bit counters used by unchanged city screens");}finally{buffer.release();}h.succeed();
++    }
++    @GameTest(template="empty") public static void giantCutKeepsIndexedMembershipAndLongCount(GameTestHelper h){
++        var d=new CityData();var a=new BlockPos(8200000,64,8200000);var c=d.create(UUID.randomUUID(),"最终巨大城区",h.getLevel().dimension().location().toString(),CityBounds.between(a,a.offset(4095,255,4095)));var hole=CityBounds.between(a.offset(1024,0,1024),a.offset(3071,255,3071));long changed=CityService.area(d,c,h.getLevel(),c.owner,hole,false);h.assertTrue(changed==1073741824L&&!c.includes(hole.min())&&c.includes(a)&&CityAreas.volume(c)==3221225472L,"Final indexed representation handles a billion-cell cut without point expansion");CityService.undo(d,c,h.getLevel(),c.owner);h.assertTrue(CityAreas.volume(c)==4294967296L&&c.includes(hole.max()),"Final undo preserves full city identity and volume");h.succeed();
++    }
++}
+diff --git a/src/main/java/com/muxigame/city/CityWheatMigration.java b/src/main/java/com/muxigame/city/CityWheatMigration.java
+index 7a4c447..a586b97 100644
+--- a/src/main/java/com/muxigame/city/CityWheatMigration.java
++++ b/src/main/java/com/muxigame/city/CityWheatMigration.java
+@@ -18,8 +18,8 @@ public final class CityWheatMigration {
+  static ItemStack convert(ItemStack stack){if(stack.isEmpty())return stack;String to=ITEMS.get(BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());return to==null?stack:stack.transmuteCopy(BuiltInRegistries.ITEM.get(ResourceLocation.parse(to)));}
+  static void inventory(Container box){boolean changed=false;for(int i=0;i<box.getContainerSize();i++){var old=box.getItem(i);var next=convert(old);if(next!=old){box.setItem(i,next);changed=true;}}if(changed)box.setChanged();}
+  public static void start(net.neoforged.neoforge.event.server.ServerStartedEvent event){var server=event.getServer();var e=CityEconomy.get(server);if(!e.state.extensions.has("wheatMigration0814")){var old=e.export();var next=convert(old).getAsJsonObject();next.getAsJsonObject("extensions").addProperty("wheatMigration0814",true);try{var dir=server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT).resolve("city_settlements/economy/backups");java.nio.file.Files.createDirectories(dir);var backup=dir.resolve("before-wheat0814.json");if(!java.nio.file.Files.exists(backup))java.nio.file.Files.writeString(backup,CityEconomy.JSON.toJson(old));e.apply(next,e.state.revision,CityData.get(server),server.overworld().getGameTime());}catch(Exception ex){throw new IllegalStateException("小麦迁移失败，旧数据保持，请查看备份",ex);}}}
+- private static int cityIndex,scan,playerIndex;
+- public static void clear(){cityIndex=scan=playerIndex=0;}
+- public static void tick(MinecraftServer server){var cities=new ArrayList<>(CityData.get(server).cities());if(!cities.isEmpty()){var c=cities.get(Math.floorMod(cityIndex,cities.size()));var l=CityEconomy.level(server,c);for(int i=0;i<256;i++){if(scan>=c.bounds.volume()){scan=0;cityIndex++;break;}var pos=c.bounds.at(scan++);if(!l.hasChunkAt(pos))continue;var state=l.getBlockState(pos);if(state.is(CityRice.CROP.get()))l.setBlock(pos,Blocks.WHEAT.defaultBlockState().setValue(BlockStateProperties.AGE_7,state.getValue(BlockStateProperties.AGE_7)),2);if(l.getBlockEntity(pos) instanceof Container box)inventory(box);}}
++ private static int cityIndex,scan,playerIndex;private static final Map<CityData.City,CityScanCursor> scans=new WeakHashMap<>();
++ public static void clear(){cityIndex=scan=playerIndex=0;scans.clear();}
++ public static void tick(MinecraftServer server){var cities=new ArrayList<>(CityData.get(server).cities());if(!cities.isEmpty()){var c=cities.get(Math.floorMod(cityIndex,cities.size()));var l=CityEconomy.level(server,c);var cursor=scans.get(c);if(cursor==null||cursor.done()){cursor=new CityScanCursor(CityLoadedChunks.scanBoxes(l,c.bounds));scans.put(c,cursor);}cursor.step(l,256,pos->{var state=l.getBlockState(pos);if(state.is(CityRice.CROP.get()))l.setBlock(pos,Blocks.WHEAT.defaultBlockState().setValue(BlockStateProperties.AGE_7,state.getValue(BlockStateProperties.AGE_7)),2);if(l.getBlockEntity(pos) instanceof Container box)inventory(box);},air->{});cityIndex++;}
+   if(server.getTickCount()%20==0&&!server.getPlayerList().getPlayers().isEmpty()){var players=server.getPlayerList().getPlayers();inventory(players.get(Math.floorMod(playerIndex++,players.size())).getInventory());}}
+ }
+diff --git a/src/main/java/com/muxigame/city/CityWorks.java b/src/main/java/com/muxigame/city/CityWorks.java
+index 498c43a..bbf0199 100644
+--- a/src/main/java/com/muxigame/city/CityWorks.java
++++ b/src/main/java/com/muxigame/city/CityWorks.java
+@@ -18,7 +18,8 @@ public final class CityWorks {
+   public Set<Long> terrainDamage=new LinkedHashSet<>();
+   public Map<Long,Long> damageSince=new HashMap<>();
+   public Map<Long,String> ruins=new LinkedHashMap<>();public Map<Long,UUID> ruinOwners=new HashMap<>();
+-  public Map<Long,String> terrain=new LinkedHashMap<>(),illegal=new LinkedHashMap<>();
++  @com.google.gson.annotations.JsonAdapter(CityBlockStore.Adapter.class) public Map<Long,String> terrain=new CityBlockStore();public Map<Long,String> illegal=new LinkedHashMap<>();
++  public Set<Long> capturedChunks=new HashSet<>();public boolean deferredTerrain;public List<long[]> unknownTerrain=new ArrayList<>();
+   public Map<Long,List<String>> drops=new LinkedHashMap<>();public Set<Long> deferredContainers=new HashSet<>();
+   public Map<Long,Projection> pending=new LinkedHashMap<>();
+   public Map<String,Integer> resources=new TreeMap<>();public Map<String,Long> materialsConsumed=new TreeMap<>(),recovered=new TreeMap<>(),crafted=new TreeMap<>();
+@@ -29,13 +30,52 @@ public final class CityWorks {
+  }
+  public static final class Projection {public String target,expected,reason;public Projection(){}Projection(String t,String e,String r){target=t;expected=e;reason=r;}}
+  public static final class Segment {public long day;public List<UUID> workers=new ArrayList<>();public int cursor;public Segment(){}Segment(long d,List<UUID> w){day=d;workers=w;}}
+- private record Capture(UUID city,long revision,int cursor,Map<Long,String> terrain){}
++ private record Capture(UUID city,long revision,CityScanCursor cursor,Map<Long,String> terrain,boolean append){}
+  private record Task(long pos,BlockState target,CityHousing.House house,int rank,String kind){}
+  private static final Map<UUID,Capture> captures=new LinkedHashMap<>();private static int cityCursor;
++ private static final Map<CityData.City,CityScanCursor> localScans=new WeakHashMap<>();
++ static List<long[]> pendingSnapshot(CityData.City c){return List.copyOf(c.works.unknownTerrain);}
++ static void validateResize(CityData.City c,CityBounds next){
++  CityEconomy.require(c.works.pending.keySet().stream().allMatch(p->next.contains(BlockPos.of(p)))&&c.works.ruins.keySet().stream().allMatch(p->next.contains(BlockPos.of(p)))&&c.works.deferredContainers.stream().allMatch(p->next.contains(BlockPos.of(p))),"缩小范围会移除待施工、待结算容器或有产权的残骸；请先完成这些任务。");
++ }
++ static void trimForResize(CityData.City c,CityBounds next){
++  var kept=new ArrayList<long[]>();for(var area:unknown(c)){var clip=CityAreas.intersection(area,next);if(clip!=null)kept.add(new long[]{clip.min().asLong(),clip.max().asLong()});}c.works.unknownTerrain=kept;c.works.deferredTerrain=!kept.isEmpty();
++  if(c.works.terrain instanceof CityBlockStore store)store.retainWithin(next);else c.works.terrain.keySet().removeIf(p->!next.contains(BlockPos.of(p)));
++  c.works.illegal.keySet().removeIf(p->!next.contains(BlockPos.of(p)));c.works.terrainDamage.removeIf(p->!next.contains(BlockPos.of(p)));c.works.damageSince.keySet().removeIf(p->!next.contains(BlockPos.of(p)));localScans.remove(c);taskCache.remove(c);
++ }
++ private record UnknownCache(Object source,List<CityBounds> boxes,CityAreas.Index index){}
++ private static final Map<Plan,UnknownCache> unknownCache=new WeakHashMap<>();
++ static List<CityBounds> unknown(CityData.City c){var cached=unknownCache.get(c.works);if(cached!=null&&cached.source==c.works.unknownTerrain)return cached.boxes;var out=new ArrayList<CityBounds>();for(var row:c.works.unknownTerrain){if(row==null||row.length!=2)throw new IllegalArgumentException("待记录地形区域无效");out.add(new CityBounds(BlockPos.of(row[0]),BlockPos.of(row[1])));}var boxes=List.copyOf(out);unknownCache.put(c.works,new UnknownCache(c.works.unknownTerrain,boxes,new CityAreas.Index(boxes)));return boxes;}
++ private static void editUnknown(CityData.City c,CityBounds area,boolean include){var out=new ArrayList<CityBounds>();for(var b:unknown(c))CityAreas.subtract(b,area,out);if(include)out.add(area);var rows=new ArrayList<long[]>();for(var b:out)rows.add(new long[]{b.min().asLong(),b.max().asLong()});c.works.unknownTerrain=rows;c.works.deferredTerrain=!rows.isEmpty();}
++ static void areaChanged(CityData.City c,CityBounds changed,boolean include){
++  localScans.remove(c);if(!c.works.finalized)return;
++  if(!include){editUnknown(c,changed,false);return;}
++  var missing=new ArrayList<CityBounds>();missing.add(changed);
++  for(var old:CityAreas.regions(c)){var next=new ArrayList<CityBounds>();for(var box:missing)CityAreas.subtract(box,old,next);missing=next;}
++  for(var box:missing)editUnknown(c,box,true);
++  for(long key:c.excluded){var pos=BlockPos.of(key);if(changed.contains(pos)&&CityAreas.regions(c).stream().anyMatch(v->v.contains(pos)))editUnknown(c,new CityBounds(pos,pos),true);}
++ }
++ static boolean recorded(CityData.City c,BlockPos pos){if(!c.works.deferredTerrain)return true;unknown(c);return !unknownCache.get(c.works).index.contains(pos);}
++ static void beforeTerrainEdit(ServerLevel l,BlockPos pos,BlockState before){
++  var c=RuralTools.city(l,pos);if(c!=null&&c.works.finalized&&!recorded(c,pos)){c.works.terrain.putIfAbsent(pos.asLong(),CityMaintenance.encode(before));CityData.get(l.getServer()).setDirty();}
++ }
++ private static void appendLoadedTerrain(MinecraftServer s){
++  if(s.getTickCount()%20!=0)return;
++  for(var c:CityData.get(s).cities())if(c.works.finalized&&c.works.deferredTerrain){var l=CityEconomy.level(s,c);for(var box:CityLoadedChunks.boxes(l,c.bounds))for(var missing:unknown(c)){var part=CityAreas.intersection(box,missing);if(part!=null){captures.put(c.id,new Capture(c.id,c.revision,new CityScanCursor(List.of(part)),new CityBlockStore(),true));return;}}}
++ }
++ private static boolean houseChunksRecorded(CityData.City c,CityBounds b){
++  if(!c.works.deferredTerrain)return true;for(var area:unknown(c))if(area.intersects(b))return false;return true;
++ }
++ private static void completeHouseBaselines(CityData.City c){
++  for(var b:c.buildings.values()){var h=CityHousing.house(c,b.id());if(!h.baseline.isEmpty()||!houseChunksRecorded(c,b.bounds()))continue;
++   for(int i=0;i<b.bounds().volume();i++){var pos=b.bounds().at(i);String target=c.works.terrain.get(pos.asLong());if(target!=null&&!CityBlockRules.ignored(state(target)))h.baseline.put(pos.asLong(),target);}
++   h.extra=false;h.stage="BUILT";h.damaged.clear();
++  }
++ }
+  private record TaskCache(long clock,List<Task> tasks){}private record EffCache(long clock,Map<UUID,Integer> values){}
+  private static final Map<CityData.City,TaskCache> taskCache=new WeakHashMap<>();private static final Map<CityData.City,EffCache> efficiencyCache=new WeakHashMap<>();private static final Map<String,BlockState> decoded=new LinkedHashMap<>();
+  static BlockState state(String value){var result=decoded.get(value);if(result==null){if(decoded.size()>=4096)decoded.clear();result=CityMaintenance.decode(value);decoded.put(value,result);}return result;}
+- static void clear(){captures.clear();taskCache.clear();efficiencyCache.clear();decoded.clear();cityCursor=0;}
++ static void clear(){captures.clear();localScans.clear();unknownCache.clear();taskCache.clear();efficiencyCache.clear();decoded.clear();cityCursor=0;}
+  static boolean active(CityData.City c){return c.works.finalized&&c.works.enabled;}
+  static boolean workshop(CityData.City c,UUID id){var b=c.buildings.get(id);return b!=null&&b.type().equals("工坊");}
+  static boolean living(MinecraftServer s,CityData.City c,UUID id){if(!c.residents.contains(id))return false;var person=RuralSettlement.get(s).state.people.get(id);if(person!=null)return !person.dead;return CityMaintenance.available(CityEconomy.level(s,c),c,id);}
+@@ -43,11 +83,13 @@ public final class CityWorks {
+  static long health(CityHousing.House h){return h.baseline.size()-h.damaged.size();}
+  static int efficiency(CityHousing.House h){if(h==null||!h.configured)return 10000;if(!h.stage.equals("BUILT")||h.baseline.isEmpty())return 0;return (int)(10000*health(h)/h.baseline.size());}
+  static int workerEfficiency(MinecraftServer s,CityData.City c,UUID npc){if(c.housing.houses.isEmpty())return 10000;var cache=efficiencyCache.get(c);long clock=c.works.finalized?c.works.clock:s.overworld().getGameTime()/20;if(cache==null||cache.clock!=clock){var values=new HashMap<UUID,Integer>();for(var entry:c.housing.houses.entrySet())for(UUID id:staff(s,c,entry.getKey()))values.put(id,efficiency(entry.getValue()));cache=new EffCache(clock,values);efficiencyCache.put(c,cache);}return cache.values.getOrDefault(npc,10000);}
+- static void beginFinalize(MinecraftServer s,CityData.City c){CityEconomy.require(!c.works.finalized,"首次定稿已经完成；追加建筑请下达蓝图");CityEconomy.require(!captures.containsKey(c.id),"正在记录，请等待");var l=CityEconomy.level(s,c);for(int x=c.bounds.min().getX()>>4;x<=c.bounds.max().getX()>>4;x++)for(int z=c.bounds.min().getZ()>>4;z<=c.bounds.max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"首次定稿请先靠近范围；不强制加载区块");captures.put(c.id,new Capture(c.id,c.revision,0,new LinkedHashMap<>()));c.works.status="分批记录首次定稿地形";CityData.get(s).setDirty();}
+- static void capture(MinecraftServer s){if(captures.isEmpty())return;var task=captures.values().iterator().next();var c=CityData.get(s).cities.get(task.city);if(c==null||c.revision!=task.revision){captures.remove(task.city);return;}var l=CityEconomy.level(s,c);int cursor=task.cursor;for(int i=0;i<1024&&cursor<c.bounds.volume();i++){var pos=c.bounds.at(cursor);if(!l.hasChunkAt(pos))break;cursor++;if(c.includes(pos)&&!l.getBlockState(pos).isAir())task.terrain.put(pos.asLong(),CityMaintenance.encode(l.getBlockState(pos)));}
+-  if(cursor<c.bounds.volume()){captures.put(c.id,new Capture(c.id,task.revision,cursor,task.terrain));return;}int total=CityData.get(s).cities().stream().mapToInt(city->city.works.terrain.size()).sum()+task.terrain.size();if(total>262144){c.works.status="首次定稿总地形记录超过262144，未启用";captures.remove(c.id);return;}
+-  c.works.terrain=task.terrain;var legacy=CityMaintenance.get(s);var legacyPlan=legacy.state.cities.computeIfAbsent(c.id,k->new CityMaintenance.Plan());legacyPlan.baseline=new LinkedHashMap<>(task.terrain);legacyPlan.collective=false;legacy.setDirty();for(var b:c.buildings.values()){var h=CityHousing.house(c,b.id());if(h.baseline.isEmpty())for(var e:task.terrain.entrySet())if(b.bounds().contains(BlockPos.of(e.getKey()))&&!CityBlockRules.ignored(state(e.getValue())))h.baseline.put(e.getKey(),e.getValue());h.extra=false;h.stage="BUILT";h.damaged.clear();}
+-  c.works.day=RuralSettlement.dayTime(s,c);c.works.finalized=true;c.works.nextSegment=3000-Math.floorMod(c.works.day,3000);c.works.status="首次定稿完成，城市维护已启动";captures.remove(c.id);CityMaintenance.enableDataCity(s,c);CityData.get(s).setDirty();
++ static void beginFinalize(MinecraftServer s,CityData.City c){CityEconomy.require(!c.works.finalized,"首次定稿已经完成；追加建筑请下达蓝图");CityEconomy.require(!captures.containsKey(c.id),"正在记录，请等待");var l=CityEconomy.level(s,c);if(c.bounds.smallSelection())for(int x=c.bounds.min().getX()>>4;x<=c.bounds.max().getX()>>4;x++)for(int z=c.bounds.min().getZ()>>4;z<=c.bounds.max().getZ()>>4;z++)CityEconomy.require(l.hasChunk(x,z),"首次定稿请先靠近范围；不强制加载区块");captures.put(c.id,new Capture(c.id,c.revision,new CityScanCursor(CityLoadedChunks.scanBoxes(l,c.bounds)),new CityBlockStore(),false));c.works.status="分批记录首次定稿地形";CityData.get(s).setDirty();}
++ static void capture(MinecraftServer s){if(captures.isEmpty()){appendLoadedTerrain(s);if(captures.isEmpty())return;}var task=captures.values().iterator().next();var c=CityData.get(s).cities.get(task.city);if(c==null||c.revision!=task.revision){captures.remove(task.city);return;}var l=CityEconomy.level(s,c);task.cursor.step(l,1024,pos->{if(c.includes(pos)&&!l.getBlockState(pos).isAir())task.terrain.put(pos.asLong(),CityMaintenance.encode(l.getBlockState(pos)));},air->{});if(task.cursor.lostChunk){captures.remove(c.id);c.works.status="记录区块已卸载；保持已有基准，靠近后继续";return;}
++  if(!task.cursor.done())return;if(task.terrain instanceof CityBlockStore store)store.compact();
++  if(task.append){for(var entry:task.terrain.entrySet())c.works.terrain.putIfAbsent(entry.getKey(),entry.getValue());for(var box:task.cursor.boxes){c.works.capturedChunks.add(net.minecraft.world.level.ChunkPos.asLong(box.min().getX()>>4,box.min().getZ()>>4));editUnknown(c,box,false);}if(c.works.terrain instanceof CityBlockStore store)store.compact();completeHouseBaselines(c);c.works.status="已记录地形区块："+c.works.capturedChunks.size()+"；远方未加载地区保留待记录状态";captures.remove(c.id);CityData.get(s).setDirty();return;}
++  c.works.terrain=task.terrain;var legacy=CityMaintenance.get(s);var legacyPlan=legacy.state.cities.computeIfAbsent(c.id,k->new CityMaintenance.Plan());legacyPlan.baseline=new CityBlockStore(task.terrain);legacyPlan.collective=false;legacy.setDirty();
++  for(var box:task.cursor.boxes)for(int x=box.min().getX()>>4;x<=box.max().getX()>>4;x++)for(int z=box.min().getZ()>>4;z<=box.max().getZ()>>4;z++)c.works.capturedChunks.add(net.minecraft.world.level.ChunkPos.asLong(x,z));c.works.unknownTerrain=new ArrayList<>();if(!c.bounds.smallSelection()){for(var box:CityAreas.regions(c))editUnknown(c,box,true);for(var box:task.cursor.boxes)editUnknown(c,box,false);}
++  completeHouseBaselines(c);c.works.day=RuralSettlement.dayTime(s,c);c.works.finalized=true;c.works.nextSegment=3000-Math.floorMod(c.works.day,3000);c.works.status=c.works.deferredTerrain?"已定稿当前加载地区；远方地形待加载后记录":"首次定稿完成，城市维护已启动";captures.remove(c.id);CityMaintenance.enableDataCity(s,c);CityData.get(s).setDirty();
+  }
+  static CityHousing.House at(CityData.City c,long pos){var p=BlockPos.of(pos);for(var b:c.buildings.values())if(b.bounds().contains(p))return c.housing.houses.get(b.id());return null;}
+  static String target(CityData.City c,long pos){var h=at(c,pos);if(h!=null&&h.baseline.containsKey(pos)&&!h.stage.equals("ABANDONED"))return h.baseline.get(pos);if(h!=null&&h.clears.contains(pos)&&!h.stage.equals("ABANDONED"))return CityMaintenance.encode(Blocks.AIR.defaultBlockState());return c.works.terrain.getOrDefault(pos,CityMaintenance.encode(Blocks.AIR.defaultBlockState()));}
+@@ -59,7 +101,7 @@ public final class CityWorks {
+    if(h.stage.equals("ABANDONED"))return;var wanted=state(h.baseline.get(pos));if(CityBlockRules.same(actual,wanted)){h.damaged.remove(pos);c.works.damageSince.remove(pos);}else{h.damaged.add(pos);c.works.damageSince.putIfAbsent(pos,c.works.clock);}if(h.stage.equals("PLANNED"))return;
+   }var wanted=state(target(c,pos));if(CityBlockRules.ignored(actual)||CityBlockRules.ignored(wanted)){c.works.illegal.remove(pos);c.works.terrainDamage.remove(pos);return;}if(h!=null&&h.pendingClear.contains(pos)&&actual.isAir()){h.pendingClear.remove(pos);completed(h);}if(CityBlockRules.same(actual,wanted)||actual.isAir())c.works.illegal.remove(pos);else c.works.illegal.put(pos,CityMaintenance.encode(actual));
+  }
+- static void changed(ServerLevel l,BlockPos p,boolean removed){var c=RuralTools.city(l,p);if(c==null||!active(c))return;c.works.pending.remove(p.asLong());taskCache.remove(c);efficiencyCache.remove(c);var actual=removed?Blocks.AIR.defaultBlockState():l.getBlockState(p);observe(l.getServer(),c,p.asLong(),actual);CityData.get(l.getServer()).setDirty();}
++ static void changed(ServerLevel l,BlockPos p,boolean removed){var c=RuralTools.city(l,p);if(c==null||!active(c)||(!recorded(c,p)&&!c.works.terrain.containsKey(p.asLong())&&at(c,p.asLong())==null))return;c.works.pending.remove(p.asLong());taskCache.remove(c);efficiencyCache.remove(c);var actual=removed?Blocks.AIR.defaultBlockState():l.getBlockState(p);observe(l.getServer(),c,p.asLong(),actual);CityData.get(l.getServer()).setDirty();}
+  static void schedule(CityData.City c,long pos,BlockState wanted,BlockState actual,String reason){String expected=c.works.pending.containsKey(pos)?c.works.pending.get(pos).expected:CityMaintenance.encode(actual);c.works.pending.put(pos,new Projection(CityMaintenance.encode(wanted),expected,reason));}
+  static void decay(MinecraftServer s,CityData.City c){int population=0;var rural=RuralSettlement.get(s);for(UUID id:c.residents){var p=rural.state.people.get(id);if(p!=null){if(!p.dead&&p.age!=RuralRules.Age.INFANT)population++;}else if(living(s,c,id))population++;}int rate=Math.min(10000,400+Math.max(0,(population-80)/10)*50);var random=s.overworld().random;
+   for(var e:c.housing.houses.entrySet()){var h=e.getValue();if(h.baseline.isEmpty()||(workshop(c,e.getKey())&&!staff(s,c,e.getKey()).isEmpty()))continue;var regular=new ArrayList<Long>();var protectedBlocks=new ArrayList<Long>();for(var b:h.baseline.entrySet())if(!h.damaged.contains(b.getKey())){var state=state(b.getValue());if(CityBlockRules.decays(state))(CityBlockRules.last(state)?protectedBlocks:regular).add(b.getKey());}h.decayCredit+=(long)(regular.size()+protectedBlocks.size())*rate;long amount=h.decayCredit/10000;h.decayCredit%=10000;for(long n=0;n<amount;n++){var options=regular.isEmpty()?protectedBlocks:regular;if(options.isEmpty())break;int index=random.nextInt(options.size());long p=options.remove(index);h.damaged.add(p);c.works.damageSince.putIfAbsent(p,c.works.clock);destroyInventory(s,c,p);schedule(c,p,Blocks.AIR.defaultBlockState(),state(h.baseline.get(p)),"NATURAL");}}
+@@ -98,9 +140,9 @@ public final class CityWorks {
+    if(!CityBlockRules.same(actual,state(entry.getValue().expected))){c.works.pending.remove(entry.getKey());observe(s,c,entry.getKey(),actual);continue;}
+    if(l.getBlockEntity(pos) instanceof net.minecraft.world.Container container&&!(container instanceof RuralBlocks.Link))net.minecraft.world.Containers.dropContents(l,pos,container);l.setBlock(pos,target,2);var house=at(c,entry.getKey());if(house!=null&&house.blockData.containsKey(entry.getKey())&&l.getBlockEntity(pos)!=null)try{l.getBlockEntity(pos).loadWithComponents(net.minecraft.nbt.TagParser.parseTag(house.blockData.get(entry.getKey())),l.registryAccess());l.getBlockEntity(pos).setChanged();}catch(Exception ex){c.works.status="方块外观/关联配置同步失败："+ex.getMessage();}c.works.pending.remove(entry.getKey());if(++count>=8)break;}
+  }
+- static void tick(MinecraftServer s){capture(s);var cities=CityData.get(s).cities().stream().filter(CityWorks::active).toList();if(cities.isEmpty())return;var c=cities.get(Math.floorMod(cityCursor++,cities.size()));var l=CityEconomy.level(s,c);for(int i=0;i<(c.works.virtual?0:256);i++){var pos=c.bounds.at(Math.floorMod(c.works.scan++,c.bounds.volume()));if(l.hasChunkAt(pos)&&c.includes(pos)){observe(s,c,pos.asLong(),l.getBlockState(pos));if(at(c,pos.asLong())==null&&c.works.terrain.containsKey(pos.asLong())&&!CityBlockRules.ignored(l.getBlockState(pos))&&!CityBlockRules.same(l.getBlockState(pos),state(c.works.terrain.get(pos.asLong())))){c.works.terrainDamage.add(pos.asLong());c.works.damageSince.putIfAbsent(pos.asLong(),c.works.clock);}else if(at(c,pos.asLong())==null)c.works.terrainDamage.remove(pos.asLong());}}
++ static void tick(MinecraftServer s){capture(s);var cities=CityData.get(s).cities().stream().filter(CityWorks::active).toList();if(cities.isEmpty())return;var c=cities.get(Math.floorMod(cityCursor++,cities.size()));var l=CityEconomy.level(s,c);if(!c.works.virtual){var scan=localScans.get(c);if(scan==null||scan.done()){scan=new CityScanCursor(CityLoadedChunks.scanBoxes(l,c.bounds));localScans.put(c,scan);}scan.step(l,256,pos->{if(c.includes(pos)&&recorded(c,pos)){observe(s,c,pos.asLong(),l.getBlockState(pos));if(at(c,pos.asLong())==null&&c.works.terrain.containsKey(pos.asLong())&&!CityBlockRules.ignored(l.getBlockState(pos))&&!CityBlockRules.same(l.getBlockState(pos),state(c.works.terrain.get(pos.asLong())))){c.works.terrainDamage.add(pos.asLong());c.works.damageSince.putIfAbsent(pos.asLong(),c.works.clock);}else if(at(c,pos.asLong())==null)c.works.terrainDamage.remove(pos.asLong());}},air->{});}
+   project(s,c);int steps=SimulationClock.steps(s);if(steps>0){for(var city:cities){var p=city.works;p.clock+=20L*steps;p.day+=20L*steps;if(s.getTickCount()%20==0||p.clock>=p.nextSegment)updateEmergency(s,city);if(p.emergency&&!p.emergencyAnnounced){RuralSuccession.emergencyNow(s,city);p.emergencyAnnounced=true;}if(!p.emergency)p.emergencyAnnounced=false;if(p.clock>=p.nextDecay){p.nextDecay+=72000;decay(s,city);}if(p.clock>=p.nextSegment){p.nextSegment+=3000;var artisans=CityMaintenance.get(s).state.workers.entrySet().stream().filter(e->e.getValue().enabled&&e.getValue().artisan&&e.getValue().city.equals(city.id)).map(Map.Entry::getKey).sorted().toList();if(p.queue.size()<64)p.queue.add(new Segment(p.day-3000,artisans));}if(p.clock>=p.nextMeal){p.nextMeal+=36000;RuralSuccession.artisanMeals(s,city);}if(s.getTickCount()%20==0||p.clock%1200<20L*steps)RuralSuccession.tick(s,city);}}
+   if(!c.works.queue.isEmpty()){var q=c.works.queue.getFirst();int processed=0;while(q.cursor<q.workers.size()&&processed++<2)worker(s,c,q.workers.get(q.cursor++),q.day);if(q.cursor==q.workers.size())c.works.queue.removeFirst();}CityData.get(s).setDirty();
+  }
+- static void validate(Plan p,CityData.City c){CityEconomy.require(p!=null&&p.terrain.size()<=131072&&p.pending.size()<=131072&&p.illegal.size()<=131072&&p.queue.size()<=64&&p.resources.size()<=256,"城市维护数据超限");for(long pos:p.terrain.keySet())CityEconomy.require(c.bounds.contains(BlockPos.of(pos)),"维护地形越界");for(var v:p.resources.values())CityEconomy.require(v>=0&&v<=1000000,"公共资源库存越界");}
++ static void validate(Plan p,CityData.City c){CityEconomy.require(p!=null&&p.terrain!=null&&p.unknownTerrain!=null&&p.queue.size()<=64&&p.resources.size()<=256,"城市维护数据超限");for(var row:p.unknownTerrain){CityEconomy.require(row!=null&&row.length==2,"待记录地形无效");var area=new CityBounds(BlockPos.of(row[0]),BlockPos.of(row[1]));CityEconomy.require(c.bounds.contains(area.min())&&c.bounds.contains(area.max()),"待记录地形越界");}p.deferredTerrain=!p.unknownTerrain.isEmpty();CityEconomy.require(CityBlockStore.inside(p.terrain,c.bounds),"维护地形越界");for(String value:CityBlockStore.states(p.terrain))state(value);for(var v:p.resources.values())CityEconomy.require(v>=0&&v<=1000000,"公共资源库存越界");}
+ }
+diff --git a/src/main/resources/data/city_large_area_focus/structure/empty.nbt b/src/main/resources/data/city_large_area_focus/structure/empty.nbt
+new file mode 100644
+index 0000000000000000000000000000000000000000..71b93abaa2e8f2abd2537a952e2b4413654148ee
+GIT binary patch
+literal 111
+zcmb2|=3oE;CN9-e2l*Tf1XwNzx_Te^Z((h{OF!}?o9f$nHG9qYCZ9a*!#(ANT2PdQ
+z%T8MZ7k1&NPlYO3a=fPAURe1eB{WZ%o7?#E(HHt3_psh7RpBgHasBhXz8U_W)An|8
+P{XfQD`H1Ir5zra{!ul-3
+
+literal 0
+HcmV?d00001
+

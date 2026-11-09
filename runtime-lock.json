@@ -18199,10 +18199,10 @@
       "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/building_archive-0.6.1.jar"
     },
     {
-      "path": "mods/city_settlements-0.10.30.jar",
-      "size": 1005944,
-      "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
-      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.10.30.jar"
+      "path": "mods/city_settlements-0.11.0.jar",
+      "size": 1040367,
+      "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+      "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.11.0.jar"
     },
     {
       "path": "mods/real_needs-0.5.2.jar",
@@ -18599,21 +18599,30 @@
       },
       {
         "modId": "city_settlements",
-        "path": "mods/city_settlements-0.10.30.jar",
-        "size": 1005944,
-        "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452",
-        "version": "0.10.30",
+        "path": "mods/city_settlements-0.11.0.jar",
+        "size": 1040367,
+        "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+        "version": "0.11.0",
         "license": "All Rights Reserved",
         "sourceProject": "city-settlements",
         "bothSides": true,
-        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.10.30.jar",
+        "url": "https://github.com/muxigame/bmc5server/releases/download/city-core-20261108/city_settlements-0.11.0.jar",
         "superseded": [
           {
             "path": "mods/city_settlements-0.10.29.jar",
             "size": 1005949,
             "sha256": "9085ee6d60df406ca26ddf6e74bed470e387955a088e1bbf17968364752afe22"
+          },
+          {
+            "path": "mods/city_settlements-0.10.30.jar",
+            "size": 1005944,
+            "sha256": "dd5743bd46a9d7aac6d788f84ee940f5c01e435bae869874369607e00b6d0452"
           }
-        ]
+        ],
+        "networkProtocol": 3,
+        "savedDataSchema": 4,
+        "controlsUnchanged": true,
+        "acceptanceScope": "Full320 on r04; final bounded resize/Y fixes6 focused passed; real UI unverified; formal deployment false"
       },
       {
         "modId": "real_needs",

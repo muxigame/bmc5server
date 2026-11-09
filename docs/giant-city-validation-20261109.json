@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-09T04:10:45.343570+00:00",
+  "sourceOriginalStillUnchanged": true,
+  "originalChangedFiles": [],
+  "version": "0.11.0",
+  "finalCandidateSHA256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+  "jarBytes": 1040367,
+  "fullRegression": {
+    "tests": 320,
+    "passed": 320,
+    "log": "gametest-large-area-r04.log",
+    "artifactSHA256": "d3fcaabe0bf77f21caae29d9220926c80042d047b4a5c4d0faa8b8beee090851"
+  },
+  "focusedFinalCandidate": {
+    "tests": 6,
+    "passed": 6,
+    "log": "gametest-large-area-focus-r02.log",
+    "artifactSHA256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27"
+  },
+  "finalChangesAfterFullRegression": [
+    "com/muxigame/city/CityBlockStore$1$1.class",
+    "com/muxigame/city/CityBlockStore$1.class",
+    "com/muxigame/city/CityBlockStore$Adapter.class",
+    "com/muxigame/city/CityBlockStore.class",
+    "com/muxigame/city/CityScanCursor.class",
+    "com/muxigame/city/CityService.class",
+    "com/muxigame/city/CityWorks$EffCache.class",
+    "com/muxigame/city/CityWorks$TaskCache.class",
+    "com/muxigame/city/CityWorks$UnknownCache.class",
+    "com/muxigame/city/CityWorks.class"
+  ],
+  "productionClassesMatchDevelopmentBytecode": true,
+  "testClassesAndFocusFixtureExcludedFromProduction": true,
+  "productionDeployed": false,
+  "nativeUI": "UNVERIFIED_CAPTURE_RETURNED_OTHER_GAME",
+  "nativeUIInputsSent": 0,
+  "nativeClientExitVerified": false,
+  "updatedAt": "2026-11-09T04:15:34.184852+00:00",
+  "installerRegression": {
+    "client": 21,
+    "server": 26,
+    "allPassed": true,
+    "scope": "City retirement, launcher-base and entrypoint unit tests"
+  },
+  "actualCandidateFileVerify": {
+    "client": true,
+    "server": true,
+    "baseVersion": "1.4.97"
+  }
+}
