@@ -1,0 +1,208 @@
+{
+  "at": "2026-11-09T06:45:56.715770+00:00",
+  "packVersion": "1.4.100",
+  "cityVersion": "0.11.0",
+  "completePackSHA256": "03f3a29a8ebd21b1ef112052e3ffe76862c365ea96c0139421a40ddc53746d62",
+  "completePackBytes": 1779946750,
+  "all11064LocalEntriesSHA256Verified": true,
+  "repositories": {
+    "server": {
+      "at": "2026-11-09T06:45:04.000103+00:00",
+      "commit": "c6dc77777ae6e90dfc996998be1fe30b29b0ef15",
+      "branch": "release/city-core-20261108",
+      "remoteVerified": true,
+      "files": 718,
+      "sourceAndLocks": true,
+      "binaryLFSObjectsUploaded": true,
+      "unrelatedWorkingEditsPreserved": true
+    },
+    "client": {
+      "at": "2026-11-09T06:45:21.147449+00:00",
+      "commit": "f3f2c824ab874e3333e02601dfc277995e972bf8",
+      "branch": "release/city-core-20261108",
+      "remoteVerified": true,
+      "files": 650,
+      "sourceAndLocks": true,
+      "binaryLFSObjectsUploaded": false,
+      "unrelatedWorkingEditsPreserved": true
+    }
+  },
+  "remoteLfsObjects": [
+    {
+      "name": "CustomNPCs-1.21.1.20251230-bmc-motion.134-rural092-markfix1-ysm3.1-repro.jar",
+      "bytes": 105625076,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "zaluoke_forging-0.6.3-dev.jar",
+      "bytes": 250649,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "building_archive-0.6.1.jar",
+      "bytes": 152700,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "real_needs-0.5.2.jar",
+      "bytes": 156843,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "inner_monologue-0.1.1.jar",
+      "bytes": 47670,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "camera_lock-0.1.6.jar",
+      "bytes": 42487,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "NPC-Design-Kit-motion134-rural092-markfix1.zip",
+      "bytes": 1209849,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "NPC134-MarkFix-Publish-Kit.zip",
+      "bytes": 6552,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "glfw.dll",
+      "bytes": 366592,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "GLFW-LICENSE.md",
+      "bytes": 904,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "owned-active-window.patch",
+      "bytes": 655,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "lwjgl-compat.patch",
+      "bytes": 11290,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "NPC134-YSM3-Compat-Source-Kit.zip",
+      "bytes": 34549,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "City-0.10.30-Changed-Sources.zip",
+      "bytes": 17388,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "city-0.10.29-to-0.10.30.patch",
+      "bytes": 10629,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "city-core-l2-compat-0.0.2.jar",
+      "bytes": 3381,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "city_settlements-0.11.0.jar",
+      "bytes": 1040367,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "City-0.11.0-Source-Kit.zip",
+      "bytes": 655474,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "city-0.10.30-to-0.11.0.patch",
+      "bytes": 191695,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "City-Core-Module-Sources-20261109-0110.zip",
+      "bytes": 1515234,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "ysm-3.0-dev-neoforge+mc1.21.1.jar",
+      "bytes": 31309535,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "City-Core-1.4.100-Complete-20261109-r02.zip",
+      "bytes": 1779946750,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    },
+    {
+      "name": "City-Core-1.4.100-Complete-20261109-r02.zip.sha256",
+      "bytes": 111,
+      "httpStatus": 200,
+      "lfsOIDMatches": true
+    }
+  ],
+  "actualDownloadedSamples": [
+    {
+      "name": "city_settlements-0.11.0.jar",
+      "bytes": 1040367,
+      "sha256": "95e001ac22a031f1e60537c69e08214d1e338f8eea5b0aabeb8ce59ddddd1c27",
+      "actualDownloadVerified": true
+    },
+    {
+      "name": "NPC-Design-Kit-motion134-rural092-markfix1.zip",
+      "bytes": 1209849,
+      "sha256": "8c8189b76bdcb98065193cc106c59859125191ae7e64504e7b6c0ad634f2a95d",
+      "actualDownloadVerified": true
+    },
+    {
+      "name": "glfw.dll",
+      "bytes": 366592,
+      "sha256": "0d22a3133722c2aa48ad6a898df12c4026c867dfc52db9c67f9fbdd2b24a586b",
+      "actualDownloadVerified": true
+    }
+  ],
+  "completeZipRange": {
+    "status": 206,
+    "contentRange": "bytes 0-31/1779946750",
+    "zipHeaderVerified": true
+  },
+  "officialLatestRecheck": {
+    "checkedAt": "2026-11-09T06:45:56.713270+00:00",
+    "version": "1.4.100",
+    "sha256": "96c8ec8ad7376d3aa4d2e429c42c0182e2c1c98cb240dcd5c06cafa4d2a85629",
+    "matchesPinnedVersion": true
+  },
+  "installerClientTests": 62,
+  "installerServerTests": 73,
+  "actualBothCandidateVerify": true,
+  "fullCoreLoopPassed": false,
+  "native14100AcceptancePassed": false,
+  "formalClientOrServerModified": false,
+  "userAccepted": false
+}

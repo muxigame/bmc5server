@@ -336,5 +336,6 @@
   },
   "current14100NativeAcceptancePassed": false,
   "binaryAssetsDistribution": "Git LFS in bmc5server/release-assets",
-  "binaryAssetsPushVerified": false
+  "binaryAssetsPushVerified": true,
+  "binaryAssetsVerifiedAt": "2026-11-09T06:45:56.715770+00:00"
 }

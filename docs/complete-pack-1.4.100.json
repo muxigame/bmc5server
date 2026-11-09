@@ -17,7 +17,9 @@
   "installerClientTests": 62,
   "installerServerTests": 73,
   "actualBothFileVerifyPassed": true,
-  "repositoryBinaryPushVerified": false,
+  "repositoryBinaryPushVerified": true,
   "freeBefore": 87251906560,
-  "estimatedRawBytes": 2205220997
+  "estimatedRawBytes": 2205220997,
+  "remoteLfsObjectsVerified": 23,
+  "remoteDownloadVerifiedAt": "2026-11-09T06:45:56.715770+00:00"
 }
