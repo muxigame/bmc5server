@@ -1,25 +1,54 @@
 {
-  "at": "2026-11-09T09:32:38.403369+00:00",
+  "schema": 1,
+  "status": "AWAITING_MAINTAINER_REVIEW",
   "packVersion": "1.4.101",
-  "buildingArchiveVersion": "0.6.2",
+  "buildingArchiveVersion": "0.6.3",
   "cityVersion": "0.11.0",
-  "path": "D:\\CPN\\work\\bmc5server-city-14101-archive062-20261109\\release-assets\\City-Core-1.4.101-Archive0.6.2-Complete-20261109.zip",
-  "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/City-Core-1.4.101-Archive0.6.2-Complete-20261109.zip",
-  "size": 1780261604,
-  "sha256": "322c0a1b0423e2a7619c29de8a81414a6b0959a80b317a854d45f8e7e712554d",
-  "entries": 11082,
-  "officialPublicFiles": 9477,
-  "coreModules": 9,
-  "completeContentReadBackVerified": true,
-  "sourceSnapshotsFromCleanCommits": {
-    "server": "9547cf6d35c87b0ee3b8d605f9da0b60c23d94d8",
-    "client": "fb6330430777889f9d60a64b9ebe3c41e9f3cb97"
+  "baseCompleteArchive": {
+    "at": "2026-11-09T09:32:38.403369+00:00",
+    "packVersion": "1.4.101",
+    "buildingArchiveVersion": "0.6.2",
+    "cityVersion": "0.11.0",
+    "path": "D:\\CPN\\work\\bmc5server-city-14101-archive062-20261109\\release-assets\\City-Core-1.4.101-Archive0.6.2-Complete-20261109.zip",
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/release/city-core-20261108/release-assets/City-Core-1.4.101-Archive0.6.2-Complete-20261109.zip",
+    "size": 1780261604,
+    "sha256": "322c0a1b0423e2a7619c29de8a81414a6b0959a80b317a854d45f8e7e712554d",
+    "entries": 11082,
+    "officialPublicFiles": 9477,
+    "coreModules": 9,
+    "completeContentReadBackVerified": true,
+    "sourceSnapshotsFromCleanCommits": {
+      "server": "9547cf6d35c87b0ee3b8d605f9da0b60c23d94d8",
+      "client": "fb6330430777889f9d60a64b9ebe3c41e9f3cb97"
+    },
+    "previousVerifiedArchiveSHA256": "03f3a29a8ebd21b1ef112052e3ffe76862c365ea96c0139421a40ddc53746d62",
+    "fullGameOrWorldCopies": 0,
+    "normalUserConfigsChanged": false,
+    "formalInstanceModified": false,
+    "nativeWholeModpackVerified": false,
+    "repositoryPushVerified": true,
+    "remoteVerifiedAt": "2026-11-09T09:45:27.102824+00:00"
   },
-  "previousVerifiedArchiveSHA256": "03f3a29a8ebd21b1ef112052e3ffe76862c365ea96c0139421a40ddc53746d62",
-  "fullGameOrWorldCopies": 0,
-  "normalUserConfigsChanged": false,
-  "formalInstanceModified": false,
-  "nativeWholeModpackVerified": false,
-  "repositoryPushVerified": true,
-  "remoteVerifiedAt": "2026-11-09T09:45:27.102824+00:00"
+  "incrementalModule": {
+    "path": "release-assets/building_archive-0.6.3.jar",
+    "size": 138589,
+    "sha256": "87acbf75b35688ab9ef94fa2c344b146160ba98db070c58b4ab7a7ddf7814fcb",
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/building_archive-0.6.3.jar"
+  },
+  "moduleSources": {
+    "path": "release-assets/Building-Archive-0.6.3-Sources.zip",
+    "size": 132660,
+    "sha256": "6cbe4d039cc14c192d3c969ef4e9aab9348f6386bf76a4992b1cf59486d50a9c",
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/Building-Archive-0.6.3-Sources.zip"
+  },
+  "allModuleSources": {
+    "path": "release-assets/City-Core-Module-Sources-20261109-0110-ba063.zip",
+    "size": 1529652,
+    "sha256": "102462470f7962b5aead3ce27dd8091681cb3ef34d67e0c15d99e74ed3d0237f",
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/feature/archive-foundation-063-20261109/release-assets/City-Core-Module-Sources-20261109-0110-ba063.zip"
+  },
+  "installation": "Checkout both reviewed branches, close client/server, run each repository setup. Locked setup downloads the new artifact and safely retires verified old module.",
+  "fullArchiveRebuilt": false,
+  "wholeModpackEndToEndVerified": false,
+  "productionDeployed": false
 }

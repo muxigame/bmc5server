@@ -22,7 +22,7 @@ public final class ArchiveNetwork {
   public static final StreamCodec<RegistryFriendlyByteBuf,Transfer> CODEC=StreamCodec.of((b,p)->{b.writeUtf(p.op,16);b.writeUtf(p.name,128);b.writeUUID(p.id);b.writeInt(p.offset);b.writeInt(p.total);b.writeByteArray(p.bytes);},b->new Transfer(b.readUtf(16),b.readUtf(128),b.readUUID(),b.readInt(),b.readInt(),b.readByteArray(ArchiveTransfer.CHUNK)));
   public Type<Transfer> type(){return TYPE;}
  }
- public static void register(RegisterPayloadHandlersEvent e){var r=e.registrar("4");r.playBidirectional(Transfer.TYPE,Transfer.CODEC,(p,c)->{if(c.player() instanceof ServerPlayer s)ArchiveTransfer.handle(s,p);else ClientBridge.transfer.accept(p);});r.playToServer(Request.TYPE,Request.CODEC,(p,c)->{if(c.player() instanceof ServerPlayer s)BuildingArchive.action(s,p);});r.playToClient(Snapshot.TYPE,Snapshot.CODEC,(p,c)->ClientBridge.receive.accept(p.data));}
+ public static void register(RegisterPayloadHandlersEvent e){var r=e.registrar("5");r.playBidirectional(Transfer.TYPE,Transfer.CODEC,(p,c)->{if(c.player() instanceof ServerPlayer s)ArchiveTransfer.handle(s,p);else ClientBridge.transfer.accept(p);});r.playToServer(Request.TYPE,Request.CODEC,(p,c)->{if(c.player() instanceof ServerPlayer s)BuildingArchive.action(s,p);});r.playToClient(Snapshot.TYPE,Snapshot.CODEC,(p,c)->ClientBridge.receive.accept(p.data));}
  public static final class ClientBridge {public static Runnable help=()->{};public static Runnable files=()->{};public static java.util.function.Consumer<Transfer> transfer=p->{};public static java.util.function.BooleanSupplier shift=()->false;public static java.util.function.Consumer<CompoundTag> receive=t->{};}
 }
 

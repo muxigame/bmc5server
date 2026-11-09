@@ -41,6 +41,7 @@ public final class BuildingArchive {
         .displayItems((params,out)->{out.accept(TOOL.get());out.accept(GUIDE.get());out.accept(TERRAIN.get());out.accept(TRANSFER.get());}).build());
     private static final Map<UUID,Session> SESSIONS=new HashMap<>();
     private static final class Session {
+        boolean preserveFoundation; int foundationLayers;
         int rotation; CompoundTag deletion; BlockPos deletionOrigin; long deletionExpires;
         int[] projection=new int[0];long revision; String loadedName=""; String dimension; BlockPos a,b,anchor; CompoundTag loaded,undo; BlockPos undoOrigin;String undoDimension;
     }
@@ -90,32 +91,34 @@ public final class BuildingArchive {
         ArchiveData.writeNew(file,data);
         try {Files.writeString(root(p).resolve(name+".analysis.json"),new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(report),StandardOpenOption.CREATE_NEW);}
         catch(Exception e){say(p,"NBT已保存，但统计报告写入失败："+e.getMessage());}
-        s.rotation=0;s.deletion=null;s.loaded=data;s.projection=ArchiveData.projectionRuns(data);s.loadedName=name;s.anchor=null;s.revision++;
+        s.rotation=0;s.deletion=null;s.loaded=data;s.foundationLayers=ArchiveFoundation.detectLayers(data);s.projection=ArchiveData.projectionRuns(data);s.loadedName=name;s.anchor=null;s.revision++;
         say(p,"已导出 "+name+"："+report.get("nonAir")+"个非空气方块，"+report.getAsJsonObject("blocks").size()+"种方块。右键地面可预览导入位置。");
         say(p,"服务端文件："+file.toAbsolutePath());
     }
     private static void load(ServerPlayer p,String name) throws Exception {
         CompoundTag data=ArchiveData.read(ArchiveData.file(root(p),name));var size=ArchiveData.validate(data);
-        Session s=session(p);s.rotation=0;s.deletion=null;s.loaded=data;s.projection=ArchiveData.projectionRuns(data);s.loadedName=name;s.anchor=null;s.revision++;say(p,"已载入 "+name+"（"+size.toShortString()+"）。右键方块表面选择放置原点；不会立即放置。");
+        Session s=session(p);s.rotation=0;s.deletion=null;s.loaded=data;s.foundationLayers=ArchiveFoundation.detectLayers(data);s.projection=ArchiveData.projectionRuns(data);s.loadedName=name;s.anchor=null;s.revision++;say(p,"已载入 "+name+"（"+size.toShortString()+"）。右键方块表面选择放置原点；不会立即放置。");
     }
+    private static CompoundTag placement(Session s){return s.preserveFoundation?ArchiveFoundation.prepare(s.loaded,s.foundationLayers):s.loaded;}
+    private static String airPolicy(Session s){return s.preserveFoundation?"保留底部 "+s.foundationLayers+" 层空气位置的原地形；以上空气照常清空目标":"保存的空气也会清空目标";}
     private static void preview(ServerPlayer p,BlockPos pos) {
         Session s=session(p);if(s.loaded==null)throw new IllegalArgumentException("请先 /ba load 名称。");
-        int occupied=ArchiveData.occupied(p.serverLevel(),pos,s.loaded);s.anchor=pos.immutable();s.revision++;outline(p,pos,ArchiveData.validate(s.loaded));
-        say(p,"原点 "+pos.toShortString()+"；目标已有 "+occupied+" 格方块。建筑向 +X、+Y、+Z 延伸，包含保存的空气。");
+        int occupied=ArchiveData.occupied(p.serverLevel(),pos,placement(s));s.anchor=pos.immutable();s.revision++;outline(p,pos,ArchiveData.validate(s.loaded));
+        say(p,"原点 "+pos.toShortString()+"；目标已有 "+occupied+" 格待覆盖方块。建筑向 +X、+Y、+Z 延伸；"+airPolicy(s)+"。");
         String command=occupied==0?"/ba paste":"/ba paste replace";
-        p.sendSystemMessage(Component.literal(occupied==0?"[点击填入放置命令]":"[点击填入覆盖命令，覆盖含空气]")
+        p.sendSystemMessage(Component.literal(occupied==0?"[点击填入放置命令]":"[点击填入覆盖命令，按当前地基设置]")
             .withStyle(style->style.withColor(net.minecraft.ChatFormatting.AQUA).withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND,command))));
     }
     private static void paste(ServerPlayer p,boolean replace) throws Exception {
         Session s=session(p);if(s.loaded==null||s.anchor==null)throw new IllegalArgumentException("请先载入档案并右键预览目标位置。");
-        int occupied=ArchiveData.occupied(p.serverLevel(),s.anchor,s.loaded);
+        CompoundTag incoming=placement(s);int occupied=ArchiveData.occupied(p.serverLevel(),s.anchor,incoming);
         if(occupied>0&&!replace)throw new IllegalArgumentException("目标存在方块；确定覆盖时使用 /ba paste replace。");
         Vec3i size=ArchiveData.validate(s.loaded);var before=ArchiveData.capture(p.serverLevel(),s.anchor,size);
         Path undoRoot=root(p).resolve("backups");String name="undo_"+p.getUUID()+"_"+System.currentTimeMillis();
         ArchiveData.writeNew(ArchiveData.file(undoRoot,name),before);
         // Keep a usable undo even if a third-party block throws during placement.
         s.undo=before;s.undoOrigin=s.anchor;s.undoDimension=s.dimension;
-        ArchiveData.place(p.serverLevel(),s.anchor,s.loaded);say(p,"放置完成。/ba undo 撤销本次放置；原区域备份：backups/"+name+".nbt");clearLoaded(s);
+        ArchiveData.place(p.serverLevel(),s.anchor,incoming);say(p,"放置完成。/ba undo 撤销本次放置；原区域备份：backups/"+name+".nbt");clearLoaded(s);
     }
     private static void clearLoaded(Session s){s.loaded=null;s.loadedName="";s.anchor=null;s.projection=new int[0];s.rotation=0;s.deletion=null;s.revision++;}
     private static void undo(ServerPlayer p) {
@@ -183,11 +186,11 @@ public final class BuildingArchive {
         try{if(s.deletion!=null||(s.loaded!=null&&s.anchor!=null))sendProjection(p);else if(s.a!=null&&s.b!=null){var b=ArchiveData.bounds(s.a,s.b);outline(p,b.origin(),b.size());}}catch(IllegalArgumentException ignored){}
     }
     static CompoundTag snapshot(ServerPlayer p,String message,int page) throws Exception{
-        Session s=session(p);CompoundTag t=new CompoundTag();t.putLong("Revision",s.revision);t.putString("Message",message);t.putString("A",s.a==null?"尚未选择":s.a.toShortString());t.putString("B",s.b==null?"尚未选择":s.b.toShortString());
+        Session s=session(p);CompoundTag t=new CompoundTag();t.putLong("Revision",s.revision);t.putBoolean("FoundationSupported",true);t.putBoolean("PreserveFoundation",s.preserveFoundation);t.putInt("FoundationLayers",s.foundationLayers);t.putString("Message",message);t.putString("A",s.a==null?"尚未选择":s.a.toShortString());t.putString("B",s.b==null?"尚未选择":s.b.toShortString());
         t.putBoolean("Selected",s.a!=null&&s.b!=null);t.putBoolean("Loaded",s.loaded!=null);t.putString("Name",s.loadedName);t.putBoolean("Undo",s.undo!=null&&s.dimension.equals(s.undoDimension));t.putBoolean("Preview",s.anchor!=null&&s.loaded!=null);
         if(s.a!=null&&s.b!=null){try{var b=ArchiveData.bounds(s.a,s.b);t.putString("Size",b.size().toShortString());t.putInt("Low",b.origin().getY());t.putInt("High",b.origin().getY()+b.size().getY()-1);t.putBoolean("Valid",true);}catch(IllegalArgumentException e){t.putString("Message",e.getMessage());}}
         if(s.loaded!=null){t.putString("LoadedSize",ArchiveData.validate(s.loaded).toShortString());var stats=ArchiveData.analysis(s.loaded);t.putInt("NonAir",stats.get("nonAir").getAsInt());var counts=stats.getAsJsonObject("blocks");t.putInt("Kinds",counts.size());var materials=new net.minecraft.nbt.ListTag();counts.entrySet().stream().sorted((a,b)->Integer.compare(b.getValue().getAsInt(),a.getValue().getAsInt())).limit(5).forEach(e->{CompoundTag row=new CompoundTag();row.putString("Id",e.getKey());row.putInt("Count",e.getValue().getAsInt());materials.add(row);});t.put("Materials",materials);}
-        if(t.getBoolean("Preview")){t.putString("Anchor",s.anchor.toShortString());t.putInt("AnchorX",s.anchor.getX());t.putInt("AnchorY",s.anchor.getY());t.putInt("AnchorZ",s.anchor.getZ());try{t.putInt("Occupied",ArchiveData.occupied(p.serverLevel(),s.anchor,s.loaded));t.putBoolean("CanPaste",true);}catch(IllegalArgumentException e){t.putString("Message",e.getMessage());}}
+        if(t.getBoolean("Preview")){t.putString("Anchor",s.anchor.toShortString());t.putInt("AnchorX",s.anchor.getX());t.putInt("AnchorY",s.anchor.getY());t.putInt("AnchorZ",s.anchor.getZ());try{t.putInt("Occupied",ArchiveData.occupied(p.serverLevel(),s.anchor,placement(s)));t.putBoolean("CanPaste",true);}catch(IllegalArgumentException e){t.putString("Message",e.getMessage());}}
         Files.createDirectories(root(p));try(var files=Files.list(root(p))){var names=files.filter(f->Files.isRegularFile(f,LinkOption.NOFOLLOW_LINKS)&&f.getFileName().toString().endsWith(".nbt")).map(f->f.getFileName().toString().replaceFirst("\\.nbt$","")).sorted().toList();int pages=Math.max(1,(names.size()+4)/5),current=Math.max(0,Math.min(page,pages-1));t.putInt("Page",current);t.putInt("Pages",pages);t.putInt("Total",names.size());var list=new net.minecraft.nbt.ListTag();names.stream().skip(current*5L).limit(5).forEach(n->list.add(net.minecraft.nbt.StringTag.valueOf(n)));t.put("Files",list);}
         t.putInt("Rotation",s.rotation);t.putBoolean("DeletePreview",s.deletion!=null);
         if(s.deletion!=null){var size=ArchiveData.validate(s.deletion);t.putBoolean("Preview",true);t.putString("Anchor",s.deletionOrigin.toShortString());t.putInt("AnchorY",s.deletionOrigin.getY());t.putString("LoadedSize",size.toShortString());t.putBoolean("CanPaste",true);}
@@ -219,6 +222,9 @@ public final class BuildingArchive {
                 case "rotate_right" -> {rotate(p,true);message="已向右旋转90°，请核对投影后放置。";}
                 case "delete_preview" -> {prepareDelete(p);message="红框内所有方块及容器内容都会删除，不掉落物品；NPC和生物不删除。30秒内确认。";}
                 case "delete_confirm" -> {deleteConfirmed(p);message="删除完成，可用撤销上次操作恢复。";}
+                case "foundation_mode" -> {if(s.loaded==null)throw new IllegalArgumentException("请先载入建筑。");if(!r.value().equals("on")&&!r.value().equals("off"))throw new IllegalArgumentException("地基开关参数无效。");s.preserveFoundation=r.value().equals("on");s.revision++;message=airPolicy(s)+"。";}
+                case "foundation_top" -> {if(s.loaded==null)throw new IllegalArgumentException("请先载入建筑。");int layers=Integer.parseInt(r.value());if(layers<0||layers>ArchiveData.validate(s.loaded).getY())throw new IllegalArgumentException("地基层数必须在0到建筑高度之间。");s.foundationLayers=layers;s.revision++;message="地基顶层已设为底部第 "+layers+" 层；请核对后放置。";}
+                case "foundation_auto" -> {if(s.loaded==null)throw new IllegalArgumentException("请先载入建筑。");s.foundationLayers=ArchiveFoundation.detectLayers(s.loaded);s.revision++;message="自动识别底部 "+s.foundationLayers+" 层为地基；可手动调整。";}
                 case "refresh" -> {}
                 case "library" -> {clearLoaded(s);message="请选择下一份建筑；已放置的建筑和撤销记录不受影响。";}
                 case "aim" -> {preview(p,remoteTarget(p));message="远程投影已固定。返回现场绕着看，或在面板调整位置。";}
