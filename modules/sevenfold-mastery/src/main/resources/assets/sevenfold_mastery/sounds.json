@@ -1,0 +1,9 @@
+{
+  "stars.glass": {"subtitle":"sound.sevenfold_mastery.glass","sounds":[{"name":"sevenfold_mastery:stars/glass","preload":true}]},
+  "stars.approach": {"subtitle":"sound.sevenfold_mastery.approach","sounds":[{"name":"sevenfold_mastery:stars/approach","preload":true}]},
+  "stars.retreat": {"subtitle":"sound.sevenfold_mastery.retreat","sounds":[{"name":"sevenfold_mastery:stars/retreat","preload":true}]},
+  "stars.rise": {"subtitle":"sound.sevenfold_mastery.approach","sounds":[{"name":"sevenfold_mastery:stars/rise","preload":true}]},
+  "stars.fall": {"subtitle":"sound.sevenfold_mastery.retreat","sounds":[{"name":"sevenfold_mastery:stars/fall","preload":true}]},
+  "stars.extinction": {"subtitle":"sound.sevenfold_mastery.extinction","sounds":[{"name":"sevenfold_mastery:stars/extinction","preload":true}]},
+  "stars.space": {"sounds":[{"name":"sevenfold_mastery:stars/space","stream":true}]}
+}
