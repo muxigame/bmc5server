@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.muxigame.sevenfold.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CombatSlotMixin",
+    "InventoryMixin",
+    "PlayerFoodAccess",
+    "EffectScaleMixin",
+    "PlayerFoodInitMixin",
+    "PlayerRpgLoadMixin",
+    "SwapHandsMixin",
+    "MenuSwapMixin",
+    "PoisonScaleMixin",
+    "NeedsDamageUnitsMixin",
+    "NeedsIllnessUnitsMixin",
+    "PeacefulFoodScaleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "SprintFoodScaleMixin"
+  ]
+}

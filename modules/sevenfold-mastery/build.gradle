@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+version = mod_version
+group = 'com.muxigame.sevenfold'
+base { archivesName = mod_id }
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+// Read the authoritative installed baseline, rather than retaining a retired JAR name.
+def jointManifestFile = file('../npc-forging-test/manifest.json')
+def jointManifest = jointManifestFile.isFile() ? new groovy.json.JsonSlurper().parse(jointManifestFile) : [mods: []]
+def forgingEntry = jointManifest.mods.find { it.id == 'zaluoke_forging' }
+if (forgingEntry == null && !providers.gradleProperty('forgingCandidate').isPresent()) throw new GradleException('Supply -PforgingCandidate=PATH or use the registered joint manifest')
+if (!providers.gradleProperty('forgingCandidate').isPresent() && forgingEntry.file ==~ /.*-0\.[0-8]\..*/) throw new GradleException('Sevenfold 0.6 needs forging 0.9+. Use -PforgingCandidate=PATH for candidate QA; do not change the joint manifest just to build.')
+def forgingJar = providers.gradleProperty('forgingCandidate').isPresent() ? file(providers.gradleProperty('forgingCandidate').get()) : file("../npc-forging-test/server/mods/${forgingEntry.file}")
+if (!forgingJar.isFile()) throw new GradleException('Registered forging JAR is missing')
+dependencies { compileOnly files(forgingJar); runtimeOnly files(forgingJar) }
+if (providers.gradleProperty('jointCombatChecks').getOrElse('false') == 'true') {
+    // CustomNPCs requires the normal dedicated entry point; YSM requires the production native launcher.
+    // Exercise the optional physiology consumers here; NPC combination uses the forging owner's existing dedicated fixture.
+    dependencies { runtimeOnly files(jointManifest.mods.findAll { it.id in ['real_needs','inner_monologue'] }.collect { file("../npc-forging-test/server/mods/${it.file}") }) }
+}
+neoForge {
+    version = project.neo_version
+    runs {
+        starPreview {
+            client()
+            gameDirectory = project.file('build/star-ui-preview')
+            systemProperty 'sevenfold.starPreview', 'true'
+            systemProperty 'sevenfold.starPreview.stage', providers.gradleProperty('starPreviewStage').getOrElse('root')
+            programArguments.addAll '--width','1280','--height','720'
+            jvmArgument '-Xmx1G'
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory = project.file('build/gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', providers.gradleProperty('liteChecks').isPresent() ? 'sevenfold_lite_checks' : project.mod_id
+            if (providers.gradleProperty('liteChecks').isPresent()) systemProperty 'sevenfold.lite', 'true'
+        }
+    }
+    mods { "${mod_id}" { sourceSet(sourceSets.main) } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(AbstractArchiveTask).configureEach { preserveFileTimestamps = false; reproducibleFileOrder = true }
+tasks.named('jar', Jar) { exclude 'com/muxigame/sevenfold/MasteryTests*.class'; exclude 'com/muxigame/sevenfold/client/StarPreviewHarness*.class'; exclude 'data/sevenfold_mastery/structure/empty.nbt' }
+tasks.named('jar', Jar) { exclude 'com/muxigame/sevenfold/LiteTests*.class'; exclude 'data/sevenfold_lite_checks/**' }
+tasks.register('liteJar', Jar) {
+    dependsOn tasks.named('classes')
+    archiveClassifier = 'lite'
+    from(sourceSets.main.output) { exclude 'META-INF/neoforge.mods.toml' }
+    from('src/lite/resources')
+    exclude '**/MasteryTests*.class', '**/LiteTests*.class', '**/StarPreviewHarness*.class', 'data/sevenfold_mastery/structure/empty.nbt', 'data/sevenfold_lite_checks/**'
+}

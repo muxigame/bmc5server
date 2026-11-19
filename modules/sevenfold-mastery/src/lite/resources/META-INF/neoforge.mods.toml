@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+[[mods]]
+modId="sevenfold_mastery"
+version="0.9.10"
+displayName="精炼武备 · 星之树（精简版）"
+description='''精炼武备的 RPG 附属模组。包含七种伤害属性、独立战斗资源，以及由启行星开启命运的星之树。'''
+[[dependencies.sevenfold_mastery]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.sevenfold_mastery]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.sevenfold_mastery]]
+modId="zaluoke_forging"
+type="required"
+versionRange="[0.9.0-dev,)"
+ordering="AFTER"
+side="BOTH"
+
+[[mixins]]
+config="sevenfold_mastery.mixins.json"

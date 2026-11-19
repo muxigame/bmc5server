@@ -17,3 +17,8 @@ release-assets/*.dll filter=lfs diff=lfs merge=lfs -text
 
 # Complete distribution assets use one consistent LFS download endpoint.
 release-assets/* filter=lfs diff=lfs merge=lfs -text
+
+# Original addon build resources; runtime distribution remains opt-in.
+modules/sevenfold-mastery/src/main/resources/assets/**/*.png filter=lfs diff=lfs merge=lfs -text
+modules/sevenfold-mastery/src/main/resources/assets/**/*.ogg filter=lfs diff=lfs merge=lfs -text
+modules/sevenfold-mastery/src/main/resources/data/**/empty.nbt filter=lfs diff=lfs merge=lfs -text

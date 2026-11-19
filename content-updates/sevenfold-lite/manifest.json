@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "sevenfold-lite-0.9.10",
+  "enabled": false,
+  "requiresManagerApproval": true,
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "baseline": {
+    "client": "a7525c4",
+    "server": "0fe85e8",
+    "branch": "feature/archive-foundation-063-20261109"
+  },
+  "bundle": {
+    "url": "https://media.githubusercontent.com/media/muxigame/bmc5server/content/sevenfold-lite-20261118/release-assets/sevenfold-lite-content-20261118.zip",
+    "size": 1669896,
+    "sha256": "12aad608830573ed486ae1016f89e17065145e6ba5fb344736026c3081398dc3"
+  },
+  "runtimeLockModified": false,
+  "dependencyUpgrade": {
+    "id": "zaluoke_forging",
+    "from": "0.6.3-dev",
+    "to": "0.9.9-dev",
+    "automatic": false
+  },
+  "validation": {
+    "fullGameTests": 53,
+    "liteGameTests": 2,
+    "wholeLatestPackPlaytest": false
+  }
+}
